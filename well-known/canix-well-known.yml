@@ -1,0 +1,83 @@
+generated: '2026-08-09'
+method: probed
+source: live GET of /.well-known/* on every Canix host
+description: >-
+  Canix serves a complete OAuth 2.1 discovery surface from api.canix.com. It exists to
+  support the hosted MCP server at https://api.canix.com/mcp — the protected-resource
+  document names that endpoint explicitly. There is no security.txt, no api-catalog, no
+  ai-plugin.json, and no A2A agent card on any Canix host.
+hosts:
+- host: https://api.canix.com
+  documents:
+  - path: /.well-known/openid-configuration
+    status: 200
+    content_type: application/json
+    file: canix-openid-configuration.json
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    content_type: application/json
+    file: canix-oauth-authorization-server.json
+    spec: RFC 8414
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    content_type: application/json
+    file: canix-oauth-protected-resource.json
+    spec: RFC 9728
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://www.canix.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /llms.txt
+    status: 404
+  - path: /robots.txt
+    status: 200
+    note: 'User-agent: * / Allow: / — nothing disallowed; two sitemaps advertised.'
+- host: https://app.canix.com
+  documents:
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://help.canix.com
+  documents:
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /llms.txt
+    status: 404
+findings:
+  oauth_issuer: https://api.canix.com
+  protected_resource: https://api.canix.com/mcp
+  scopes_supported:
+  - mcp
+  dynamic_client_registration: https://api.canix.com/oidc/register
+  pkce: S256
+  grant_types:
+  - authorization_code
+  - refresh_token
+  note: >-
+    The openid-configuration and oauth-authorization-server documents are byte-identical.
+    Canix advertises an OIDC discovery path but the document is an OAuth 2.0 authorization
+    server metadata document — it carries no jwks_uri, userinfo_endpoint, subject_types_supported
+    or id_token_signing_alg_values_supported, all of which OpenID Connect Discovery 1.0 requires.
+    Treat it as RFC 8414 metadata served at the OIDC path, not as an OIDC provider.
+x-evidence:
+  fetched: '2026-08-09'
+  probed_hosts:
+  - api.canix.com
+  - www.canix.com
+  - app.canix.com
+  - help.canix.com

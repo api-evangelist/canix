@@ -42,5 +42,29 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Canix is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://www.nasdaqprivatemarket.com/
+Canix is a cannabis enterprise resource planning (ERP) and seed-to-sale platform for licensed
+cultivators, manufacturers and distributors. It covers cultivation, inventory, manufacturing,
+purchasing, sales and compliance, with Metrc, BioTrack and CCRS track-and-trace synchronization.
+
+- Website: https://www.canix.com/
+- API product page: https://www.canix.com/product/api
+- API reference (Swagger UI): https://api.canix.com/api-docs-swagger/index.html
+- OpenAPI 3.0.3 (live): https://api.canix.com/api.yaml
+- MCP server: https://api.canix.com/mcp
+- Status: https://status.canix.com/
+
+## What this profile holds
+
+| Surface | State |
+|---|---|
+| REST API | OpenAPI 3.0.3, 74 operations, 60 paths, 76 schemas — harvested verbatim |
+| Auth (REST) | API key in `X-API-KEY`, company-scoped |
+| MCP server | Published 2026-07-09; OAuth 2.1 + DCR + PKCE; `tools/list` is auth-gated |
+| Auth (MCP) | OAuth 2.1, single `mcp` scope, RFC 8414 + RFC 9728 metadata |
+| Events / webhooks | None — async is client polling of `/submissions/{id}` |
+| A2A agent card | None on any Canix host |
+| SDKs / CLI | None published on npm, PyPI, RubyGems or a GitHub org |
+| Security program | None published — no security.txt, no trust center, no certifications |
+
+The spec was not at any conventional location. It is loaded by the Swagger UI from
+`https://api.canix.com/api.yaml` and was recovered by reading the Swagger UI bootstrap.

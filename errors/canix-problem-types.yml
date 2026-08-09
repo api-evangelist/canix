@@ -1,0 +1,100 @@
+generated: '2026-08-09'
+method: derived
+source:
+- openapi/canix-openapi-original.yml
+- https://api.canix.com/api/v1/ (live probe of the error envelope, 2026-08-09)
+format: vendor-json
+rfc9457: false
+note: Canix does not emit application/problem+json (RFC 9457). Every operation in the OpenAPI declares
+  400/401/403/404/500 (and 422 on two write operations) with a bare description and no response schema,
+  so the envelope below was captured by probing the live API rather than read from the spec.
+envelope:
+  content_type: application/json
+  application_errors:
+    shape: '{"message": "<human readable>"}'
+    observed: '{"message":"Access Denied"}'
+    evidence:
+      url: https://api.canix.com/api/v1/facilities
+      http_status: 403
+      fetched: '2026-08-09'
+  routing_errors:
+    shape: '{"status": <int>, "error": "<reason>"}'
+    observed: '{"status":404,"error":"Not Found"}'
+    evidence:
+      url: https://api.canix.com/api/v1/nope
+      http_status: 404
+      fetched: '2026-08-09'
+  correlation_header: x-request-id
+  gap: No machine-readable error code, type URI, or field-level error array is published. Two different
+    envelopes are in use depending on whether the request reached the application or was rejected by the
+    router.
+problems:
+- status: 400
+  title: Bad request
+  detail: The request could not be parsed or a parameter failed validation — most often a malformed `where`
+    expression, a non-integer `limit`/`offset`, or a `limit` above the 2000 maximum.
+  remediation: Re-read the query grammar in conventions/canix-conventions.yml, validate the `where` clause
+    against the supported operator list, and keep `limit` <= 2000.
+  operations: 70
+  example_operations:
+  - AddItemStandardCost
+  - AdjustCustomerCredit
+  - CreateItem
+  - CreateMETRCItemFiles
+  - CreateMETRCItemPhotos
+- status: 401
+  title: Not authenticated
+  detail: No X-API-KEY header was supplied, or the key is not recognised.
+  remediation: Send a valid company-scoped API key in the X-API-KEY header. Keys are generated at https://app.canix.com/company/api.
+  operations: 72
+  example_operations:
+  - AddItemStandardCost
+  - AdjustCustomerCredit
+  - CreateItem
+  - CreateMETRCItemFiles
+  - CreateMETRCItemPhotos
+- status: 403
+  title: Access denied
+  detail: The key was recognised but is not authorised for this company, facility, or record. This is
+    also the response an anonymous caller receives at the edge.
+  remediation: Confirm the key belongs to the company that owns the record and that the facility is in
+    scope for the key.
+  operations: 72
+  example_operations:
+  - AddItemStandardCost
+  - AdjustCustomerCredit
+  - CreateItem
+  - CreateMETRCItemFiles
+  - CreateMETRCItemPhotos
+- status: 404
+  title: The specified resource was not found
+  detail: No record with the supplied id exists, or it is outside the key's company scope.
+  remediation: Verify the id, and list the collection first to confirm the record is visible to this key.
+  operations: 71
+  example_operations:
+  - AddItemStandardCost
+  - AdjustCustomerCredit
+  - CreateItem
+  - CreateSalesOrder
+  - CreateStrain
+- status: 422
+  title: Unprocessable entity
+  detail: The request body was well-formed but semantically invalid for the target resource.
+  remediation: Check required attributes and referential ids (facility_id, item_id, vendor_id) against
+    the schema in the OpenAPI.
+  operations: 2
+  example_operations:
+  - GetSubmissionById
+  - PostNonCannabisProduct
+- status: 500
+  title: Server error
+  detail: An unhandled error occurred inside Canix.
+  remediation: Retry with backoff; if it persists, quote the x-request-id response header to Canix support
+    (help@canix.com) and check https://status.canix.com/.
+  operations: 73
+  example_operations:
+  - AddItemStandardCost
+  - AdjustCustomerCredit
+  - CreateItem
+  - CreateMETRCItemFiles
+  - CreateMETRCItemPhotos

@@ -1,0 +1,90 @@
+generated: '2026-08-09'
+method: searched
+source:
+- https://status.canix.com/
+- https://api.canix.com/api.yaml
+- openapi/canix-openapi-original.yml
+description: >-
+  Canix runs a public Atlassian Statuspage covering the API as a named component. It does
+  not publish a versioning policy, a deprecation policy, an SLA, or a changelog for the API.
+versioning:
+  scheme: uri-path
+  current: v1
+  base_url: https://api.canix.com/api/v1
+  document_version: 1.3.10
+  document_version_source: https://api.canix.com/api.yaml
+  policy_url: null
+  policy_published: false
+  note: >-
+    The spec document is versioned (1.3.10, exposed through the ?ver= query string the
+    Swagger UI uses) but Canix publishes nothing that explains what a document version bump
+    means, when a breaking change may land, or how long v1 is supported.
+deprecation:
+  policy_url: null
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  deprecated_operations: []
+  note: >-
+    No operation in the 74-operation OpenAPI carries `deprecated: true`, no Sunset or
+    Deprecation response header was observed (RFC 8594), and no deprecation policy page
+    exists. No `Deprecation` pointer is emitted in apis.yml — there is nothing to point at.
+sla:
+  url: null
+  uptime_target: null
+  published: false
+  note: >-
+    Statuspage reports 100.0% uptime over the trailing 90 days, but an observed uptime
+    figure is not a commitment. No SLA or uptime target is published.
+status_page:
+  url: https://status.canix.com/
+  provider: Atlassian Statuspage
+  page_id: dhnzpdhgfwrs
+  api: https://status.canix.com/api/v2/summary.json
+  feeds:
+  - https://status.canix.com/history.atom
+  components:
+  - Canix API
+  - Canix Web Application
+  - Integrations
+  - Metrc API
+  - LeafLink
+  - QuickBooks Online
+  - Onfleet
+  - Environmental Controls
+  - Support
+  note: >-
+    The status page tracks upstream dependencies (Metrc, LeafLink, QuickBooks Online,
+    Onfleet) as first-class components, which is unusually honest for a compliance-critical
+    integration platform — Metrc outages are the failure mode that most affects Canix users.
+changelog:
+  url: null
+  published: false
+  note: >-
+    No dated API changelog. Product changes are announced as marketing blog posts under
+    /blog-posts (e.g. the 2026-07-09 MCP launch, a Rails 7.2 upgrade post), and Metrc
+    regulatory changes are tracked separately under /metrc-bulletins, but neither is a
+    changelog for the API contract. No `ChangeLog` pointer is emitted.
+support:
+  help_center: https://help.canix.com/hc/en-us
+  email: help@canix.com
+  contact_from_spec: Canix Support <help@canix.com>
+  note: >-
+    help.canix.com returns 403 to non-browser clients (Zendesk bot protection), so the
+    Help Center is human-readable but not machine-readable.
+x-evidence:
+- url: https://status.canix.com/
+  http_status: 200
+  fetched: '2026-08-09'
+- url: https://status.canix.com/api/v2/summary.json
+  http_status: 200
+  fetched: '2026-08-09'
+- url: https://www.canix.com/changelog
+  http_status: 404
+  fetched: '2026-08-09'
+- url: https://www.canix.com/roadmap
+  http_status: 404
+  fetched: '2026-08-09'
+- url: https://help.canix.com/hc/en-us
+  http_status: 403
+  fetched: '2026-08-09'

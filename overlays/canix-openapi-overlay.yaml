@@ -1,0 +1,68 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Canix API
+  version: 1.0.0
+extends: openapi/canix-openapi-original.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-profile: https://apievangelist.com/
+    x-provider: Canix
+    x-harvested-from: https://api.canix.com/api.yaml
+    x-harvested: '2026-08-09'
+    x-spec-version-observed: 1.3.10
+    x-apievangelist-operation-tags:
+    - Audited Actions
+    - Bill of Materials
+    - Brands
+    - Company
+    - Customers
+    - Facilities
+    - Harvests
+    - Item Sub-Types
+    - Item Types
+    - Items
+    - Locations
+    - Manufacturing Batch
+    - Manufacturing Run
+    - Non-Cannabis Products
+    - Packages
+    - Plant Batches
+    - Plants
+    - Products
+    - Purchase Orders
+    - Sales Orders
+    - Standard Costs
+    - Strains
+    - Submissions
+    - Transfer Destinations
+    - Transfers
+    - Vendors
+    - WeightUnits
+    x-apievangelist-artifacts:
+    - authentication/canix-authentication.yml
+    - scopes/canix-scopes.yml
+    - conventions/canix-conventions.yml
+    - errors/canix-problem-types.yml
+    - data-model/canix-data-model.yml
+    - lifecycle/canix-lifecycle.yml
+    - conformance/canix-conformance.yml
+    - mcp/canix-mcp.yml
+    - skills/_index.yml
+- target: $.servers[0]
+  update:
+    description: Canix production API, v1
+- target: $.components.securitySchemes.ApiKeyAuth
+  update:
+    description: Company-scoped API key generated in the Canix app at https://app.canix.com/company/api
+      and sent in the X-API-KEY request header.
+    x-key-management: https://app.canix.com/company/api
+- target: $.components.parameters.whereParam
+  update:
+    x-apievangelist-note: The `where` parameter accepts SQL-like filter syntax. Agents must treat operator
+      and value construction as untrusted input assembly; see conventions/canix-conventions.yml.
+- target: $.paths['/bills_of_materials'].get
+  update:
+    x-apievangelist-defect: operationId GetBillOfMaterialsById is duplicated on both /bills_of_materials
+      and /bills_of_materials/{bill_of_materials_id}; OpenAPI requires operationId to be unique across
+      the document. Reported as a contract-quality gap, not corrected here.

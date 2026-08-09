@@ -1,0 +1,248 @@
+generated: '2026-08-09'
+method: derived
+source:
+- mcp/canix-mcp.yml
+- openapi/canix-openapi-original.yml
+- https://www.canix.com/blog-posts/ask-your-data-anything-canix-launches-mcp-server
+description: Canix runs both a public REST API (OpenAPI 3.0.3, 74 operations) and a hosted MCP server,
+  so the two agent surfaces are crosswalked here. The MCP tool list is NOT public — tools/list returns
+  401 and Canix publishes no manifest, no llms.txt and no configuration snippet — so crosswalk[] is deliberately
+  EMPTY rather than populated with invented tool names. What can be recorded honestly is the mapping from
+  the capabilities Canix describes in prose to the REST operations that back the same data, at low confidence.
+surfaces:
+  openapi:
+    file: openapi/canix-openapi-original.yml
+    url: https://api.canix.com/api.yaml
+    server: https://api.canix.com/api/v1
+    operations: 74
+    auth: apiKey X-API-KEY
+    gated: false
+  mcp:
+    url: https://api.canix.com/mcp
+    auth: OAuth 2.1, scope `mcp`
+    tools_list: 401 Unauthorized
+    gated: true
+    tool_names_published: false
+  graphql: null
+crosswalk: []
+crosswalk_note: Empty by design. Populating this requires either an authenticated MCP tools/list against
+  a Canix account or a tool manifest published by Canix. Guessing tool names from REST operations would
+  fabricate the exact thing this artifact exists to verify.
+capability_map:
+- capability: sales-reporting
+  mcp_status: live
+  binding: semantic
+  confidence: low
+  rest:
+  - GetBrands
+  - GetCustomerById
+  - GetCustomers
+  - GetFacilities
+  - GetFacilityById
+  - GetItemById
+  - GetItems
+  - GetPaymentById
+  - GetPayments
+  - GetProductById
+  - GetProducts
+  - GetSalesOrderById
+  - GetSalesOrderContentsById
+  - GetSalesOrderPayments
+  - GetSalesOrders
+  note: Canix describes the live MCP capability as sales reporting over revenue, accounts, products and
+    sales-rep performance. These are the REST operations that expose the same underlying records. The
+    mapping is by subject matter, NOT by an observed tool-to-operation binding; the MCP server may aggregate
+    server-side rather than proxy these operations.
+- capability: inventory
+  mcp_status: coming-soon
+  binding: semantic
+  confidence: low
+  rest:
+  - GetHarvestById
+  - GetHarvests
+  - GetItemById
+  - GetItems
+  - GetLocationById
+  - GetLocations
+  - GetLocationsCount
+  - GetNonCannabisProductById
+  - GetNonCannabisProducts
+  - GetPackageById
+  - GetPackages
+  - GetPlantBatchById
+  - GetPlantBatches
+  - GetPlantById
+  - GetPlants
+  - GetPlantsCount
+  note: Announced as coming soon and not yet live; listed so the surface divergence is tracked when it
+    ships.
+mcp_only:
+- tool: (unknown)
+  reason: Canix markets the MCP server as answering analytical, period-over-period questions ("revenue
+    last month vs prior month", "accounts that have not ordered in 30 days"). The REST API exposes no
+    aggregation, grouping or time-bucketing operation — only row retrieval with limit/offset/order_by/where
+    — so at least some MCP capability is a server-side composite with no REST equivalent. The tools cannot
+    be named because tools/list is gated.
+rest_only:
+- capability: Audited Actions
+  operations:
+  - GetAuditedActions
+  count: 1
+- capability: Bill of Materials
+  operations:
+  - GetBillOfMaterialsById
+  count: 1
+- capability: Brands
+  operations:
+  - GetBrands
+  count: 1
+- capability: Company
+  operations:
+  - GetCompanyById
+  count: 1
+- capability: Customers
+  operations:
+  - AdjustCustomerCredit
+  - GetCustomerById
+  - GetCustomers
+  count: 3
+- capability: Facilities
+  operations:
+  - GetFacilities
+  - GetFacilityById
+  count: 2
+- capability: Harvests
+  operations:
+  - GetHarvestById
+  - GetHarvests
+  count: 2
+- capability: Item Sub-Types
+  operations:
+  - GetItemSubTypes
+  count: 1
+- capability: Item Types
+  operations:
+  - GetItemTypes
+  count: 1
+- capability: Items
+  operations:
+  - AddItemStandardCost
+  - CreateItem
+  - CreateMETRCItemFiles
+  - CreateMETRCItemPhotos
+  - DeleteItem
+  - GetItemById
+  - GetItems
+  - UpdateItem
+  count: 8
+- capability: Locations
+  operations:
+  - GetLocationById
+  - GetLocations
+  - GetLocationsCount
+  count: 3
+- capability: Manufacturing Batch
+  operations:
+  - GetManuBatchById
+  - GetManuBatches
+  count: 2
+- capability: Manufacturing Run
+  operations:
+  - GetManuBatchRunById
+  - GetManuBatchRuns
+  count: 2
+- capability: Non-Cannabis Products
+  operations:
+  - GetNonCannabisProductBOMs
+  - GetNonCannabisProductById
+  - GetNonCannabisProducts
+  - PostNonCannabisProduct
+  count: 4
+- capability: Packages
+  operations:
+  - GetPackageById
+  - GetPackages
+  count: 2
+- capability: Plant Batches
+  operations:
+  - GetPlantBatchById
+  - GetPlantBatches
+  count: 2
+- capability: Plants
+  operations:
+  - GetPlantById
+  - GetPlants
+  - GetPlantsCount
+  count: 3
+- capability: Products
+  operations:
+  - GetProductById
+  - GetProducts
+  count: 2
+- capability: Purchase Orders
+  operations:
+  - GetPurchaseOrderById
+  - GetPurchaseOrderContentsById
+  - GetPurchaseOrders
+  - GetpurchaseOrderPayments
+  - PostPurchaseOrder
+  count: 5
+- capability: Sales Orders
+  operations:
+  - CreateSalesOrder
+  - GetPaymentById
+  - GetPayments
+  - GetSalesOrderById
+  - GetSalesOrderContentsById
+  - GetSalesOrderPayments
+  - GetSalesOrders
+  - UpdateSalesOrder
+  - UpdateSalesOrderStatus
+  count: 9
+- capability: Standard Costs
+  operations:
+  - DeleteStandardCost
+  - GetStandardCost
+  - UpdateStandardCost
+  count: 3
+- capability: Strains
+  operations:
+  - CreateStrain
+  - GetStrainById
+  - GetStrains
+  - UpdateStrain
+  count: 4
+- capability: Submissions
+  operations:
+  - GetSubmissionById
+  count: 1
+- capability: Transfer Destinations
+  operations:
+  - GetTransferDestinationById
+  - GetTransferDestinations
+  count: 2
+- capability: Transfers
+  operations:
+  - GetTransferById
+  - GetTransfers
+  count: 2
+- capability: Vendors
+  operations:
+  - CreateVendor
+  - DeleteVendor
+  - GetVendorById
+  - GetVendors
+  - UpdateVendor
+  count: 5
+- capability: WeightUnits
+  operations:
+  - GetWeightUnits
+  count: 1
+coverage:
+  mcp_tools_named: 0
+  mcp_tools_bound: 0
+  mcp_only: 1
+  rest_operations_total: 74
+  rest_operations_with_tool: 0
+  confidence: low
+  reason: MCP tools/list is auth-gated and no tool manifest is published

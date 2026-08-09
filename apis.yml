@@ -1,23 +1,156 @@
 aid: canix
 name: Canix
-description: 'Canix is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: Canix is a cannabis enterprise resource planning (ERP) and seed-to-sale platform used by
+  licensed cultivators, manufacturers and distributors to run cultivation, processing, inventory, sales
+  and compliance operations. The product covers plant and plant-batch tracking, harvests, packages, bills
+  of materials, manufacturing batches and runs, purchase orders, sales orders, customers, vendors, standard
+  costing and business intelligence reporting, with deep Metrc and BioTrack track-and-trace synchronization
+  plus RFID and scale hardware support. Canix publishes a public OpenAPI 3.0.3 contract for its REST API
+  at api.canix.com, and in July 2026 launched a hosted Model Context Protocol (MCP) server that lets AI
+  assistants query Canix sales and inventory data in natural language.
+image: https://assets.website-files.com/5ee52a0f4be6ffc2aaeb52cd/5ee52a0f4be6ff20e7eb534f_canix-logo.svg
 url: https://raw.githubusercontent.com/api-evangelist/canix/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
 specificationVersion: '0.20'
 created: '2026-08-09'
 modified: '2026-08-09'
 tags:
-- Company
-apis: []
+- Cannabis
+- ERP
+- Seed to Sale
+- Compliance
+- Inventory Management
+- Supply Chain
+- Track and Trace
+- Manufacturing
+- Agriculture
+- Metrc
+- Cultivation
+- Distribution
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: canix:canix-api
+  name: Canix API
+  description: The Canix REST API exposes a cannabis operator's Canix account data to third-party developers
+    — sales orders, payments, customers, vendors, purchase orders, items, item types, brands, strains,
+    locations, facilities, packages, plants, plant batches, harvests, transfers, transfer destinations,
+    non-cannabis products, bills of materials, manufacturing batches and runs, standard costs, weight
+    units and audited actions. Authentication is a company-scoped API key sent in the X-API-KEY header.
+    Collection endpoints share a common limit/offset/order_by/where query grammar where `where` accepts
+    SQL-like filter expressions.
+  humanURL: https://www.canix.com/product/api
+  baseURL: https://api.canix.com/api/v1
+  tags:
+  - Cannabis
+  - ERP
+  - Seed to Sale
+  - Inventory Management
+  - Compliance
+  properties:
+  - type: OpenAPI
+    url: openapi/canix-openapi-original.yml
+  - type: Documentation
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: APIReference
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: Overlay
+    url: overlays/canix-openapi-overlay.yaml
+  - type: DataModel
+    url: data-model/canix-data-model.yml
+  - type: ErrorCatalog
+    url: errors/canix-problem-types.yml
+- aid: canix:canix-mcp
+  name: Canix MCP Server
+  description: Canix's hosted Model Context Protocol server, announced 2026-07-09, connects Canix account
+    data to AI assistants such as Claude and ChatGPT. It is published as an OAuth 2.1 protected resource
+    at https://api.canix.com/mcp, advertised through RFC 9728 protected-resource metadata and an RFC 8414
+    authorization-server document on api.canix.com with dynamic client registration, PKCE (S256) and a
+    single `mcp` scope. Sales reporting is live; inventory access is announced as coming soon. The tools/list
+    manifest is authenticated, so the live tool schemas are not publicly readable.
+  humanURL: https://www.canix.com/blog-posts/ask-your-data-anything-canix-launches-mcp-server
+  baseURL: https://api.canix.com/mcp
+  tags:
+  - MCP
+  - AI
+  - Cannabis
+  - Reporting
+  properties:
+  - type: MCPServer
+    url: mcp/canix-mcp.yml
+  - type: ToolCrosswalk
+    url: mcp/canix-tool-crosswalk.yml
 common:
+- type: AgenticAccess
+  url: agentic-access/canix-agentic-access.yml
+- type: DomainSecurity
+  url: security/canix-domain-security.yml
 - type: Website
-  url: https://www.nasdaqprivatemarket.com/
+  url: https://www.canix.com/
+- type: DeveloperPortal
+  url: https://www.canix.com/developer
+- type: Documentation
+  url: https://api.canix.com/api-docs-swagger/index.html
+- type: APIReference
+  url: https://api.canix.com/api-docs-swagger/index.html
+- type: Support
+  url: https://help.canix.com/hc/en-us
+- type: Blog
+  url: https://www.canix.com/blog
+- type: Integrations
+  url: https://www.canix.com/integrations
+- type: SignUp
+  name: Schedule a demo / get started
+  url: https://www.canix.com/campaign/schedule-a-demo
+- type: TermsOfService
+  url: https://www.canix.com/terms-conditions
+- type: PrivacyPolicy
+  url: https://www.canix.com/privacy-policy
+- type: StatusPage
+  url: https://status.canix.com/
+- type: OpenAPI
+  url: openapi/canix-openapi-original.yml
+- type: MCPServer
+  url: mcp/canix-mcp.yml
+- type: ToolCrosswalk
+  url: mcp/canix-tool-crosswalk.yml
+- type: WellKnown
+  url: well-known/canix-well-known.yml
+- type: Authentication
+  url: authentication/canix-authentication.yml
+- type: OAuthScopes
+  url: scopes/canix-scopes.yml
+- type: Conventions
+  url: conventions/canix-conventions.yml
+- type: ErrorCatalog
+  url: errors/canix-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/canix-lifecycle.yml
+- type: Conformance
+  url: conformance/canix-conformance.yml
+- type: DataModel
+  url: data-model/canix-data-model.yml
+- type: Overlay
+  url: overlays/canix-openapi-overlay.yaml
+- type: LLMsTxt
+  url: llms/canix-llms.txt
+- type: AgentSkill
+  url: skills/_index.yml
+- type: AgentSkill
+  name: Create and fulfill a Canix sales order
+  url: skills/canix-create-and-fulfill-sales-order.md
+- type: AgentSkill
+  name: Sync Canix inventory and compliance records
+  url: skills/canix-sync-inventory-and-compliance.md
+- type: AgentSkill
+  name: Run Canix purchasing and roll up manufacturing costs
+  url: skills/canix-purchasing-and-manufacturing-costs.md
+x-enrichment:
+  date: '2026-08-09'
+  status: enriched
+  artifacts_added: 22
+  pass: local-v1

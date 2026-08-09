@@ -1,0 +1,168 @@
+generated: '2026-08-09'
+method: derived
+source:
+- openapi/canix-openapi-original.yml
+- well-known/canix-oauth-authorization-server.json
+- well-known/canix-oauth-protected-resource.json
+- 'live probes of api.canix.com (2026-08-09)'
+description: >-
+  Which cross-cutting standards the Canix surface actually conforms to. Derived from the
+  OpenAPI, from Canix's own well-known documents, and from observed responses. Canix
+  publishes no compliance program, certification list, or trust center, so no `Compliance`
+  pointer is emitted in apis.yml.
+standards:
+- id: openapi-3.0.3
+  conforms: true
+  evidence: >-
+    https://api.canix.com/api.yaml parses as OpenAPI 3.0.3 with 60 paths, 74 operations and
+    76 component schemas. Every operation carries a summary, a description, tags and an
+    operationId, and every operation declares 200/400/401/403/404/500 responses.
+- id: openapi-operationid-uniqueness
+  conforms: false
+  evidence: >-
+    operationId GetBillOfMaterialsById is used on both GET /bills_of_materials and
+    GET /bills_of_materials/{bill_of_materials_id}. OpenAPI requires operationId to be
+    unique across the document; 73 unique ids across 74 operations.
+- id: oauth2
+  conforms: true
+  evidence: >-
+    Authorization code flow with refresh tokens on the MCP surface, advertised at
+    https://api.canix.com/.well-known/oauth-authorization-server.
+- id: oauth2-pkce-rfc7636
+  conforms: true
+  evidence: 'code_challenge_methods_supported: ["S256"]'
+- id: rfc8414-authorization-server-metadata
+  conforms: true
+  evidence: /.well-known/oauth-authorization-server returns 200 application/json with issuer, authorization_endpoint, token_endpoint.
+- id: rfc9728-protected-resource-metadata
+  conforms: true
+  evidence: >-
+    /.well-known/oauth-protected-resource returns 200 naming https://api.canix.com/mcp, and
+    the 401 from the MCP endpoint carries
+    WWW-Authenticate: Bearer resource_metadata="https://api.canix.com/.well-known/oauth-protected-resource".
+- id: rfc7591-dynamic-client-registration
+  conforms: true
+  evidence: 'registration_endpoint: https://api.canix.com/oidc/register'
+- id: mcp-authorization
+  conforms: true
+  evidence: >-
+    The MCP server implements the MCP authorization spec end to end — protected-resource
+    metadata, authorization-server metadata, DCR, PKCE S256, bearer in header, and a
+    challenge-carrying 401 on anonymous tools/list.
+- id: openid-connect-discovery-1.0
+  conforms: false
+  evidence: >-
+    /.well-known/openid-configuration returns 200 but is byte-identical to the OAuth 8414
+    document. It omits jwks_uri, userinfo_endpoint, subject_types_supported and
+    id_token_signing_alg_values_supported, all REQUIRED by OIDC Discovery 1.0. This is
+    OAuth metadata served at the OIDC path.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: >-
+    Errors are application/json with a bare {"message": "..."} envelope (or Rails'
+    {"status":404,"error":"Not Found"} for unrouted paths). No application/problem+json,
+    no type URI, no machine-readable error code.
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt returns 404 on www.canix.com, canix.com and api.canix.com.
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: No Sunset or Deprecation header observed; no deprecation policy published.
+- id: rfc8615-well-known-uris
+  conforms: true
+  evidence: Three well-known documents served correctly from api.canix.com.
+- id: http-idempotency
+  conforms: false
+  evidence: >-
+    No Idempotency-Key contract on any of the 19 write operations. Retry-after-timeout is
+    unsafe on CreateSalesOrder, PostPurchaseOrder and AdjustCustomerCredit.
+- id: rate-limit-headers
+  conforms: false
+  evidence: No RateLimit-*, X-RateLimit-* or Retry-After header observed; no 429 declared.
+- id: pagination
+  conforms: true
+  partial: true
+  evidence: >-
+    Consistent limit/offset/order_by/where grammar shared by $ref across 27 collection
+    operations, capped at 2000 records. Partial: no total count, no cursor, no Link header.
+- id: json-api
+  conforms: false
+  evidence: Bare JSON arrays and objects; no JSON:API document structure.
+- id: graphql
+  conforms: false
+  evidence: No /graphql surface found on api.canix.com or www.canix.com.
+- id: asyncapi
+  conforms: false
+  evidence: >-
+    No AsyncAPI document (/asyncapi.yaml is 404) and no webhook, callback or event surface
+    in the OpenAPI. Canix's async pattern is client polling of /submissions/{id}.
+- id: a2a-agent-card
+  conforms: false
+  evidence: /.well-known/agent-card.json and /.well-known/agent.json return 404 on all four Canix hosts.
+- id: tls-1.3
+  conforms: true
+  evidence: TLSv1.3 on www.canix.com and api.canix.com.
+- id: hsts
+  conforms: true
+  partial: true
+  evidence: >-
+    www.canix.com returns Strict-Transport-Security max-age=31536000; api.canix.com returns
+    max-age=63072000; includeSubDomains on application responses. Partial - not observed on
+    the api.canix.com root, which is a 404.
+- id: dnssec
+  conforms: true
+  evidence: DNSKEY present for canix.com.
+- id: caa
+  conforms: true
+  evidence: 6 CAA records restricting issuance to Let's Encrypt, Google Trust, SSL.com, Comodo and DigiCert.
+- id: dmarc
+  conforms: true
+  partial: true
+  evidence: 'DMARC published with p=quarantine (not reject).'
+industry:
+- id: metrc-track-and-trace
+  conforms: true
+  scope: integration
+  evidence: >-
+    Metrc is a first-class concern throughout the API — Metrc item photo and file upload
+    operations, Metrc-facing package and transfer models, and Metrc API tracked as a named
+    component on status.canix.com. Metrc is the US state-mandated cannabis track-and-trace
+    system; Canix acts as an integrating system of record, not as the regulator's endpoint.
+- id: biotrack
+  conforms: true
+  scope: integration
+  evidence: BioTrack listed as a supported track-and-trace integration at https://www.canix.com/integrations.
+- id: ccrs-washington
+  conforms: true
+  scope: integration
+  evidence: CCRS (Washington State Cannabis Central Reporting System) listed as a supported compliance reporting integration.
+compliance_program:
+  published: false
+  certifications: []
+  trust_center: null
+  note: >-
+    No SOC 2, ISO 27001, PCI DSS or HIPAA claim is published anywhere on the Canix web
+    surface. /security, /trust, /compliance and /soc2 all return 404; trust.canix.com and
+    security.canix.com do not resolve. 0-working/probe-security-programs.py found no
+    vulnerability disclosure program and no trust center. For a platform holding
+    state-regulated cannabis inventory and sales data for 1,000+ licensed facilities, the
+    absence of any published security posture is the most consequential gap in this profile.
+x-evidence:
+- url: https://api.canix.com/api.yaml
+  http_status: 200
+  fetched: '2026-08-09'
+- url: https://api.canix.com/.well-known/oauth-authorization-server
+  http_status: 200
+  fetched: '2026-08-09'
+- url: https://api.canix.com/.well-known/openid-configuration
+  http_status: 200
+  fetched: '2026-08-09'
+- url: https://api.canix.com/mcp
+  http_status: 401
+  fetched: '2026-08-09'
+- url: https://www.canix.com/security
+  http_status: 404
+  fetched: '2026-08-09'
+- url: https://www.canix.com/.well-known/security.txt
+  http_status: 404
+  fetched: '2026-08-09'
