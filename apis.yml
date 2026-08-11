@@ -34,44 +34,15 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 apis:
-- aid: canix:canix-api
-  name: Canix API
-  description: The Canix REST API exposes a cannabis operator's Canix account data to third-party developers
-    — sales orders, payments, customers, vendors, purchase orders, items, item types, brands, strains,
-    locations, facilities, packages, plants, plant batches, harvests, transfers, transfer destinations,
-    non-cannabis products, bills of materials, manufacturing batches and runs, standard costs, weight
-    units and audited actions. Authentication is a company-scoped API key sent in the X-API-KEY header.
-    Collection endpoints share a common limit/offset/order_by/where query grammar where `where` accepts
-    SQL-like filter expressions.
-  humanURL: https://www.canix.com/product/api
-  baseURL: https://api.canix.com/api/v1
-  tags:
-  - Cannabis
-  - ERP
-  - Seed to Sale
-  - Inventory Management
-  - Compliance
-  properties:
-  - type: OpenAPI
-    url: openapi/canix-openapi-original.yml
-  - type: Documentation
-    url: https://api.canix.com/api-docs-swagger/index.html
-  - type: APIReference
-    url: https://api.canix.com/api-docs-swagger/index.html
-  - type: Overlay
-    url: overlays/canix-openapi-overlay.yaml
-  - type: DataModel
-    url: data-model/canix-data-model.yml
-  - type: ErrorCatalog
-    url: errors/canix-problem-types.yml
 - aid: canix:canix-mcp
   name: Canix MCP Server
-  description: Canix's hosted Model Context Protocol server, announced 2026-07-09, connects Canix account
-    data to AI assistants such as Claude and ChatGPT. It is published as an OAuth 2.1 protected resource
-    at https://api.canix.com/mcp, advertised through RFC 9728 protected-resource metadata and an RFC 8414
-    authorization-server document on api.canix.com with dynamic client registration, PKCE (S256) and a
-    single `mcp` scope. Sales reporting is live; inventory access is announced as coming soon. The tools/list
-    manifest is authenticated, so the live tool schemas are not publicly readable.
+  description: >-
+    Canix's hosted Model Context Protocol server, announced 2026-07-09, connects Canix account data to
+    AI assistants such as Claude and ChatGPT. It is published as an OAuth 2.1 protected resource at https://api.canix.com/mcp,
+    advertised through RFC 9728 protected-resource metadata and an RFC 8414 authorization-server document
+    on api.canix.com with dynamic client registration, PKCE (S256) and a single `mcp` scope. Sales reporting
+    is live; inventory access is announced as coming soon. The tools/list manifest is authenticated, so
+    the live tool schemas are not publicly readable.
   humanURL: https://www.canix.com/blog-posts/ask-your-data-anything-canix-launches-mcp-server
   baseURL: https://api.canix.com/mcp
   tags:
@@ -84,6 +55,492 @@ apis:
     url: mcp/canix-mcp.yml
   - type: ToolCrosswalk
     url: mcp/canix-tool-crosswalk.yml
+- aid: canix:canix-audited-actions-api
+  name: Canix Audited Actions API
+  description: The Audited Actions API from Canix — 1 operation(s) for audited actions.
+  humanURL: https://www.canix.com/product/api
+  baseURL: https://api.canix.com/api/v1
+  tags:
+  - Audited Actions
+  properties:
+  - type: OpenAPI
+    url: openapi/canix-audited-actions-api-openapi.yml
+  - type: Documentation
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: APIReference
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: DataModel
+    url: data-model/canix-data-model.yml
+  - type: ErrorCatalog
+    url: errors/canix-problem-types.yml
+- aid: canix:canix-bill-of-materials-api
+  name: Canix Bill of Materials API
+  description: The Bill of Materials API from Canix — 2 operation(s) for bill of materials.
+  humanURL: https://www.canix.com/product/api
+  baseURL: https://api.canix.com/api/v1
+  tags:
+  - Bill of Materials
+  properties:
+  - type: OpenAPI
+    url: openapi/canix-bill-of-materials-api-openapi.yml
+  - type: Documentation
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: APIReference
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: DataModel
+    url: data-model/canix-data-model.yml
+  - type: ErrorCatalog
+    url: errors/canix-problem-types.yml
+- aid: canix:canix-brands-api
+  name: Canix Brands API
+  description: The Brands API from Canix — 1 operation(s) for brands.
+  humanURL: https://www.canix.com/product/api
+  baseURL: https://api.canix.com/api/v1
+  tags:
+  - Brands
+  properties:
+  - type: OpenAPI
+    url: openapi/canix-brands-api-openapi.yml
+  - type: Documentation
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: APIReference
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: DataModel
+    url: data-model/canix-data-model.yml
+  - type: ErrorCatalog
+    url: errors/canix-problem-types.yml
+- aid: canix:canix-company-api
+  name: Canix Company API
+  description: The Company API from Canix — 1 operation(s) for company.
+  humanURL: https://www.canix.com/product/api
+  baseURL: https://api.canix.com/api/v1
+  tags:
+  - Company
+  properties:
+  - type: OpenAPI
+    url: openapi/canix-company-api-openapi.yml
+  - type: Documentation
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: APIReference
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: DataModel
+    url: data-model/canix-data-model.yml
+  - type: ErrorCatalog
+    url: errors/canix-problem-types.yml
+- aid: canix:canix-customers-api
+  name: Canix Customers API
+  description: The Customers API from Canix — 3 operation(s) for customers.
+  humanURL: https://www.canix.com/product/api
+  baseURL: https://api.canix.com/api/v1
+  tags:
+  - Customers
+  properties:
+  - type: OpenAPI
+    url: openapi/canix-customers-api-openapi.yml
+  - type: Documentation
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: APIReference
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: DataModel
+    url: data-model/canix-data-model.yml
+  - type: ErrorCatalog
+    url: errors/canix-problem-types.yml
+- aid: canix:canix-facilities-api
+  name: Canix Facilities API
+  description: The Facilities API from Canix — 2 operation(s) for facilities.
+  humanURL: https://www.canix.com/product/api
+  baseURL: https://api.canix.com/api/v1
+  tags:
+  - Facilities
+  properties:
+  - type: OpenAPI
+    url: openapi/canix-facilities-api-openapi.yml
+  - type: Documentation
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: APIReference
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: DataModel
+    url: data-model/canix-data-model.yml
+  - type: ErrorCatalog
+    url: errors/canix-problem-types.yml
+- aid: canix:canix-harvests-api
+  name: Canix Harvests API
+  description: The Harvests API from Canix — 2 operation(s) for harvests.
+  humanURL: https://www.canix.com/product/api
+  baseURL: https://api.canix.com/api/v1
+  tags:
+  - Harvests
+  properties:
+  - type: OpenAPI
+    url: openapi/canix-harvests-api-openapi.yml
+  - type: Documentation
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: APIReference
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: DataModel
+    url: data-model/canix-data-model.yml
+  - type: ErrorCatalog
+    url: errors/canix-problem-types.yml
+- aid: canix:canix-item-sub-types-api
+  name: Canix Item Sub-Types API
+  description: The Item Sub-Types API from Canix — 1 operation(s) for item sub-types.
+  humanURL: https://www.canix.com/product/api
+  baseURL: https://api.canix.com/api/v1
+  tags:
+  - Item Sub-Types
+  properties:
+  - type: OpenAPI
+    url: openapi/canix-item-sub-types-api-openapi.yml
+  - type: Documentation
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: APIReference
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: DataModel
+    url: data-model/canix-data-model.yml
+  - type: ErrorCatalog
+    url: errors/canix-problem-types.yml
+- aid: canix:canix-item-types-api
+  name: Canix Item Types API
+  description: The Item Types API from Canix — 1 operation(s) for item types.
+  humanURL: https://www.canix.com/product/api
+  baseURL: https://api.canix.com/api/v1
+  tags:
+  - Item Types
+  properties:
+  - type: OpenAPI
+    url: openapi/canix-item-types-api-openapi.yml
+  - type: Documentation
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: APIReference
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: DataModel
+    url: data-model/canix-data-model.yml
+  - type: ErrorCatalog
+    url: errors/canix-problem-types.yml
+- aid: canix:canix-items-api
+  name: Canix Items API
+  description: The Items API from Canix — 5 operation(s) for items.
+  humanURL: https://www.canix.com/product/api
+  baseURL: https://api.canix.com/api/v1
+  tags:
+  - Items
+  properties:
+  - type: OpenAPI
+    url: openapi/canix-items-api-openapi.yml
+  - type: Documentation
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: APIReference
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: DataModel
+    url: data-model/canix-data-model.yml
+  - type: ErrorCatalog
+    url: errors/canix-problem-types.yml
+- aid: canix:canix-locations-api
+  name: Canix Locations API
+  description: The Locations API from Canix — 3 operation(s) for locations.
+  humanURL: https://www.canix.com/product/api
+  baseURL: https://api.canix.com/api/v1
+  tags:
+  - Locations
+  properties:
+  - type: OpenAPI
+    url: openapi/canix-locations-api-openapi.yml
+  - type: Documentation
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: APIReference
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: DataModel
+    url: data-model/canix-data-model.yml
+  - type: ErrorCatalog
+    url: errors/canix-problem-types.yml
+- aid: canix:canix-manufacturing-batch-api
+  name: Canix Manufacturing Batch API
+  description: The Manufacturing Batch API from Canix — 2 operation(s) for manufacturing batch.
+  humanURL: https://www.canix.com/product/api
+  baseURL: https://api.canix.com/api/v1
+  tags:
+  - Manufacturing Batch
+  properties:
+  - type: OpenAPI
+    url: openapi/canix-manufacturing-batch-api-openapi.yml
+  - type: Documentation
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: APIReference
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: DataModel
+    url: data-model/canix-data-model.yml
+  - type: ErrorCatalog
+    url: errors/canix-problem-types.yml
+- aid: canix:canix-manufacturing-run-api
+  name: Canix Manufacturing Run API
+  description: The Manufacturing Run API from Canix — 2 operation(s) for manufacturing run.
+  humanURL: https://www.canix.com/product/api
+  baseURL: https://api.canix.com/api/v1
+  tags:
+  - Manufacturing Run
+  properties:
+  - type: OpenAPI
+    url: openapi/canix-manufacturing-run-api-openapi.yml
+  - type: Documentation
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: APIReference
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: DataModel
+    url: data-model/canix-data-model.yml
+  - type: ErrorCatalog
+    url: errors/canix-problem-types.yml
+- aid: canix:canix-non-cannabis-products-api
+  name: Canix Non-Cannabis Products API
+  description: The Non-Cannabis Products API from Canix — 3 operation(s) for non-cannabis products.
+  humanURL: https://www.canix.com/product/api
+  baseURL: https://api.canix.com/api/v1
+  tags:
+  - Non-Cannabis Products
+  properties:
+  - type: OpenAPI
+    url: openapi/canix-non-cannabis-products-api-openapi.yml
+  - type: Documentation
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: APIReference
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: DataModel
+    url: data-model/canix-data-model.yml
+  - type: ErrorCatalog
+    url: errors/canix-problem-types.yml
+- aid: canix:canix-packages-api
+  name: Canix Packages API
+  description: The Packages API from Canix — 2 operation(s) for packages.
+  humanURL: https://www.canix.com/product/api
+  baseURL: https://api.canix.com/api/v1
+  tags:
+  - Packages
+  properties:
+  - type: OpenAPI
+    url: openapi/canix-packages-api-openapi.yml
+  - type: Documentation
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: APIReference
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: DataModel
+    url: data-model/canix-data-model.yml
+  - type: ErrorCatalog
+    url: errors/canix-problem-types.yml
+- aid: canix:canix-plant-batches-api
+  name: Canix Plant Batches API
+  description: The Plant Batches API from Canix — 2 operation(s) for plant batches.
+  humanURL: https://www.canix.com/product/api
+  baseURL: https://api.canix.com/api/v1
+  tags:
+  - Plant Batches
+  properties:
+  - type: OpenAPI
+    url: openapi/canix-plant-batches-api-openapi.yml
+  - type: Documentation
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: APIReference
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: DataModel
+    url: data-model/canix-data-model.yml
+  - type: ErrorCatalog
+    url: errors/canix-problem-types.yml
+- aid: canix:canix-plants-api
+  name: Canix Plants API
+  description: The Plants API from Canix — 3 operation(s) for plants.
+  humanURL: https://www.canix.com/product/api
+  baseURL: https://api.canix.com/api/v1
+  tags:
+  - Plants
+  properties:
+  - type: OpenAPI
+    url: openapi/canix-plants-api-openapi.yml
+  - type: Documentation
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: APIReference
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: DataModel
+    url: data-model/canix-data-model.yml
+  - type: ErrorCatalog
+    url: errors/canix-problem-types.yml
+- aid: canix:canix-products-api
+  name: Canix Products API
+  description: The Products API from Canix — 2 operation(s) for products.
+  humanURL: https://www.canix.com/product/api
+  baseURL: https://api.canix.com/api/v1
+  tags:
+  - Products
+  properties:
+  - type: OpenAPI
+    url: openapi/canix-products-api-openapi.yml
+  - type: Documentation
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: APIReference
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: DataModel
+    url: data-model/canix-data-model.yml
+  - type: ErrorCatalog
+    url: errors/canix-problem-types.yml
+- aid: canix:canix-purchase-orders-api
+  name: Canix Purchase Orders API
+  description: The Purchase Orders API from Canix — 4 operation(s) for purchase orders.
+  humanURL: https://www.canix.com/product/api
+  baseURL: https://api.canix.com/api/v1
+  tags:
+  - Purchase Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/canix-purchase-orders-api-openapi.yml
+  - type: Documentation
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: APIReference
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: DataModel
+    url: data-model/canix-data-model.yml
+  - type: ErrorCatalog
+    url: errors/canix-problem-types.yml
+- aid: canix:canix-sales-orders-api
+  name: Canix Sales Orders API
+  description: The Sales Orders API from Canix — 7 operation(s) for sales orders.
+  humanURL: https://www.canix.com/product/api
+  baseURL: https://api.canix.com/api/v1
+  tags:
+  - Sales Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/canix-sales-orders-api-openapi.yml
+  - type: Documentation
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: APIReference
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: DataModel
+    url: data-model/canix-data-model.yml
+  - type: ErrorCatalog
+    url: errors/canix-problem-types.yml
+- aid: canix:canix-standard-costs-api
+  name: Canix Standard Costs API
+  description: The Standard Costs API from Canix — 1 operation(s) for standard costs.
+  humanURL: https://www.canix.com/product/api
+  baseURL: https://api.canix.com/api/v1
+  tags:
+  - Standard Costs
+  properties:
+  - type: OpenAPI
+    url: openapi/canix-standard-costs-api-openapi.yml
+  - type: Documentation
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: APIReference
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: DataModel
+    url: data-model/canix-data-model.yml
+  - type: ErrorCatalog
+    url: errors/canix-problem-types.yml
+- aid: canix:canix-strains-api
+  name: Canix Strains API
+  description: The Strains API from Canix — 2 operation(s) for strains.
+  humanURL: https://www.canix.com/product/api
+  baseURL: https://api.canix.com/api/v1
+  tags:
+  - Strains
+  properties:
+  - type: OpenAPI
+    url: openapi/canix-strains-api-openapi.yml
+  - type: Documentation
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: APIReference
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: DataModel
+    url: data-model/canix-data-model.yml
+  - type: ErrorCatalog
+    url: errors/canix-problem-types.yml
+- aid: canix:canix-submissions-api
+  name: Canix Submissions API
+  description: The Submissions API from Canix — 1 operation(s) for submissions.
+  humanURL: https://www.canix.com/product/api
+  baseURL: https://api.canix.com/api/v1
+  tags:
+  - Submissions
+  properties:
+  - type: OpenAPI
+    url: openapi/canix-submissions-api-openapi.yml
+  - type: Documentation
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: APIReference
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: DataModel
+    url: data-model/canix-data-model.yml
+  - type: ErrorCatalog
+    url: errors/canix-problem-types.yml
+- aid: canix:canix-transfer-destinations-api
+  name: Canix Transfer Destinations API
+  description: The Transfer Destinations API from Canix — 2 operation(s) for transfer destinations.
+  humanURL: https://www.canix.com/product/api
+  baseURL: https://api.canix.com/api/v1
+  tags:
+  - Transfer Destinations
+  properties:
+  - type: OpenAPI
+    url: openapi/canix-transfer-destinations-api-openapi.yml
+  - type: Documentation
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: APIReference
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: DataModel
+    url: data-model/canix-data-model.yml
+  - type: ErrorCatalog
+    url: errors/canix-problem-types.yml
+- aid: canix:canix-transfers-api
+  name: Canix Transfers API
+  description: The Transfers API from Canix — 2 operation(s) for transfers.
+  humanURL: https://www.canix.com/product/api
+  baseURL: https://api.canix.com/api/v1
+  tags:
+  - Transfers
+  properties:
+  - type: OpenAPI
+    url: openapi/canix-transfers-api-openapi.yml
+  - type: Documentation
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: APIReference
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: DataModel
+    url: data-model/canix-data-model.yml
+  - type: ErrorCatalog
+    url: errors/canix-problem-types.yml
+- aid: canix:canix-vendors-api
+  name: Canix Vendors API
+  description: The Vendors API from Canix — 2 operation(s) for vendors.
+  humanURL: https://www.canix.com/product/api
+  baseURL: https://api.canix.com/api/v1
+  tags:
+  - Vendors
+  properties:
+  - type: OpenAPI
+    url: openapi/canix-vendors-api-openapi.yml
+  - type: Documentation
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: APIReference
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: DataModel
+    url: data-model/canix-data-model.yml
+  - type: ErrorCatalog
+    url: errors/canix-problem-types.yml
+- aid: canix:canix-weightunits-api
+  name: Canix Weight Units API
+  description: The WeightUnits API from Canix — 1 operation(s) for weightunits.
+  humanURL: https://www.canix.com/product/api
+  baseURL: https://api.canix.com/api/v1
+  tags:
+  - WeightUnits
+  properties:
+  - type: OpenAPI
+    url: openapi/canix-weightunits-api-openapi.yml
+  - type: Documentation
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: APIReference
+    url: https://api.canix.com/api-docs-swagger/index.html
+  - type: DataModel
+    url: data-model/canix-data-model.yml
+  - type: ErrorCatalog
+    url: errors/canix-problem-types.yml
 common:
 - type: AgenticAccess
   url: agentic-access/canix-agentic-access.yml
@@ -113,7 +570,7 @@ common:
 - type: StatusPage
   url: https://status.canix.com/
 - type: OpenAPI
-  url: openapi/canix-openapi-original.yml
+  url: openapi/_original/canix-openapi-original.yml
 - type: MCPServer
   url: mcp/canix-mcp.yml
 - type: ToolCrosswalk
