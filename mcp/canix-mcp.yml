@@ -2,12 +2,10 @@ generated: '2026-08-09'
 method: searched
 status: published
 source: https://www.canix.com/blog-posts/ask-your-data-anything-canix-launches-mcp-server
-description: >-
-  Canix operates a first-party hosted MCP server, announced 2026-07-09, that connects a
-  Canix account to AI assistants such as Claude and ChatGPT. The endpoint was not published
-  in the announcement post — it was recovered from Canix's own RFC 9728 protected-resource
-  metadata at https://api.canix.com/.well-known/oauth-protected-resource, which names
-  https://api.canix.com/mcp as the protected resource.
+description: Canix operates a first-party hosted MCP server, announced 2026-07-09, that connects a Canix
+  account to AI assistants such as Claude and ChatGPT. The endpoint was not published in the announcement
+  post — it was recovered from Canix's own RFC 9728 protected-resource metadata at https://api.canix.com/.well-known/oauth-protected-resource,
+  which names https://api.canix.com/mcp as the protected resource.
 server:
   name: canix
   transport: http
@@ -36,12 +34,11 @@ authorization:
 capabilities:
   live:
   - id: sales-reporting
-    description: >-
-      Natural-language querying of Canix sales data — revenue over time and period-over-period,
-      account and customer ordering behaviour, product performance, and sales-representative
-      contribution. Example questions published by Canix: "What was my total revenue last month
-      compared to the prior month?", "Which accounts haven't ordered in 30 days?", "Do I need all
-      my salespeople, or is revenue concentrated?"
+    description: 'Natural-language querying of Canix sales data — revenue over time and period-over-period,
+      account and customer ordering behaviour, product performance, and sales-representative contribution.
+      Example questions published by Canix: "What was my total revenue last month compared to the prior
+      month?", "Which accounts haven''t ordered in 30 days?", "Do I need all my salespeople, or is revenue
+      concentrated?"'
     source: https://www.canix.com/blog-posts/ask-your-data-anything-canix-launches-mcp-server
   announced:
   - id: inventory
@@ -50,24 +47,21 @@ capabilities:
 tools:
   published: false
   count: null
-  note: >-
-    NOT DERIVED AND NOT GUESSED. tools/list is authenticated, and Canix publishes no tool
-    manifest, no llms.txt and no MCP configuration snippet, so the real tool names and
-    inputSchemas are not publicly readable. The capabilities block above records only what
-    Canix itself describes in prose. Recovering the tool set requires an authenticated
-    introspection with a Canix account.
+  note: NOT DERIVED AND NOT GUESSED. tools/list is authenticated, and Canix publishes no tool manifest,
+    no llms.txt and no MCP configuration snippet, so the real tool names and inputSchemas are not publicly
+    readable. The capabilities block above records only what Canix itself describes in prose. Recovering
+    the tool set requires an authenticated introspection with a Canix account.
 introspection:
   attempted: '2026-08-09'
-  method: 'POST {"jsonrpc":"2.0","id":1,"method":"tools/list"}'
+  method: POST {"jsonrpc":"2.0","id":1,"method":"tools/list"}
   accept: application/json, text/event-stream
   http_status: 401
   body: '{"error":"missing or malformed Authorization header"}'
   www_authenticate: Bearer resource_metadata="https://api.canix.com/.well-known/oauth-protected-resource"
   gated: true
-  assessment: >-
-    A correct implementation. The 401 carries an RFC 9728 WWW-Authenticate challenge pointing
-    at the protected-resource metadata, which is exactly how an MCP client is meant to discover
-    the authorization server. Anonymous introspection is refused, not silently degraded.
+  assessment: A correct implementation. The 401 carries an RFC 9728 WWW-Authenticate challenge pointing
+    at the protected-resource metadata, which is exactly how an MCP client is meant to discover the authorization
+    server. Anonymous introspection is refused, not silently degraded.
 x-evidence:
 - url: https://api.canix.com/mcp
   http_status: 401
@@ -81,3 +75,10 @@ x-evidence:
   http_status: 200
   fetched: '2026-08-09'
   note: launch announcement, 2026-07-09
+deployment:
+  mode: remote
+  endpoint: https://api.canix.com/mcp
+  verified: probed
+  probe: gated
+  checked: '2026-08-12'
+  source: catalog MCP census

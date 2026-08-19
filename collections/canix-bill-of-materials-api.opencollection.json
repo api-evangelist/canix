@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Canix Bill of Materials API",
+    "version": "1.3.10"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Bill of Materials",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GetBillsOfMaterials",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.canix.com/api/v1/bills_of_materials"
+          },
+          "docs": "Get all Bills of Materials"
+        },
+        {
+          "info": {
+            "name": "GetBillOfMaterials",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.canix.com/api/v1/bills_of_materials/:bill_of_materials_id",
+            "params": [
+              {
+                "name": "bill_of_materials_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of Bill of Materials to return"
+              }
+            ]
+          },
+          "docs": "Get Bill of Materials by ID"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

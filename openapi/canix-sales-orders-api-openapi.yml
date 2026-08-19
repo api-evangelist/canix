@@ -1,0 +1,994 @@
+openapi: 3.2.0
+info:
+  title: Canix Sales Orders API
+  x-logo:
+    url: https://assets.website-files.com/5ee52a0f4be6ffc2aaeb52cd/5ee52a0f4be6ff20e7eb534f_canix-logo.svg
+    backgroundColor: '#FFFFFF'
+    altText: Canix logo
+  description: '# Introduction
+
+    This API documentation describes the endpoints used by third-party developers to get Canix data for their account.
+
+    # Authentication
+
+    Canix API uses API Keys for authentication. You can generate an API key on our [API page](https://app.canix.com/company/api), and on your API requests use the `X-API-KEY` header with the API key value you generated.
+
+    We strongly recommend using a secrets manager. Plain text files like dotenv lead to accidental costly leaks. Use [Doppler](https://doppler.com/) or similar options for a developer friendly experience. AWS and Google Cloud have native solutions as well.'
+  contact:
+    name: Canix Support
+    url: https://help.canix.com/
+    email: help@canix.com
+  version: 1.3.10
+servers:
+- url: https://api.canix.com/api/v1
+  variables: {}
+security:
+- ApiKeyAuth: []
+tags:
+- name: Sales Orders
+paths:
+  /sales_orders:
+    get:
+      tags:
+      - Sales Orders
+      summary: GetSalesOrders
+      description: Return Sales Orders
+      operationId: GetSalesOrders
+      parameters:
+      - $ref: '#/components/parameters/limitParam'
+      - $ref: '#/components/parameters/offsetParam'
+      - $ref: '#/components/parameters/orderByParam'
+      - $ref: '#/components/parameters/whereParam'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SalesOrder'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          $ref: '#/components/responses/401NotAuthenticated'
+        '403':
+          $ref: '#/components/responses/403AccessDenied'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '500':
+          $ref: '#/components/responses/500ServerError'
+    post:
+      tags:
+      - Sales Orders
+      summary: CreateSalesOrder
+      description: __CALLING THIS ENDPOINT WILL MODIFY YOUR DATA IRREVERSIBLY. ONLY CALL THIS ON SANDBOX DATA DURING DEVELOPMENT/CODING/TESTING.__
+      operationId: CreateSalesOrder
+      requestBody:
+        required: true
+        description: Create a new Sales Order
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SalesOrderRequestBody'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SalesOrder'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          $ref: '#/components/responses/401NotAuthenticated'
+        '403':
+          $ref: '#/components/responses/403AccessDenied'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '500':
+          $ref: '#/components/responses/500ServerError'
+  /sales_orders/{sales_order_id}:
+    get:
+      tags:
+      - Sales Orders
+      summary: GetSalesOrder
+      description: Get Sales Order by ID
+      operationId: GetSalesOrderById
+      parameters:
+      - name: sales_order_id
+        in: path
+        description: ID of Sales Order to return
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SalesOrder'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          $ref: '#/components/responses/401NotAuthenticated'
+        '403':
+          $ref: '#/components/responses/403AccessDenied'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '500':
+          $ref: '#/components/responses/500ServerError'
+    put:
+      tags:
+      - Sales Orders
+      summary: UpdateSalesOrder
+      description: __CALLING THIS ENDPOINT WILL MODIFY YOUR DATA IRREVERSIBLY. ONLY CALL THIS ON SANDBOX DATA DURING DEVELOPMENT/CODING/TESTING.__
+      operationId: UpdateSalesOrder
+      parameters:
+      - name: sales_order_id
+        in: path
+        description: ID of Sales Order to update
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        description: Update an existing Sales Order
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SalesOrderRequestBody'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SalesOrder'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          $ref: '#/components/responses/401NotAuthenticated'
+        '403':
+          $ref: '#/components/responses/403AccessDenied'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '500':
+          $ref: '#/components/responses/500ServerError'
+  /sales_orders/{sales_order_id}/contents:
+    get:
+      tags:
+      - Sales Orders
+      summary: GetSalesOrderContents
+      description: Get Sales Order Contents by Sales Order ID
+      operationId: GetSalesOrderContentsById
+      parameters:
+      - name: sales_order_id
+        in: path
+        description: Sales Order ID
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  allOf:
+                  - $ref: '#/components/schemas/SalesOrderItem'
+                  - type: object
+                    properties:
+                      weight_unit_id:
+                        type: integer
+                      weight_unit_name:
+                        type: string
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          $ref: '#/components/responses/401NotAuthenticated'
+        '403':
+          $ref: '#/components/responses/403AccessDenied'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '500':
+          $ref: '#/components/responses/500ServerError'
+  /sales_orders/{sales_order_id}/payments:
+    get:
+      tags:
+      - Sales Orders
+      summary: GetSalesOrderPayments
+      description: Get Sales Order Payments by Sales Order ID
+      operationId: GetSalesOrderPayments
+      parameters:
+      - name: sales_order_id
+        in: path
+        description: Sales Order ID
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SalesOrderPayment'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          $ref: '#/components/responses/401NotAuthenticated'
+        '403':
+          $ref: '#/components/responses/403AccessDenied'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '500':
+          $ref: '#/components/responses/500ServerError'
+  /sales_orders/{sales_order_id}/status/{status_name}:
+    put:
+      tags:
+      - Sales Orders
+      summary: UpdateSalesOrderStatus
+      description: 'Update the status of a Sales Order.
+
+        Valid status values: created, approved, filled, shipped, accepted, archived, requested, canceled
+
+        To cancel a sales order, use status_name = "canceled"
+
+        Note: Cannot cancel orders that are shipped, accepted, returned, or archived.
+
+        __CALLING THIS ENDPOINT WILL MODIFY YOUR DATA IRREVERSIBLY. ONLY CALL THIS ON SANDBOX DATA DURING DEVELOPMENT/CODING/TESTING.__
+
+        '
+      operationId: UpdateSalesOrderStatus
+      parameters:
+      - name: sales_order_id
+        in: path
+        description: ID of Sales Order to update status
+        required: true
+        schema:
+          type: integer
+      - name: status_name
+        in: path
+        description: New status for the Sales Order (created, approved, filled, shipped, accepted, archived, requested, canceled)
+        required: true
+        schema:
+          type: string
+          enum:
+          - created
+          - approved
+          - filled
+          - shipped
+          - accepted
+          - archived
+          - requested
+          - canceled
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  previous_status:
+                    type: string
+                    description: The previous status of the sales order
+                  new_status:
+                    type: string
+                    description: The new status of the sales order
+                required:
+                - previous_status
+                - new_status
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          $ref: '#/components/responses/401NotAuthenticated'
+        '403':
+          $ref: '#/components/responses/403AccessDenied'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '500':
+          $ref: '#/components/responses/500ServerError'
+  /payments:
+    get:
+      tags:
+      - Sales Orders
+      summary: GetPayments
+      description: 'Return sales order payments across all of the company''s facilities, newest first.
+
+        Filter by received date with the `where` parameter, e.g. `where=payment_date >= ''2026-01-01''`.
+
+        '
+      operationId: GetPayments
+      parameters:
+      - name: facility_id
+        in: query
+        description: Facility ID (optional)
+        example: 123
+        required: false
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/limitParam'
+      - $ref: '#/components/parameters/offsetParam'
+      - $ref: '#/components/parameters/orderByParam'
+      - $ref: '#/components/parameters/whereParam'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SalesOrderPayment'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          $ref: '#/components/responses/401NotAuthenticated'
+        '403':
+          $ref: '#/components/responses/403AccessDenied'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '500':
+          $ref: '#/components/responses/500ServerError'
+  /payments/{payment_id}:
+    get:
+      tags:
+      - Sales Orders
+      summary: GetPayment
+      description: Get a sales order payment by ID
+      operationId: GetPaymentById
+      parameters:
+      - name: payment_id
+        in: path
+        description: Payment ID
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SalesOrderPayment'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          $ref: '#/components/responses/401NotAuthenticated'
+        '403':
+          $ref: '#/components/responses/403AccessDenied'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '500':
+          $ref: '#/components/responses/500ServerError'
+components:
+  schemas:
+    SalesOrderPayment:
+      title: Sales Order Payment
+      required:
+      - amount
+      - date
+      type: object
+      properties:
+        id:
+          type: integer
+        sales_order_id:
+          type: integer
+          description: ID of the sales order this payment was applied to
+        amount:
+          type: number
+        date:
+          type: integer
+        reference_number:
+          type:
+          - string
+          - 'null'
+          description: Payment reference number
+        external_transaction_name:
+          type:
+          - string
+          - 'null'
+          description: Readable name of the linked external (e.g. accounting) transaction
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+      example:
+        id: 9001
+        sales_order_id: 584857
+        amount: 10000
+        date: '2021-05-24T19:58:00.000Z'
+        reference_number: CHK-1042
+        external_transaction_name: 'QBO Payment #55'
+        updated_at: '2021-05-24T19:58:00.000Z'
+    Discount:
+      title: Discount
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - fixed
+          - percentage
+        amount:
+          type: number
+        reason:
+          type: string
+      example:
+        type: fixed
+        amount: 10.0
+        reason: Black Friday Sale
+    Address:
+      title: Address
+      type: object
+      properties:
+        street:
+          type: string
+          example: 123 Cumberland St
+        street2:
+          type: string
+          example: West
+        city:
+          type: string
+          example: Somerset
+        county:
+          type: string
+          example: KY
+        state:
+          type: string
+          example: CO
+        country:
+          type: string
+          example: USA
+        postal_code:
+          type: string
+          example: 42504
+    SalesOrderItem:
+      title: Sales Order Item
+      required:
+      - id
+      - sales_order_id
+      type: object
+      properties:
+        id:
+          type: integer
+        weight:
+          type: number
+        weight_unit:
+          oneOf:
+          - type: string
+            description: Unit name or abbreviation
+          - type: integer
+            description: Unit id
+        unit_price:
+          type: number
+        total_price:
+          type: number
+          description: Total price (unit * weight)
+        item:
+          $ref: '#/components/schemas/Sales_order_item'
+        brand:
+          allOf:
+          - $ref: '#/components/schemas/IdName'
+          description: Brand of the sold item, product, or non-cannabis product (null if none)
+        product_id:
+          type:
+          - integer
+          - 'null'
+          description: ID of the linked cannabis Product, if any
+        product_brand:
+          allOf:
+          - $ref: '#/components/schemas/IdName'
+          description: Brand of the linked cannabis Product, if any
+        is_sample:
+          type: boolean
+          description: Whether the line item is a trade sample
+        package_ids:
+          type: array
+          items:
+            type: integer
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+        order:
+          type: integer
+          description: Position of the item in the order
+        discount:
+          $ref: '#/components/schemas/Discount'
+      example:
+        id: 100
+        weight: 20
+        weight_unit: Each
+        unit_price: 20
+        total_price: 400
+        item:
+          id: 7036
+          name: Blue Dream - Trim
+          sku: '22657'
+        brand:
+          id: 12
+          name: Sunshine Co
+        product_id: 4500
+        product_brand:
+          id: 12
+          name: Sunshine Co
+        is_sample: false
+        package_ids:
+        - 123
+        - 456
+        discount:
+          type: percentage
+          amount: 25.0
+          reason: 25% off
+        updated_at: '2021-05-24T19:58:00.000Z'
+        order: 1
+    Customer:
+      title: Customer
+      type: object
+      properties:
+        id:
+          type: integer
+        contact_name:
+          type: string
+        company_name:
+          type: string
+        facility_license_number:
+          type: string
+        license_type:
+          type: string
+        customer_number:
+          type: string
+        license_expiration_date:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+        territory:
+          type: string
+        address:
+          $ref: '#/components/schemas/Address'
+        notes:
+          type: string
+        outstanding_balance:
+          type: number
+        credit:
+          type: number
+          description: Current credit balance available to this customer
+        dba:
+          type: string
+          example: Doing Business As
+        is_active:
+          type: boolean
+        created_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+    User:
+      title: User
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 123
+        name:
+          type: string
+          example: John Doe
+        email:
+          type: string
+          example: j@d.com
+    IdName:
+      title: IdName
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+    SalesOrderRequestBody:
+      title: Sales Order Request Body
+      type: object
+      required:
+      - customer_id
+      - name
+      - status
+      - delivery_date
+      - other_tax_rate
+      - local_tax_rate
+      - state_tax_rate
+      properties:
+        customer_id:
+          description: The customer company id
+          type: integer
+          example: 2
+        name:
+          type: string
+          example: 'Order #123'
+        external_identifier:
+          type: string
+          example: SAP-ORDER-12345
+          description: External Sales Order ID (from partner system, not unique)
+        status:
+          type: string
+          example: pending
+        delivery_fee:
+          type: number
+          format: float
+          example: 15.99
+        delivery_date:
+          type: string
+          format: date-time
+          example: '2025-02-04T14:00:00Z'
+        payment_date:
+          type: string
+          format: date-time
+          example: '2025-02-04T14:00:00Z'
+        sales_order_credit:
+          $ref: '#/components/schemas/Discount'
+          description: 'Order-level discount. Despite the name, this behaves as a discount, not a credit: it is applied before taxes and reduces the taxable subtotal. To apply a post-tax customer credit, use `credits` instead.'
+          example:
+            type: percentage
+            amount: 25.0
+            reason: 25% off
+        credits:
+          type: number
+          description: Post-tax customer credit to apply to the order, as a positive number. Unlike `sales_order_credit`, this does not reduce the taxable subtotal; taxes are calculated on the full subtotal and the credit is subtracted from the total afterwards. Omit the field to leave an existing credit unchanged on update.
+          example: 1000.0
+        pull_credit_from_customer:
+          type: boolean
+          description: Only used together with `credits`. When true, the credit is deducted from the customer's credit balance (see POST /customers/{customer_id}/credits) and the request fails if the balance is insufficient. Defaults to false, which applies the credit without affecting the customer's balance.
+          example: false
+        contents:
+          type: array
+          items:
+            type: object
+            required:
+            - total_price
+            - weight
+            - weight_unit
+            properties:
+              item_id:
+                type: integer
+                example: 123
+              non_cannabis_product_id:
+                type: integer
+                example: 456
+              total_price:
+                type: number
+                format: float
+                example: 25.99
+              weight:
+                type: number
+                format: float
+                example: 1.5
+              weight_unit:
+                type: string
+                example: grams
+              notes:
+                type: string
+                example: Special handling required
+              package_ids:
+                type: array
+                items:
+                  type: integer
+                example:
+                - 1
+                - 2
+                - 3
+              discount:
+                $ref: '#/components/schemas/Discount'
+                example:
+                  type: fixed
+                  amount: 10.0
+                  reason: 10$ off
+        payments:
+          type: array
+          items:
+            type: object
+            properties:
+              amount:
+                type: number
+                format: float
+                example: 100.0
+              date:
+                type: string
+                format: date
+                example: '2025-02-04'
+              reference_number:
+                type: string
+                example: PAY-123
+        other_tax_rate:
+          type: number
+          format: float
+          example: 5.0
+        local_tax_rate:
+          type: number
+          format: float
+          example: 2.5
+        state_tax_rate:
+          type: number
+          format: float
+          example: 7.0
+        internal_notes:
+          type: string
+          example: Handle with care
+        payment_terms:
+          type: string
+          example: Net 30
+        payment_notes:
+          type: string
+          example: Payment due by end of month
+        terms_and_conditions:
+          type: string
+          example: Standard terms apply
+        return_policy:
+          type: string
+          example: 30-day return policy
+        sales_rep_email:
+          type: string
+          example: john.doe@example.com
+          description: Email of the sales representative
+    SalesOrder:
+      title: Sales Order
+      required:
+      - id
+      - facility_id
+      - name
+      - status
+      - delivery_date
+      - other_tax_rate
+      - local_tax_rate
+      - state_tax_rate
+      type: object
+      properties:
+        id:
+          type: integer
+        facility_id:
+          type: integer
+          description: Facility ID (fk)
+        name:
+          type: string
+        external_identifier:
+          type: string
+          description: External Sales Order ID (from partner system, not unique)
+        status:
+          type: string
+          description: status, can be one of 'created', 'approved', 'filled', 'shipped', 'rejected', 'accepted', 'archived', 'requested'
+        created_at:
+          type: string
+          description: Timestamp that the record was created in Canix
+        customer:
+          $ref: '#/components/schemas/Customer'
+        delivery_date:
+          type: string
+        delivery_fee:
+          type: number
+        payment_date:
+          type: string
+          description: Payment due date
+        payment_terms:
+          type: string
+        local_tax_rate:
+          type: number
+        state_tax_rate:
+          type: number
+        other_tax_rate:
+          type: number
+        subtotal:
+          type: number
+          description: Subtotal of all items
+        total_cultivation_tax:
+          type: number
+        total_price:
+          type: number
+          description: Total price (with taxes)
+        total_paid:
+          type: number
+        credits:
+          type: number
+          description: Customer credit applied to this order, as a positive number. Credits are applied after taxes, so they do not reduce the taxable subtotal. Writable on create/update via the `credits` request field.
+        discount:
+          type: number
+          description: Order-level discount amount (from `sales_order_credit`), as a positive number. Discounts are applied before taxes and reduce the taxable subtotal.
+        remaining_balance:
+          type: number
+        internal_notes:
+          type: string
+        payments:
+          description: Payments collected for this order
+          type: array
+          items:
+            $ref: '#/components/schemas/SalesOrderPayment'
+        sales_order_credit:
+          $ref: '#/components/schemas/Discount'
+        display_status:
+          type: string
+          description: The display status of the order. This is the custom status name if set, otherwise the standard status value.
+        contents:
+          description: Contents of the order (i.e. line items)
+          type: array
+          items:
+            allOf:
+            - $ref: '#/components/schemas/SalesOrderItem'
+            - type: object
+              properties:
+                weight_unit_id:
+                  type: integer
+                weight_unit_name:
+                  type: string
+        sales_representative:
+          schema: null
+          $ref: '#/components/schemas/User'
+        invoice_url:
+          type: string
+          description: URL to the latest invoice if it exists
+          example: https://www.app.canix.com/sales/invoice/view/123456
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+      example:
+        id: 84
+        name: 1074
+        external_identifier: SAP-ORDER-12345
+        facility_id: 14
+        status: created
+        customer:
+          id: 345
+          contact_name: John Smith
+          company_name: Zen Ltd
+          facility_license_number: 2020124
+          license_type: 3
+          customer_number: 247123
+          updated_at: 2020-04-24 02:18:42.703000+00:00
+          license_expiration_date: 2020-04-24
+          phone: 1222312
+          email: john.doe@twww.com",
+          territory: abc
+          address:
+            street: 123 Cumberland St
+            street2: West
+            city: DL
+            county: LN
+            state: OK
+            postal_code: 111001
+          notes: great customer!
+          outstanding_balance: 0
+        delivery_date: '2021-05-24T19:58:00.000Z'
+        delivery_fee: 2000
+        payment_date: '2021-05-24T19:58:00.000Z'
+        payment_terms: NET-14
+        local_tax_rate: 0
+        state_tax_rate: 0.27
+        other_tax_rate: 0
+        subtotal: 2124.22
+        total_cultivation_tax: 0
+        total_price: 2697.76
+        total_paid: 100.0
+        credits: 0
+        discount: 0
+        internal_notes: ''
+        remaining_balance: 2597.76
+        contents:
+        - id: 100
+          weight: 20
+          weight_unit: Each
+          unit_price: 20
+          total_price: 400
+          item:
+            id: 7036
+            name: Blue Dream - Trim
+            sku: '22657'
+          package_ids:
+          - 123
+          - 456
+          discount:
+            type: fixed
+            amount: 10.0
+            reason: 10$ off
+          updated_at: '2021-05-24T19:58:00.000Z'
+          order: 1
+        payments:
+        - date: '2021-05-24T19:58:00.000Z'
+          amount: 100
+        sales_representative:
+          id: 123,
+          name: John Doe
+          email: j@d.com
+        sales_order_credit:
+          type: percentage
+          amount: 25.0
+          reason: 25% off
+        display_status: Pending Review
+        invoice_url: https://www.app.canix.com/sales/invoice/view/123456
+        updated_at: '2021-05-24T19:58:00.000Z'
+    Sales_order_item:
+      title: Item
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        sku:
+          type: string
+      example:
+        id: 7036
+        name: Blue Dream - Trim
+        sku: '22657'
+  parameters:
+    offsetParam:
+      name: offset
+      in: query
+      description: Offset for the returned records (optional)
+      schema:
+        type: integer
+        default: 0
+        example: 20
+    whereParam:
+      name: where
+      in: query
+      description: 'Filter results using SQL-like WHERE clause syntax (optional).
+
+
+        **Supported operators**: =, >, <, >=, <=, BETWEEN, IN, LIKE, AND, OR
+
+
+        **Supported patterns**:
+
+        - Equality: `status=''Active''`
+
+        - Comparison: `updated_at >= ''2024-01-01''`
+
+        - Range: `id BETWEEN 1 AND 10000`
+
+        - List: `status IN (''Active'', ''Pending'')`
+
+        - Pattern: `sku LIKE ''ABC%''`
+
+        - Compound: `facility_id=123 AND is_active=true`
+
+        '
+      schema:
+        type: string
+        example: status='Active' AND updated_at >= '2024-01-01'
+    orderByParam:
+      name: order_by
+      in: query
+      description: Order-by clause, in SQL format (optional)
+      schema:
+        type: string
+        example: id desc
+    limitParam:
+      name: limit
+      in: query
+      description: Max number of records to return (optional). Cannot exceed 2000
+      required: false
+      style: form
+      schema:
+        type: integer
+        default: 2000
+        example: 100
+  responses:
+    403AccessDenied:
+      description: Access denied
+    404NotFound:
+      description: The specified resource was not found
+    400BadRequest:
+      description: Bad request
+    401NotAuthenticated:
+      description: Not authenticated
+    500ServerError:
+      description: Server error
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY

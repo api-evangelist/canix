@@ -1,0 +1,87 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Canix Standard Costs API",
+    "version": "1.3.10"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Standard Costs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GetStandardCost",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.canix.com/api/v1/standard_costs/:standard_cost_id",
+            "params": [
+              {
+                "name": "standard_cost_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of Standard Cost to retrieve"
+              }
+            ]
+          },
+          "docs": "Get details of a specific Standard Cost"
+        },
+        {
+          "info": {
+            "name": "UpdateStandardCost",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.canix.com/api/v1/standard_costs/:standard_cost_id",
+            "params": [
+              {
+                "name": "standard_cost_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of Standard Cost to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "__CALLING THIS ENDPOINT WILL MODIFY YOUR DATA IRREVERSIBLY. ONLY CALL THIS ON SANDBOX DATA DURING DEVELOPMENT/CODING/TESTING.__"
+        },
+        {
+          "info": {
+            "name": "DeleteStandardCost",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.canix.com/api/v1/standard_costs/:standard_cost_id",
+            "params": [
+              {
+                "name": "standard_cost_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of Standard Cost to delete"
+              }
+            ]
+          },
+          "docs": "__CALLING THIS ENDPOINT WILL MODIFY YOUR DATA IRREVERSIBLY. ONLY CALL THIS ON SANDBOX DATA DURING DEVELOPMENT/CODING/TESTING.__\n\nDelete a specific Standard Cost\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

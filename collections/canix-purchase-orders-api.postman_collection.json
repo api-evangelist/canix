@@ -1,0 +1,1805 @@
+{
+  "item": [
+    {
+      "id": "ba6612ed-03e8-49f0-a5c0-1b258460fab9",
+      "name": "Purchase Orders",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1e101c1e-5395-464b-85aa-166ad411a102",
+          "name": "GetPurchaseOrders",
+          "request": {
+            "name": "GetPurchaseOrders",
+            "description": {
+              "content": "Return Purchase Orders",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "purchase_orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "2000",
+                  "description": "Max number of records to return (optional). Cannot exceed 2000"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Offset for the returned records (optional)"
+                },
+                {
+                  "disabled": false,
+                  "key": "order_by",
+                  "value": "<string>",
+                  "description": "Order-by clause, in SQL format (optional)"
+                },
+                {
+                  "disabled": false,
+                  "key": "where",
+                  "value": "<string>",
+                  "description": "Filter results using SQL-like WHERE clause syntax (optional).\n\n**Supported operators**: =, >, <, >=, <=, BETWEEN, IN, LIKE, AND, OR\n\n**Supported patterns**:\n- Equality: `status='Active'`\n- Comparison: `updated_at >= '2024-01-01'`\n- Range: `id BETWEEN 1 AND 10000`\n- List: `status IN ('Active', 'Pending')`\n- Pattern: `sku LIKE 'ABC%'`\n- Compound: `facility_id=123 AND is_active=true`\n"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3d1dd332-06bb-4bce-b8e4-7a4731eb191a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purchase_orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 350,\n    \"facility_id\": 1,\n    \"name\": \"PO 00001\",\n    \"status\": \"string\",\n    \"requested_delivery_date\": \"2021-06-07T07:00:00.000Z\",\n    \"other_tax_rate\": 0.01,\n    \"local_tax_rate\": 0.01,\n    \"state_tax_rate\": 0.01,\n    \"vendor\": {\n      \"id\": 123,\n      \"name\": \"Canna Cones\",\n      \"is_active\": false,\n      \"contact_name\": \"John Smith\",\n      \"email\": \"john@cannacones.com\",\n      \"phone\": \"string\",\n      \"license_number\": \"X-000012\",\n      \"license_expiration_date\": \"2022-03-16 07:00:00+00:00\",\n      \"address\": \"63 Bluxome St.\",\n      \"address2\": \"Suite A\",\n      \"city\": \"San Francisco\",\n      \"postal_code\": \"string\",\n      \"state\": \"CA\",\n      \"country\": \"US\",\n      \"website_url\": \"cannacones.com\",\n      \"notes\": \"Best vendor\",\n      \"min_lead_time\": {\n        \"value\": 2,\n        \"unit\": \"week\"\n      },\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n    },\n    \"internal_notes\": \"Follow up\",\n    \"payment_terms\": \"NET15\",\n    \"payment_date\": \"2021-06-22\",\n    \"delivery_fee\": 1.5,\n    \"subtotal\": 9414.437272850215,\n    \"total_price\": 6059.926066736997,\n    \"total_paid\": 6755.260262209111,\n    \"payments\": [\n      {\n        \"amount\": 100,\n        \"date\": \"2025-02-04\"\n      },\n      {\n        \"amount\": 100,\n        \"date\": \"2025-02-04\"\n      }\n    ],\n    \"contents\": [\n      {\n        \"id\": 13,\n        \"weight\": 200,\n        \"weight_unit\": \"Grams\",\n        \"total_price\": 10.25,\n        \"item\": {\n          \"id\": 1584,\n          \"name\": \"string\",\n          \"facility_id\": 4769,\n          \"is_active\": true,\n          \"item_type\": \"string\",\n          \"brand\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"product_id\": 6656,\n          \"product_brand\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"quantity_type\": \"string\",\n          \"sku\": \"string\",\n          \"current_standard_cost\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"standard_cost_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"standard_cost_currency\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"start_date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"end_date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"accounting_inventory_type\": \"string\",\n          \"notes\": \"string\",\n          \"strain\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"notes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sku\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"testing_status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"indica_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sativa_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cross_strains\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"type\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"quantity_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_strain\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_volume\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_thc_weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_cbd_weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_cbd_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_thc_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_public_ingredients\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_administration_method\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_serving_size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_supply_duration_days\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_number_of_doses\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"sub_type\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"weight_unit\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"category\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"weight_unit\": \"string\",\n          \"unit_weight\": 6280.828105295642,\n          \"unit_weight_unit\": \"string\",\n          \"case_quantity\": \"string\",\n          \"case_quantity_unit\": \"string\",\n          \"unit_cbd_weight\": 6224.4607606617865,\n          \"unit_cbd_weight_unit\": \"string\",\n          \"unit_thc_weight\": 68.57797870626459,\n          \"unit_thc_weight_unit\": \"string\",\n          \"unit_cbd_percent\": 8949.03204073649,\n          \"unit_thc_percent\": 5635.362081404332,\n          \"description\": \"string\",\n          \"serving_size\": 7688.23548895213,\n          \"number_of_doses\": 4687.353917459846,\n          \"public_ingredients\": \"string\",\n          \"supply_duration_days\": 96.90432586270114,\n          \"administration_method\": \"string\",\n          \"allergens\": \"string\",\n          \"transfer_source_license\": \"string\",\n          \"bills_of_materials\": [\n            {\n              \"url\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"package_weight\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unit\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"url\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"package_weight\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unit\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"sage_item\": {\n            \"external_id\": \"string\",\n            \"name\": \"string\"\n          },\n          \"leaflink_item\": {\n            \"external_id\": \"string\",\n            \"name\": \"string\"\n          },\n          \"dutchie_product\": {\n            \"external_id\": \"string\",\n            \"name\": \"string\"\n          },\n          \"phenotype\": \"string\",\n          \"total_for_sale\": 2716.7578016758252,\n          \"ordered\": 933.192402500046,\n          \"backordered\": 585.0564574070371,\n          \"unordered\": 2734.379860306607,\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n        },\n        \"non_cannabis_product\": {\n          \"id\": 123,\n          \"name\": \"Pro System\",\n          \"is_active\": true,\n          \"facilities\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"license_number\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"is_active\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"category\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"location\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sqft\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"num_lights\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parent_location\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"is_active\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"sku\": \"0.5EC\",\n          \"notes\": \"This product requires special handling\",\n          \"available_quantity\": 196,\n          \"weight_unit\": \"Each\",\n          \"par\": 100,\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n          \"current_standard_costing\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"standard_cost_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"standard_cost_currency\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"start_date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"end_date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"submits_to_metrc\": false,\n          \"additive_type\": \"fertilizer\",\n          \"product_trade_name\": \"string\",\n          \"epa_registration_name\": \"string\",\n          \"product_supplier\": \"string\",\n          \"application_device\": \"string\",\n          \"active_ingredients\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"percentage\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"percentage\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      },\n      {\n        \"id\": 13,\n        \"weight\": 200,\n        \"weight_unit\": \"Grams\",\n        \"total_price\": 10.25,\n        \"item\": {\n          \"id\": 1784,\n          \"name\": \"string\",\n          \"facility_id\": 8355,\n          \"is_active\": false,\n          \"item_type\": \"string\",\n          \"brand\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"product_id\": 3614,\n          \"product_brand\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"quantity_type\": \"string\",\n          \"sku\": \"string\",\n          \"current_standard_cost\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"standard_cost_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"standard_cost_currency\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"start_date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"end_date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"accounting_inventory_type\": \"string\",\n          \"notes\": \"string\",\n          \"strain\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"notes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sku\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"testing_status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"indica_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sativa_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cross_strains\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"type\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"quantity_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_strain\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_volume\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_thc_weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_cbd_weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_cbd_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_thc_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_public_ingredients\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_administration_method\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_serving_size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_supply_duration_days\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_number_of_doses\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"sub_type\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"weight_unit\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"category\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"weight_unit\": \"string\",\n          \"unit_weight\": 5726.576433284082,\n          \"unit_weight_unit\": \"string\",\n          \"case_quantity\": \"string\",\n          \"case_quantity_unit\": \"string\",\n          \"unit_cbd_weight\": 7692.504819006603,\n          \"unit_cbd_weight_unit\": \"string\",\n          \"unit_thc_weight\": 5904.965021865094,\n          \"unit_thc_weight_unit\": \"string\",\n          \"unit_cbd_percent\": 1523.0640972579668,\n          \"unit_thc_percent\": 4217.290983915072,\n          \"description\": \"string\",\n          \"serving_size\": 6649.550985515976,\n          \"number_of_doses\": 6500.286079258457,\n          \"public_ingredients\": \"string\",\n          \"supply_duration_days\": 8952.621591199862,\n          \"administration_method\": \"string\",\n          \"allergens\": \"string\",\n          \"transfer_source_license\": \"string\",\n          \"bills_of_materials\": [\n            {\n              \"url\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"package_weight\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unit\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"url\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"package_weight\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unit\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"sage_item\": {\n            \"external_id\": \"string\",\n            \"name\": \"string\"\n          },\n          \"leaflink_item\": {\n            \"external_id\": \"string\",\n            \"name\": \"string\"\n          },\n          \"dutchie_product\": {\n            \"external_id\": \"string\",\n            \"name\": \"string\"\n          },\n          \"phenotype\": \"string\",\n          \"total_for_sale\": 5130.204935024249,\n          \"ordered\": 9594.207001492521,\n          \"backordered\": 4084.9998464388727,\n          \"unordered\": 3699.4652393339056,\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n        },\n        \"non_cannabis_product\": {\n          \"id\": 123,\n          \"name\": \"Pro System\",\n          \"is_active\": true,\n          \"facilities\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"license_number\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"is_active\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"category\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"location\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sqft\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"num_lights\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parent_location\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"is_active\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"sku\": \"0.5EC\",\n          \"notes\": \"This product requires special handling\",\n          \"available_quantity\": 196,\n          \"weight_unit\": \"Each\",\n          \"par\": 100,\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n          \"current_standard_costing\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"standard_cost_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"standard_cost_currency\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"start_date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"end_date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"submits_to_metrc\": true,\n          \"additive_type\": \"fertilizer\",\n          \"product_trade_name\": \"string\",\n          \"epa_registration_name\": \"string\",\n          \"product_supplier\": \"string\",\n          \"application_device\": \"string\",\n          \"active_ingredients\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"percentage\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"percentage\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      }\n    ],\n    \"created_at\": \"string\",\n    \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n  },\n  {\n    \"id\": 350,\n    \"facility_id\": 1,\n    \"name\": \"PO 00001\",\n    \"status\": \"string\",\n    \"requested_delivery_date\": \"2021-06-07T07:00:00.000Z\",\n    \"other_tax_rate\": 0.01,\n    \"local_tax_rate\": 0.01,\n    \"state_tax_rate\": 0.01,\n    \"vendor\": {\n      \"id\": 123,\n      \"name\": \"Canna Cones\",\n      \"is_active\": false,\n      \"contact_name\": \"John Smith\",\n      \"email\": \"john@cannacones.com\",\n      \"phone\": \"string\",\n      \"license_number\": \"X-000012\",\n      \"license_expiration_date\": \"2022-03-16 07:00:00+00:00\",\n      \"address\": \"63 Bluxome St.\",\n      \"address2\": \"Suite A\",\n      \"city\": \"San Francisco\",\n      \"postal_code\": \"string\",\n      \"state\": \"CA\",\n      \"country\": \"US\",\n      \"website_url\": \"cannacones.com\",\n      \"notes\": \"Best vendor\",\n      \"min_lead_time\": {\n        \"value\": 2,\n        \"unit\": \"week\"\n      },\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n    },\n    \"internal_notes\": \"Follow up\",\n    \"payment_terms\": \"NET15\",\n    \"payment_date\": \"2021-06-22\",\n    \"delivery_fee\": 1.5,\n    \"subtotal\": 8403.83234810309,\n    \"total_price\": 9412.103603786889,\n    \"total_paid\": 1170.0240941150398,\n    \"payments\": [\n      {\n        \"amount\": 100,\n        \"date\": \"2025-02-04\"\n      },\n      {\n        \"amount\": 100,\n        \"date\": \"2025-02-04\"\n      }\n    ],\n    \"contents\": [\n      {\n        \"id\": 13,\n        \"weight\": 200,\n        \"weight_unit\": \"Grams\",\n        \"total_price\": 10.25,\n        \"item\": {\n          \"id\": 2477,\n          \"name\": \"string\",\n          \"facility_id\": 1033,\n          \"is_active\": true,\n          \"item_type\": \"string\",\n          \"brand\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"product_id\": 2095,\n          \"product_brand\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"quantity_type\": \"string\",\n          \"sku\": \"string\",\n          \"current_standard_cost\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"standard_cost_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"standard_cost_currency\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"start_date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"end_date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"accounting_inventory_type\": \"string\",\n          \"notes\": \"string\",\n          \"strain\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"notes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sku\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"testing_status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"indica_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sativa_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cross_strains\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"type\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"quantity_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_strain\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_volume\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_thc_weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_cbd_weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_cbd_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_thc_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_public_ingredients\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_administration_method\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_serving_size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_supply_duration_days\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_number_of_doses\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"sub_type\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"weight_unit\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"category\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"weight_unit\": \"string\",\n          \"unit_weight\": 2293.0261860125865,\n          \"unit_weight_unit\": \"string\",\n          \"case_quantity\": \"string\",\n          \"case_quantity_unit\": \"string\",\n          \"unit_cbd_weight\": 7958.611434484638,\n          \"unit_cbd_weight_unit\": \"string\",\n          \"unit_thc_weight\": 7181.512872845007,\n          \"unit_thc_weight_unit\": \"string\",\n          \"unit_cbd_percent\": 5894.345724955173,\n          \"unit_thc_percent\": 3727.0383151448673,\n          \"description\": \"string\",\n          \"serving_size\": 8716.015685500068,\n          \"number_of_doses\": 2003.9240331889662,\n          \"public_ingredients\": \"string\",\n          \"supply_duration_days\": 5730.715665671428,\n          \"administration_method\": \"string\",\n          \"allergens\": \"string\",\n          \"transfer_source_license\": \"string\",\n          \"bills_of_materials\": [\n            {\n              \"url\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"package_weight\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unit\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"url\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"package_weight\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unit\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"sage_item\": {\n            \"external_id\": \"string\",\n            \"name\": \"string\"\n          },\n          \"leaflink_item\": {\n            \"external_id\": \"string\",\n            \"name\": \"string\"\n          },\n          \"dutchie_product\": {\n            \"external_id\": \"string\",\n            \"name\": \"string\"\n          },\n          \"phenotype\": \"string\",\n          \"total_for_sale\": 62.49822109769543,\n          \"ordered\": 3408.368311946153,\n          \"backordered\": 8978.806686983873,\n          \"unordered\": 3651.0433707580305,\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n        },\n        \"non_cannabis_product\": {\n          \"id\": 123,\n          \"name\": \"Pro System\",\n          \"is_active\": true,\n          \"facilities\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"license_number\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"is_active\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"category\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"location\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sqft\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"num_lights\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parent_location\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"is_active\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"sku\": \"0.5EC\",\n          \"notes\": \"This product requires special handling\",\n          \"available_quantity\": 196,\n          \"weight_unit\": \"Each\",\n          \"par\": 100,\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n          \"current_standard_costing\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"standard_cost_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"standard_cost_currency\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"start_date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"end_date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"submits_to_metrc\": true,\n          \"additive_type\": \"fertilizer\",\n          \"product_trade_name\": \"string\",\n          \"epa_registration_name\": \"string\",\n          \"product_supplier\": \"string\",\n          \"application_device\": \"string\",\n          \"active_ingredients\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"percentage\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"percentage\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      },\n      {\n        \"id\": 13,\n        \"weight\": 200,\n        \"weight_unit\": \"Grams\",\n        \"total_price\": 10.25,\n        \"item\": {\n          \"id\": 9846,\n          \"name\": \"string\",\n          \"facility_id\": 3040,\n          \"is_active\": false,\n          \"item_type\": \"string\",\n          \"brand\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"product_id\": 9837,\n          \"product_brand\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"quantity_type\": \"string\",\n          \"sku\": \"string\",\n          \"current_standard_cost\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"standard_cost_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"standard_cost_currency\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"start_date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"end_date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"accounting_inventory_type\": \"string\",\n          \"notes\": \"string\",\n          \"strain\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"notes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sku\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"testing_status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"indica_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sativa_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cross_strains\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"type\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"quantity_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_strain\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_volume\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_thc_weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_cbd_weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_cbd_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_thc_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_public_ingredients\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_administration_method\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_serving_size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_supply_duration_days\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_number_of_doses\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"sub_type\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"weight_unit\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"category\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"weight_unit\": \"string\",\n          \"unit_weight\": 342.49964303297855,\n          \"unit_weight_unit\": \"string\",\n          \"case_quantity\": \"string\",\n          \"case_quantity_unit\": \"string\",\n          \"unit_cbd_weight\": 9780.03901952491,\n          \"unit_cbd_weight_unit\": \"string\",\n          \"unit_thc_weight\": 8848.637435199164,\n          \"unit_thc_weight_unit\": \"string\",\n          \"unit_cbd_percent\": 748.9331298305613,\n          \"unit_thc_percent\": 6426.390871395686,\n          \"description\": \"string\",\n          \"serving_size\": 5596.570740951705,\n          \"number_of_doses\": 5843.440897209811,\n          \"public_ingredients\": \"string\",\n          \"supply_duration_days\": 4657.486506278224,\n          \"administration_method\": \"string\",\n          \"allergens\": \"string\",\n          \"transfer_source_license\": \"string\",\n          \"bills_of_materials\": [\n            {\n              \"url\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"package_weight\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unit\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"url\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"package_weight\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unit\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"sage_item\": {\n            \"external_id\": \"string\",\n            \"name\": \"string\"\n          },\n          \"leaflink_item\": {\n            \"external_id\": \"string\",\n            \"name\": \"string\"\n          },\n          \"dutchie_product\": {\n            \"external_id\": \"string\",\n            \"name\": \"string\"\n          },\n          \"phenotype\": \"string\",\n          \"total_for_sale\": 7490.24875226123,\n          \"ordered\": 1681.126348763543,\n          \"backordered\": 5134.1429221333465,\n          \"unordered\": 8494.304071037306,\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n        },\n        \"non_cannabis_product\": {\n          \"id\": 123,\n          \"name\": \"Pro System\",\n          \"is_active\": false,\n          \"facilities\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"license_number\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"is_active\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"category\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"location\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sqft\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"num_lights\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parent_location\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"is_active\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"sku\": \"0.5EC\",\n          \"notes\": \"This product requires special handling\",\n          \"available_quantity\": 196,\n          \"weight_unit\": \"Each\",\n          \"par\": 100,\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n          \"current_standard_costing\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"standard_cost_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"standard_cost_currency\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"start_date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"end_date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"submits_to_metrc\": false,\n          \"additive_type\": \"fertilizer\",\n          \"product_trade_name\": \"string\",\n          \"epa_registration_name\": \"string\",\n          \"product_supplier\": \"string\",\n          \"application_device\": \"string\",\n          \"active_ingredients\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"percentage\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"percentage\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      }\n    ],\n    \"created_at\": \"string\",\n    \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "87382095-ed3e-4fe0-a8fd-7d1dd7ed845c",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purchase_orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2d6228d8-0746-4f06-8ad6-08e4936b929e",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purchase_orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "eac03de8-6598-44ca-8ce1-a3a65942e7b8",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purchase_orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e78f26f4-9742-45b2-b4fb-8d5f3ae0ea2b",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purchase_orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2af8922c-09e2-4c89-a90d-99829e862a78",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purchase_orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b0029745-1b74-4d6d-bb65-21c61d1085fb",
+          "name": "PostPurchaseOrder",
+          "request": {
+            "name": "PostPurchaseOrder",
+            "description": {
+              "content": "__CALLING THIS ENDPOINT WILL MODIFY YOUR DATA IRREVERSIBLY. ONLY CALL THIS ON SANDBOX DATA DURING DEVELOPMENT/CODING/TESTING.__",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "purchase_orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"facility_id\": \"<integer>\",\n  \"vendor_id\": \"<integer>\",\n  \"status\": \"<string>\",\n  \"requested_delivery_date\": \"<date>\",\n  \"payment_terms\": \"<string>\",\n  \"name\": \"<string>\",\n  \"internal_notes\": \"<string>\",\n  \"payment_date\": \"<date>\",\n  \"delivery_fee\": \"<float>\",\n  \"local_tax_rate\": \"<float>\",\n  \"state_tax_rate\": \"<float>\",\n  \"other_tax_rate\": \"<float>\",\n  \"purchase_order_items_attributes\": [\n    {\n      \"weight\": \"<number>\",\n      \"weight_unit_id\": \"<integer>\",\n      \"price\": \"<number>\",\n      \"item_id\": \"<integer>\",\n      \"non_cannabis_product_id\": \"<integer>\",\n      \"notes\": \"<string>\"\n    },\n    {\n      \"weight\": \"<number>\",\n      \"weight_unit_id\": \"<integer>\",\n      \"price\": \"<number>\",\n      \"item_id\": \"<integer>\",\n      \"non_cannabis_product_id\": \"<integer>\",\n      \"notes\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "97387314-f5d9-44e7-aecb-d1726b4136b2",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purchase_orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"facility_id\": 1,\n  \"vendor_id\": 123,\n  \"status\": \"<string>\",\n  \"requested_delivery_date\": \"2021-06-07\",\n  \"payment_terms\": \"NET15\",\n  \"name\": \"PO 00001\",\n  \"internal_notes\": \"Follow up\",\n  \"payment_date\": \"2021-06-22\",\n  \"delivery_fee\": 1.5,\n  \"local_tax_rate\": 0.01,\n  \"state_tax_rate\": 0.01,\n  \"other_tax_rate\": 0.01,\n  \"purchase_order_items_attributes\": [\n    {\n      \"weight\": 200,\n      \"weight_unit_id\": 15,\n      \"price\": 10.25,\n      \"item_id\": 7036,\n      \"non_cannabis_product_id\": 145,\n      \"notes\": \"my notes for this order item\"\n    },\n    {\n      \"weight\": 200,\n      \"weight_unit_id\": 15,\n      \"price\": 10.25,\n      \"item_id\": 7036,\n      \"non_cannabis_product_id\": 145,\n      \"notes\": \"my notes for this order item\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 350,\n  \"facility_id\": 1,\n  \"name\": \"PO 00001\",\n  \"status\": \"string\",\n  \"requested_delivery_date\": \"2021-06-07T07:00:00.000Z\",\n  \"other_tax_rate\": 0.01,\n  \"local_tax_rate\": 0.01,\n  \"state_tax_rate\": 0.01,\n  \"vendor\": {\n    \"id\": 123,\n    \"name\": \"Canna Cones\",\n    \"is_active\": true,\n    \"contact_name\": \"John Smith\",\n    \"email\": \"john@cannacones.com\",\n    \"phone\": \"string\",\n    \"license_number\": \"X-000012\",\n    \"license_expiration_date\": \"2022-03-16 07:00:00+00:00\",\n    \"address\": \"63 Bluxome St.\",\n    \"address2\": \"Suite A\",\n    \"city\": \"San Francisco\",\n    \"postal_code\": \"string\",\n    \"state\": \"CA\",\n    \"country\": \"US\",\n    \"website_url\": \"cannacones.com\",\n    \"notes\": \"Best vendor\",\n    \"min_lead_time\": {\n      \"value\": 2,\n      \"unit\": \"week\"\n    },\n    \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n  },\n  \"internal_notes\": \"Follow up\",\n  \"payment_terms\": \"NET15\",\n  \"payment_date\": \"2021-06-22\",\n  \"delivery_fee\": 1.5,\n  \"subtotal\": 4368.868099057253,\n  \"total_price\": 3793.5795183906716,\n  \"total_paid\": 2984.439519558605,\n  \"payments\": [\n    {\n      \"amount\": 100,\n      \"date\": \"2025-02-04\"\n    },\n    {\n      \"amount\": 100,\n      \"date\": \"2025-02-04\"\n    }\n  ],\n  \"contents\": [\n    {\n      \"id\": 13,\n      \"weight\": 200,\n      \"weight_unit\": \"Grams\",\n      \"total_price\": 10.25,\n      \"item\": {\n        \"id\": 7441,\n        \"name\": \"string\",\n        \"facility_id\": 8450,\n        \"is_active\": true,\n        \"item_type\": \"string\",\n        \"brand\": {\n          \"id\": 6558.295071669558,\n          \"name\": \"string\"\n        },\n        \"product_id\": 8853,\n        \"product_brand\": {\n          \"id\": 1342.7426293583478,\n          \"name\": \"string\"\n        },\n        \"quantity_type\": \"string\",\n        \"sku\": \"string\",\n        \"current_standard_cost\": {\n          \"id\": 123,\n          \"standard_cost_amount\": 12.1111,\n          \"standard_cost_currency\": \"USD\",\n          \"start_date\": \"2023-04-19\",\n          \"end_date\": \"2023-05-19\"\n        },\n        \"accounting_inventory_type\": \"string\",\n        \"notes\": \"string\",\n        \"strain\": {\n          \"id\": 6082,\n          \"name\": \"Lemon Skunk\",\n          \"notes\": \"Terpenes .63%\",\n          \"sku\": \"BIOJJ\",\n          \"testing_status\": \"InHouse\",\n          \"indica_percent\": 45,\n          \"sativa_percent\": 55,\n          \"cross_strains\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"type\": {\n          \"id\": 3236,\n          \"name\": \"string\",\n          \"quantity_type\": \"string\",\n          \"requires_strain\": true,\n          \"requires_unit_volume\": false,\n          \"requires_unit_weight\": false,\n          \"requires_unit_thc_weight\": true,\n          \"requires_unit_cbd_weight\": false,\n          \"requires_unit_cbd_percent\": true,\n          \"requires_unit_thc_percent\": false,\n          \"requires_public_ingredients\": true,\n          \"requires_administration_method\": true,\n          \"requires_serving_size\": false,\n          \"requires_supply_duration_days\": false,\n          \"requires_number_of_doses\": false,\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n        },\n        \"sub_type\": {\n          \"id\": 6155,\n          \"name\": \"string\",\n          \"weight_unit\": \"string\",\n          \"category\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"quantity_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_strain\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_volume\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_thc_weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_cbd_weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_cbd_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_thc_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_public_ingredients\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_administration_method\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_serving_size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_supply_duration_days\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_number_of_doses\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n        },\n        \"weight_unit\": \"string\",\n        \"unit_weight\": 679.5108803259786,\n        \"unit_weight_unit\": \"string\",\n        \"case_quantity\": \"string\",\n        \"case_quantity_unit\": \"string\",\n        \"unit_cbd_weight\": 9672.045661185244,\n        \"unit_cbd_weight_unit\": \"string\",\n        \"unit_thc_weight\": 1072.303950582777,\n        \"unit_thc_weight_unit\": \"string\",\n        \"unit_cbd_percent\": 2408.010787274121,\n        \"unit_thc_percent\": 1254.1310232381243,\n        \"description\": \"string\",\n        \"serving_size\": 2906.687968330989,\n        \"number_of_doses\": 7915.915524589896,\n        \"public_ingredients\": \"string\",\n        \"supply_duration_days\": 409.1684175371257,\n        \"administration_method\": \"string\",\n        \"allergens\": \"string\",\n        \"transfer_source_license\": \"string\",\n        \"bills_of_materials\": [\n          {\n            \"url\": \"string\",\n            \"name\": \"string\",\n            \"package_weight\": 999.1538170822712,\n            \"unit\": \"string\"\n          },\n          {\n            \"url\": \"string\",\n            \"name\": \"string\",\n            \"package_weight\": 9014.990965157915,\n            \"unit\": \"string\"\n          }\n        ],\n        \"sage_item\": {\n          \"external_id\": \"string\",\n          \"name\": \"string\"\n        },\n        \"leaflink_item\": {\n          \"external_id\": \"string\",\n          \"name\": \"string\"\n        },\n        \"dutchie_product\": {\n          \"external_id\": \"string\",\n          \"name\": \"string\"\n        },\n        \"phenotype\": \"string\",\n        \"total_for_sale\": 9877.779293719579,\n        \"ordered\": 9176.642473163443,\n        \"backordered\": 1978.6112468949457,\n        \"unordered\": 121.8831560785849,\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n      },\n      \"non_cannabis_product\": {\n        \"id\": 123,\n        \"name\": \"Pro System\",\n        \"is_active\": false,\n        \"facilities\": {\n          \"id\": 123,\n          \"name\": \"Test Facility\",\n          \"license_number\": \"4a-x123\",\n          \"is_active\": true,\n          \"address\": {\n            \"street\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"street2\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"city\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"county\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"state\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"postal_code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"category\": {\n          \"id\": 123,\n          \"name\": \"Preroll Materials\",\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n        },\n        \"location\": {\n          \"id\": 123,\n          \"name\": \"Pro System\",\n          \"sqft\": 14.4,\n          \"num_lights\": 42,\n          \"parent_location\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sqft\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"num_lights\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"is_active\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n          \"is_active\": true\n        },\n        \"sku\": \"0.5EC\",\n        \"notes\": \"This product requires special handling\",\n        \"available_quantity\": 196,\n        \"weight_unit\": \"Each\",\n        \"par\": 100,\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n        \"current_standard_costing\": {\n          \"id\": 123,\n          \"standard_cost_amount\": 12.1111,\n          \"standard_cost_currency\": \"USD\",\n          \"start_date\": \"2023-04-19\",\n          \"end_date\": \"2023-05-19\"\n        },\n        \"submits_to_metrc\": true,\n        \"additive_type\": \"fertilizer\",\n        \"product_trade_name\": \"string\",\n        \"epa_registration_name\": \"string\",\n        \"product_supplier\": \"string\",\n        \"application_device\": \"string\",\n        \"active_ingredients\": [\n          {\n            \"name\": \"string\",\n            \"percentage\": 2406.840908579214\n          },\n          {\n            \"name\": \"string\",\n            \"percentage\": 8373.873603694778\n          }\n        ]\n      }\n    },\n    {\n      \"id\": 13,\n      \"weight\": 200,\n      \"weight_unit\": \"Grams\",\n      \"total_price\": 10.25,\n      \"item\": {\n        \"id\": 7217,\n        \"name\": \"string\",\n        \"facility_id\": 5912,\n        \"is_active\": true,\n        \"item_type\": \"string\",\n        \"brand\": {\n          \"id\": 3642.4031372368713,\n          \"name\": \"string\"\n        },\n        \"product_id\": 6707,\n        \"product_brand\": {\n          \"id\": 4968.257479414947,\n          \"name\": \"string\"\n        },\n        \"quantity_type\": \"string\",\n        \"sku\": \"string\",\n        \"current_standard_cost\": {\n          \"id\": 123,\n          \"standard_cost_amount\": 12.1111,\n          \"standard_cost_currency\": \"USD\",\n          \"start_date\": \"2023-04-19\",\n          \"end_date\": \"2023-05-19\"\n        },\n        \"accounting_inventory_type\": \"string\",\n        \"notes\": \"string\",\n        \"strain\": {\n          \"id\": 7318,\n          \"name\": \"Lemon Skunk\",\n          \"notes\": \"Terpenes .63%\",\n          \"sku\": \"BIOJJ\",\n          \"testing_status\": \"InHouse\",\n          \"indica_percent\": 45,\n          \"sativa_percent\": 55,\n          \"cross_strains\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"type\": {\n          \"id\": 8566,\n          \"name\": \"string\",\n          \"quantity_type\": \"string\",\n          \"requires_strain\": false,\n          \"requires_unit_volume\": true,\n          \"requires_unit_weight\": true,\n          \"requires_unit_thc_weight\": false,\n          \"requires_unit_cbd_weight\": false,\n          \"requires_unit_cbd_percent\": true,\n          \"requires_unit_thc_percent\": true,\n          \"requires_public_ingredients\": true,\n          \"requires_administration_method\": false,\n          \"requires_serving_size\": false,\n          \"requires_supply_duration_days\": false,\n          \"requires_number_of_doses\": false,\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n        },\n        \"sub_type\": {\n          \"id\": 5793,\n          \"name\": \"string\",\n          \"weight_unit\": \"string\",\n          \"category\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"quantity_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_strain\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_volume\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_thc_weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_cbd_weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_cbd_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_thc_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_public_ingredients\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_administration_method\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_serving_size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_supply_duration_days\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_number_of_doses\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n        },\n        \"weight_unit\": \"string\",\n        \"unit_weight\": 9219.093767137005,\n        \"unit_weight_unit\": \"string\",\n        \"case_quantity\": \"string\",\n        \"case_quantity_unit\": \"string\",\n        \"unit_cbd_weight\": 7033.627635098415,\n        \"unit_cbd_weight_unit\": \"string\",\n        \"unit_thc_weight\": 3679.1597473100155,\n        \"unit_thc_weight_unit\": \"string\",\n        \"unit_cbd_percent\": 2326.2409861621804,\n        \"unit_thc_percent\": 4631.055309479488,\n        \"description\": \"string\",\n        \"serving_size\": 113.46043387725379,\n        \"number_of_doses\": 6511.279676881694,\n        \"public_ingredients\": \"string\",\n        \"supply_duration_days\": 2792.182910879547,\n        \"administration_method\": \"string\",\n        \"allergens\": \"string\",\n        \"transfer_source_license\": \"string\",\n        \"bills_of_materials\": [\n          {\n            \"url\": \"string\",\n            \"name\": \"string\",\n            \"package_weight\": 2239.7648408021896,\n            \"unit\": \"string\"\n          },\n          {\n            \"url\": \"string\",\n            \"name\": \"string\",\n            \"package_weight\": 899.4919348224017,\n            \"unit\": \"string\"\n          }\n        ],\n        \"sage_item\": {\n          \"external_id\": \"string\",\n          \"name\": \"string\"\n        },\n        \"leaflink_item\": {\n          \"external_id\": \"string\",\n          \"name\": \"string\"\n        },\n        \"dutchie_product\": {\n          \"external_id\": \"string\",\n          \"name\": \"string\"\n        },\n        \"phenotype\": \"string\",\n        \"total_for_sale\": 8949.32582887782,\n        \"ordered\": 8528.961252304925,\n        \"backordered\": 4938.509327142447,\n        \"unordered\": 2690.9091310752165,\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n      },\n      \"non_cannabis_product\": {\n        \"id\": 123,\n        \"name\": \"Pro System\",\n        \"is_active\": true,\n        \"facilities\": {\n          \"id\": 123,\n          \"name\": \"Test Facility\",\n          \"license_number\": \"4a-x123\",\n          \"is_active\": true,\n          \"address\": {\n            \"street\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"street2\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"city\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"county\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"state\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"postal_code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"category\": {\n          \"id\": 123,\n          \"name\": \"Preroll Materials\",\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n        },\n        \"location\": {\n          \"id\": 123,\n          \"name\": \"Pro System\",\n          \"sqft\": 14.4,\n          \"num_lights\": 42,\n          \"parent_location\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sqft\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"num_lights\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"is_active\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n          \"is_active\": true\n        },\n        \"sku\": \"0.5EC\",\n        \"notes\": \"This product requires special handling\",\n        \"available_quantity\": 196,\n        \"weight_unit\": \"Each\",\n        \"par\": 100,\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n        \"current_standard_costing\": {\n          \"id\": 123,\n          \"standard_cost_amount\": 12.1111,\n          \"standard_cost_currency\": \"USD\",\n          \"start_date\": \"2023-04-19\",\n          \"end_date\": \"2023-05-19\"\n        },\n        \"submits_to_metrc\": false,\n        \"additive_type\": \"fertilizer\",\n        \"product_trade_name\": \"string\",\n        \"epa_registration_name\": \"string\",\n        \"product_supplier\": \"string\",\n        \"application_device\": \"string\",\n        \"active_ingredients\": [\n          {\n            \"name\": \"string\",\n            \"percentage\": 7928.553648759738\n          },\n          {\n            \"name\": \"string\",\n            \"percentage\": 7227.465930008408\n          }\n        ]\n      }\n    }\n  ],\n  \"created_at\": \"string\",\n  \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c217b9ad-c783-43a6-a208-547b7deb0f5a",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purchase_orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"facility_id\": 1,\n  \"vendor_id\": 123,\n  \"status\": \"<string>\",\n  \"requested_delivery_date\": \"2021-06-07\",\n  \"payment_terms\": \"NET15\",\n  \"name\": \"PO 00001\",\n  \"internal_notes\": \"Follow up\",\n  \"payment_date\": \"2021-06-22\",\n  \"delivery_fee\": 1.5,\n  \"local_tax_rate\": 0.01,\n  \"state_tax_rate\": 0.01,\n  \"other_tax_rate\": 0.01,\n  \"purchase_order_items_attributes\": [\n    {\n      \"weight\": 200,\n      \"weight_unit_id\": 15,\n      \"price\": 10.25,\n      \"item_id\": 7036,\n      \"non_cannabis_product_id\": 145,\n      \"notes\": \"my notes for this order item\"\n    },\n    {\n      \"weight\": 200,\n      \"weight_unit_id\": 15,\n      \"price\": 10.25,\n      \"item_id\": 7036,\n      \"non_cannabis_product_id\": 145,\n      \"notes\": \"my notes for this order item\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "257b77c2-138d-44cc-bcff-27ac6a573c17",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purchase_orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"facility_id\": 1,\n  \"vendor_id\": 123,\n  \"status\": \"<string>\",\n  \"requested_delivery_date\": \"2021-06-07\",\n  \"payment_terms\": \"NET15\",\n  \"name\": \"PO 00001\",\n  \"internal_notes\": \"Follow up\",\n  \"payment_date\": \"2021-06-22\",\n  \"delivery_fee\": 1.5,\n  \"local_tax_rate\": 0.01,\n  \"state_tax_rate\": 0.01,\n  \"other_tax_rate\": 0.01,\n  \"purchase_order_items_attributes\": [\n    {\n      \"weight\": 200,\n      \"weight_unit_id\": 15,\n      \"price\": 10.25,\n      \"item_id\": 7036,\n      \"non_cannabis_product_id\": 145,\n      \"notes\": \"my notes for this order item\"\n    },\n    {\n      \"weight\": 200,\n      \"weight_unit_id\": 15,\n      \"price\": 10.25,\n      \"item_id\": 7036,\n      \"non_cannabis_product_id\": 145,\n      \"notes\": \"my notes for this order item\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3091c873-5edc-4a1a-a33a-ebe2dff8f42b",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purchase_orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"facility_id\": 1,\n  \"vendor_id\": 123,\n  \"status\": \"<string>\",\n  \"requested_delivery_date\": \"2021-06-07\",\n  \"payment_terms\": \"NET15\",\n  \"name\": \"PO 00001\",\n  \"internal_notes\": \"Follow up\",\n  \"payment_date\": \"2021-06-22\",\n  \"delivery_fee\": 1.5,\n  \"local_tax_rate\": 0.01,\n  \"state_tax_rate\": 0.01,\n  \"other_tax_rate\": 0.01,\n  \"purchase_order_items_attributes\": [\n    {\n      \"weight\": 200,\n      \"weight_unit_id\": 15,\n      \"price\": 10.25,\n      \"item_id\": 7036,\n      \"non_cannabis_product_id\": 145,\n      \"notes\": \"my notes for this order item\"\n    },\n    {\n      \"weight\": 200,\n      \"weight_unit_id\": 15,\n      \"price\": 10.25,\n      \"item_id\": 7036,\n      \"non_cannabis_product_id\": 145,\n      \"notes\": \"my notes for this order item\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3351cc99-adf4-40f1-92d9-5e011c2e1ffe",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purchase_orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"facility_id\": 1,\n  \"vendor_id\": 123,\n  \"status\": \"<string>\",\n  \"requested_delivery_date\": \"2021-06-07\",\n  \"payment_terms\": \"NET15\",\n  \"name\": \"PO 00001\",\n  \"internal_notes\": \"Follow up\",\n  \"payment_date\": \"2021-06-22\",\n  \"delivery_fee\": 1.5,\n  \"local_tax_rate\": 0.01,\n  \"state_tax_rate\": 0.01,\n  \"other_tax_rate\": 0.01,\n  \"purchase_order_items_attributes\": [\n    {\n      \"weight\": 200,\n      \"weight_unit_id\": 15,\n      \"price\": 10.25,\n      \"item_id\": 7036,\n      \"non_cannabis_product_id\": 145,\n      \"notes\": \"my notes for this order item\"\n    },\n    {\n      \"weight\": 200,\n      \"weight_unit_id\": 15,\n      \"price\": 10.25,\n      \"item_id\": 7036,\n      \"non_cannabis_product_id\": 145,\n      \"notes\": \"my notes for this order item\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c86e0a7b-bf2d-49d0-9d85-7c9bdeb26652",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purchase_orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"facility_id\": 1,\n  \"vendor_id\": 123,\n  \"status\": \"<string>\",\n  \"requested_delivery_date\": \"2021-06-07\",\n  \"payment_terms\": \"NET15\",\n  \"name\": \"PO 00001\",\n  \"internal_notes\": \"Follow up\",\n  \"payment_date\": \"2021-06-22\",\n  \"delivery_fee\": 1.5,\n  \"local_tax_rate\": 0.01,\n  \"state_tax_rate\": 0.01,\n  \"other_tax_rate\": 0.01,\n  \"purchase_order_items_attributes\": [\n    {\n      \"weight\": 200,\n      \"weight_unit_id\": 15,\n      \"price\": 10.25,\n      \"item_id\": 7036,\n      \"non_cannabis_product_id\": 145,\n      \"notes\": \"my notes for this order item\"\n    },\n    {\n      \"weight\": 200,\n      \"weight_unit_id\": 15,\n      \"price\": 10.25,\n      \"item_id\": 7036,\n      \"non_cannabis_product_id\": 145,\n      \"notes\": \"my notes for this order item\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dbf9909d-c777-4f56-9efd-8907260a6552",
+          "name": "GetPurchaseOrder",
+          "request": {
+            "name": "GetPurchaseOrder",
+            "description": {
+              "content": "Get Purchase Order by ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "purchase_orders",
+                ":purchase_order_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "purchase_order_id",
+                  "description": "(Required) ID of Purchase Order to return"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ef616d9a-0e0f-4a83-bafc-af3c962d74e2",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purchase_orders",
+                    ":purchase_order_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "purchase_order_id",
+                      "description": "(Required) ID of Purchase Order to return"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 350,\n  \"facility_id\": 1,\n  \"name\": \"PO 00001\",\n  \"status\": \"string\",\n  \"requested_delivery_date\": \"2021-06-07T07:00:00.000Z\",\n  \"other_tax_rate\": 0.01,\n  \"local_tax_rate\": 0.01,\n  \"state_tax_rate\": 0.01,\n  \"vendor\": {\n    \"id\": 123,\n    \"name\": \"Canna Cones\",\n    \"is_active\": false,\n    \"contact_name\": \"John Smith\",\n    \"email\": \"john@cannacones.com\",\n    \"phone\": \"string\",\n    \"license_number\": \"X-000012\",\n    \"license_expiration_date\": \"2022-03-16 07:00:00+00:00\",\n    \"address\": \"63 Bluxome St.\",\n    \"address2\": \"Suite A\",\n    \"city\": \"San Francisco\",\n    \"postal_code\": \"string\",\n    \"state\": \"CA\",\n    \"country\": \"US\",\n    \"website_url\": \"cannacones.com\",\n    \"notes\": \"Best vendor\",\n    \"min_lead_time\": {\n      \"value\": 2,\n      \"unit\": \"week\"\n    },\n    \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n  },\n  \"internal_notes\": \"Follow up\",\n  \"payment_terms\": \"NET15\",\n  \"payment_date\": \"2021-06-22\",\n  \"delivery_fee\": 1.5,\n  \"subtotal\": 5231.7052072216065,\n  \"total_price\": 199.93271910409004,\n  \"total_paid\": 4582.871383769792,\n  \"payments\": [\n    {\n      \"amount\": 100,\n      \"date\": \"2025-02-04\"\n    },\n    {\n      \"amount\": 100,\n      \"date\": \"2025-02-04\"\n    }\n  ],\n  \"contents\": [\n    {\n      \"id\": 13,\n      \"weight\": 200,\n      \"weight_unit\": \"Grams\",\n      \"total_price\": 10.25,\n      \"item\": {\n        \"id\": 8326,\n        \"name\": \"string\",\n        \"facility_id\": 8353,\n        \"is_active\": false,\n        \"item_type\": \"string\",\n        \"brand\": {\n          \"id\": 1965.4802238495972,\n          \"name\": \"string\"\n        },\n        \"product_id\": 7390,\n        \"product_brand\": {\n          \"id\": 2473.8090563170776,\n          \"name\": \"string\"\n        },\n        \"quantity_type\": \"string\",\n        \"sku\": \"string\",\n        \"current_standard_cost\": {\n          \"id\": 123,\n          \"standard_cost_amount\": 12.1111,\n          \"standard_cost_currency\": \"USD\",\n          \"start_date\": \"2023-04-19\",\n          \"end_date\": \"2023-05-19\"\n        },\n        \"accounting_inventory_type\": \"string\",\n        \"notes\": \"string\",\n        \"strain\": {\n          \"id\": 8711,\n          \"name\": \"Lemon Skunk\",\n          \"notes\": \"Terpenes .63%\",\n          \"sku\": \"BIOJJ\",\n          \"testing_status\": \"InHouse\",\n          \"indica_percent\": 45,\n          \"sativa_percent\": 55,\n          \"cross_strains\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"type\": {\n          \"id\": 8484,\n          \"name\": \"string\",\n          \"quantity_type\": \"string\",\n          \"requires_strain\": false,\n          \"requires_unit_volume\": false,\n          \"requires_unit_weight\": false,\n          \"requires_unit_thc_weight\": true,\n          \"requires_unit_cbd_weight\": true,\n          \"requires_unit_cbd_percent\": false,\n          \"requires_unit_thc_percent\": false,\n          \"requires_public_ingredients\": true,\n          \"requires_administration_method\": false,\n          \"requires_serving_size\": true,\n          \"requires_supply_duration_days\": true,\n          \"requires_number_of_doses\": true,\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n        },\n        \"sub_type\": {\n          \"id\": 2355,\n          \"name\": \"string\",\n          \"weight_unit\": \"string\",\n          \"category\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"quantity_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_strain\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_volume\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_thc_weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_cbd_weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_cbd_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_thc_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_public_ingredients\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_administration_method\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_serving_size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_supply_duration_days\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_number_of_doses\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n        },\n        \"weight_unit\": \"string\",\n        \"unit_weight\": 3260.8035863292594,\n        \"unit_weight_unit\": \"string\",\n        \"case_quantity\": \"string\",\n        \"case_quantity_unit\": \"string\",\n        \"unit_cbd_weight\": 4908.162759277297,\n        \"unit_cbd_weight_unit\": \"string\",\n        \"unit_thc_weight\": 7072.9591519882715,\n        \"unit_thc_weight_unit\": \"string\",\n        \"unit_cbd_percent\": 4068.7040077975103,\n        \"unit_thc_percent\": 2991.9238055391793,\n        \"description\": \"string\",\n        \"serving_size\": 8746.810118846399,\n        \"number_of_doses\": 801.4608335514262,\n        \"public_ingredients\": \"string\",\n        \"supply_duration_days\": 9690.172752270992,\n        \"administration_method\": \"string\",\n        \"allergens\": \"string\",\n        \"transfer_source_license\": \"string\",\n        \"bills_of_materials\": [\n          {\n            \"url\": \"string\",\n            \"name\": \"string\",\n            \"package_weight\": 972.2217162381075,\n            \"unit\": \"string\"\n          },\n          {\n            \"url\": \"string\",\n            \"name\": \"string\",\n            \"package_weight\": 7059.142003695248,\n            \"unit\": \"string\"\n          }\n        ],\n        \"sage_item\": {\n          \"external_id\": \"string\",\n          \"name\": \"string\"\n        },\n        \"leaflink_item\": {\n          \"external_id\": \"string\",\n          \"name\": \"string\"\n        },\n        \"dutchie_product\": {\n          \"external_id\": \"string\",\n          \"name\": \"string\"\n        },\n        \"phenotype\": \"string\",\n        \"total_for_sale\": 5229.778675646988,\n        \"ordered\": 7848.487861466849,\n        \"backordered\": 6101.7776637816105,\n        \"unordered\": 1064.8434313203713,\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n      },\n      \"non_cannabis_product\": {\n        \"id\": 123,\n        \"name\": \"Pro System\",\n        \"is_active\": false,\n        \"facilities\": {\n          \"id\": 123,\n          \"name\": \"Test Facility\",\n          \"license_number\": \"4a-x123\",\n          \"is_active\": true,\n          \"address\": {\n            \"street\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"street2\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"city\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"county\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"state\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"postal_code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"category\": {\n          \"id\": 123,\n          \"name\": \"Preroll Materials\",\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n        },\n        \"location\": {\n          \"id\": 123,\n          \"name\": \"Pro System\",\n          \"sqft\": 14.4,\n          \"num_lights\": 42,\n          \"parent_location\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sqft\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"num_lights\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"is_active\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n          \"is_active\": true\n        },\n        \"sku\": \"0.5EC\",\n        \"notes\": \"This product requires special handling\",\n        \"available_quantity\": 196,\n        \"weight_unit\": \"Each\",\n        \"par\": 100,\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n        \"current_standard_costing\": {\n          \"id\": 123,\n          \"standard_cost_amount\": 12.1111,\n          \"standard_cost_currency\": \"USD\",\n          \"start_date\": \"2023-04-19\",\n          \"end_date\": \"2023-05-19\"\n        },\n        \"submits_to_metrc\": false,\n        \"additive_type\": \"fertilizer\",\n        \"product_trade_name\": \"string\",\n        \"epa_registration_name\": \"string\",\n        \"product_supplier\": \"string\",\n        \"application_device\": \"string\",\n        \"active_ingredients\": [\n          {\n            \"name\": \"string\",\n            \"percentage\": 1954.0848557881618\n          },\n          {\n            \"name\": \"string\",\n            \"percentage\": 7048.3835443681\n          }\n        ]\n      }\n    },\n    {\n      \"id\": 13,\n      \"weight\": 200,\n      \"weight_unit\": \"Grams\",\n      \"total_price\": 10.25,\n      \"item\": {\n        \"id\": 470,\n        \"name\": \"string\",\n        \"facility_id\": 8562,\n        \"is_active\": false,\n        \"item_type\": \"string\",\n        \"brand\": {\n          \"id\": 8889.255240017763,\n          \"name\": \"string\"\n        },\n        \"product_id\": 7984,\n        \"product_brand\": {\n          \"id\": 5003.885449278629,\n          \"name\": \"string\"\n        },\n        \"quantity_type\": \"string\",\n        \"sku\": \"string\",\n        \"current_standard_cost\": {\n          \"id\": 123,\n          \"standard_cost_amount\": 12.1111,\n          \"standard_cost_currency\": \"USD\",\n          \"start_date\": \"2023-04-19\",\n          \"end_date\": \"2023-05-19\"\n        },\n        \"accounting_inventory_type\": \"string\",\n        \"notes\": \"string\",\n        \"strain\": {\n          \"id\": 1066,\n          \"name\": \"Lemon Skunk\",\n          \"notes\": \"Terpenes .63%\",\n          \"sku\": \"BIOJJ\",\n          \"testing_status\": \"InHouse\",\n          \"indica_percent\": 45,\n          \"sativa_percent\": 55,\n          \"cross_strains\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"type\": {\n          \"id\": 8104,\n          \"name\": \"string\",\n          \"quantity_type\": \"string\",\n          \"requires_strain\": true,\n          \"requires_unit_volume\": false,\n          \"requires_unit_weight\": false,\n          \"requires_unit_thc_weight\": true,\n          \"requires_unit_cbd_weight\": false,\n          \"requires_unit_cbd_percent\": true,\n          \"requires_unit_thc_percent\": false,\n          \"requires_public_ingredients\": false,\n          \"requires_administration_method\": false,\n          \"requires_serving_size\": true,\n          \"requires_supply_duration_days\": true,\n          \"requires_number_of_doses\": false,\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n        },\n        \"sub_type\": {\n          \"id\": 2963,\n          \"name\": \"string\",\n          \"weight_unit\": \"string\",\n          \"category\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"quantity_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_strain\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_volume\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_thc_weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_cbd_weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_cbd_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_thc_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_public_ingredients\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_administration_method\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_serving_size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_supply_duration_days\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_number_of_doses\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n        },\n        \"weight_unit\": \"string\",\n        \"unit_weight\": 3134.309558187727,\n        \"unit_weight_unit\": \"string\",\n        \"case_quantity\": \"string\",\n        \"case_quantity_unit\": \"string\",\n        \"unit_cbd_weight\": 4278.298557733297,\n        \"unit_cbd_weight_unit\": \"string\",\n        \"unit_thc_weight\": 983.1999543620407,\n        \"unit_thc_weight_unit\": \"string\",\n        \"unit_cbd_percent\": 217.9435701628396,\n        \"unit_thc_percent\": 8980.361952382349,\n        \"description\": \"string\",\n        \"serving_size\": 3626.976639103837,\n        \"number_of_doses\": 6550.153746975789,\n        \"public_ingredients\": \"string\",\n        \"supply_duration_days\": 9478.887127472046,\n        \"administration_method\": \"string\",\n        \"allergens\": \"string\",\n        \"transfer_source_license\": \"string\",\n        \"bills_of_materials\": [\n          {\n            \"url\": \"string\",\n            \"name\": \"string\",\n            \"package_weight\": 2513.562817760042,\n            \"unit\": \"string\"\n          },\n          {\n            \"url\": \"string\",\n            \"name\": \"string\",\n            \"package_weight\": 8922.861722568812,\n            \"unit\": \"string\"\n          }\n        ],\n        \"sage_item\": {\n          \"external_id\": \"string\",\n          \"name\": \"string\"\n        },\n        \"leaflink_item\": {\n          \"external_id\": \"string\",\n          \"name\": \"string\"\n        },\n        \"dutchie_product\": {\n          \"external_id\": \"string\",\n          \"name\": \"string\"\n        },\n        \"phenotype\": \"string\",\n        \"total_for_sale\": 1207.7250530520066,\n        \"ordered\": 5413.153557021755,\n        \"backordered\": 617.927339695975,\n        \"unordered\": 2668.87057730256,\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n      },\n      \"non_cannabis_product\": {\n        \"id\": 123,\n        \"name\": \"Pro System\",\n        \"is_active\": true,\n        \"facilities\": {\n          \"id\": 123,\n          \"name\": \"Test Facility\",\n          \"license_number\": \"4a-x123\",\n          \"is_active\": true,\n          \"address\": {\n            \"street\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"street2\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"city\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"county\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"state\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"postal_code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"category\": {\n          \"id\": 123,\n          \"name\": \"Preroll Materials\",\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n        },\n        \"location\": {\n          \"id\": 123,\n          \"name\": \"Pro System\",\n          \"sqft\": 14.4,\n          \"num_lights\": 42,\n          \"parent_location\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sqft\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"num_lights\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"is_active\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n          \"is_active\": true\n        },\n        \"sku\": \"0.5EC\",\n        \"notes\": \"This product requires special handling\",\n        \"available_quantity\": 196,\n        \"weight_unit\": \"Each\",\n        \"par\": 100,\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n        \"current_standard_costing\": {\n          \"id\": 123,\n          \"standard_cost_amount\": 12.1111,\n          \"standard_cost_currency\": \"USD\",\n          \"start_date\": \"2023-04-19\",\n          \"end_date\": \"2023-05-19\"\n        },\n        \"submits_to_metrc\": true,\n        \"additive_type\": \"fertilizer\",\n        \"product_trade_name\": \"string\",\n        \"epa_registration_name\": \"string\",\n        \"product_supplier\": \"string\",\n        \"application_device\": \"string\",\n        \"active_ingredients\": [\n          {\n            \"name\": \"string\",\n            \"percentage\": 6387.24241447364\n          },\n          {\n            \"name\": \"string\",\n            \"percentage\": 4418.833334807412\n          }\n        ]\n      }\n    }\n  ],\n  \"created_at\": \"string\",\n  \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bfb1040c-4ff2-46c1-b286-da4b36c73b2a",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purchase_orders",
+                    ":purchase_order_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "purchase_order_id",
+                      "description": "(Required) ID of Purchase Order to return"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "12c7a677-7304-4985-9ff7-647ebdd606c9",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purchase_orders",
+                    ":purchase_order_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "purchase_order_id",
+                      "description": "(Required) ID of Purchase Order to return"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0b718b3f-26da-4714-b622-02751eaf8566",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purchase_orders",
+                    ":purchase_order_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "purchase_order_id",
+                      "description": "(Required) ID of Purchase Order to return"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "56e45e95-62f6-4d03-b201-981cc06d9048",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purchase_orders",
+                    ":purchase_order_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "purchase_order_id",
+                      "description": "(Required) ID of Purchase Order to return"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8e703889-af19-4613-81ff-2ab6d9a60e0a",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purchase_orders",
+                    ":purchase_order_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "purchase_order_id",
+                      "description": "(Required) ID of Purchase Order to return"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eee80320-98f3-4830-8d11-311b0bfbb6e5",
+          "name": "GetPurchaseOrderContents",
+          "request": {
+            "name": "GetPurchaseOrderContents",
+            "description": {
+              "content": "Get Purchase Order Contents by Purchase Order ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "purchase_orders",
+                ":purchase_order_id",
+                "contents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "purchase_order_id",
+                  "description": "(Required) Purchase Order ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c62f0e5f-5abe-46c4-bc8b-c8b15fe0a724",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purchase_orders",
+                    ":purchase_order_id",
+                    "contents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "purchase_order_id",
+                      "description": "(Required) Purchase Order ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 13,\n    \"weight\": 200,\n    \"weight_unit\": \"Grams\",\n    \"total_price\": 10.25,\n    \"item\": {\n      \"id\": 9345,\n      \"name\": \"string\",\n      \"facility_id\": 2672,\n      \"is_active\": false,\n      \"item_type\": \"string\",\n      \"brand\": {\n        \"id\": 3635.793907878928,\n        \"name\": \"string\"\n      },\n      \"product_id\": 6543,\n      \"product_brand\": {\n        \"id\": 388.1908346770557,\n        \"name\": \"string\"\n      },\n      \"quantity_type\": \"string\",\n      \"sku\": \"string\",\n      \"current_standard_cost\": {\n        \"id\": 123,\n        \"standard_cost_amount\": 12.1111,\n        \"standard_cost_currency\": \"USD\",\n        \"start_date\": \"2023-04-19\",\n        \"end_date\": \"2023-05-19\"\n      },\n      \"accounting_inventory_type\": \"string\",\n      \"notes\": \"string\",\n      \"strain\": {\n        \"id\": 4022,\n        \"name\": \"Lemon Skunk\",\n        \"notes\": \"Terpenes .63%\",\n        \"sku\": \"BIOJJ\",\n        \"testing_status\": \"InHouse\",\n        \"indica_percent\": 45,\n        \"sativa_percent\": 55,\n        \"cross_strains\": [\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"notes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sku\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"testing_status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"indica_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sativa_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"notes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sku\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"testing_status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"indica_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sativa_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"type\": {\n        \"id\": 7297,\n        \"name\": \"string\",\n        \"quantity_type\": \"string\",\n        \"requires_strain\": true,\n        \"requires_unit_volume\": false,\n        \"requires_unit_weight\": true,\n        \"requires_unit_thc_weight\": true,\n        \"requires_unit_cbd_weight\": true,\n        \"requires_unit_cbd_percent\": true,\n        \"requires_unit_thc_percent\": false,\n        \"requires_public_ingredients\": true,\n        \"requires_administration_method\": false,\n        \"requires_serving_size\": false,\n        \"requires_supply_duration_days\": true,\n        \"requires_number_of_doses\": true,\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n      },\n      \"sub_type\": {\n        \"id\": 124,\n        \"name\": \"string\",\n        \"weight_unit\": \"string\",\n        \"category\": {\n          \"id\": 1292,\n          \"name\": \"string\",\n          \"quantity_type\": \"string\",\n          \"requires_strain\": true,\n          \"requires_unit_volume\": false,\n          \"requires_unit_weight\": false,\n          \"requires_unit_thc_weight\": true,\n          \"requires_unit_cbd_weight\": true,\n          \"requires_unit_cbd_percent\": true,\n          \"requires_unit_thc_percent\": false,\n          \"requires_public_ingredients\": false,\n          \"requires_administration_method\": false,\n          \"requires_serving_size\": false,\n          \"requires_supply_duration_days\": false,\n          \"requires_number_of_doses\": false,\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n        },\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n      },\n      \"weight_unit\": \"string\",\n      \"unit_weight\": 359.602272208186,\n      \"unit_weight_unit\": \"string\",\n      \"case_quantity\": \"string\",\n      \"case_quantity_unit\": \"string\",\n      \"unit_cbd_weight\": 7232.698380005815,\n      \"unit_cbd_weight_unit\": \"string\",\n      \"unit_thc_weight\": 363.32672934746734,\n      \"unit_thc_weight_unit\": \"string\",\n      \"unit_cbd_percent\": 6916.286801675445,\n      \"unit_thc_percent\": 6648.640966086916,\n      \"description\": \"string\",\n      \"serving_size\": 1205.845248206191,\n      \"number_of_doses\": 2189.819804848271,\n      \"public_ingredients\": \"string\",\n      \"supply_duration_days\": 8112.768830710109,\n      \"administration_method\": \"string\",\n      \"allergens\": \"string\",\n      \"transfer_source_license\": \"string\",\n      \"bills_of_materials\": [\n        {\n          \"url\": \"string\",\n          \"name\": \"string\",\n          \"package_weight\": 6029.413705637565,\n          \"unit\": \"string\"\n        },\n        {\n          \"url\": \"string\",\n          \"name\": \"string\",\n          \"package_weight\": 2207.1392523624045,\n          \"unit\": \"string\"\n        }\n      ],\n      \"sage_item\": {\n        \"external_id\": \"string\",\n        \"name\": \"string\"\n      },\n      \"leaflink_item\": {\n        \"external_id\": \"string\",\n        \"name\": \"string\"\n      },\n      \"dutchie_product\": {\n        \"external_id\": \"string\",\n        \"name\": \"string\"\n      },\n      \"phenotype\": \"string\",\n      \"total_for_sale\": 563.7627114663535,\n      \"ordered\": 2604.414886539229,\n      \"backordered\": 9957.677813101058,\n      \"unordered\": 6379.376704017002,\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n    },\n    \"non_cannabis_product\": {\n      \"id\": 123,\n      \"name\": \"Pro System\",\n      \"is_active\": true,\n      \"facilities\": {\n        \"id\": 123,\n        \"name\": \"Test Facility\",\n        \"license_number\": \"4a-x123\",\n        \"is_active\": true,\n        \"address\": {\n          \"street\": \"123 Cumberland St\",\n          \"street2\": \"West\",\n          \"city\": \"Somerset\",\n          \"county\": \"KY\",\n          \"state\": \"CO\",\n          \"country\": \"USA\",\n          \"postal_code\": \"string\"\n        }\n      },\n      \"category\": {\n        \"id\": 123,\n        \"name\": \"Preroll Materials\",\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n      },\n      \"location\": {\n        \"id\": 123,\n        \"name\": \"Pro System\",\n        \"sqft\": 14.4,\n        \"num_lights\": 42,\n        \"parent_location\": {\n          \"id\": 123,\n          \"name\": \"Pro System\",\n          \"sqft\": 14.4,\n          \"num_lights\": 42,\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n          \"is_active\": true\n        },\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n        \"is_active\": true\n      },\n      \"sku\": \"0.5EC\",\n      \"notes\": \"This product requires special handling\",\n      \"available_quantity\": 196,\n      \"weight_unit\": \"Each\",\n      \"par\": 100,\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n      \"current_standard_costing\": {\n        \"id\": 123,\n        \"standard_cost_amount\": 12.1111,\n        \"standard_cost_currency\": \"USD\",\n        \"start_date\": \"2023-04-19\",\n        \"end_date\": \"2023-05-19\"\n      },\n      \"submits_to_metrc\": false,\n      \"additive_type\": \"fertilizer\",\n      \"product_trade_name\": \"string\",\n      \"epa_registration_name\": \"string\",\n      \"product_supplier\": \"string\",\n      \"application_device\": \"string\",\n      \"active_ingredients\": [\n        {\n          \"name\": \"string\",\n          \"percentage\": 5520.790809274689\n        },\n        {\n          \"name\": \"string\",\n          \"percentage\": 2661.3021871223973\n        }\n      ]\n    }\n  },\n  {\n    \"id\": 13,\n    \"weight\": 200,\n    \"weight_unit\": \"Grams\",\n    \"total_price\": 10.25,\n    \"item\": {\n      \"id\": 2811,\n      \"name\": \"string\",\n      \"facility_id\": 7916,\n      \"is_active\": false,\n      \"item_type\": \"string\",\n      \"brand\": {\n        \"id\": 1805.151572711271,\n        \"name\": \"string\"\n      },\n      \"product_id\": 317,\n      \"product_brand\": {\n        \"id\": 6736.208415360553,\n        \"name\": \"string\"\n      },\n      \"quantity_type\": \"string\",\n      \"sku\": \"string\",\n      \"current_standard_cost\": {\n        \"id\": 123,\n        \"standard_cost_amount\": 12.1111,\n        \"standard_cost_currency\": \"USD\",\n        \"start_date\": \"2023-04-19\",\n        \"end_date\": \"2023-05-19\"\n      },\n      \"accounting_inventory_type\": \"string\",\n      \"notes\": \"string\",\n      \"strain\": {\n        \"id\": 4808,\n        \"name\": \"Lemon Skunk\",\n        \"notes\": \"Terpenes .63%\",\n        \"sku\": \"BIOJJ\",\n        \"testing_status\": \"InHouse\",\n        \"indica_percent\": 45,\n        \"sativa_percent\": 55,\n        \"cross_strains\": [\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"notes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sku\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"testing_status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"indica_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sativa_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"notes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sku\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"testing_status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"indica_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sativa_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"type\": {\n        \"id\": 7139,\n        \"name\": \"string\",\n        \"quantity_type\": \"string\",\n        \"requires_strain\": false,\n        \"requires_unit_volume\": false,\n        \"requires_unit_weight\": true,\n        \"requires_unit_thc_weight\": false,\n        \"requires_unit_cbd_weight\": true,\n        \"requires_unit_cbd_percent\": true,\n        \"requires_unit_thc_percent\": true,\n        \"requires_public_ingredients\": true,\n        \"requires_administration_method\": false,\n        \"requires_serving_size\": true,\n        \"requires_supply_duration_days\": true,\n        \"requires_number_of_doses\": false,\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n      },\n      \"sub_type\": {\n        \"id\": 9098,\n        \"name\": \"string\",\n        \"weight_unit\": \"string\",\n        \"category\": {\n          \"id\": 8728,\n          \"name\": \"string\",\n          \"quantity_type\": \"string\",\n          \"requires_strain\": false,\n          \"requires_unit_volume\": false,\n          \"requires_unit_weight\": false,\n          \"requires_unit_thc_weight\": false,\n          \"requires_unit_cbd_weight\": true,\n          \"requires_unit_cbd_percent\": false,\n          \"requires_unit_thc_percent\": true,\n          \"requires_public_ingredients\": true,\n          \"requires_administration_method\": false,\n          \"requires_serving_size\": true,\n          \"requires_supply_duration_days\": true,\n          \"requires_number_of_doses\": false,\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n        },\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n      },\n      \"weight_unit\": \"string\",\n      \"unit_weight\": 356.78851585795536,\n      \"unit_weight_unit\": \"string\",\n      \"case_quantity\": \"string\",\n      \"case_quantity_unit\": \"string\",\n      \"unit_cbd_weight\": 6141.249265531036,\n      \"unit_cbd_weight_unit\": \"string\",\n      \"unit_thc_weight\": 6912.958177970857,\n      \"unit_thc_weight_unit\": \"string\",\n      \"unit_cbd_percent\": 8817.097597627595,\n      \"unit_thc_percent\": 5718.92246442544,\n      \"description\": \"string\",\n      \"serving_size\": 8600.75690469642,\n      \"number_of_doses\": 4043.547857706099,\n      \"public_ingredients\": \"string\",\n      \"supply_duration_days\": 8600.541151100526,\n      \"administration_method\": \"string\",\n      \"allergens\": \"string\",\n      \"transfer_source_license\": \"string\",\n      \"bills_of_materials\": [\n        {\n          \"url\": \"string\",\n          \"name\": \"string\",\n          \"package_weight\": 7887.954269234463,\n          \"unit\": \"string\"\n        },\n        {\n          \"url\": \"string\",\n          \"name\": \"string\",\n          \"package_weight\": 6229.198090997308,\n          \"unit\": \"string\"\n        }\n      ],\n      \"sage_item\": {\n        \"external_id\": \"string\",\n        \"name\": \"string\"\n      },\n      \"leaflink_item\": {\n        \"external_id\": \"string\",\n        \"name\": \"string\"\n      },\n      \"dutchie_product\": {\n        \"external_id\": \"string\",\n        \"name\": \"string\"\n      },\n      \"phenotype\": \"string\",\n      \"total_for_sale\": 9593.881778989216,\n      \"ordered\": 501.7216091929899,\n      \"backordered\": 1338.0724272481625,\n      \"unordered\": 3340.7352922552423,\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n    },\n    \"non_cannabis_product\": {\n      \"id\": 123,\n      \"name\": \"Pro System\",\n      \"is_active\": true,\n      \"facilities\": {\n        \"id\": 123,\n        \"name\": \"Test Facility\",\n        \"license_number\": \"4a-x123\",\n        \"is_active\": true,\n        \"address\": {\n          \"street\": \"123 Cumberland St\",\n          \"street2\": \"West\",\n          \"city\": \"Somerset\",\n          \"county\": \"KY\",\n          \"state\": \"CO\",\n          \"country\": \"USA\",\n          \"postal_code\": \"string\"\n        }\n      },\n      \"category\": {\n        \"id\": 123,\n        \"name\": \"Preroll Materials\",\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n      },\n      \"location\": {\n        \"id\": 123,\n        \"name\": \"Pro System\",\n        \"sqft\": 14.4,\n        \"num_lights\": 42,\n        \"parent_location\": {\n          \"id\": 123,\n          \"name\": \"Pro System\",\n          \"sqft\": 14.4,\n          \"num_lights\": 42,\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n          \"is_active\": true\n        },\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n        \"is_active\": true\n      },\n      \"sku\": \"0.5EC\",\n      \"notes\": \"This product requires special handling\",\n      \"available_quantity\": 196,\n      \"weight_unit\": \"Each\",\n      \"par\": 100,\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n      \"current_standard_costing\": {\n        \"id\": 123,\n        \"standard_cost_amount\": 12.1111,\n        \"standard_cost_currency\": \"USD\",\n        \"start_date\": \"2023-04-19\",\n        \"end_date\": \"2023-05-19\"\n      },\n      \"submits_to_metrc\": false,\n      \"additive_type\": \"fertilizer\",\n      \"product_trade_name\": \"string\",\n      \"epa_registration_name\": \"string\",\n      \"product_supplier\": \"string\",\n      \"application_device\": \"string\",\n      \"active_ingredients\": [\n        {\n          \"name\": \"string\",\n          \"percentage\": 79.98603344943511\n        },\n        {\n          \"name\": \"string\",\n          \"percentage\": 8498.439670398384\n        }\n      ]\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "def10b40-e8a6-4ae3-b2ad-754c45c50233",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purchase_orders",
+                    ":purchase_order_id",
+                    "contents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "purchase_order_id",
+                      "description": "(Required) Purchase Order ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4a09c62e-6cd0-4149-b1dd-61c370720471",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purchase_orders",
+                    ":purchase_order_id",
+                    "contents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "purchase_order_id",
+                      "description": "(Required) Purchase Order ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "966cc59d-96c6-4095-a7d7-e802a0100279",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purchase_orders",
+                    ":purchase_order_id",
+                    "contents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "purchase_order_id",
+                      "description": "(Required) Purchase Order ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "950c2453-ae3a-43f1-9aaa-110d70f3d9ae",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purchase_orders",
+                    ":purchase_order_id",
+                    "contents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "purchase_order_id",
+                      "description": "(Required) Purchase Order ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e0338812-39cc-4b8c-9e81-fb37cd430497",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purchase_orders",
+                    ":purchase_order_id",
+                    "contents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "purchase_order_id",
+                      "description": "(Required) Purchase Order ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0b2972f2-4285-41cc-a4c9-367b5b171c4a",
+          "name": "GetPurchaseOrderPayments",
+          "request": {
+            "name": "GetPurchaseOrderPayments",
+            "description": {
+              "content": "Get Purchase Order Payments by Purchase Order ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "purchase_orders",
+                ":purchase_order_id",
+                "payments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "purchase_order_id",
+                  "description": "(Required) Purchase Order ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "261b7097-bc40-4289-a4c4-bde520ade7ae",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purchase_orders",
+                    ":purchase_order_id",
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "purchase_order_id",
+                      "description": "(Required) Purchase Order ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"amount\": 100,\n    \"date\": \"2025-02-04\"\n  },\n  {\n    \"amount\": 100,\n    \"date\": \"2025-02-04\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dad26ce6-3669-4052-8c0f-0ea977285d30",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purchase_orders",
+                    ":purchase_order_id",
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "purchase_order_id",
+                      "description": "(Required) Purchase Order ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b084bf2a-ccdc-44c2-8859-5682184f3877",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purchase_orders",
+                    ":purchase_order_id",
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "purchase_order_id",
+                      "description": "(Required) Purchase Order ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "395aa743-9d51-48fb-aef2-5adb4bd1ef29",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purchase_orders",
+                    ":purchase_order_id",
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "purchase_order_id",
+                      "description": "(Required) Purchase Order ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5db25060-3128-4a64-91a8-0c7628c72e39",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purchase_orders",
+                    ":purchase_order_id",
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "purchase_order_id",
+                      "description": "(Required) Purchase Order ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "eda870ed-9fc2-4a39-9629-6b87f9ed451e",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purchase_orders",
+                    ":purchase_order_id",
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "purchase_order_id",
+                      "description": "(Required) Purchase Order ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.canix.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8d785a19-e2c2-4abc-8505-effc9e67ee64",
+    "name": "Canix Purchase Orders API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# Introduction\nThis API documentation describes the endpoints used by third-party developers to get Canix data for their account.\n# Authentication\nCanix API uses API Keys for authentication. You can generate an API key on our [API page](https://app.canix.com/company/api), and on your API requests use the `X-API-KEY` header with the API key value you generated.\nWe strongly recommend using a secrets manager. Plain text files like dotenv lead to accidental costly leaks. Use [Doppler](https://doppler.com/) or similar options for a developer friendly experience. AWS and Google Cloud have native solutions as well.\n\nContact Support:\n Name: Canix Support\n Email: help@canix.com",
+      "type": "text/plain"
+    }
+  }
+}

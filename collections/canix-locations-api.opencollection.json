@@ -1,0 +1,113 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Canix Locations API",
+    "version": "1.3.10"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Locations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GetLocations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.canix.com/api/v1/locations",
+            "params": [
+              {
+                "name": "facility_id",
+                "value": "123",
+                "type": "query",
+                "description": "Facility ID (optional)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Max number of records to return (optional). Cannot exceed 2000"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for the returned records (optional)"
+              },
+              {
+                "name": "order_by",
+                "value": "",
+                "type": "query",
+                "description": "Order-by clause, in SQL format (optional)"
+              },
+              {
+                "name": "where",
+                "value": "",
+                "type": "query",
+                "description": "Filter results using SQL-like WHERE clause syntax (optional).\n\n**Supported operators**: =, >, <, >=, <=, BETWEEN, IN, LIKE, AND, OR\n\n**Supported patterns**:\n- Equality: `status='Active'`\n- Comparison: `updated_at >= '2024-01-01'`\n- Range: `id BETWEEN 1 AND 10000`\n- List: `status IN ('Active', 'Pending')`\n- Pattern: `sku LIKE 'ABC%'`\n- Compound: `facility_id=123 AND is_active=true`\n"
+              }
+            ]
+          },
+          "docs": "Return active Locations"
+        },
+        {
+          "info": {
+            "name": "GetLocationsCount",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.canix.com/api/v1/locations/count",
+            "params": [
+              {
+                "name": "facility_id",
+                "value": "123",
+                "type": "query",
+                "description": "Facility ID (optional)"
+              },
+              {
+                "name": "where",
+                "value": "",
+                "type": "query",
+                "description": "Filter results using SQL-like WHERE clause syntax (optional).\n\n**Supported operators**: =, >, <, >=, <=, BETWEEN, IN, LIKE, AND, OR\n\n**Supported patterns**:\n- Equality: `status='Active'`\n- Comparison: `updated_at >= '2024-01-01'`\n- Range: `id BETWEEN 1 AND 10000`\n- List: `status IN ('Active', 'Pending')`\n- Pattern: `sku LIKE 'ABC%'`\n- Compound: `facility_id=123 AND is_active=true`\n"
+              }
+            ]
+          },
+          "docs": "Return total number of active Locations"
+        },
+        {
+          "info": {
+            "name": "GetLocation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.canix.com/api/v1/locations/:location_id",
+            "params": [
+              {
+                "name": "location_id",
+                "value": "",
+                "type": "path",
+                "description": "Location ID"
+              }
+            ]
+          },
+          "docs": "Get Location by ID"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

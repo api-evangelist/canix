@@ -1,0 +1,658 @@
+{
+  "item": [
+    {
+      "id": "1f3a01dc-021d-4c2d-a277-782b35f116c0",
+      "name": "Manufacturing Run",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0c513703-7a27-4092-ab53-f5562d366128",
+          "name": "GetManuBatchRuns",
+          "request": {
+            "name": "GetManuBatchRuns",
+            "description": {
+              "content": "Get All Manufacturing Runs",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "manu_batch_runs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1a194ca0-ea0b-4eb9-a6e2-330225733d37",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "manu_batch_runs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 2649,\n    \"facility_id\": 3489,\n    \"name\": \"string\",\n    \"status\": \"string\",\n    \"order\": 7938,\n    \"manufacturing_batch_id\": 5191,\n    \"start_date\": \"string\",\n    \"end_date\": \"string\",\n    \"created_at\": \"string\",\n    \"updated_at\": \"string\",\n    \"location_id\": 7568,\n    \"bill_of_materials_id\": 1878,\n    \"notes\": \"string\",\n    \"total_cannabis_costs\": 1108.4259938002428,\n    \"total_labor_costs\": 3998.0830994628845,\n    \"total_nci_costs\": 4794.570773224932,\n    \"machine_info\": {\n      \"temperature\": 20.1,\n      \"temperature_unit\": \"Celcius\",\n      \"solvent_id\": 150,\n      \"solvent_quantity\": 10.5,\n      \"solvent_weight_unit\": \"Grams\",\n      \"time_in_solvent_ms\": 2400,\n      \"time_in_solvent_display_units\": \"Second\"\n    },\n    \"cannabis_inputs\": [\n      {\n        \"package_id\": 3501,\n        \"package_tag\": \"1A4FF0000000022000000719\",\n        \"quantity\": 2.54,\n        \"weight_unit\": \"Grams\",\n        \"psi\": 600,\n        \"cost\": 14.3\n      },\n      {\n        \"package_id\": 3501,\n        \"package_tag\": \"1A4FF0000000022000000719\",\n        \"quantity\": 2.54,\n        \"weight_unit\": \"Grams\",\n        \"psi\": 600,\n        \"cost\": 14.3\n      }\n    ],\n    \"non_cannabis_inputs\": [\n      {\n        \"non_cannabis_product_name\": \"Fertilizer\",\n        \"non_cannabis_product_id\": 145,\n        \"lot\": \"DL21309\",\n        \"lot_id\": 253,\n        \"quantity\": 100.5,\n        \"weight_unit\": \"Grams\",\n        \"cost\": 2.5\n      },\n      {\n        \"non_cannabis_product_name\": \"Fertilizer\",\n        \"non_cannabis_product_id\": 145,\n        \"lot\": \"DL21309\",\n        \"lot_id\": 253,\n        \"quantity\": 100.5,\n        \"weight_unit\": \"Grams\",\n        \"cost\": 2.5\n      }\n    ],\n    \"cannabis_outputs\": [\n      {\n        \"package_id\": 5200,\n        \"package_tag\": \"1A4FF0000000022000001419\",\n        \"quantity\": 500,\n        \"weight_unit\": \"Grams\"\n      },\n      {\n        \"package_id\": 5200,\n        \"package_tag\": \"1A4FF0000000022000001419\",\n        \"quantity\": 500,\n        \"weight_unit\": \"Grams\"\n      }\n    ],\n    \"labors\": [\n      {\n        \"employee_name\": \"Jane Doe\",\n        \"hours_worked\": 0.5,\n        \"cost\": 10\n      },\n      {\n        \"employee_name\": \"Jane Doe\",\n        \"hours_worked\": 0.5,\n        \"cost\": 10\n      }\n    ],\n    \"wastes\": [\n      {\n        \"package_id\": 4601,\n        \"package_tag\": \"1A4FF0000000022000004423\",\n        \"quantity\": 50,\n        \"weight_unit\": \"Grams\",\n        \"reason\": \"Waste Destruction\",\n        \"date\": \"2022-05-24\",\n        \"notes\": \"waste from production\"\n      },\n      {\n        \"package_id\": 4601,\n        \"package_tag\": \"1A4FF0000000022000004423\",\n        \"quantity\": 50,\n        \"weight_unit\": \"Grams\",\n        \"reason\": \"Waste Destruction\",\n        \"date\": \"2022-05-24\",\n        \"notes\": \"waste from production\"\n      }\n    ]\n  },\n  {\n    \"id\": 8847,\n    \"facility_id\": 7576,\n    \"name\": \"string\",\n    \"status\": \"string\",\n    \"order\": 1590,\n    \"manufacturing_batch_id\": 2013,\n    \"start_date\": \"string\",\n    \"end_date\": \"string\",\n    \"created_at\": \"string\",\n    \"updated_at\": \"string\",\n    \"location_id\": 8370,\n    \"bill_of_materials_id\": 3090,\n    \"notes\": \"string\",\n    \"total_cannabis_costs\": 2624.451223302663,\n    \"total_labor_costs\": 4579.736944943388,\n    \"total_nci_costs\": 4665.674882903724,\n    \"machine_info\": {\n      \"temperature\": 20.1,\n      \"temperature_unit\": \"Celcius\",\n      \"solvent_id\": 150,\n      \"solvent_quantity\": 10.5,\n      \"solvent_weight_unit\": \"Grams\",\n      \"time_in_solvent_ms\": 2400,\n      \"time_in_solvent_display_units\": \"Second\"\n    },\n    \"cannabis_inputs\": [\n      {\n        \"package_id\": 3501,\n        \"package_tag\": \"1A4FF0000000022000000719\",\n        \"quantity\": 2.54,\n        \"weight_unit\": \"Grams\",\n        \"psi\": 600,\n        \"cost\": 14.3\n      },\n      {\n        \"package_id\": 3501,\n        \"package_tag\": \"1A4FF0000000022000000719\",\n        \"quantity\": 2.54,\n        \"weight_unit\": \"Grams\",\n        \"psi\": 600,\n        \"cost\": 14.3\n      }\n    ],\n    \"non_cannabis_inputs\": [\n      {\n        \"non_cannabis_product_name\": \"Fertilizer\",\n        \"non_cannabis_product_id\": 145,\n        \"lot\": \"DL21309\",\n        \"lot_id\": 253,\n        \"quantity\": 100.5,\n        \"weight_unit\": \"Grams\",\n        \"cost\": 2.5\n      },\n      {\n        \"non_cannabis_product_name\": \"Fertilizer\",\n        \"non_cannabis_product_id\": 145,\n        \"lot\": \"DL21309\",\n        \"lot_id\": 253,\n        \"quantity\": 100.5,\n        \"weight_unit\": \"Grams\",\n        \"cost\": 2.5\n      }\n    ],\n    \"cannabis_outputs\": [\n      {\n        \"package_id\": 5200,\n        \"package_tag\": \"1A4FF0000000022000001419\",\n        \"quantity\": 500,\n        \"weight_unit\": \"Grams\"\n      },\n      {\n        \"package_id\": 5200,\n        \"package_tag\": \"1A4FF0000000022000001419\",\n        \"quantity\": 500,\n        \"weight_unit\": \"Grams\"\n      }\n    ],\n    \"labors\": [\n      {\n        \"employee_name\": \"Jane Doe\",\n        \"hours_worked\": 0.5,\n        \"cost\": 10\n      },\n      {\n        \"employee_name\": \"Jane Doe\",\n        \"hours_worked\": 0.5,\n        \"cost\": 10\n      }\n    ],\n    \"wastes\": [\n      {\n        \"package_id\": 4601,\n        \"package_tag\": \"1A4FF0000000022000004423\",\n        \"quantity\": 50,\n        \"weight_unit\": \"Grams\",\n        \"reason\": \"Waste Destruction\",\n        \"date\": \"2022-05-24\",\n        \"notes\": \"waste from production\"\n      },\n      {\n        \"package_id\": 4601,\n        \"package_tag\": \"1A4FF0000000022000004423\",\n        \"quantity\": 50,\n        \"weight_unit\": \"Grams\",\n        \"reason\": \"Waste Destruction\",\n        \"date\": \"2022-05-24\",\n        \"notes\": \"waste from production\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "00ab7c8e-1699-4cbd-bbe7-68dc0eb860e5",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "manu_batch_runs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ba0f5b73-8e1b-41b5-9234-437fa0271c2d",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "manu_batch_runs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "be2cf651-7134-4d60-9494-04764fac6728",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "manu_batch_runs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f1916b3a-07ba-48d7-a23c-f9bdde4b6c90",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "manu_batch_runs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a0136ceb-17da-425d-841f-52bdb6fa68c6",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "manu_batch_runs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "edf910d4-3cae-4003-93d8-601951d4d7ec",
+          "name": "GetManuBatchRun",
+          "request": {
+            "name": "GetManuBatchRun",
+            "description": {
+              "content": "Get Manufacturing Run by ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "manu_batch_runs",
+                ":manu_batch_run_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "manu_batch_run_id",
+                  "description": "(Required) ID of Manufacturing Run to return"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d932a0b9-ded8-4ca8-975e-8f063292d99e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "manu_batch_runs",
+                    ":manu_batch_run_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "manu_batch_run_id",
+                      "description": "(Required) ID of Manufacturing Run to return"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 10,\n  \"facility_id\": 14,\n  \"name\": \"Stage 2\",\n  \"status\": \"OPEN\",\n  \"start_date\": \"2022-05-24\",\n  \"end_date\": \"2022-05-30\",\n  \"created_at\": \"2022-05-22T19:58:00.000Z\",\n  \"updated_at\": \"2021-05-23T05:12:01.000Z\",\n  \"location_id\": 2,\n  \"bill_of_materials_id\": 12,\n  \"manufacturing_batch_id\": 9,\n  \"order\": 2,\n  \"notes\": \"\",\n  \"total_cannabis_costs\": 14.3,\n  \"total_nci_costs\": 2.5,\n  \"total_labor_costs\": 9.05,\n  \"yield\": 75,\n  \"machine_info\": {\n    \"temperature\": 20.1,\n    \"temperature_unit\": \"Celcius\",\n    \"solvent_id\": 150,\n    \"solvent_quantity\": 10.5,\n    \"solvent_weight_unit\": \"Grams\",\n    \"time_in_solvent_ms\": 2400,\n    \"time_in_solvent_display_units\": \"Second\"\n  },\n  \"cannabis_inputs\": [\n    {\n      \"package_id\": 3501,\n      \"package_tag\": \"1A4FF0000000022000000719\",\n      \"quantity\": 2.54,\n      \"weight_unit\": \"Grams\",\n      \"psi\": 600,\n      \"cost\": 14.3\n    }\n  ],\n  \"non_cannabis_inputs\": [\n    {\n      \"non_cannabis_product_name\": \"Fertilizer\",\n      \"non_cannabis_product_id\": 145,\n      \"lot\": \"DL21309\",\n      \"lot_id\": 253,\n      \"quantity\": 100.5,\n      \"weight_unit\": \"Grams\",\n      \"cost\": 2.5\n    }\n  ],\n  \"cannabis_outputs\": [\n    {\n      \"package_id\": 5200,\n      \"package_tag\": \"1A4FF0000000022000001419\",\n      \"quantity\": 500,\n      \"weight_unit\": \"Grams\"\n    }\n  ],\n  \"labors\": [\n    {\n      \"employee_name\": \"Jane Doe\",\n      \"hours_worked\": 0.5,\n      \"cost\": 10\n    },\n    {\n      \"employee_name\": \"John Doe\",\n      \"hours_worked\": 1,\n      \"cost\": 20\n    }\n  ],\n  \"wastes\": [\n    {\n      \"package_id\": 4601,\n      \"package_tag\": \"1A4FF0000000022000004423\",\n      \"quantity\": 50,\n      \"weight_unit\": \"Grams\",\n      \"reason\": \"Waste Destruction\",\n      \"date\": \"2022-05-24\",\n      \"notes\": \"waste from production\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c2ce494a-d59a-408e-b566-6392560c5349",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "manu_batch_runs",
+                    ":manu_batch_run_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "manu_batch_run_id",
+                      "description": "(Required) ID of Manufacturing Run to return"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7faf2659-427a-4dc2-95a2-85f2435fe4d9",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "manu_batch_runs",
+                    ":manu_batch_run_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "manu_batch_run_id",
+                      "description": "(Required) ID of Manufacturing Run to return"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "62144a38-831b-40b6-9c93-da7f885ef267",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "manu_batch_runs",
+                    ":manu_batch_run_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "manu_batch_run_id",
+                      "description": "(Required) ID of Manufacturing Run to return"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7cc52e58-d694-41a5-8889-73c393b5a5a8",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "manu_batch_runs",
+                    ":manu_batch_run_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "manu_batch_run_id",
+                      "description": "(Required) ID of Manufacturing Run to return"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "52383f6c-dd47-473c-b1e8-a5fb923ea097",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "manu_batch_runs",
+                    ":manu_batch_run_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "manu_batch_run_id",
+                      "description": "(Required) ID of Manufacturing Run to return"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.canix.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "97361ea4-386e-4d5f-824c-4fbdaaf68586",
+    "name": "Canix Manufacturing Run API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# Introduction\nThis API documentation describes the endpoints used by third-party developers to get Canix data for their account.\n# Authentication\nCanix API uses API Keys for authentication. You can generate an API key on our [API page](https://app.canix.com/company/api), and on your API requests use the `X-API-KEY` header with the API key value you generated.\nWe strongly recommend using a secrets manager. Plain text files like dotenv lead to accidental costly leaks. Use [Doppler](https://doppler.com/) or similar options for a developer friendly experience. AWS and Google Cloud have native solutions as well.\n\nContact Support:\n Name: Canix Support\n Email: help@canix.com",
+      "type": "text/plain"
+    }
+  }
+}

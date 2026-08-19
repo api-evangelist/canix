@@ -1,0 +1,785 @@
+{
+  "item": [
+    {
+      "id": "f1b40a5c-703b-4cec-8be5-19d6bb54b20c",
+      "name": "Packages",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ea93706f-d15c-45b0-9f54-54952d1f50f4",
+          "name": "GetPackages",
+          "request": {
+            "name": "GetPackages",
+            "description": {
+              "content": "Return all submitted Packages of all statuses",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "packages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "2000",
+                  "description": "Max number of records to return (optional). Cannot exceed 2000"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Offset for the returned records (optional)"
+                },
+                {
+                  "disabled": false,
+                  "key": "order_by",
+                  "value": "<string>",
+                  "description": "Order-by clause, in SQL format (optional)"
+                },
+                {
+                  "disabled": false,
+                  "key": "where",
+                  "value": "<string>",
+                  "description": "Filter results using SQL-like WHERE clause syntax (optional).\n\n**Supported operators**: =, >, <, >=, <=, BETWEEN, IN, LIKE, AND, OR\n\n**Supported patterns**:\n- Equality: `status='Active'`\n- Comparison: `updated_at >= '2024-01-01'`\n- Range: `id BETWEEN 1 AND 10000`\n- List: `status IN ('Active', 'Pending')`\n- Pattern: `sku LIKE 'ABC%'`\n- Compound: `facility_id=123 AND is_active=true`\n"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "547183f9-fbde-4a2f-abff-f4c6f34dfc6f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 902,\n    \"tag\": \"string\",\n    \"is_active\": false,\n    \"is_testing_package\": false,\n    \"status\": \"string\",\n    \"item\": {\n      \"id\": 9920,\n      \"name\": \"string\",\n      \"facility_id\": 2297,\n      \"is_active\": true,\n      \"item_type\": \"string\",\n      \"brand\": {\n        \"id\": 7907.708560425186,\n        \"name\": \"string\"\n      },\n      \"product_id\": 1004,\n      \"product_brand\": {\n        \"id\": 7022.1682238607955,\n        \"name\": \"string\"\n      },\n      \"quantity_type\": \"string\",\n      \"sku\": \"string\",\n      \"current_standard_cost\": {\n        \"id\": 123,\n        \"standard_cost_amount\": 12.1111,\n        \"standard_cost_currency\": \"USD\",\n        \"start_date\": \"2023-04-19\",\n        \"end_date\": \"2023-05-19\"\n      },\n      \"accounting_inventory_type\": \"string\",\n      \"notes\": \"string\",\n      \"strain\": {\n        \"id\": 5260,\n        \"name\": \"Lemon Skunk\",\n        \"notes\": \"Terpenes .63%\",\n        \"sku\": \"BIOJJ\",\n        \"testing_status\": \"InHouse\",\n        \"indica_percent\": 45,\n        \"sativa_percent\": 55,\n        \"cross_strains\": [\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"notes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sku\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"testing_status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"indica_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sativa_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"notes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sku\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"testing_status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"indica_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sativa_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"type\": {\n        \"id\": 8881,\n        \"name\": \"string\",\n        \"quantity_type\": \"string\",\n        \"requires_strain\": true,\n        \"requires_unit_volume\": true,\n        \"requires_unit_weight\": false,\n        \"requires_unit_thc_weight\": true,\n        \"requires_unit_cbd_weight\": true,\n        \"requires_unit_cbd_percent\": true,\n        \"requires_unit_thc_percent\": false,\n        \"requires_public_ingredients\": true,\n        \"requires_administration_method\": false,\n        \"requires_serving_size\": true,\n        \"requires_supply_duration_days\": false,\n        \"requires_number_of_doses\": false,\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n      },\n      \"sub_type\": {\n        \"id\": 4604,\n        \"name\": \"string\",\n        \"weight_unit\": \"string\",\n        \"category\": {\n          \"id\": 1276,\n          \"name\": \"string\",\n          \"quantity_type\": \"string\",\n          \"requires_strain\": false,\n          \"requires_unit_volume\": false,\n          \"requires_unit_weight\": false,\n          \"requires_unit_thc_weight\": false,\n          \"requires_unit_cbd_weight\": true,\n          \"requires_unit_cbd_percent\": true,\n          \"requires_unit_thc_percent\": false,\n          \"requires_public_ingredients\": true,\n          \"requires_administration_method\": true,\n          \"requires_serving_size\": false,\n          \"requires_supply_duration_days\": false,\n          \"requires_number_of_doses\": false,\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n        },\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n      },\n      \"weight_unit\": \"string\",\n      \"unit_weight\": 4701.013693794265,\n      \"unit_weight_unit\": \"string\",\n      \"case_quantity\": \"string\",\n      \"case_quantity_unit\": \"string\",\n      \"unit_cbd_weight\": 5179.344279332207,\n      \"unit_cbd_weight_unit\": \"string\",\n      \"unit_thc_weight\": 664.6178817073023,\n      \"unit_thc_weight_unit\": \"string\",\n      \"unit_cbd_percent\": 5652.455301985639,\n      \"unit_thc_percent\": 5988.576311861861,\n      \"description\": \"string\",\n      \"serving_size\": 3366.286647312089,\n      \"number_of_doses\": 7774.472178752242,\n      \"public_ingredients\": \"string\",\n      \"supply_duration_days\": 1041.991089775649,\n      \"administration_method\": \"string\",\n      \"allergens\": \"string\",\n      \"transfer_source_license\": \"string\",\n      \"bills_of_materials\": [\n        {\n          \"url\": \"string\",\n          \"name\": \"string\",\n          \"package_weight\": 368.8714029712081,\n          \"unit\": \"string\"\n        },\n        {\n          \"url\": \"string\",\n          \"name\": \"string\",\n          \"package_weight\": 3543.909173762101,\n          \"unit\": \"string\"\n        }\n      ],\n      \"sage_item\": {\n        \"external_id\": \"string\",\n        \"name\": \"string\"\n      },\n      \"leaflink_item\": {\n        \"external_id\": \"string\",\n        \"name\": \"string\"\n      },\n      \"dutchie_product\": {\n        \"external_id\": \"string\",\n        \"name\": \"string\"\n      },\n      \"phenotype\": \"string\",\n      \"total_for_sale\": 9332.890725144312,\n      \"ordered\": 470.8832146455677,\n      \"backordered\": 5201.632011263383,\n      \"unordered\": 9802.342894891928,\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n    },\n    \"weight\": 8418.404564167513,\n    \"original_weight\": 547.5669845163122,\n    \"weight_unit\": \"string\",\n    \"packaged_date\": \"string\",\n    \"production_batch_date\": \"1997-08-08\",\n    \"expiration_date\": \"string\",\n    \"received_date\": \"string\",\n    \"location\": {\n      \"id\": 123,\n      \"name\": \"Pro System\",\n      \"sqft\": 14.4,\n      \"num_lights\": 42,\n      \"parent_location\": {\n        \"id\": 123,\n        \"name\": \"Pro System\",\n        \"sqft\": 14.4,\n        \"num_lights\": 42,\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n        \"is_active\": true\n      },\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n      \"is_active\": true\n    },\n    \"production_batch\": \"string\",\n    \"lot_id\": \"string\",\n    \"cultivation_tax\": 3731.179297396483,\n    \"available_for_sale\": false,\n    \"cannabis_cogs\": 5707.11902391959,\n    \"non_cannabis_inventory_cogs\": 9445.927435345675,\n    \"source_packages\": [\n      {\n        \"id\": 5091,\n        \"tag\": \"string\",\n        \"weight\": 6486.148636162645,\n        \"weight_unit\": \"string\",\n        \"item\": {\n          \"id\": 5401.108006558659,\n          \"name\": \"string\"\n        }\n      },\n      {\n        \"id\": 6834,\n        \"tag\": \"string\",\n        \"weight\": 7412.526245605047,\n        \"weight_unit\": \"string\",\n        \"item\": {\n          \"id\": 3409.3186523190534,\n          \"name\": \"string\"\n        }\n      }\n    ],\n    \"destination_packages\": [\n      {\n        \"id\": 2119,\n        \"tag\": \"string\",\n        \"weight\": 1138.337854264624,\n        \"weight_unit\": \"string\",\n        \"item\": {\n          \"id\": 6710.209425456364,\n          \"name\": \"string\"\n        }\n      },\n      {\n        \"id\": 3123,\n        \"tag\": \"string\",\n        \"weight\": 1051.3603098556557,\n        \"weight_unit\": \"string\",\n        \"item\": {\n          \"id\": 387.37841751577685,\n          \"name\": \"string\"\n        }\n      }\n    ],\n    \"source_facility\": \"string\",\n    \"source_facility_name\": \"string\",\n    \"source_harvests\": \"string\",\n    \"notes\": \"string\",\n    \"brand\": {\n      \"id\": 6212,\n      \"name\": \"string\",\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n    },\n    \"lab_test_url\": \"https://www.lab.com/lab-test/123456\",\n    \"coa_url\": \"https://s3.amazonaws.com/bucket/coa/abc123.pdf?X-Amz-Signature=...\",\n    \"test_results\": {\n      \"thc\": [\n        {\n          \"value\": 12.345,\n          \"measure\": \"percent\"\n        },\n        {\n          \"value\": 0.12345,\n          \"measure\": \"mg/g\"\n        },\n        {\n          \"value\": 5.6789,\n          \"measure\": \"mg\"\n        }\n      ],\n      \"cbd\": [\n        {\n          \"value\": 34.567,\n          \"measure\": \"percent\"\n        },\n        {\n          \"value\": 2.3456,\n          \"measure\": \"mg/g\"\n        },\n        {\n          \"value\": 9.1234,\n          \"measure\": \"mg\"\n        }\n      ],\n      \"cbn\": [\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        },\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        }\n      ],\n      \"cbg\": [\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        },\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        }\n      ],\n      \"cbga\": [\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        },\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        }\n      ],\n      \"cbc\": [\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        },\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        }\n      ],\n      \"cbca\": [\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        },\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        }\n      ],\n      \"cbda\": [\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        },\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        }\n      ],\n      \"thca\": [\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        },\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        }\n      ],\n      \"delta_8_thc\": [\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        },\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        }\n      ],\n      \"delta_9_thc\": [\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        },\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        }\n      ],\n      \"delta_9_thca\": [\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        },\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        }\n      ],\n      \"delta_8_thca\": [\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        },\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        }\n      ],\n      \"thcv\": [\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        },\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        }\n      ],\n      \"thcva\": [\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        },\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        }\n      ],\n      \"total_cbd\": [\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        },\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        }\n      ],\n      \"total_cbg\": [\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        },\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        }\n      ],\n      \"total_delta_9_thc\": [\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        },\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        }\n      ],\n      \"total_thc\": [\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        },\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        }\n      ],\n      \"total_cannabinoid\": [\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        },\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        }\n      ],\n      \"test_status\": \"string\",\n      \"tested_package_tag\": \"string\",\n      \"test_date\": \"2012-01-28\",\n      \"terpenes\": {\n        \"measure\": \"percent\",\n        \"top_three\": \"string\",\n        \"values\": \"string\"\n      }\n    },\n    \"cogs\": {\n      \"labor\": 10,\n      \"non_cannabis\": 120,\n      \"cannabis\": 30,\n      \"total\": 160\n    },\n    \"original_cogs\": {\n      \"labor\": 10,\n      \"non_cannabis\": 120,\n      \"cannabis\": 30,\n      \"total\": 160\n    },\n    \"manufacturing_run\": {\n      \"id\": 2944,\n      \"name\": \"string\",\n      \"status\": \"string\",\n      \"start_date\": \"1986-05-05\",\n      \"end_date\": \"1997-10-06\",\n      \"facility_id\": 8622\n    },\n    \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n    \"tested_package_tag\": \"string\",\n    \"test_status\": \"string\",\n    \"test_date\": \"2023-09-16\",\n    \"lab_test_info\": {\n      \"testing_facility_name\": \"string\",\n      \"testing_facility_license\": \"string\"\n    }\n  },\n  {\n    \"id\": 4942,\n    \"tag\": \"string\",\n    \"is_active\": false,\n    \"is_testing_package\": false,\n    \"status\": \"string\",\n    \"item\": {\n      \"id\": 9680,\n      \"name\": \"string\",\n      \"facility_id\": 5070,\n      \"is_active\": false,\n      \"item_type\": \"string\",\n      \"brand\": {\n        \"id\": 3313.1083153478235,\n        \"name\": \"string\"\n      },\n      \"product_id\": 9422,\n      \"product_brand\": {\n        \"id\": 6269.892127784266,\n        \"name\": \"string\"\n      },\n      \"quantity_type\": \"string\",\n      \"sku\": \"string\",\n      \"current_standard_cost\": {\n        \"id\": 123,\n        \"standard_cost_amount\": 12.1111,\n        \"standard_cost_currency\": \"USD\",\n        \"start_date\": \"2023-04-19\",\n        \"end_date\": \"2023-05-19\"\n      },\n      \"accounting_inventory_type\": \"string\",\n      \"notes\": \"string\",\n      \"strain\": {\n        \"id\": 2293,\n        \"name\": \"Lemon Skunk\",\n        \"notes\": \"Terpenes .63%\",\n        \"sku\": \"BIOJJ\",\n        \"testing_status\": \"InHouse\",\n        \"indica_percent\": 45,\n        \"sativa_percent\": 55,\n        \"cross_strains\": [\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"notes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sku\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"testing_status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"indica_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sativa_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"notes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sku\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"testing_status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"indica_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sativa_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"type\": {\n        \"id\": 425,\n        \"name\": \"string\",\n        \"quantity_type\": \"string\",\n        \"requires_strain\": true,\n        \"requires_unit_volume\": true,\n        \"requires_unit_weight\": true,\n        \"requires_unit_thc_weight\": true,\n        \"requires_unit_cbd_weight\": false,\n        \"requires_unit_cbd_percent\": false,\n        \"requires_unit_thc_percent\": true,\n        \"requires_public_ingredients\": true,\n        \"requires_administration_method\": false,\n        \"requires_serving_size\": false,\n        \"requires_supply_duration_days\": true,\n        \"requires_number_of_doses\": true,\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n      },\n      \"sub_type\": {\n        \"id\": 7045,\n        \"name\": \"string\",\n        \"weight_unit\": \"string\",\n        \"category\": {\n          \"id\": 2862,\n          \"name\": \"string\",\n          \"quantity_type\": \"string\",\n          \"requires_strain\": false,\n          \"requires_unit_volume\": true,\n          \"requires_unit_weight\": true,\n          \"requires_unit_thc_weight\": true,\n          \"requires_unit_cbd_weight\": false,\n          \"requires_unit_cbd_percent\": false,\n          \"requires_unit_thc_percent\": false,\n          \"requires_public_ingredients\": true,\n          \"requires_administration_method\": true,\n          \"requires_serving_size\": true,\n          \"requires_supply_duration_days\": true,\n          \"requires_number_of_doses\": false,\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n        },\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n      },\n      \"weight_unit\": \"string\",\n      \"unit_weight\": 4356.244692802777,\n      \"unit_weight_unit\": \"string\",\n      \"case_quantity\": \"string\",\n      \"case_quantity_unit\": \"string\",\n      \"unit_cbd_weight\": 5061.478093238562,\n      \"unit_cbd_weight_unit\": \"string\",\n      \"unit_thc_weight\": 6236.600278594062,\n      \"unit_thc_weight_unit\": \"string\",\n      \"unit_cbd_percent\": 2457.1095241323637,\n      \"unit_thc_percent\": 4569.1402558311565,\n      \"description\": \"string\",\n      \"serving_size\": 5049.677032580687,\n      \"number_of_doses\": 799.7928297185008,\n      \"public_ingredients\": \"string\",\n      \"supply_duration_days\": 9065.18499697027,\n      \"administration_method\": \"string\",\n      \"allergens\": \"string\",\n      \"transfer_source_license\": \"string\",\n      \"bills_of_materials\": [\n        {\n          \"url\": \"string\",\n          \"name\": \"string\",\n          \"package_weight\": 5948.047904487233,\n          \"unit\": \"string\"\n        },\n        {\n          \"url\": \"string\",\n          \"name\": \"string\",\n          \"package_weight\": 3361.095026326448,\n          \"unit\": \"string\"\n        }\n      ],\n      \"sage_item\": {\n        \"external_id\": \"string\",\n        \"name\": \"string\"\n      },\n      \"leaflink_item\": {\n        \"external_id\": \"string\",\n        \"name\": \"string\"\n      },\n      \"dutchie_product\": {\n        \"external_id\": \"string\",\n        \"name\": \"string\"\n      },\n      \"phenotype\": \"string\",\n      \"total_for_sale\": 8599.970972167279,\n      \"ordered\": 4713.88189523359,\n      \"backordered\": 4579.58628438278,\n      \"unordered\": 5651.175268695843,\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n    },\n    \"weight\": 5639.214658244685,\n    \"original_weight\": 3410.8583731141753,\n    \"weight_unit\": \"string\",\n    \"packaged_date\": \"string\",\n    \"production_batch_date\": \"2005-08-27\",\n    \"expiration_date\": \"string\",\n    \"received_date\": \"string\",\n    \"location\": {\n      \"id\": 123,\n      \"name\": \"Pro System\",\n      \"sqft\": 14.4,\n      \"num_lights\": 42,\n      \"parent_location\": {\n        \"id\": 123,\n        \"name\": \"Pro System\",\n        \"sqft\": 14.4,\n        \"num_lights\": 42,\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n        \"is_active\": true\n      },\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n      \"is_active\": true\n    },\n    \"production_batch\": \"string\",\n    \"lot_id\": \"string\",\n    \"cultivation_tax\": 266.6511124592785,\n    \"available_for_sale\": false,\n    \"cannabis_cogs\": 227.49013418617346,\n    \"non_cannabis_inventory_cogs\": 5234.886739781904,\n    \"source_packages\": [\n      {\n        \"id\": 3513,\n        \"tag\": \"string\",\n        \"weight\": 1549.5334448497688,\n        \"weight_unit\": \"string\",\n        \"item\": {\n          \"id\": 9149.648026627667,\n          \"name\": \"string\"\n        }\n      },\n      {\n        \"id\": 1331,\n        \"tag\": \"string\",\n        \"weight\": 2611.1442191573587,\n        \"weight_unit\": \"string\",\n        \"item\": {\n          \"id\": 2322.0383248695543,\n          \"name\": \"string\"\n        }\n      }\n    ],\n    \"destination_packages\": [\n      {\n        \"id\": 4834,\n        \"tag\": \"string\",\n        \"weight\": 4219.689728790722,\n        \"weight_unit\": \"string\",\n        \"item\": {\n          \"id\": 4287.966298829739,\n          \"name\": \"string\"\n        }\n      },\n      {\n        \"id\": 4618,\n        \"tag\": \"string\",\n        \"weight\": 8979.120806018647,\n        \"weight_unit\": \"string\",\n        \"item\": {\n          \"id\": 762.653858720328,\n          \"name\": \"string\"\n        }\n      }\n    ],\n    \"source_facility\": \"string\",\n    \"source_facility_name\": \"string\",\n    \"source_harvests\": \"string\",\n    \"notes\": \"string\",\n    \"brand\": {\n      \"id\": 3833,\n      \"name\": \"string\",\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n    },\n    \"lab_test_url\": \"https://www.lab.com/lab-test/123456\",\n    \"coa_url\": \"https://s3.amazonaws.com/bucket/coa/abc123.pdf?X-Amz-Signature=...\",\n    \"test_results\": {\n      \"thc\": [\n        {\n          \"value\": 12.345,\n          \"measure\": \"percent\"\n        },\n        {\n          \"value\": 0.12345,\n          \"measure\": \"mg/g\"\n        },\n        {\n          \"value\": 5.6789,\n          \"measure\": \"mg\"\n        }\n      ],\n      \"cbd\": [\n        {\n          \"value\": 34.567,\n          \"measure\": \"percent\"\n        },\n        {\n          \"value\": 2.3456,\n          \"measure\": \"mg/g\"\n        },\n        {\n          \"value\": 9.1234,\n          \"measure\": \"mg\"\n        }\n      ],\n      \"cbn\": [\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        },\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        }\n      ],\n      \"cbg\": [\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        },\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        }\n      ],\n      \"cbga\": [\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        },\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        }\n      ],\n      \"cbc\": [\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        },\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        }\n      ],\n      \"cbca\": [\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        },\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        }\n      ],\n      \"cbda\": [\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        },\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        }\n      ],\n      \"thca\": [\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        },\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        }\n      ],\n      \"delta_8_thc\": [\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        },\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        }\n      ],\n      \"delta_9_thc\": [\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        },\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        }\n      ],\n      \"delta_9_thca\": [\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        },\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        }\n      ],\n      \"delta_8_thca\": [\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        },\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        }\n      ],\n      \"thcv\": [\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        },\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        }\n      ],\n      \"thcva\": [\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        },\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        }\n      ],\n      \"total_cbd\": [\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        },\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        }\n      ],\n      \"total_cbg\": [\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        },\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        }\n      ],\n      \"total_delta_9_thc\": [\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        },\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        }\n      ],\n      \"total_thc\": [\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        },\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        }\n      ],\n      \"total_cannabinoid\": [\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        },\n        {\n          \"value\": 0.17501406232422,\n          \"measure\": \"mg/g\"\n        }\n      ],\n      \"test_status\": \"string\",\n      \"tested_package_tag\": \"string\",\n      \"test_date\": \"2022-06-26\",\n      \"terpenes\": {\n        \"measure\": \"percent\",\n        \"top_three\": \"string\",\n        \"values\": \"string\"\n      }\n    },\n    \"cogs\": {\n      \"labor\": 10,\n      \"non_cannabis\": 120,\n      \"cannabis\": 30,\n      \"total\": 160\n    },\n    \"original_cogs\": {\n      \"labor\": 10,\n      \"non_cannabis\": 120,\n      \"cannabis\": 30,\n      \"total\": 160\n    },\n    \"manufacturing_run\": {\n      \"id\": 9113,\n      \"name\": \"string\",\n      \"status\": \"string\",\n      \"start_date\": null,\n      \"end_date\": null,\n      \"facility_id\": 5962\n    },\n    \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n    \"tested_package_tag\": \"string\",\n    \"test_status\": \"string\",\n    \"test_date\": \"1980-02-08\",\n    \"lab_test_info\": {\n      \"testing_facility_name\": \"string\",\n      \"testing_facility_license\": \"string\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5a0271c0-8952-4857-9c24-308bfe97a14b",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "662b1d78-32af-4789-b48e-0576724ba393",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "89157095-2a23-4451-8870-2fd2b3bab3cc",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "935a3215-009a-428d-9ecd-40fe4a3a8bf5",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7eb6e18c-6966-492d-89d6-9c59c83632d8",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1f7cc172-03df-4e5c-878a-a69e3f07e4ce",
+          "name": "GetPackage",
+          "request": {
+            "name": "GetPackage",
+            "description": {
+              "content": "Get Package by ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "packages",
+                ":package_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "package_id",
+                  "description": "(Required) Package ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0d8a5f2e-9218-4bd9-9130-3305c3762ac2",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packages",
+                    ":package_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "package_id",
+                      "description": "(Required) Package ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 8386,\n  \"tag\": \"string\",\n  \"is_active\": false,\n  \"is_testing_package\": true,\n  \"status\": \"string\",\n  \"item\": {\n    \"id\": 6339,\n    \"name\": \"string\",\n    \"facility_id\": 899,\n    \"is_active\": true,\n    \"item_type\": \"string\",\n    \"brand\": {\n      \"id\": 7899.574009323638,\n      \"name\": \"string\"\n    },\n    \"product_id\": 9138,\n    \"product_brand\": {\n      \"id\": 6724.143333401412,\n      \"name\": \"string\"\n    },\n    \"quantity_type\": \"string\",\n    \"sku\": \"string\",\n    \"current_standard_cost\": {\n      \"id\": 123,\n      \"standard_cost_amount\": 12.1111,\n      \"standard_cost_currency\": \"USD\",\n      \"start_date\": \"2023-04-19\",\n      \"end_date\": \"2023-05-19\"\n    },\n    \"accounting_inventory_type\": \"string\",\n    \"notes\": \"string\",\n    \"strain\": {\n      \"id\": 3634,\n      \"name\": \"Lemon Skunk\",\n      \"notes\": \"Terpenes .63%\",\n      \"sku\": \"BIOJJ\",\n      \"testing_status\": \"InHouse\",\n      \"indica_percent\": 45,\n      \"sativa_percent\": 55,\n      \"cross_strains\": [\n        {\n          \"id\": 3169,\n          \"name\": \"Lemon Skunk\",\n          \"notes\": \"Terpenes .63%\",\n          \"sku\": \"BIOJJ\",\n          \"testing_status\": \"InHouse\",\n          \"indica_percent\": 45,\n          \"sativa_percent\": 55\n        },\n        {\n          \"id\": 1223,\n          \"name\": \"Lemon Skunk\",\n          \"notes\": \"Terpenes .63%\",\n          \"sku\": \"BIOJJ\",\n          \"testing_status\": \"InHouse\",\n          \"indica_percent\": 45,\n          \"sativa_percent\": 55\n        }\n      ]\n    },\n    \"type\": {\n      \"id\": 4991,\n      \"name\": \"string\",\n      \"quantity_type\": \"string\",\n      \"requires_strain\": false,\n      \"requires_unit_volume\": false,\n      \"requires_unit_weight\": false,\n      \"requires_unit_thc_weight\": false,\n      \"requires_unit_cbd_weight\": false,\n      \"requires_unit_cbd_percent\": true,\n      \"requires_unit_thc_percent\": true,\n      \"requires_public_ingredients\": false,\n      \"requires_administration_method\": true,\n      \"requires_serving_size\": true,\n      \"requires_supply_duration_days\": true,\n      \"requires_number_of_doses\": true,\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n    },\n    \"sub_type\": {\n      \"id\": 9168,\n      \"name\": \"string\",\n      \"weight_unit\": \"string\",\n      \"category\": {\n        \"id\": 7176,\n        \"name\": \"string\",\n        \"quantity_type\": \"string\",\n        \"requires_strain\": true,\n        \"requires_unit_volume\": true,\n        \"requires_unit_weight\": false,\n        \"requires_unit_thc_weight\": true,\n        \"requires_unit_cbd_weight\": false,\n        \"requires_unit_cbd_percent\": false,\n        \"requires_unit_thc_percent\": false,\n        \"requires_public_ingredients\": true,\n        \"requires_administration_method\": true,\n        \"requires_serving_size\": true,\n        \"requires_supply_duration_days\": true,\n        \"requires_number_of_doses\": false,\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n      },\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n    },\n    \"weight_unit\": \"string\",\n    \"unit_weight\": 3919.3083229270696,\n    \"unit_weight_unit\": \"string\",\n    \"case_quantity\": \"string\",\n    \"case_quantity_unit\": \"string\",\n    \"unit_cbd_weight\": 9778.16980560422,\n    \"unit_cbd_weight_unit\": \"string\",\n    \"unit_thc_weight\": 7911.330274482724,\n    \"unit_thc_weight_unit\": \"string\",\n    \"unit_cbd_percent\": 6177.141290961922,\n    \"unit_thc_percent\": 9147.846214026249,\n    \"description\": \"string\",\n    \"serving_size\": 5197.807744169007,\n    \"number_of_doses\": 6443.756416359299,\n    \"public_ingredients\": \"string\",\n    \"supply_duration_days\": 6032.7821637301695,\n    \"administration_method\": \"string\",\n    \"allergens\": \"string\",\n    \"transfer_source_license\": \"string\",\n    \"bills_of_materials\": [\n      {\n        \"url\": \"string\",\n        \"name\": \"string\",\n        \"package_weight\": 3888.837295913221,\n        \"unit\": \"string\"\n      },\n      {\n        \"url\": \"string\",\n        \"name\": \"string\",\n        \"package_weight\": 3860.576308736735,\n        \"unit\": \"string\"\n      }\n    ],\n    \"sage_item\": {\n      \"external_id\": \"string\",\n      \"name\": \"string\"\n    },\n    \"leaflink_item\": {\n      \"external_id\": \"string\",\n      \"name\": \"string\"\n    },\n    \"dutchie_product\": {\n      \"external_id\": \"string\",\n      \"name\": \"string\"\n    },\n    \"phenotype\": \"string\",\n    \"total_for_sale\": 6176.951474791395,\n    \"ordered\": 6180.822617755924,\n    \"backordered\": 5841.2303245387175,\n    \"unordered\": 1557.2200965838379,\n    \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n  },\n  \"weight\": 6799.99331962676,\n  \"original_weight\": 241.9365449639166,\n  \"weight_unit\": \"string\",\n  \"packaged_date\": \"string\",\n  \"production_batch_date\": null,\n  \"expiration_date\": \"string\",\n  \"received_date\": \"string\",\n  \"location\": {\n    \"id\": 123,\n    \"name\": \"Pro System\",\n    \"sqft\": 14.4,\n    \"num_lights\": 42,\n    \"parent_location\": {\n      \"id\": 123,\n      \"name\": \"Pro System\",\n      \"sqft\": 14.4,\n      \"num_lights\": 42,\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n      \"is_active\": true\n    },\n    \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n    \"is_active\": true\n  },\n  \"production_batch\": \"string\",\n  \"lot_id\": \"string\",\n  \"cultivation_tax\": 6494.599863936792,\n  \"available_for_sale\": false,\n  \"cannabis_cogs\": 6681.616541609551,\n  \"non_cannabis_inventory_cogs\": 9903.033972063362,\n  \"source_packages\": [\n    {\n      \"id\": 8882,\n      \"tag\": \"string\",\n      \"weight\": 9424.367327047165,\n      \"weight_unit\": \"string\",\n      \"item\": {\n        \"id\": 2689.8225919709294,\n        \"name\": \"string\"\n      }\n    },\n    {\n      \"id\": 8845,\n      \"tag\": \"string\",\n      \"weight\": 6857.851960413155,\n      \"weight_unit\": \"string\",\n      \"item\": {\n        \"id\": 6372.679878658258,\n        \"name\": \"string\"\n      }\n    }\n  ],\n  \"destination_packages\": [\n    {\n      \"id\": 8191,\n      \"tag\": \"string\",\n      \"weight\": 1055.8439188112222,\n      \"weight_unit\": \"string\",\n      \"item\": {\n        \"id\": 2015.8723217772024,\n        \"name\": \"string\"\n      }\n    },\n    {\n      \"id\": 1091,\n      \"tag\": \"string\",\n      \"weight\": 2744.8666434911993,\n      \"weight_unit\": \"string\",\n      \"item\": {\n        \"id\": 9123.083527590083,\n        \"name\": \"string\"\n      }\n    }\n  ],\n  \"source_facility\": \"string\",\n  \"source_facility_name\": \"string\",\n  \"source_harvests\": \"string\",\n  \"notes\": \"string\",\n  \"brand\": {\n    \"id\": 2045,\n    \"name\": \"string\",\n    \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n  },\n  \"lab_test_url\": \"https://www.lab.com/lab-test/123456\",\n  \"coa_url\": \"https://s3.amazonaws.com/bucket/coa/abc123.pdf?X-Amz-Signature=...\",\n  \"test_results\": {\n    \"thc\": [\n      {\n        \"value\": 12.345,\n        \"measure\": \"percent\"\n      },\n      {\n        \"value\": 0.12345,\n        \"measure\": \"mg/g\"\n      },\n      {\n        \"value\": 5.6789,\n        \"measure\": \"mg\"\n      }\n    ],\n    \"cbd\": [\n      {\n        \"value\": 34.567,\n        \"measure\": \"percent\"\n      },\n      {\n        \"value\": 2.3456,\n        \"measure\": \"mg/g\"\n      },\n      {\n        \"value\": 9.1234,\n        \"measure\": \"mg\"\n      }\n    ],\n    \"cbn\": [\n      {\n        \"value\": 0.17501406232422,\n        \"measure\": \"mg/g\"\n      },\n      {\n        \"value\": 0.17501406232422,\n        \"measure\": \"mg/g\"\n      }\n    ],\n    \"cbg\": [\n      {\n        \"value\": 0.17501406232422,\n        \"measure\": \"mg/g\"\n      },\n      {\n        \"value\": 0.17501406232422,\n        \"measure\": \"mg/g\"\n      }\n    ],\n    \"cbga\": [\n      {\n        \"value\": 0.17501406232422,\n        \"measure\": \"mg/g\"\n      },\n      {\n        \"value\": 0.17501406232422,\n        \"measure\": \"mg/g\"\n      }\n    ],\n    \"cbc\": [\n      {\n        \"value\": 0.17501406232422,\n        \"measure\": \"mg/g\"\n      },\n      {\n        \"value\": 0.17501406232422,\n        \"measure\": \"mg/g\"\n      }\n    ],\n    \"cbca\": [\n      {\n        \"value\": 0.17501406232422,\n        \"measure\": \"mg/g\"\n      },\n      {\n        \"value\": 0.17501406232422,\n        \"measure\": \"mg/g\"\n      }\n    ],\n    \"cbda\": [\n      {\n        \"value\": 0.17501406232422,\n        \"measure\": \"mg/g\"\n      },\n      {\n        \"value\": 0.17501406232422,\n        \"measure\": \"mg/g\"\n      }\n    ],\n    \"thca\": [\n      {\n        \"value\": 0.17501406232422,\n        \"measure\": \"mg/g\"\n      },\n      {\n        \"value\": 0.17501406232422,\n        \"measure\": \"mg/g\"\n      }\n    ],\n    \"delta_8_thc\": [\n      {\n        \"value\": 0.17501406232422,\n        \"measure\": \"mg/g\"\n      },\n      {\n        \"value\": 0.17501406232422,\n        \"measure\": \"mg/g\"\n      }\n    ],\n    \"delta_9_thc\": [\n      {\n        \"value\": 0.17501406232422,\n        \"measure\": \"mg/g\"\n      },\n      {\n        \"value\": 0.17501406232422,\n        \"measure\": \"mg/g\"\n      }\n    ],\n    \"delta_9_thca\": [\n      {\n        \"value\": 0.17501406232422,\n        \"measure\": \"mg/g\"\n      },\n      {\n        \"value\": 0.17501406232422,\n        \"measure\": \"mg/g\"\n      }\n    ],\n    \"delta_8_thca\": [\n      {\n        \"value\": 0.17501406232422,\n        \"measure\": \"mg/g\"\n      },\n      {\n        \"value\": 0.17501406232422,\n        \"measure\": \"mg/g\"\n      }\n    ],\n    \"thcv\": [\n      {\n        \"value\": 0.17501406232422,\n        \"measure\": \"mg/g\"\n      },\n      {\n        \"value\": 0.17501406232422,\n        \"measure\": \"mg/g\"\n      }\n    ],\n    \"thcva\": [\n      {\n        \"value\": 0.17501406232422,\n        \"measure\": \"mg/g\"\n      },\n      {\n        \"value\": 0.17501406232422,\n        \"measure\": \"mg/g\"\n      }\n    ],\n    \"total_cbd\": [\n      {\n        \"value\": 0.17501406232422,\n        \"measure\": \"mg/g\"\n      },\n      {\n        \"value\": 0.17501406232422,\n        \"measure\": \"mg/g\"\n      }\n    ],\n    \"total_cbg\": [\n      {\n        \"value\": 0.17501406232422,\n        \"measure\": \"mg/g\"\n      },\n      {\n        \"value\": 0.17501406232422,\n        \"measure\": \"mg/g\"\n      }\n    ],\n    \"total_delta_9_thc\": [\n      {\n        \"value\": 0.17501406232422,\n        \"measure\": \"mg/g\"\n      },\n      {\n        \"value\": 0.17501406232422,\n        \"measure\": \"mg/g\"\n      }\n    ],\n    \"total_thc\": [\n      {\n        \"value\": 0.17501406232422,\n        \"measure\": \"mg/g\"\n      },\n      {\n        \"value\": 0.17501406232422,\n        \"measure\": \"mg/g\"\n      }\n    ],\n    \"total_cannabinoid\": [\n      {\n        \"value\": 0.17501406232422,\n        \"measure\": \"mg/g\"\n      },\n      {\n        \"value\": 0.17501406232422,\n        \"measure\": \"mg/g\"\n      }\n    ],\n    \"test_status\": \"string\",\n    \"tested_package_tag\": \"string\",\n    \"test_date\": \"1965-03-20\",\n    \"terpenes\": {\n      \"measure\": \"percent\",\n      \"top_three\": \"string\",\n      \"values\": \"string\"\n    }\n  },\n  \"cogs\": {\n    \"labor\": 10,\n    \"non_cannabis\": 120,\n    \"cannabis\": 30,\n    \"total\": 160\n  },\n  \"original_cogs\": {\n    \"labor\": 10,\n    \"non_cannabis\": 120,\n    \"cannabis\": 30,\n    \"total\": 160\n  },\n  \"manufacturing_run\": {\n    \"id\": 4433,\n    \"name\": \"string\",\n    \"status\": \"string\",\n    \"start_date\": null,\n    \"end_date\": null,\n    \"facility_id\": 3281\n  },\n  \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n  \"tested_package_tag\": \"string\",\n  \"test_status\": \"string\",\n  \"test_date\": \"2025-12-08\",\n  \"lab_test_info\": {\n    \"testing_facility_name\": \"string\",\n    \"testing_facility_license\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c776d69d-4bfa-459c-b67d-4a84063f87c4",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packages",
+                    ":package_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "package_id",
+                      "description": "(Required) Package ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b4ad97dc-be79-4096-ba7d-aa18592d312c",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packages",
+                    ":package_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "package_id",
+                      "description": "(Required) Package ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d8da4f57-6b1f-4bc9-8cea-3cc8e0cc1927",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packages",
+                    ":package_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "package_id",
+                      "description": "(Required) Package ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e5132bcc-0c98-40bf-9f37-115fdb23a13c",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packages",
+                    ":package_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "package_id",
+                      "description": "(Required) Package ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a007ef29-36db-4471-9660-24868edfc61b",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packages",
+                    ":package_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "package_id",
+                      "description": "(Required) Package ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.canix.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "bdead161-31cb-48d5-a82c-4bf4e8b63791",
+    "name": "Canix Packages API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# Introduction\nThis API documentation describes the endpoints used by third-party developers to get Canix data for their account.\n# Authentication\nCanix API uses API Keys for authentication. You can generate an API key on our [API page](https://app.canix.com/company/api), and on your API requests use the `X-API-KEY` header with the API key value you generated.\nWe strongly recommend using a secrets manager. Plain text files like dotenv lead to accidental costly leaks. Use [Doppler](https://doppler.com/) or similar options for a developer friendly experience. AWS and Google Cloud have native solutions as well.\n\nContact Support:\n Name: Canix Support\n Email: help@canix.com",
+      "type": "text/plain"
+    }
+  }
+}

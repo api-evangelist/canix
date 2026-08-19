@@ -1,0 +1,1546 @@
+{
+  "item": [
+    {
+      "id": "6e588c95-51d0-483b-a7f0-3762ab06e98a",
+      "name": "Strains",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9380dcce-d036-495a-97e3-fe3fdcb09e52",
+          "name": "GetStrains",
+          "request": {
+            "name": "GetStrains",
+            "description": {
+              "content": "Return active Strains",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "strains"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "facility_id",
+                  "value": "<integer>",
+                  "description": "Facility ID (optional)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "2000",
+                  "description": "Max number of records to return (optional). Cannot exceed 2000"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Offset for the returned records (optional)"
+                },
+                {
+                  "disabled": false,
+                  "key": "order_by",
+                  "value": "<string>",
+                  "description": "Order-by clause, in SQL format (optional)"
+                },
+                {
+                  "disabled": false,
+                  "key": "where",
+                  "value": "<string>",
+                  "description": "Filter results using SQL-like WHERE clause syntax (optional).\n\n**Supported operators**: =, >, <, >=, <=, BETWEEN, IN, LIKE, AND, OR\n\n**Supported patterns**:\n- Equality: `status='Active'`\n- Comparison: `updated_at >= '2024-01-01'`\n- Range: `id BETWEEN 1 AND 10000`\n- List: `status IN ('Active', 'Pending')`\n- Pattern: `sku LIKE 'ABC%'`\n- Compound: `facility_id=123 AND is_active=true`\n"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4624e995-cbe3-438b-84bb-f15ef68c43ec",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strains"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "facility_id",
+                      "value": "123"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 2015,\n    \"name\": \"Lemon Skunk\",\n    \"notes\": \"Terpenes .63%\",\n    \"sku\": \"BIOJJ\",\n    \"testing_status\": \"InHouse\",\n    \"indica_percent\": 45,\n    \"sativa_percent\": 55,\n    \"cross_strains\": [\n      {\n        \"id\": 7094,\n        \"name\": \"Lemon Skunk\",\n        \"notes\": \"Terpenes .63%\",\n        \"sku\": \"BIOJJ\",\n        \"testing_status\": \"InHouse\",\n        \"indica_percent\": 45,\n        \"sativa_percent\": 55\n      },\n      {\n        \"id\": 6767,\n        \"name\": \"Lemon Skunk\",\n        \"notes\": \"Terpenes .63%\",\n        \"sku\": \"BIOJJ\",\n        \"testing_status\": \"InHouse\",\n        \"indica_percent\": 45,\n        \"sativa_percent\": 55\n      }\n    ]\n  },\n  {\n    \"id\": 7890,\n    \"name\": \"Lemon Skunk\",\n    \"notes\": \"Terpenes .63%\",\n    \"sku\": \"BIOJJ\",\n    \"testing_status\": \"InHouse\",\n    \"indica_percent\": 45,\n    \"sativa_percent\": 55,\n    \"cross_strains\": [\n      {\n        \"id\": 6508,\n        \"name\": \"Lemon Skunk\",\n        \"notes\": \"Terpenes .63%\",\n        \"sku\": \"BIOJJ\",\n        \"testing_status\": \"InHouse\",\n        \"indica_percent\": 45,\n        \"sativa_percent\": 55\n      },\n      {\n        \"id\": 8191,\n        \"name\": \"Lemon Skunk\",\n        \"notes\": \"Terpenes .63%\",\n        \"sku\": \"BIOJJ\",\n        \"testing_status\": \"InHouse\",\n        \"indica_percent\": 45,\n        \"sativa_percent\": 55\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "58f1c5e6-feab-46a0-a5ca-0e564c6f6971",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strains"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "facility_id",
+                      "value": "123"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "72c4ab6c-aea6-475d-892b-e3e8930c5d57",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strains"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "facility_id",
+                      "value": "123"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4018bdd1-eb82-4656-8bd3-022ff4652f76",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strains"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "facility_id",
+                      "value": "123"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d60516fd-21d3-4e23-a0ae-273832b38be5",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strains"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "facility_id",
+                      "value": "123"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "41e84f7f-8156-4a4a-9d99-851623489fe6",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strains"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "facility_id",
+                      "value": "123"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0b5e43af-bbfc-4b1f-8788-5e03c6c2c477",
+          "name": "CreateStrain",
+          "request": {
+            "name": "CreateStrain",
+            "description": {
+              "content": "__CALLING THIS ENDPOINT WILL MODIFY YOUR DATA IRREVERSIBLY. ONLY CALL THIS ON SANDBOX DATA DURING DEVELOPMENT/CODING/TESTING.__",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "strains"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"facility_id\": \"<integer>\",\n  \"description\": \"<string>\",\n  \"genetics\": \"<string>\",\n  \"active\": \"<boolean>\",\n  \"cross_strain_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"sku\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"cbd_level\": \"<float>\",\n  \"thc_level\": \"<float>\",\n  \"indica_percent\": \"<float>\",\n  \"sativa_percent\": \"<float>\",\n  \"testing_status\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4b601f6b-6208-4862-b43b-466c9c6f7954",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strains"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Blue Dream\",\n  \"facility_id\": 123,\n  \"description\": \"A sativa-dominant hybrid\",\n  \"genetics\": \"Blueberry x Haze\",\n  \"active\": true,\n  \"cross_strain_ids\": [\n    456,\n    789\n  ],\n  \"sku\": \"BD-001\",\n  \"notes\": \"High-yield strain with excellent terpene profile\",\n  \"cbd_level\": 0.5,\n  \"thc_level\": 18.5,\n  \"indica_percent\": 40,\n  \"sativa_percent\": 60,\n  \"testing_status\": \"Tested\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 3829,\n  \"name\": \"Lemon Skunk\",\n  \"notes\": \"Terpenes .63%\",\n  \"sku\": \"BIOJJ\",\n  \"testing_status\": \"InHouse\",\n  \"indica_percent\": 45,\n  \"sativa_percent\": 55,\n  \"cross_strains\": [\n    {\n      \"id\": 1246,\n      \"name\": \"Lemon Skunk\",\n      \"notes\": \"Terpenes .63%\",\n      \"sku\": \"BIOJJ\",\n      \"testing_status\": \"InHouse\",\n      \"indica_percent\": 45,\n      \"sativa_percent\": 55\n    },\n    {\n      \"id\": 7155,\n      \"name\": \"Lemon Skunk\",\n      \"notes\": \"Terpenes .63%\",\n      \"sku\": \"BIOJJ\",\n      \"testing_status\": \"InHouse\",\n      \"indica_percent\": 45,\n      \"sativa_percent\": 55\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "74d32cdb-cf81-4651-9f1d-e0f45c4386dc",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strains"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Blue Dream\",\n  \"facility_id\": 123,\n  \"description\": \"A sativa-dominant hybrid\",\n  \"genetics\": \"Blueberry x Haze\",\n  \"active\": true,\n  \"cross_strain_ids\": [\n    456,\n    789\n  ],\n  \"sku\": \"BD-001\",\n  \"notes\": \"High-yield strain with excellent terpene profile\",\n  \"cbd_level\": 0.5,\n  \"thc_level\": 18.5,\n  \"indica_percent\": 40,\n  \"sativa_percent\": 60,\n  \"testing_status\": \"Tested\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "422b9291-74cd-43e4-9107-74a6b10a7f94",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strains"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Blue Dream\",\n  \"facility_id\": 123,\n  \"description\": \"A sativa-dominant hybrid\",\n  \"genetics\": \"Blueberry x Haze\",\n  \"active\": true,\n  \"cross_strain_ids\": [\n    456,\n    789\n  ],\n  \"sku\": \"BD-001\",\n  \"notes\": \"High-yield strain with excellent terpene profile\",\n  \"cbd_level\": 0.5,\n  \"thc_level\": 18.5,\n  \"indica_percent\": 40,\n  \"sativa_percent\": 60,\n  \"testing_status\": \"Tested\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "42c28149-e272-4f62-ae77-5393a71e9e55",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strains"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Blue Dream\",\n  \"facility_id\": 123,\n  \"description\": \"A sativa-dominant hybrid\",\n  \"genetics\": \"Blueberry x Haze\",\n  \"active\": true,\n  \"cross_strain_ids\": [\n    456,\n    789\n  ],\n  \"sku\": \"BD-001\",\n  \"notes\": \"High-yield strain with excellent terpene profile\",\n  \"cbd_level\": 0.5,\n  \"thc_level\": 18.5,\n  \"indica_percent\": 40,\n  \"sativa_percent\": 60,\n  \"testing_status\": \"Tested\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c8c56370-687d-4f51-9f2d-05758b952313",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strains"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Blue Dream\",\n  \"facility_id\": 123,\n  \"description\": \"A sativa-dominant hybrid\",\n  \"genetics\": \"Blueberry x Haze\",\n  \"active\": true,\n  \"cross_strain_ids\": [\n    456,\n    789\n  ],\n  \"sku\": \"BD-001\",\n  \"notes\": \"High-yield strain with excellent terpene profile\",\n  \"cbd_level\": 0.5,\n  \"thc_level\": 18.5,\n  \"indica_percent\": 40,\n  \"sativa_percent\": 60,\n  \"testing_status\": \"Tested\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5d679e00-d966-4066-9544-2fc44b9e8d1d",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strains"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Blue Dream\",\n  \"facility_id\": 123,\n  \"description\": \"A sativa-dominant hybrid\",\n  \"genetics\": \"Blueberry x Haze\",\n  \"active\": true,\n  \"cross_strain_ids\": [\n    456,\n    789\n  ],\n  \"sku\": \"BD-001\",\n  \"notes\": \"High-yield strain with excellent terpene profile\",\n  \"cbd_level\": 0.5,\n  \"thc_level\": 18.5,\n  \"indica_percent\": 40,\n  \"sativa_percent\": 60,\n  \"testing_status\": \"Tested\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9dcf0185-a994-47ef-acfa-5f9d12bab8c7",
+          "name": "GetStrain",
+          "request": {
+            "name": "GetStrain",
+            "description": {
+              "content": "Get Strain by ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "strains",
+                ":strain_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "strain_id",
+                  "description": "(Required) Strain ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7228b854-1c29-4b9d-952e-52da9b0f6472",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strains",
+                    ":strain_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "strain_id",
+                      "description": "(Required) Strain ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 3829,\n  \"name\": \"Lemon Skunk\",\n  \"notes\": \"Terpenes .63%\",\n  \"sku\": \"BIOJJ\",\n  \"testing_status\": \"InHouse\",\n  \"indica_percent\": 45,\n  \"sativa_percent\": 55,\n  \"cross_strains\": [\n    {\n      \"id\": 1246,\n      \"name\": \"Lemon Skunk\",\n      \"notes\": \"Terpenes .63%\",\n      \"sku\": \"BIOJJ\",\n      \"testing_status\": \"InHouse\",\n      \"indica_percent\": 45,\n      \"sativa_percent\": 55\n    },\n    {\n      \"id\": 7155,\n      \"name\": \"Lemon Skunk\",\n      \"notes\": \"Terpenes .63%\",\n      \"sku\": \"BIOJJ\",\n      \"testing_status\": \"InHouse\",\n      \"indica_percent\": 45,\n      \"sativa_percent\": 55\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5f18ed82-601f-4a6f-987e-0f03522ddd90",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strains",
+                    ":strain_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "strain_id",
+                      "description": "(Required) Strain ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "30937d20-b30e-46ef-9fd9-78ee44008451",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strains",
+                    ":strain_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "strain_id",
+                      "description": "(Required) Strain ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cdded58a-a3cf-48d8-9d97-d17bb17a5c61",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strains",
+                    ":strain_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "strain_id",
+                      "description": "(Required) Strain ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5e00a21c-5816-44c1-bf05-1da332c6e047",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strains",
+                    ":strain_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "strain_id",
+                      "description": "(Required) Strain ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e2d19d29-9624-4510-83d2-7499c4c4966a",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strains",
+                    ":strain_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "strain_id",
+                      "description": "(Required) Strain ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e1197f2d-32d5-4d12-8488-d255ef1f766c",
+          "name": "UpdateStrain",
+          "request": {
+            "name": "UpdateStrain",
+            "description": {
+              "content": "__CALLING THIS ENDPOINT WILL MODIFY YOUR DATA IRREVERSIBLY. ONLY CALL THIS ON SANDBOX DATA DURING DEVELOPMENT/CODING/TESTING.__",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "strains",
+                ":strain_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "strain_id",
+                  "description": "(Required) ID of Strain to update"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"genetics\": \"<string>\",\n  \"active\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3bc12d9b-45e4-45b3-91e5-4ee75ad84d9e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strains",
+                    ":strain_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "strain_id",
+                      "description": "(Required) ID of Strain to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Blue Dream\",\n  \"description\": \"A sativa-dominant hybrid\",\n  \"genetics\": \"Blueberry x Haze\",\n  \"active\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 3829,\n  \"name\": \"Lemon Skunk\",\n  \"notes\": \"Terpenes .63%\",\n  \"sku\": \"BIOJJ\",\n  \"testing_status\": \"InHouse\",\n  \"indica_percent\": 45,\n  \"sativa_percent\": 55,\n  \"cross_strains\": [\n    {\n      \"id\": 1246,\n      \"name\": \"Lemon Skunk\",\n      \"notes\": \"Terpenes .63%\",\n      \"sku\": \"BIOJJ\",\n      \"testing_status\": \"InHouse\",\n      \"indica_percent\": 45,\n      \"sativa_percent\": 55\n    },\n    {\n      \"id\": 7155,\n      \"name\": \"Lemon Skunk\",\n      \"notes\": \"Terpenes .63%\",\n      \"sku\": \"BIOJJ\",\n      \"testing_status\": \"InHouse\",\n      \"indica_percent\": 45,\n      \"sativa_percent\": 55\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "134ad759-987e-40fe-b8f6-98105e8d6293",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strains",
+                    ":strain_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "strain_id",
+                      "description": "(Required) ID of Strain to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Blue Dream\",\n  \"description\": \"A sativa-dominant hybrid\",\n  \"genetics\": \"Blueberry x Haze\",\n  \"active\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "dbfc1f7a-29f6-4e2a-9c76-d259d23462de",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strains",
+                    ":strain_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "strain_id",
+                      "description": "(Required) ID of Strain to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Blue Dream\",\n  \"description\": \"A sativa-dominant hybrid\",\n  \"genetics\": \"Blueberry x Haze\",\n  \"active\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0ccf2380-be86-48b5-9d53-2e86be8fdcfd",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strains",
+                    ":strain_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "strain_id",
+                      "description": "(Required) ID of Strain to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Blue Dream\",\n  \"description\": \"A sativa-dominant hybrid\",\n  \"genetics\": \"Blueberry x Haze\",\n  \"active\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f89a1c25-87d1-487b-b417-c01274b982bd",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strains",
+                    ":strain_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "strain_id",
+                      "description": "(Required) ID of Strain to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Blue Dream\",\n  \"description\": \"A sativa-dominant hybrid\",\n  \"genetics\": \"Blueberry x Haze\",\n  \"active\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5b02307b-bc0d-490f-9874-4be071c0bab4",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "strains",
+                    ":strain_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "strain_id",
+                      "description": "(Required) ID of Strain to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Blue Dream\",\n  \"description\": \"A sativa-dominant hybrid\",\n  \"genetics\": \"Blueberry x Haze\",\n  \"active\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.canix.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c0520bfc-4c78-4fc6-8dc2-65eaf87e9d90",
+    "name": "Canix Strains API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# Introduction\nThis API documentation describes the endpoints used by third-party developers to get Canix data for their account.\n# Authentication\nCanix API uses API Keys for authentication. You can generate an API key on our [API page](https://app.canix.com/company/api), and on your API requests use the `X-API-KEY` header with the API key value you generated.\nWe strongly recommend using a secrets manager. Plain text files like dotenv lead to accidental costly leaks. Use [Doppler](https://doppler.com/) or similar options for a developer friendly experience. AWS and Google Cloud have native solutions as well.\n\nContact Support:\n Name: Canix Support\n Email: help@canix.com",
+      "type": "text/plain"
+    }
+  }
+}

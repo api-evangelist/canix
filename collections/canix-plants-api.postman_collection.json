@@ -1,0 +1,1102 @@
+{
+  "item": [
+    {
+      "id": "06be99e2-07a8-4eea-9b3b-0ac76291c03e",
+      "name": "Plants",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9ed98bce-4e19-4be4-a87b-690ad5748df5",
+          "name": "GetPlants",
+          "request": {
+            "name": "GetPlants",
+            "description": {
+              "content": "Return active Plants",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "plants"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "2000",
+                  "description": "Max number of records to return (optional). Cannot exceed 2000"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Offset for the returned records (optional)"
+                },
+                {
+                  "disabled": false,
+                  "key": "order_by",
+                  "value": "<string>",
+                  "description": "Order-by clause, in SQL format (optional)"
+                },
+                {
+                  "disabled": false,
+                  "key": "where",
+                  "value": "<string>",
+                  "description": "Filter results using SQL-like WHERE clause syntax (optional).\n\n**Supported operators**: =, >, <, >=, <=, BETWEEN, IN, LIKE, AND, OR\n\n**Supported patterns**:\n- Equality: `status='Active'`\n- Comparison: `updated_at >= '2024-01-01'`\n- Range: `id BETWEEN 1 AND 10000`\n- List: `status IN ('Active', 'Pending')`\n- Pattern: `sku LIKE 'ABC%'`\n- Compound: `facility_id=123 AND is_active=true`\n"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cd331dbe-84f5-4285-9d4e-b96b3f30387d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 123,\n    \"tag\": \"1A4FF0000000022000000719\",\n    \"plant_batch\": {\n      \"id\": 123,\n      \"name\": \"1A4FF0000000022000000719\",\n      \"mature_count\": 21,\n      \"immature_count\": 2,\n      \"vegetative_count\": 23,\n      \"flowering_count\": 25,\n      \"source\": \"Clone\",\n      \"planted_date\": \"2018-11-06 08:00:00+00:00\",\n      \"destroyed_count\": 5,\n      \"notes\": \"nice batch!\",\n      \"strain\": {\n        \"id\": 7253,\n        \"name\": \"Lemon Skunk\",\n        \"notes\": \"Terpenes .63%\",\n        \"sku\": \"BIOJJ\",\n        \"testing_status\": \"InHouse\",\n        \"indica_percent\": 45,\n        \"sativa_percent\": 55,\n        \"cross_strains\": [\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"notes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sku\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"testing_status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"indica_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sativa_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"notes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sku\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"testing_status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"indica_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sativa_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"location\": {\n        \"id\": 123,\n        \"name\": \"Pro System\",\n        \"sqft\": 14.4,\n        \"num_lights\": 42,\n        \"parent_location\": {\n          \"id\": 123,\n          \"name\": \"Pro System\",\n          \"sqft\": 14.4,\n          \"num_lights\": 42,\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n          \"is_active\": true\n        },\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n        \"is_active\": true\n      },\n      \"lot_id\": \"string\",\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n    },\n    \"weight\": 2,\n    \"weight_unit\": \"Grams\",\n    \"growth_phase\": \"Flowering\",\n    \"state\": \"Tracked\",\n    \"strain\": {\n      \"id\": 7325,\n      \"name\": \"Lemon Skunk\",\n      \"notes\": \"Terpenes .63%\",\n      \"sku\": \"BIOJJ\",\n      \"testing_status\": \"InHouse\",\n      \"indica_percent\": 45,\n      \"sativa_percent\": 55,\n      \"cross_strains\": [\n        {\n          \"id\": 5288,\n          \"name\": \"Lemon Skunk\",\n          \"notes\": \"Terpenes .63%\",\n          \"sku\": \"BIOJJ\",\n          \"testing_status\": \"InHouse\",\n          \"indica_percent\": 45,\n          \"sativa_percent\": 55\n        },\n        {\n          \"id\": 668,\n          \"name\": \"Lemon Skunk\",\n          \"notes\": \"Terpenes .63%\",\n          \"sku\": \"BIOJJ\",\n          \"testing_status\": \"InHouse\",\n          \"indica_percent\": 45,\n          \"sativa_percent\": 55\n        }\n      ]\n    },\n    \"location\": {\n      \"id\": 123,\n      \"name\": \"Pro System\",\n      \"sqft\": 14.4,\n      \"num_lights\": 42,\n      \"parent_location\": {\n        \"id\": 123,\n        \"name\": \"Pro System\",\n        \"sqft\": 14.4,\n        \"num_lights\": 42,\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n        \"is_active\": true\n      },\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n      \"is_active\": true\n    },\n    \"planted_date\": \"2018-11-06 08:00:00+00:00\",\n    \"vegetative_date\": \"2015-12-23 07:00:00+00:00\",\n    \"flowering_date\": \"2016-04-18 06:00:00+00:00\",\n    \"harvested_date\": \"2018-04-18 06:00:00+00:00\",\n    \"destroyed_date\": \"2019-04-18 06:00:00+00:00\",\n    \"notes\": \"nice plant!\",\n    \"age_in_days\": 2039,\n    \"harvest\": {\n      \"id\": 123,\n      \"name\": \"Offline Manicure\",\n      \"strain\": {\n        \"id\": 5353,\n        \"name\": \"Lemon Skunk\",\n        \"notes\": \"Terpenes .63%\",\n        \"sku\": \"BIOJJ\",\n        \"testing_status\": \"InHouse\",\n        \"indica_percent\": 45,\n        \"sativa_percent\": 55,\n        \"cross_strains\": [\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"notes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sku\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"testing_status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"indica_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sativa_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"notes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sku\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"testing_status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"indica_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sativa_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"drying_location\": {\n        \"id\": 123,\n        \"name\": \"Pro System\",\n        \"sqft\": 14.4,\n        \"num_lights\": 42,\n        \"parent_location\": {\n          \"id\": 123,\n          \"name\": \"Pro System\",\n          \"sqft\": 14.4,\n          \"num_lights\": 42,\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n          \"is_active\": true\n        },\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n        \"is_active\": true\n      },\n      \"harvest_date\": \"2018-11-06 08:00:00+00:00\",\n      \"plant_count\": 3,\n      \"average_plant_weight\": 107.7,\n      \"notes\": \"nice harvest!\",\n      \"waste_weight\": 100,\n      \"total_wet_weight\": 100,\n      \"total_packaged_weight\": 100,\n      \"finished_date\": \"2018-11-06 08:00:00+00:00\",\n      \"package_count\": 100,\n      \"lot_id\": \"string\",\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n    },\n    \"lot_id\": \"string\",\n    \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n  },\n  {\n    \"id\": 123,\n    \"tag\": \"1A4FF0000000022000000719\",\n    \"plant_batch\": {\n      \"id\": 123,\n      \"name\": \"1A4FF0000000022000000719\",\n      \"mature_count\": 21,\n      \"immature_count\": 2,\n      \"vegetative_count\": 23,\n      \"flowering_count\": 25,\n      \"source\": \"Clone\",\n      \"planted_date\": \"2018-11-06 08:00:00+00:00\",\n      \"destroyed_count\": 5,\n      \"notes\": \"nice batch!\",\n      \"strain\": {\n        \"id\": 4888,\n        \"name\": \"Lemon Skunk\",\n        \"notes\": \"Terpenes .63%\",\n        \"sku\": \"BIOJJ\",\n        \"testing_status\": \"InHouse\",\n        \"indica_percent\": 45,\n        \"sativa_percent\": 55,\n        \"cross_strains\": [\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"notes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sku\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"testing_status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"indica_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sativa_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"notes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sku\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"testing_status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"indica_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sativa_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"location\": {\n        \"id\": 123,\n        \"name\": \"Pro System\",\n        \"sqft\": 14.4,\n        \"num_lights\": 42,\n        \"parent_location\": {\n          \"id\": 123,\n          \"name\": \"Pro System\",\n          \"sqft\": 14.4,\n          \"num_lights\": 42,\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n          \"is_active\": true\n        },\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n        \"is_active\": true\n      },\n      \"lot_id\": \"string\",\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n    },\n    \"weight\": 2,\n    \"weight_unit\": \"Grams\",\n    \"growth_phase\": \"Flowering\",\n    \"state\": \"Tracked\",\n    \"strain\": {\n      \"id\": 472,\n      \"name\": \"Lemon Skunk\",\n      \"notes\": \"Terpenes .63%\",\n      \"sku\": \"BIOJJ\",\n      \"testing_status\": \"InHouse\",\n      \"indica_percent\": 45,\n      \"sativa_percent\": 55,\n      \"cross_strains\": [\n        {\n          \"id\": 5909,\n          \"name\": \"Lemon Skunk\",\n          \"notes\": \"Terpenes .63%\",\n          \"sku\": \"BIOJJ\",\n          \"testing_status\": \"InHouse\",\n          \"indica_percent\": 45,\n          \"sativa_percent\": 55\n        },\n        {\n          \"id\": 6196,\n          \"name\": \"Lemon Skunk\",\n          \"notes\": \"Terpenes .63%\",\n          \"sku\": \"BIOJJ\",\n          \"testing_status\": \"InHouse\",\n          \"indica_percent\": 45,\n          \"sativa_percent\": 55\n        }\n      ]\n    },\n    \"location\": {\n      \"id\": 123,\n      \"name\": \"Pro System\",\n      \"sqft\": 14.4,\n      \"num_lights\": 42,\n      \"parent_location\": {\n        \"id\": 123,\n        \"name\": \"Pro System\",\n        \"sqft\": 14.4,\n        \"num_lights\": 42,\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n        \"is_active\": true\n      },\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n      \"is_active\": true\n    },\n    \"planted_date\": \"2018-11-06 08:00:00+00:00\",\n    \"vegetative_date\": \"2015-12-23 07:00:00+00:00\",\n    \"flowering_date\": \"2016-04-18 06:00:00+00:00\",\n    \"harvested_date\": \"2018-04-18 06:00:00+00:00\",\n    \"destroyed_date\": \"2019-04-18 06:00:00+00:00\",\n    \"notes\": \"nice plant!\",\n    \"age_in_days\": 2039,\n    \"harvest\": {\n      \"id\": 123,\n      \"name\": \"Offline Manicure\",\n      \"strain\": {\n        \"id\": 1311,\n        \"name\": \"Lemon Skunk\",\n        \"notes\": \"Terpenes .63%\",\n        \"sku\": \"BIOJJ\",\n        \"testing_status\": \"InHouse\",\n        \"indica_percent\": 45,\n        \"sativa_percent\": 55,\n        \"cross_strains\": [\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"notes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sku\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"testing_status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"indica_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sativa_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"notes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sku\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"testing_status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"indica_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sativa_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"drying_location\": {\n        \"id\": 123,\n        \"name\": \"Pro System\",\n        \"sqft\": 14.4,\n        \"num_lights\": 42,\n        \"parent_location\": {\n          \"id\": 123,\n          \"name\": \"Pro System\",\n          \"sqft\": 14.4,\n          \"num_lights\": 42,\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n          \"is_active\": true\n        },\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n        \"is_active\": true\n      },\n      \"harvest_date\": \"2018-11-06 08:00:00+00:00\",\n      \"plant_count\": 3,\n      \"average_plant_weight\": 107.7,\n      \"notes\": \"nice harvest!\",\n      \"waste_weight\": 100,\n      \"total_wet_weight\": 100,\n      \"total_packaged_weight\": 100,\n      \"finished_date\": \"2018-11-06 08:00:00+00:00\",\n      \"package_count\": 100,\n      \"lot_id\": \"string\",\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n    },\n    \"lot_id\": \"string\",\n    \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ab31ef5b-9733-4995-8ff5-09cd7b00d78b",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b0f1da97-fb59-4764-9793-a33463d9af8f",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7ddcda5f-60f7-4dbb-a8f7-3226cecbe12d",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f65c6723-f3ae-4c40-9976-02025f13fc19",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "dc3956fc-2366-4ddb-b7a0-74facc349a13",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "291fdfc6-bf5c-4fd5-85bf-f55496028125",
+          "name": "GetPlantsCount",
+          "request": {
+            "name": "GetPlantsCount",
+            "description": {
+              "content": "Return total count of active Plants",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "plants",
+                "count"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "where",
+                  "value": "<string>",
+                  "description": "Filter results using SQL-like WHERE clause syntax (optional).\n\n**Supported operators**: =, >, <, >=, <=, BETWEEN, IN, LIKE, AND, OR\n\n**Supported patterns**:\n- Equality: `status='Active'`\n- Comparison: `updated_at >= '2024-01-01'`\n- Range: `id BETWEEN 1 AND 10000`\n- List: `status IN ('Active', 'Pending')`\n- Pattern: `sku LIKE 'ABC%'`\n- Compound: `facility_id=123 AND is_active=true`\n"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8e730532-dedc-4de3-8afe-72671cc1090b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plants",
+                    "count"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"count\": 123\n  },\n  {\n    \"count\": 123\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "59acd0ac-a71a-471a-a36d-7ffe7698b01d",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plants",
+                    "count"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0cd8253e-5e4a-477c-9bd5-ad23d9fb9c8e",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plants",
+                    "count"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e2a9b9f9-dfb3-4287-9938-81f267998ccc",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plants",
+                    "count"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6cd9e5ea-5108-4b64-9512-74df51d2e0a2",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plants",
+                    "count"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "008f68f9-fab8-4cf8-b5ff-245baf841249",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plants",
+                    "count"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ba3f99a5-fe9e-431d-a0b3-b339dca359ad",
+          "name": "GetPlant",
+          "request": {
+            "name": "GetPlant",
+            "description": {
+              "content": "Get Plant by ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "plants",
+                ":plant_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "plant_id",
+                  "description": "(Required) Plant ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8c13a7e0-52b4-4a9c-abfc-b0c239c7dfaa",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plants",
+                    ":plant_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "plant_id",
+                      "description": "(Required) Plant ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 123,\n  \"tag\": \"1A4FF0000000022000000719\",\n  \"plant_batch\": {\n    \"id\": 123,\n    \"name\": \"1A4FF0000000022000000719\",\n    \"mature_count\": 21,\n    \"immature_count\": 2,\n    \"vegetative_count\": 23,\n    \"flowering_count\": 25,\n    \"source\": \"Clone\",\n    \"planted_date\": \"2018-11-06 08:00:00+00:00\",\n    \"destroyed_count\": 5,\n    \"notes\": \"nice batch!\",\n    \"strain\": {\n      \"id\": 9638,\n      \"name\": \"Lemon Skunk\",\n      \"notes\": \"Terpenes .63%\",\n      \"sku\": \"BIOJJ\",\n      \"testing_status\": \"InHouse\",\n      \"indica_percent\": 45,\n      \"sativa_percent\": 55,\n      \"cross_strains\": [\n        {\n          \"id\": 7809,\n          \"name\": \"Lemon Skunk\",\n          \"notes\": \"Terpenes .63%\",\n          \"sku\": \"BIOJJ\",\n          \"testing_status\": \"InHouse\",\n          \"indica_percent\": 45,\n          \"sativa_percent\": 55\n        },\n        {\n          \"id\": 8922,\n          \"name\": \"Lemon Skunk\",\n          \"notes\": \"Terpenes .63%\",\n          \"sku\": \"BIOJJ\",\n          \"testing_status\": \"InHouse\",\n          \"indica_percent\": 45,\n          \"sativa_percent\": 55\n        }\n      ]\n    },\n    \"location\": {\n      \"id\": 123,\n      \"name\": \"Pro System\",\n      \"sqft\": 14.4,\n      \"num_lights\": 42,\n      \"parent_location\": {\n        \"id\": 123,\n        \"name\": \"Pro System\",\n        \"sqft\": 14.4,\n        \"num_lights\": 42,\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n        \"is_active\": true\n      },\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n      \"is_active\": true\n    },\n    \"lot_id\": \"string\",\n    \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n  },\n  \"weight\": 2,\n  \"weight_unit\": \"Grams\",\n  \"growth_phase\": \"Flowering\",\n  \"state\": \"Tracked\",\n  \"strain\": {\n    \"id\": 8762,\n    \"name\": \"Lemon Skunk\",\n    \"notes\": \"Terpenes .63%\",\n    \"sku\": \"BIOJJ\",\n    \"testing_status\": \"InHouse\",\n    \"indica_percent\": 45,\n    \"sativa_percent\": 55,\n    \"cross_strains\": [\n      {\n        \"id\": 3244,\n        \"name\": \"Lemon Skunk\",\n        \"notes\": \"Terpenes .63%\",\n        \"sku\": \"BIOJJ\",\n        \"testing_status\": \"InHouse\",\n        \"indica_percent\": 45,\n        \"sativa_percent\": 55\n      },\n      {\n        \"id\": 9709,\n        \"name\": \"Lemon Skunk\",\n        \"notes\": \"Terpenes .63%\",\n        \"sku\": \"BIOJJ\",\n        \"testing_status\": \"InHouse\",\n        \"indica_percent\": 45,\n        \"sativa_percent\": 55\n      }\n    ]\n  },\n  \"location\": {\n    \"id\": 123,\n    \"name\": \"Pro System\",\n    \"sqft\": 14.4,\n    \"num_lights\": 42,\n    \"parent_location\": {\n      \"id\": 123,\n      \"name\": \"Pro System\",\n      \"sqft\": 14.4,\n      \"num_lights\": 42,\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n      \"is_active\": true\n    },\n    \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n    \"is_active\": true\n  },\n  \"planted_date\": \"2018-11-06 08:00:00+00:00\",\n  \"vegetative_date\": \"2015-12-23 07:00:00+00:00\",\n  \"flowering_date\": \"2016-04-18 06:00:00+00:00\",\n  \"harvested_date\": \"2018-04-18 06:00:00+00:00\",\n  \"destroyed_date\": \"2019-04-18 06:00:00+00:00\",\n  \"notes\": \"nice plant!\",\n  \"age_in_days\": 2039,\n  \"harvest\": {\n    \"id\": 123,\n    \"name\": \"Offline Manicure\",\n    \"strain\": {\n      \"id\": 8689,\n      \"name\": \"Lemon Skunk\",\n      \"notes\": \"Terpenes .63%\",\n      \"sku\": \"BIOJJ\",\n      \"testing_status\": \"InHouse\",\n      \"indica_percent\": 45,\n      \"sativa_percent\": 55,\n      \"cross_strains\": [\n        {\n          \"id\": 5829,\n          \"name\": \"Lemon Skunk\",\n          \"notes\": \"Terpenes .63%\",\n          \"sku\": \"BIOJJ\",\n          \"testing_status\": \"InHouse\",\n          \"indica_percent\": 45,\n          \"sativa_percent\": 55\n        },\n        {\n          \"id\": 1971,\n          \"name\": \"Lemon Skunk\",\n          \"notes\": \"Terpenes .63%\",\n          \"sku\": \"BIOJJ\",\n          \"testing_status\": \"InHouse\",\n          \"indica_percent\": 45,\n          \"sativa_percent\": 55\n        }\n      ]\n    },\n    \"drying_location\": {\n      \"id\": 123,\n      \"name\": \"Pro System\",\n      \"sqft\": 14.4,\n      \"num_lights\": 42,\n      \"parent_location\": {\n        \"id\": 123,\n        \"name\": \"Pro System\",\n        \"sqft\": 14.4,\n        \"num_lights\": 42,\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n        \"is_active\": true\n      },\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n      \"is_active\": true\n    },\n    \"harvest_date\": \"2018-11-06 08:00:00+00:00\",\n    \"plant_count\": 3,\n    \"average_plant_weight\": 107.7,\n    \"notes\": \"nice harvest!\",\n    \"waste_weight\": 100,\n    \"total_wet_weight\": 100,\n    \"total_packaged_weight\": 100,\n    \"finished_date\": \"2018-11-06 08:00:00+00:00\",\n    \"package_count\": 100,\n    \"lot_id\": \"string\",\n    \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n  },\n  \"lot_id\": \"string\",\n  \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ae4b4a44-c076-40b6-a97f-1ba10ee1feaf",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plants",
+                    ":plant_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "plant_id",
+                      "description": "(Required) Plant ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "09423189-b830-4bf4-9513-733c1d353422",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plants",
+                    ":plant_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "plant_id",
+                      "description": "(Required) Plant ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f31ba4ae-9683-46d8-9329-88e21a0f4a22",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plants",
+                    ":plant_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "plant_id",
+                      "description": "(Required) Plant ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f3feec6a-037a-4df2-bd6b-5cf94d830d5c",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plants",
+                    ":plant_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "plant_id",
+                      "description": "(Required) Plant ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9d1d3de1-1923-4c3c-96e2-1f2fc41939d5",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plants",
+                    ":plant_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "plant_id",
+                      "description": "(Required) Plant ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.canix.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f63e2c81-2332-4fdb-845c-e8ad65fed533",
+    "name": "Canix Plants API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# Introduction\nThis API documentation describes the endpoints used by third-party developers to get Canix data for their account.\n# Authentication\nCanix API uses API Keys for authentication. You can generate an API key on our [API page](https://app.canix.com/company/api), and on your API requests use the `X-API-KEY` header with the API key value you generated.\nWe strongly recommend using a secrets manager. Plain text files like dotenv lead to accidental costly leaks. Use [Doppler](https://doppler.com/) or similar options for a developer friendly experience. AWS and Google Cloud have native solutions as well.\n\nContact Support:\n Name: Canix Support\n Email: help@canix.com",
+      "type": "text/plain"
+    }
+  }
+}

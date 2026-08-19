@@ -1,0 +1,3367 @@
+{
+  "item": [
+    {
+      "id": "e88da3ef-4f1f-47ef-8429-5e8206b1c57d",
+      "name": "Sales Orders",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e6a15c52-ea15-4217-a14a-f7582dc53968",
+          "name": "GetSalesOrders",
+          "request": {
+            "name": "GetSalesOrders",
+            "description": {
+              "content": "Return Sales Orders",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sales_orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "2000",
+                  "description": "Max number of records to return (optional). Cannot exceed 2000"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Offset for the returned records (optional)"
+                },
+                {
+                  "disabled": false,
+                  "key": "order_by",
+                  "value": "<string>",
+                  "description": "Order-by clause, in SQL format (optional)"
+                },
+                {
+                  "disabled": false,
+                  "key": "where",
+                  "value": "<string>",
+                  "description": "Filter results using SQL-like WHERE clause syntax (optional).\n\n**Supported operators**: =, >, <, >=, <=, BETWEEN, IN, LIKE, AND, OR\n\n**Supported patterns**:\n- Equality: `status='Active'`\n- Comparison: `updated_at >= '2024-01-01'`\n- Range: `id BETWEEN 1 AND 10000`\n- List: `status IN ('Active', 'Pending')`\n- Pattern: `sku LIKE 'ABC%'`\n- Compound: `facility_id=123 AND is_active=true`\n"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a44f65e9-8321-48d6-9ee0-b07aba0a1790",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales_orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 9542,\n    \"facility_id\": 9173,\n    \"name\": \"string\",\n    \"status\": \"string\",\n    \"delivery_date\": \"string\",\n    \"other_tax_rate\": 3010.7303211194626,\n    \"local_tax_rate\": 2584.076536318288,\n    \"state_tax_rate\": 4350.652760099968,\n    \"external_identifier\": \"string\",\n    \"created_at\": \"string\",\n    \"customer\": {\n      \"id\": 3354,\n      \"contact_name\": \"string\",\n      \"company_name\": \"string\",\n      \"facility_license_number\": \"string\",\n      \"license_type\": \"string\",\n      \"customer_number\": \"string\",\n      \"license_expiration_date\": \"string\",\n      \"phone\": \"string\",\n      \"email\": \"string\",\n      \"territory\": \"string\",\n      \"address\": {\n        \"street\": \"123 Cumberland St\",\n        \"street2\": \"West\",\n        \"city\": \"Somerset\",\n        \"county\": \"KY\",\n        \"state\": \"CO\",\n        \"country\": \"USA\",\n        \"postal_code\": \"string\"\n      },\n      \"notes\": \"string\",\n      \"outstanding_balance\": 6751.523630310029,\n      \"credit\": 6092.09836091059,\n      \"dba\": \"Doing Business As\",\n      \"is_active\": false,\n      \"created_at\": \"2018-11-06 08:00:00+00:00\",\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n    },\n    \"delivery_fee\": 2567.1863869354806,\n    \"payment_date\": \"string\",\n    \"payment_terms\": \"string\",\n    \"subtotal\": 8517.53338417965,\n    \"total_cultivation_tax\": 1052.329748443236,\n    \"total_price\": 6981.733264708264,\n    \"total_paid\": 2568.1933383577393,\n    \"credits\": 9042.846941987471,\n    \"discount\": 3948.3789293251734,\n    \"remaining_balance\": 8834.26762465309,\n    \"internal_notes\": \"string\",\n    \"payments\": [\n      {\n        \"amount\": 6567.755511639149,\n        \"date\": 4305,\n        \"id\": 2364,\n        \"sales_order_id\": 5799,\n        \"reference_number\": \"string\",\n        \"external_transaction_name\": \"string\",\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n      },\n      {\n        \"amount\": 3063.949075222009,\n        \"date\": 9251,\n        \"id\": 4678,\n        \"sales_order_id\": 1442,\n        \"reference_number\": \"string\",\n        \"external_transaction_name\": null,\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n      }\n    ],\n    \"sales_order_credit\": {\n      \"type\": \"fixed\",\n      \"amount\": 10,\n      \"reason\": \"Black Friday Sale\"\n    },\n    \"display_status\": \"string\",\n    \"contents\": [\n      {\n        \"id\": 8097,\n        \"weight\": 5913.885657563068,\n        \"weight_unit\": \"string\",\n        \"unit_price\": 821.1210458361984,\n        \"total_price\": 3535.437938057705,\n        \"item\": {\n          \"id\": 7036,\n          \"name\": \"Blue Dream - Trim\",\n          \"sku\": \"22657\"\n        },\n        \"brand\": {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"product_id\": null,\n        \"product_brand\": {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"is_sample\": false,\n        \"package_ids\": [\n          104,\n          9163\n        ],\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n        \"order\": 9014,\n        \"discount\": {\n          \"type\": \"fixed\",\n          \"amount\": 10,\n          \"reason\": \"Black Friday Sale\"\n        },\n        \"weight_unit_id\": 8546,\n        \"weight_unit_name\": \"string\"\n      },\n      {\n        \"id\": 1368,\n        \"weight\": 1319.0685858495144,\n        \"weight_unit\": \"string\",\n        \"unit_price\": 5470.89023144202,\n        \"total_price\": 3419.236003745365,\n        \"item\": {\n          \"id\": 7036,\n          \"name\": \"Blue Dream - Trim\",\n          \"sku\": \"22657\"\n        },\n        \"brand\": {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"product_id\": null,\n        \"product_brand\": {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"is_sample\": true,\n        \"package_ids\": [\n          1993,\n          2713\n        ],\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n        \"order\": 4123,\n        \"discount\": {\n          \"type\": \"fixed\",\n          \"amount\": 10,\n          \"reason\": \"Black Friday Sale\"\n        },\n        \"weight_unit_id\": 7299,\n        \"weight_unit_name\": \"string\"\n      }\n    ],\n    \"sales_representative\": {\n      \"id\": 123,\n      \"name\": \"John Doe\",\n      \"email\": \"j@d.com\"\n    },\n    \"invoice_url\": \"https://www.app.canix.com/sales/invoice/view/123456\",\n    \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n  },\n  {\n    \"id\": 179,\n    \"facility_id\": 1287,\n    \"name\": \"string\",\n    \"status\": \"string\",\n    \"delivery_date\": \"string\",\n    \"other_tax_rate\": 1294.598704296852,\n    \"local_tax_rate\": 9296.48696333789,\n    \"state_tax_rate\": 3709.1650458248414,\n    \"external_identifier\": \"string\",\n    \"created_at\": \"string\",\n    \"customer\": {\n      \"id\": 3494,\n      \"contact_name\": \"string\",\n      \"company_name\": \"string\",\n      \"facility_license_number\": \"string\",\n      \"license_type\": \"string\",\n      \"customer_number\": \"string\",\n      \"license_expiration_date\": \"string\",\n      \"phone\": \"string\",\n      \"email\": \"string\",\n      \"territory\": \"string\",\n      \"address\": {\n        \"street\": \"123 Cumberland St\",\n        \"street2\": \"West\",\n        \"city\": \"Somerset\",\n        \"county\": \"KY\",\n        \"state\": \"CO\",\n        \"country\": \"USA\",\n        \"postal_code\": \"string\"\n      },\n      \"notes\": \"string\",\n      \"outstanding_balance\": 448.8684342851401,\n      \"credit\": 3079.41406855898,\n      \"dba\": \"Doing Business As\",\n      \"is_active\": true,\n      \"created_at\": \"2018-11-06 08:00:00+00:00\",\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n    },\n    \"delivery_fee\": 3726.2335690159507,\n    \"payment_date\": \"string\",\n    \"payment_terms\": \"string\",\n    \"subtotal\": 9030.641729202165,\n    \"total_cultivation_tax\": 3238.7391491360386,\n    \"total_price\": 5443.010173835381,\n    \"total_paid\": 7506.365428799503,\n    \"credits\": 370.08994279568606,\n    \"discount\": 211.70322904369044,\n    \"remaining_balance\": 5406.779692268549,\n    \"internal_notes\": \"string\",\n    \"payments\": [\n      {\n        \"amount\": 1627.988534402941,\n        \"date\": 991,\n        \"id\": 3420,\n        \"sales_order_id\": 5712,\n        \"reference_number\": \"string\",\n        \"external_transaction_name\": null,\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n      },\n      {\n        \"amount\": 8784.647007446172,\n        \"date\": 6403,\n        \"id\": 469,\n        \"sales_order_id\": 9367,\n        \"reference_number\": \"string\",\n        \"external_transaction_name\": \"string\",\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n      }\n    ],\n    \"sales_order_credit\": {\n      \"type\": \"fixed\",\n      \"amount\": 10,\n      \"reason\": \"Black Friday Sale\"\n    },\n    \"display_status\": \"string\",\n    \"contents\": [\n      {\n        \"id\": 8027,\n        \"weight\": 2054.5575854159615,\n        \"weight_unit\": \"string\",\n        \"unit_price\": 8221.201919874422,\n        \"total_price\": 4545.491124339505,\n        \"item\": {\n          \"id\": 7036,\n          \"name\": \"Blue Dream - Trim\",\n          \"sku\": \"22657\"\n        },\n        \"brand\": {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"product_id\": null,\n        \"product_brand\": {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"is_sample\": false,\n        \"package_ids\": [\n          6761,\n          9533\n        ],\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n        \"order\": 1292,\n        \"discount\": {\n          \"type\": \"fixed\",\n          \"amount\": 10,\n          \"reason\": \"Black Friday Sale\"\n        },\n        \"weight_unit_id\": 9724,\n        \"weight_unit_name\": \"string\"\n      },\n      {\n        \"id\": 4409,\n        \"weight\": 8669.063194062917,\n        \"weight_unit\": \"string\",\n        \"unit_price\": 114.72183995502871,\n        \"total_price\": 6045.047169699512,\n        \"item\": {\n          \"id\": 7036,\n          \"name\": \"Blue Dream - Trim\",\n          \"sku\": \"22657\"\n        },\n        \"brand\": {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"product_id\": null,\n        \"product_brand\": {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"is_sample\": false,\n        \"package_ids\": [\n          3380,\n          6361\n        ],\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n        \"order\": 7919,\n        \"discount\": {\n          \"type\": \"fixed\",\n          \"amount\": 10,\n          \"reason\": \"Black Friday Sale\"\n        },\n        \"weight_unit_id\": 6711,\n        \"weight_unit_name\": \"string\"\n      }\n    ],\n    \"sales_representative\": {\n      \"id\": 123,\n      \"name\": \"John Doe\",\n      \"email\": \"j@d.com\"\n    },\n    \"invoice_url\": \"https://www.app.canix.com/sales/invoice/view/123456\",\n    \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b3e6bc06-5456-48b9-8087-0125a5ca7ff4",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales_orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d00c03c9-b236-4a42-b0b7-b10492e6802d",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales_orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3e3ec8d7-88a4-4e88-9ce0-75c4637d56ee",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales_orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fa26a26f-6ddb-4904-a425-4a5bcd2f0133",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales_orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f41cacfa-9c70-4966-bca0-597789cd40fc",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales_orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b8be8ed1-b141-46b1-894b-e076c7ab3f26",
+          "name": "CreateSalesOrder",
+          "request": {
+            "name": "CreateSalesOrder",
+            "description": {
+              "content": "__CALLING THIS ENDPOINT WILL MODIFY YOUR DATA IRREVERSIBLY. ONLY CALL THIS ON SANDBOX DATA DURING DEVELOPMENT/CODING/TESTING.__",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sales_orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customer_id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"status\": \"<string>\",\n  \"delivery_date\": \"<dateTime>\",\n  \"other_tax_rate\": \"<float>\",\n  \"local_tax_rate\": \"<float>\",\n  \"state_tax_rate\": \"<float>\",\n  \"external_identifier\": \"<string>\",\n  \"delivery_fee\": \"<float>\",\n  \"payment_date\": \"<dateTime>\",\n  \"sales_order_credit\": {\n    \"type\": \"<string>\",\n    \"amount\": \"<number>\",\n    \"reason\": \"<string>\"\n  },\n  \"credits\": \"<number>\",\n  \"pull_credit_from_customer\": \"<boolean>\",\n  \"contents\": [\n    {\n      \"total_price\": \"<float>\",\n      \"weight\": \"<float>\",\n      \"weight_unit\": \"<string>\",\n      \"item_id\": \"<integer>\",\n      \"non_cannabis_product_id\": \"<integer>\",\n      \"notes\": \"<string>\",\n      \"package_ids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"discount\": {\n        \"type\": \"<string>\",\n        \"amount\": \"<number>\",\n        \"reason\": \"<string>\"\n      }\n    },\n    {\n      \"total_price\": \"<float>\",\n      \"weight\": \"<float>\",\n      \"weight_unit\": \"<string>\",\n      \"item_id\": \"<integer>\",\n      \"non_cannabis_product_id\": \"<integer>\",\n      \"notes\": \"<string>\",\n      \"package_ids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"discount\": {\n        \"type\": \"<string>\",\n        \"amount\": \"<number>\",\n        \"reason\": \"<string>\"\n      }\n    }\n  ],\n  \"payments\": [\n    {\n      \"amount\": \"<float>\",\n      \"date\": \"<date>\",\n      \"reference_number\": \"<string>\"\n    },\n    {\n      \"amount\": \"<float>\",\n      \"date\": \"<date>\",\n      \"reference_number\": \"<string>\"\n    }\n  ],\n  \"internal_notes\": \"<string>\",\n  \"payment_terms\": \"<string>\",\n  \"payment_notes\": \"<string>\",\n  \"terms_and_conditions\": \"<string>\",\n  \"return_policy\": \"<string>\",\n  \"sales_rep_email\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a81644b9-ee7a-4c47-a0e9-b3c353178a21",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales_orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customer_id\": 2,\n  \"name\": \"Order #123\",\n  \"status\": \"pending\",\n  \"delivery_date\": \"2025-02-04T14:00:00Z\",\n  \"other_tax_rate\": 5,\n  \"local_tax_rate\": 2.5,\n  \"state_tax_rate\": 7,\n  \"external_identifier\": \"SAP-ORDER-12345\",\n  \"delivery_fee\": 15.99,\n  \"payment_date\": \"2025-02-04T14:00:00Z\",\n  \"sales_order_credit\": {\n    \"type\": \"percentage\",\n    \"amount\": 25,\n    \"reason\": \"25% off\"\n  },\n  \"credits\": 1000,\n  \"pull_credit_from_customer\": false,\n  \"contents\": [\n    {\n      \"total_price\": 25.99,\n      \"weight\": 1.5,\n      \"weight_unit\": \"grams\",\n      \"item_id\": 123,\n      \"non_cannabis_product_id\": 456,\n      \"notes\": \"Special handling required\",\n      \"package_ids\": [\n        1,\n        2,\n        3\n      ],\n      \"discount\": {\n        \"type\": \"fixed\",\n        \"amount\": 10,\n        \"reason\": \"10$ off\"\n      }\n    },\n    {\n      \"total_price\": 25.99,\n      \"weight\": 1.5,\n      \"weight_unit\": \"grams\",\n      \"item_id\": 123,\n      \"non_cannabis_product_id\": 456,\n      \"notes\": \"Special handling required\",\n      \"package_ids\": [\n        1,\n        2,\n        3\n      ],\n      \"discount\": {\n        \"type\": \"fixed\",\n        \"amount\": 10,\n        \"reason\": \"10$ off\"\n      }\n    }\n  ],\n  \"payments\": [\n    {\n      \"amount\": 100,\n      \"date\": \"2025-02-04\",\n      \"reference_number\": \"PAY-123\"\n    },\n    {\n      \"amount\": 100,\n      \"date\": \"2025-02-04\",\n      \"reference_number\": \"PAY-123\"\n    }\n  ],\n  \"internal_notes\": \"Handle with care\",\n  \"payment_terms\": \"Net 30\",\n  \"payment_notes\": \"Payment due by end of month\",\n  \"terms_and_conditions\": \"Standard terms apply\",\n  \"return_policy\": \"30-day return policy\",\n  \"sales_rep_email\": \"john.doe@example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 3077,\n  \"facility_id\": 2390,\n  \"name\": \"string\",\n  \"status\": \"string\",\n  \"delivery_date\": \"string\",\n  \"other_tax_rate\": 8493.24168701018,\n  \"local_tax_rate\": 7068.747915315104,\n  \"state_tax_rate\": 5669.891852615378,\n  \"external_identifier\": \"string\",\n  \"created_at\": \"string\",\n  \"customer\": {\n    \"id\": 6523,\n    \"contact_name\": \"string\",\n    \"company_name\": \"string\",\n    \"facility_license_number\": \"string\",\n    \"license_type\": \"string\",\n    \"customer_number\": \"string\",\n    \"license_expiration_date\": \"string\",\n    \"phone\": \"string\",\n    \"email\": \"string\",\n    \"territory\": \"string\",\n    \"address\": {\n      \"street\": \"123 Cumberland St\",\n      \"street2\": \"West\",\n      \"city\": \"Somerset\",\n      \"county\": \"KY\",\n      \"state\": \"CO\",\n      \"country\": \"USA\",\n      \"postal_code\": \"string\"\n    },\n    \"notes\": \"string\",\n    \"outstanding_balance\": 350.85491678178425,\n    \"credit\": 5794.597401224024,\n    \"dba\": \"Doing Business As\",\n    \"is_active\": false,\n    \"created_at\": \"2018-11-06 08:00:00+00:00\",\n    \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n  },\n  \"delivery_fee\": 1883.3754471284503,\n  \"payment_date\": \"string\",\n  \"payment_terms\": \"string\",\n  \"subtotal\": 218.67400699415174,\n  \"total_cultivation_tax\": 1892.7666581314495,\n  \"total_price\": 7542.583780778627,\n  \"total_paid\": 6165.235093140444,\n  \"credits\": 4051.338428981727,\n  \"discount\": 5578.781546406231,\n  \"remaining_balance\": 8035.47587629925,\n  \"internal_notes\": \"string\",\n  \"payments\": [\n    {\n      \"amount\": 2006.9077820736748,\n      \"date\": 5203,\n      \"id\": 5484,\n      \"sales_order_id\": 8425,\n      \"reference_number\": null,\n      \"external_transaction_name\": \"string\",\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n    },\n    {\n      \"amount\": 4687.182923295585,\n      \"date\": 9680,\n      \"id\": 1599,\n      \"sales_order_id\": 5785,\n      \"reference_number\": null,\n      \"external_transaction_name\": \"string\",\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n    }\n  ],\n  \"sales_order_credit\": {\n    \"type\": \"fixed\",\n    \"amount\": 10,\n    \"reason\": \"10$ off\"\n  },\n  \"display_status\": \"string\",\n  \"contents\": [\n    {\n      \"id\": 702,\n      \"weight\": 9814.023218377319,\n      \"weight_unit\": \"string\",\n      \"unit_price\": 4173.708258837714,\n      \"total_price\": 143.7176408332297,\n      \"item\": {\n        \"id\": 7036,\n        \"name\": \"Blue Dream - Trim\",\n        \"sku\": \"22657\"\n      },\n      \"brand\": {\n        \"id\": 8670.882021036212,\n        \"name\": \"string\"\n      },\n      \"product_id\": 3931,\n      \"product_brand\": {\n        \"id\": 8291.315329064777,\n        \"name\": \"string\"\n      },\n      \"is_sample\": false,\n      \"package_ids\": [\n        4592,\n        4905\n      ],\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n      \"order\": 4982,\n      \"discount\": {\n        \"type\": \"fixed\",\n        \"amount\": 10,\n        \"reason\": \"10$ off\"\n      },\n      \"weight_unit_id\": 1516,\n      \"weight_unit_name\": \"string\"\n    },\n    {\n      \"id\": 1335,\n      \"weight\": 61.16844632577556,\n      \"weight_unit\": \"string\",\n      \"unit_price\": 7107.369393774829,\n      \"total_price\": 1827.5221426482958,\n      \"item\": {\n        \"id\": 7036,\n        \"name\": \"Blue Dream - Trim\",\n        \"sku\": \"22657\"\n      },\n      \"brand\": {\n        \"id\": 3712.905858332225,\n        \"name\": \"string\"\n      },\n      \"product_id\": null,\n      \"product_brand\": {\n        \"id\": 1641.6943843085762,\n        \"name\": \"string\"\n      },\n      \"is_sample\": false,\n      \"package_ids\": [\n        6152,\n        7411\n      ],\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n      \"order\": 4494,\n      \"discount\": {\n        \"type\": \"fixed\",\n        \"amount\": 10,\n        \"reason\": \"10$ off\"\n      },\n      \"weight_unit_id\": 4621,\n      \"weight_unit_name\": \"string\"\n    }\n  ],\n  \"sales_representative\": {\n    \"id\": 123,\n    \"name\": \"John Doe\",\n    \"email\": \"j@d.com\"\n  },\n  \"invoice_url\": \"https://www.app.canix.com/sales/invoice/view/123456\",\n  \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "06efa839-948f-4439-9c5b-b17b27498999",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales_orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customer_id\": 2,\n  \"name\": \"Order #123\",\n  \"status\": \"pending\",\n  \"delivery_date\": \"2025-02-04T14:00:00Z\",\n  \"other_tax_rate\": 5,\n  \"local_tax_rate\": 2.5,\n  \"state_tax_rate\": 7,\n  \"external_identifier\": \"SAP-ORDER-12345\",\n  \"delivery_fee\": 15.99,\n  \"payment_date\": \"2025-02-04T14:00:00Z\",\n  \"sales_order_credit\": {\n    \"type\": \"percentage\",\n    \"amount\": 25,\n    \"reason\": \"25% off\"\n  },\n  \"credits\": 1000,\n  \"pull_credit_from_customer\": false,\n  \"contents\": [\n    {\n      \"total_price\": 25.99,\n      \"weight\": 1.5,\n      \"weight_unit\": \"grams\",\n      \"item_id\": 123,\n      \"non_cannabis_product_id\": 456,\n      \"notes\": \"Special handling required\",\n      \"package_ids\": [\n        1,\n        2,\n        3\n      ],\n      \"discount\": {\n        \"type\": \"fixed\",\n        \"amount\": 10,\n        \"reason\": \"10$ off\"\n      }\n    },\n    {\n      \"total_price\": 25.99,\n      \"weight\": 1.5,\n      \"weight_unit\": \"grams\",\n      \"item_id\": 123,\n      \"non_cannabis_product_id\": 456,\n      \"notes\": \"Special handling required\",\n      \"package_ids\": [\n        1,\n        2,\n        3\n      ],\n      \"discount\": {\n        \"type\": \"fixed\",\n        \"amount\": 10,\n        \"reason\": \"10$ off\"\n      }\n    }\n  ],\n  \"payments\": [\n    {\n      \"amount\": 100,\n      \"date\": \"2025-02-04\",\n      \"reference_number\": \"PAY-123\"\n    },\n    {\n      \"amount\": 100,\n      \"date\": \"2025-02-04\",\n      \"reference_number\": \"PAY-123\"\n    }\n  ],\n  \"internal_notes\": \"Handle with care\",\n  \"payment_terms\": \"Net 30\",\n  \"payment_notes\": \"Payment due by end of month\",\n  \"terms_and_conditions\": \"Standard terms apply\",\n  \"return_policy\": \"30-day return policy\",\n  \"sales_rep_email\": \"john.doe@example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7c9ad96f-5b70-468e-bd54-80d19f58ac7d",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales_orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customer_id\": 2,\n  \"name\": \"Order #123\",\n  \"status\": \"pending\",\n  \"delivery_date\": \"2025-02-04T14:00:00Z\",\n  \"other_tax_rate\": 5,\n  \"local_tax_rate\": 2.5,\n  \"state_tax_rate\": 7,\n  \"external_identifier\": \"SAP-ORDER-12345\",\n  \"delivery_fee\": 15.99,\n  \"payment_date\": \"2025-02-04T14:00:00Z\",\n  \"sales_order_credit\": {\n    \"type\": \"percentage\",\n    \"amount\": 25,\n    \"reason\": \"25% off\"\n  },\n  \"credits\": 1000,\n  \"pull_credit_from_customer\": false,\n  \"contents\": [\n    {\n      \"total_price\": 25.99,\n      \"weight\": 1.5,\n      \"weight_unit\": \"grams\",\n      \"item_id\": 123,\n      \"non_cannabis_product_id\": 456,\n      \"notes\": \"Special handling required\",\n      \"package_ids\": [\n        1,\n        2,\n        3\n      ],\n      \"discount\": {\n        \"type\": \"fixed\",\n        \"amount\": 10,\n        \"reason\": \"10$ off\"\n      }\n    },\n    {\n      \"total_price\": 25.99,\n      \"weight\": 1.5,\n      \"weight_unit\": \"grams\",\n      \"item_id\": 123,\n      \"non_cannabis_product_id\": 456,\n      \"notes\": \"Special handling required\",\n      \"package_ids\": [\n        1,\n        2,\n        3\n      ],\n      \"discount\": {\n        \"type\": \"fixed\",\n        \"amount\": 10,\n        \"reason\": \"10$ off\"\n      }\n    }\n  ],\n  \"payments\": [\n    {\n      \"amount\": 100,\n      \"date\": \"2025-02-04\",\n      \"reference_number\": \"PAY-123\"\n    },\n    {\n      \"amount\": 100,\n      \"date\": \"2025-02-04\",\n      \"reference_number\": \"PAY-123\"\n    }\n  ],\n  \"internal_notes\": \"Handle with care\",\n  \"payment_terms\": \"Net 30\",\n  \"payment_notes\": \"Payment due by end of month\",\n  \"terms_and_conditions\": \"Standard terms apply\",\n  \"return_policy\": \"30-day return policy\",\n  \"sales_rep_email\": \"john.doe@example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e729a220-3246-4d0e-a25a-f6306ab69d7c",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales_orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customer_id\": 2,\n  \"name\": \"Order #123\",\n  \"status\": \"pending\",\n  \"delivery_date\": \"2025-02-04T14:00:00Z\",\n  \"other_tax_rate\": 5,\n  \"local_tax_rate\": 2.5,\n  \"state_tax_rate\": 7,\n  \"external_identifier\": \"SAP-ORDER-12345\",\n  \"delivery_fee\": 15.99,\n  \"payment_date\": \"2025-02-04T14:00:00Z\",\n  \"sales_order_credit\": {\n    \"type\": \"percentage\",\n    \"amount\": 25,\n    \"reason\": \"25% off\"\n  },\n  \"credits\": 1000,\n  \"pull_credit_from_customer\": false,\n  \"contents\": [\n    {\n      \"total_price\": 25.99,\n      \"weight\": 1.5,\n      \"weight_unit\": \"grams\",\n      \"item_id\": 123,\n      \"non_cannabis_product_id\": 456,\n      \"notes\": \"Special handling required\",\n      \"package_ids\": [\n        1,\n        2,\n        3\n      ],\n      \"discount\": {\n        \"type\": \"fixed\",\n        \"amount\": 10,\n        \"reason\": \"10$ off\"\n      }\n    },\n    {\n      \"total_price\": 25.99,\n      \"weight\": 1.5,\n      \"weight_unit\": \"grams\",\n      \"item_id\": 123,\n      \"non_cannabis_product_id\": 456,\n      \"notes\": \"Special handling required\",\n      \"package_ids\": [\n        1,\n        2,\n        3\n      ],\n      \"discount\": {\n        \"type\": \"fixed\",\n        \"amount\": 10,\n        \"reason\": \"10$ off\"\n      }\n    }\n  ],\n  \"payments\": [\n    {\n      \"amount\": 100,\n      \"date\": \"2025-02-04\",\n      \"reference_number\": \"PAY-123\"\n    },\n    {\n      \"amount\": 100,\n      \"date\": \"2025-02-04\",\n      \"reference_number\": \"PAY-123\"\n    }\n  ],\n  \"internal_notes\": \"Handle with care\",\n  \"payment_terms\": \"Net 30\",\n  \"payment_notes\": \"Payment due by end of month\",\n  \"terms_and_conditions\": \"Standard terms apply\",\n  \"return_policy\": \"30-day return policy\",\n  \"sales_rep_email\": \"john.doe@example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "795e6e6d-2d97-4ffb-92d2-c25c79db0b3d",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales_orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customer_id\": 2,\n  \"name\": \"Order #123\",\n  \"status\": \"pending\",\n  \"delivery_date\": \"2025-02-04T14:00:00Z\",\n  \"other_tax_rate\": 5,\n  \"local_tax_rate\": 2.5,\n  \"state_tax_rate\": 7,\n  \"external_identifier\": \"SAP-ORDER-12345\",\n  \"delivery_fee\": 15.99,\n  \"payment_date\": \"2025-02-04T14:00:00Z\",\n  \"sales_order_credit\": {\n    \"type\": \"percentage\",\n    \"amount\": 25,\n    \"reason\": \"25% off\"\n  },\n  \"credits\": 1000,\n  \"pull_credit_from_customer\": false,\n  \"contents\": [\n    {\n      \"total_price\": 25.99,\n      \"weight\": 1.5,\n      \"weight_unit\": \"grams\",\n      \"item_id\": 123,\n      \"non_cannabis_product_id\": 456,\n      \"notes\": \"Special handling required\",\n      \"package_ids\": [\n        1,\n        2,\n        3\n      ],\n      \"discount\": {\n        \"type\": \"fixed\",\n        \"amount\": 10,\n        \"reason\": \"10$ off\"\n      }\n    },\n    {\n      \"total_price\": 25.99,\n      \"weight\": 1.5,\n      \"weight_unit\": \"grams\",\n      \"item_id\": 123,\n      \"non_cannabis_product_id\": 456,\n      \"notes\": \"Special handling required\",\n      \"package_ids\": [\n        1,\n        2,\n        3\n      ],\n      \"discount\": {\n        \"type\": \"fixed\",\n        \"amount\": 10,\n        \"reason\": \"10$ off\"\n      }\n    }\n  ],\n  \"payments\": [\n    {\n      \"amount\": 100,\n      \"date\": \"2025-02-04\",\n      \"reference_number\": \"PAY-123\"\n    },\n    {\n      \"amount\": 100,\n      \"date\": \"2025-02-04\",\n      \"reference_number\": \"PAY-123\"\n    }\n  ],\n  \"internal_notes\": \"Handle with care\",\n  \"payment_terms\": \"Net 30\",\n  \"payment_notes\": \"Payment due by end of month\",\n  \"terms_and_conditions\": \"Standard terms apply\",\n  \"return_policy\": \"30-day return policy\",\n  \"sales_rep_email\": \"john.doe@example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a168c9d4-0dc9-40ac-a19a-d46abaab9dd3",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales_orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customer_id\": 2,\n  \"name\": \"Order #123\",\n  \"status\": \"pending\",\n  \"delivery_date\": \"2025-02-04T14:00:00Z\",\n  \"other_tax_rate\": 5,\n  \"local_tax_rate\": 2.5,\n  \"state_tax_rate\": 7,\n  \"external_identifier\": \"SAP-ORDER-12345\",\n  \"delivery_fee\": 15.99,\n  \"payment_date\": \"2025-02-04T14:00:00Z\",\n  \"sales_order_credit\": {\n    \"type\": \"percentage\",\n    \"amount\": 25,\n    \"reason\": \"25% off\"\n  },\n  \"credits\": 1000,\n  \"pull_credit_from_customer\": false,\n  \"contents\": [\n    {\n      \"total_price\": 25.99,\n      \"weight\": 1.5,\n      \"weight_unit\": \"grams\",\n      \"item_id\": 123,\n      \"non_cannabis_product_id\": 456,\n      \"notes\": \"Special handling required\",\n      \"package_ids\": [\n        1,\n        2,\n        3\n      ],\n      \"discount\": {\n        \"type\": \"fixed\",\n        \"amount\": 10,\n        \"reason\": \"10$ off\"\n      }\n    },\n    {\n      \"total_price\": 25.99,\n      \"weight\": 1.5,\n      \"weight_unit\": \"grams\",\n      \"item_id\": 123,\n      \"non_cannabis_product_id\": 456,\n      \"notes\": \"Special handling required\",\n      \"package_ids\": [\n        1,\n        2,\n        3\n      ],\n      \"discount\": {\n        \"type\": \"fixed\",\n        \"amount\": 10,\n        \"reason\": \"10$ off\"\n      }\n    }\n  ],\n  \"payments\": [\n    {\n      \"amount\": 100,\n      \"date\": \"2025-02-04\",\n      \"reference_number\": \"PAY-123\"\n    },\n    {\n      \"amount\": 100,\n      \"date\": \"2025-02-04\",\n      \"reference_number\": \"PAY-123\"\n    }\n  ],\n  \"internal_notes\": \"Handle with care\",\n  \"payment_terms\": \"Net 30\",\n  \"payment_notes\": \"Payment due by end of month\",\n  \"terms_and_conditions\": \"Standard terms apply\",\n  \"return_policy\": \"30-day return policy\",\n  \"sales_rep_email\": \"john.doe@example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "42747aa5-10cc-4296-bb6c-f70e387c8abf",
+          "name": "GetSalesOrder",
+          "request": {
+            "name": "GetSalesOrder",
+            "description": {
+              "content": "Get Sales Order by ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sales_orders",
+                ":sales_order_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "sales_order_id",
+                  "description": "(Required) ID of Sales Order to return"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4aaffd47-4e70-4c4a-b30d-ca6de41fdd86",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales_orders",
+                    ":sales_order_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sales_order_id",
+                      "description": "(Required) ID of Sales Order to return"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 3077,\n  \"facility_id\": 2390,\n  \"name\": \"string\",\n  \"status\": \"string\",\n  \"delivery_date\": \"string\",\n  \"other_tax_rate\": 8493.24168701018,\n  \"local_tax_rate\": 7068.747915315104,\n  \"state_tax_rate\": 5669.891852615378,\n  \"external_identifier\": \"string\",\n  \"created_at\": \"string\",\n  \"customer\": {\n    \"id\": 6523,\n    \"contact_name\": \"string\",\n    \"company_name\": \"string\",\n    \"facility_license_number\": \"string\",\n    \"license_type\": \"string\",\n    \"customer_number\": \"string\",\n    \"license_expiration_date\": \"string\",\n    \"phone\": \"string\",\n    \"email\": \"string\",\n    \"territory\": \"string\",\n    \"address\": {\n      \"street\": \"123 Cumberland St\",\n      \"street2\": \"West\",\n      \"city\": \"Somerset\",\n      \"county\": \"KY\",\n      \"state\": \"CO\",\n      \"country\": \"USA\",\n      \"postal_code\": \"string\"\n    },\n    \"notes\": \"string\",\n    \"outstanding_balance\": 350.85491678178425,\n    \"credit\": 5794.597401224024,\n    \"dba\": \"Doing Business As\",\n    \"is_active\": false,\n    \"created_at\": \"2018-11-06 08:00:00+00:00\",\n    \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n  },\n  \"delivery_fee\": 1883.3754471284503,\n  \"payment_date\": \"string\",\n  \"payment_terms\": \"string\",\n  \"subtotal\": 218.67400699415174,\n  \"total_cultivation_tax\": 1892.7666581314495,\n  \"total_price\": 7542.583780778627,\n  \"total_paid\": 6165.235093140444,\n  \"credits\": 4051.338428981727,\n  \"discount\": 5578.781546406231,\n  \"remaining_balance\": 8035.47587629925,\n  \"internal_notes\": \"string\",\n  \"payments\": [\n    {\n      \"amount\": 2006.9077820736748,\n      \"date\": 5203,\n      \"id\": 5484,\n      \"sales_order_id\": 8425,\n      \"reference_number\": null,\n      \"external_transaction_name\": \"string\",\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n    },\n    {\n      \"amount\": 4687.182923295585,\n      \"date\": 9680,\n      \"id\": 1599,\n      \"sales_order_id\": 5785,\n      \"reference_number\": null,\n      \"external_transaction_name\": \"string\",\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n    }\n  ],\n  \"sales_order_credit\": {\n    \"type\": \"fixed\",\n    \"amount\": 10,\n    \"reason\": \"10$ off\"\n  },\n  \"display_status\": \"string\",\n  \"contents\": [\n    {\n      \"id\": 702,\n      \"weight\": 9814.023218377319,\n      \"weight_unit\": \"string\",\n      \"unit_price\": 4173.708258837714,\n      \"total_price\": 143.7176408332297,\n      \"item\": {\n        \"id\": 7036,\n        \"name\": \"Blue Dream - Trim\",\n        \"sku\": \"22657\"\n      },\n      \"brand\": {\n        \"id\": 8670.882021036212,\n        \"name\": \"string\"\n      },\n      \"product_id\": 3931,\n      \"product_brand\": {\n        \"id\": 8291.315329064777,\n        \"name\": \"string\"\n      },\n      \"is_sample\": false,\n      \"package_ids\": [\n        4592,\n        4905\n      ],\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n      \"order\": 4982,\n      \"discount\": {\n        \"type\": \"fixed\",\n        \"amount\": 10,\n        \"reason\": \"10$ off\"\n      },\n      \"weight_unit_id\": 1516,\n      \"weight_unit_name\": \"string\"\n    },\n    {\n      \"id\": 1335,\n      \"weight\": 61.16844632577556,\n      \"weight_unit\": \"string\",\n      \"unit_price\": 7107.369393774829,\n      \"total_price\": 1827.5221426482958,\n      \"item\": {\n        \"id\": 7036,\n        \"name\": \"Blue Dream - Trim\",\n        \"sku\": \"22657\"\n      },\n      \"brand\": {\n        \"id\": 3712.905858332225,\n        \"name\": \"string\"\n      },\n      \"product_id\": null,\n      \"product_brand\": {\n        \"id\": 1641.6943843085762,\n        \"name\": \"string\"\n      },\n      \"is_sample\": false,\n      \"package_ids\": [\n        6152,\n        7411\n      ],\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n      \"order\": 4494,\n      \"discount\": {\n        \"type\": \"fixed\",\n        \"amount\": 10,\n        \"reason\": \"10$ off\"\n      },\n      \"weight_unit_id\": 4621,\n      \"weight_unit_name\": \"string\"\n    }\n  ],\n  \"sales_representative\": {\n    \"id\": 123,\n    \"name\": \"John Doe\",\n    \"email\": \"j@d.com\"\n  },\n  \"invoice_url\": \"https://www.app.canix.com/sales/invoice/view/123456\",\n  \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "559d72d6-fc76-4e22-8359-b0a301e471b9",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales_orders",
+                    ":sales_order_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sales_order_id",
+                      "description": "(Required) ID of Sales Order to return"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8f2f1a6a-aac4-4f82-b7d5-5d25b7dbc30e",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales_orders",
+                    ":sales_order_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sales_order_id",
+                      "description": "(Required) ID of Sales Order to return"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "92a3f1b7-1b7e-4202-9ab0-8843c2d2bd42",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales_orders",
+                    ":sales_order_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sales_order_id",
+                      "description": "(Required) ID of Sales Order to return"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9e281737-8870-477a-a6fa-58eb5d4ec57e",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales_orders",
+                    ":sales_order_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sales_order_id",
+                      "description": "(Required) ID of Sales Order to return"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ebf7ba27-4ae6-4cf4-a994-978cf3e548cd",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales_orders",
+                    ":sales_order_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sales_order_id",
+                      "description": "(Required) ID of Sales Order to return"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0ada4597-4d45-4f9a-af8b-dcada450696b",
+          "name": "UpdateSalesOrder",
+          "request": {
+            "name": "UpdateSalesOrder",
+            "description": {
+              "content": "__CALLING THIS ENDPOINT WILL MODIFY YOUR DATA IRREVERSIBLY. ONLY CALL THIS ON SANDBOX DATA DURING DEVELOPMENT/CODING/TESTING.__",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sales_orders",
+                ":sales_order_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "sales_order_id",
+                  "description": "(Required) ID of Sales Order to update"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customer_id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"status\": \"<string>\",\n  \"delivery_date\": \"<dateTime>\",\n  \"other_tax_rate\": \"<float>\",\n  \"local_tax_rate\": \"<float>\",\n  \"state_tax_rate\": \"<float>\",\n  \"external_identifier\": \"<string>\",\n  \"delivery_fee\": \"<float>\",\n  \"payment_date\": \"<dateTime>\",\n  \"sales_order_credit\": {\n    \"type\": \"<string>\",\n    \"amount\": \"<number>\",\n    \"reason\": \"<string>\"\n  },\n  \"credits\": \"<number>\",\n  \"pull_credit_from_customer\": \"<boolean>\",\n  \"contents\": [\n    {\n      \"total_price\": \"<float>\",\n      \"weight\": \"<float>\",\n      \"weight_unit\": \"<string>\",\n      \"item_id\": \"<integer>\",\n      \"non_cannabis_product_id\": \"<integer>\",\n      \"notes\": \"<string>\",\n      \"package_ids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"discount\": {\n        \"type\": \"<string>\",\n        \"amount\": \"<number>\",\n        \"reason\": \"<string>\"\n      }\n    },\n    {\n      \"total_price\": \"<float>\",\n      \"weight\": \"<float>\",\n      \"weight_unit\": \"<string>\",\n      \"item_id\": \"<integer>\",\n      \"non_cannabis_product_id\": \"<integer>\",\n      \"notes\": \"<string>\",\n      \"package_ids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"discount\": {\n        \"type\": \"<string>\",\n        \"amount\": \"<number>\",\n        \"reason\": \"<string>\"\n      }\n    }\n  ],\n  \"payments\": [\n    {\n      \"amount\": \"<float>\",\n      \"date\": \"<date>\",\n      \"reference_number\": \"<string>\"\n    },\n    {\n      \"amount\": \"<float>\",\n      \"date\": \"<date>\",\n      \"reference_number\": \"<string>\"\n    }\n  ],\n  \"internal_notes\": \"<string>\",\n  \"payment_terms\": \"<string>\",\n  \"payment_notes\": \"<string>\",\n  \"terms_and_conditions\": \"<string>\",\n  \"return_policy\": \"<string>\",\n  \"sales_rep_email\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ba9ff641-cc7b-4791-9b79-b86ce12f5859",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales_orders",
+                    ":sales_order_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sales_order_id",
+                      "description": "(Required) ID of Sales Order to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customer_id\": 2,\n  \"name\": \"Order #123\",\n  \"status\": \"pending\",\n  \"delivery_date\": \"2025-02-04T14:00:00Z\",\n  \"other_tax_rate\": 5,\n  \"local_tax_rate\": 2.5,\n  \"state_tax_rate\": 7,\n  \"external_identifier\": \"SAP-ORDER-12345\",\n  \"delivery_fee\": 15.99,\n  \"payment_date\": \"2025-02-04T14:00:00Z\",\n  \"sales_order_credit\": {\n    \"type\": \"percentage\",\n    \"amount\": 25,\n    \"reason\": \"25% off\"\n  },\n  \"credits\": 1000,\n  \"pull_credit_from_customer\": false,\n  \"contents\": [\n    {\n      \"total_price\": 25.99,\n      \"weight\": 1.5,\n      \"weight_unit\": \"grams\",\n      \"item_id\": 123,\n      \"non_cannabis_product_id\": 456,\n      \"notes\": \"Special handling required\",\n      \"package_ids\": [\n        1,\n        2,\n        3\n      ],\n      \"discount\": {\n        \"type\": \"fixed\",\n        \"amount\": 10,\n        \"reason\": \"10$ off\"\n      }\n    },\n    {\n      \"total_price\": 25.99,\n      \"weight\": 1.5,\n      \"weight_unit\": \"grams\",\n      \"item_id\": 123,\n      \"non_cannabis_product_id\": 456,\n      \"notes\": \"Special handling required\",\n      \"package_ids\": [\n        1,\n        2,\n        3\n      ],\n      \"discount\": {\n        \"type\": \"fixed\",\n        \"amount\": 10,\n        \"reason\": \"10$ off\"\n      }\n    }\n  ],\n  \"payments\": [\n    {\n      \"amount\": 100,\n      \"date\": \"2025-02-04\",\n      \"reference_number\": \"PAY-123\"\n    },\n    {\n      \"amount\": 100,\n      \"date\": \"2025-02-04\",\n      \"reference_number\": \"PAY-123\"\n    }\n  ],\n  \"internal_notes\": \"Handle with care\",\n  \"payment_terms\": \"Net 30\",\n  \"payment_notes\": \"Payment due by end of month\",\n  \"terms_and_conditions\": \"Standard terms apply\",\n  \"return_policy\": \"30-day return policy\",\n  \"sales_rep_email\": \"john.doe@example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 3077,\n  \"facility_id\": 2390,\n  \"name\": \"string\",\n  \"status\": \"string\",\n  \"delivery_date\": \"string\",\n  \"other_tax_rate\": 8493.24168701018,\n  \"local_tax_rate\": 7068.747915315104,\n  \"state_tax_rate\": 5669.891852615378,\n  \"external_identifier\": \"string\",\n  \"created_at\": \"string\",\n  \"customer\": {\n    \"id\": 6523,\n    \"contact_name\": \"string\",\n    \"company_name\": \"string\",\n    \"facility_license_number\": \"string\",\n    \"license_type\": \"string\",\n    \"customer_number\": \"string\",\n    \"license_expiration_date\": \"string\",\n    \"phone\": \"string\",\n    \"email\": \"string\",\n    \"territory\": \"string\",\n    \"address\": {\n      \"street\": \"123 Cumberland St\",\n      \"street2\": \"West\",\n      \"city\": \"Somerset\",\n      \"county\": \"KY\",\n      \"state\": \"CO\",\n      \"country\": \"USA\",\n      \"postal_code\": \"string\"\n    },\n    \"notes\": \"string\",\n    \"outstanding_balance\": 350.85491678178425,\n    \"credit\": 5794.597401224024,\n    \"dba\": \"Doing Business As\",\n    \"is_active\": false,\n    \"created_at\": \"2018-11-06 08:00:00+00:00\",\n    \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n  },\n  \"delivery_fee\": 1883.3754471284503,\n  \"payment_date\": \"string\",\n  \"payment_terms\": \"string\",\n  \"subtotal\": 218.67400699415174,\n  \"total_cultivation_tax\": 1892.7666581314495,\n  \"total_price\": 7542.583780778627,\n  \"total_paid\": 6165.235093140444,\n  \"credits\": 4051.338428981727,\n  \"discount\": 5578.781546406231,\n  \"remaining_balance\": 8035.47587629925,\n  \"internal_notes\": \"string\",\n  \"payments\": [\n    {\n      \"amount\": 2006.9077820736748,\n      \"date\": 5203,\n      \"id\": 5484,\n      \"sales_order_id\": 8425,\n      \"reference_number\": null,\n      \"external_transaction_name\": \"string\",\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n    },\n    {\n      \"amount\": 4687.182923295585,\n      \"date\": 9680,\n      \"id\": 1599,\n      \"sales_order_id\": 5785,\n      \"reference_number\": null,\n      \"external_transaction_name\": \"string\",\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n    }\n  ],\n  \"sales_order_credit\": {\n    \"type\": \"fixed\",\n    \"amount\": 10,\n    \"reason\": \"10$ off\"\n  },\n  \"display_status\": \"string\",\n  \"contents\": [\n    {\n      \"id\": 702,\n      \"weight\": 9814.023218377319,\n      \"weight_unit\": \"string\",\n      \"unit_price\": 4173.708258837714,\n      \"total_price\": 143.7176408332297,\n      \"item\": {\n        \"id\": 7036,\n        \"name\": \"Blue Dream - Trim\",\n        \"sku\": \"22657\"\n      },\n      \"brand\": {\n        \"id\": 8670.882021036212,\n        \"name\": \"string\"\n      },\n      \"product_id\": 3931,\n      \"product_brand\": {\n        \"id\": 8291.315329064777,\n        \"name\": \"string\"\n      },\n      \"is_sample\": false,\n      \"package_ids\": [\n        4592,\n        4905\n      ],\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n      \"order\": 4982,\n      \"discount\": {\n        \"type\": \"fixed\",\n        \"amount\": 10,\n        \"reason\": \"10$ off\"\n      },\n      \"weight_unit_id\": 1516,\n      \"weight_unit_name\": \"string\"\n    },\n    {\n      \"id\": 1335,\n      \"weight\": 61.16844632577556,\n      \"weight_unit\": \"string\",\n      \"unit_price\": 7107.369393774829,\n      \"total_price\": 1827.5221426482958,\n      \"item\": {\n        \"id\": 7036,\n        \"name\": \"Blue Dream - Trim\",\n        \"sku\": \"22657\"\n      },\n      \"brand\": {\n        \"id\": 3712.905858332225,\n        \"name\": \"string\"\n      },\n      \"product_id\": null,\n      \"product_brand\": {\n        \"id\": 1641.6943843085762,\n        \"name\": \"string\"\n      },\n      \"is_sample\": false,\n      \"package_ids\": [\n        6152,\n        7411\n      ],\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n      \"order\": 4494,\n      \"discount\": {\n        \"type\": \"fixed\",\n        \"amount\": 10,\n        \"reason\": \"10$ off\"\n      },\n      \"weight_unit_id\": 4621,\n      \"weight_unit_name\": \"string\"\n    }\n  ],\n  \"sales_representative\": {\n    \"id\": 123,\n    \"name\": \"John Doe\",\n    \"email\": \"j@d.com\"\n  },\n  \"invoice_url\": \"https://www.app.canix.com/sales/invoice/view/123456\",\n  \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b3927253-45dc-4254-af37-1d766a6b4402",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales_orders",
+                    ":sales_order_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sales_order_id",
+                      "description": "(Required) ID of Sales Order to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customer_id\": 2,\n  \"name\": \"Order #123\",\n  \"status\": \"pending\",\n  \"delivery_date\": \"2025-02-04T14:00:00Z\",\n  \"other_tax_rate\": 5,\n  \"local_tax_rate\": 2.5,\n  \"state_tax_rate\": 7,\n  \"external_identifier\": \"SAP-ORDER-12345\",\n  \"delivery_fee\": 15.99,\n  \"payment_date\": \"2025-02-04T14:00:00Z\",\n  \"sales_order_credit\": {\n    \"type\": \"percentage\",\n    \"amount\": 25,\n    \"reason\": \"25% off\"\n  },\n  \"credits\": 1000,\n  \"pull_credit_from_customer\": false,\n  \"contents\": [\n    {\n      \"total_price\": 25.99,\n      \"weight\": 1.5,\n      \"weight_unit\": \"grams\",\n      \"item_id\": 123,\n      \"non_cannabis_product_id\": 456,\n      \"notes\": \"Special handling required\",\n      \"package_ids\": [\n        1,\n        2,\n        3\n      ],\n      \"discount\": {\n        \"type\": \"fixed\",\n        \"amount\": 10,\n        \"reason\": \"10$ off\"\n      }\n    },\n    {\n      \"total_price\": 25.99,\n      \"weight\": 1.5,\n      \"weight_unit\": \"grams\",\n      \"item_id\": 123,\n      \"non_cannabis_product_id\": 456,\n      \"notes\": \"Special handling required\",\n      \"package_ids\": [\n        1,\n        2,\n        3\n      ],\n      \"discount\": {\n        \"type\": \"fixed\",\n        \"amount\": 10,\n        \"reason\": \"10$ off\"\n      }\n    }\n  ],\n  \"payments\": [\n    {\n      \"amount\": 100,\n      \"date\": \"2025-02-04\",\n      \"reference_number\": \"PAY-123\"\n    },\n    {\n      \"amount\": 100,\n      \"date\": \"2025-02-04\",\n      \"reference_number\": \"PAY-123\"\n    }\n  ],\n  \"internal_notes\": \"Handle with care\",\n  \"payment_terms\": \"Net 30\",\n  \"payment_notes\": \"Payment due by end of month\",\n  \"terms_and_conditions\": \"Standard terms apply\",\n  \"return_policy\": \"30-day return policy\",\n  \"sales_rep_email\": \"john.doe@example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1774f2f6-c594-4b1f-aaed-b8af5a0e9efe",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales_orders",
+                    ":sales_order_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sales_order_id",
+                      "description": "(Required) ID of Sales Order to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customer_id\": 2,\n  \"name\": \"Order #123\",\n  \"status\": \"pending\",\n  \"delivery_date\": \"2025-02-04T14:00:00Z\",\n  \"other_tax_rate\": 5,\n  \"local_tax_rate\": 2.5,\n  \"state_tax_rate\": 7,\n  \"external_identifier\": \"SAP-ORDER-12345\",\n  \"delivery_fee\": 15.99,\n  \"payment_date\": \"2025-02-04T14:00:00Z\",\n  \"sales_order_credit\": {\n    \"type\": \"percentage\",\n    \"amount\": 25,\n    \"reason\": \"25% off\"\n  },\n  \"credits\": 1000,\n  \"pull_credit_from_customer\": false,\n  \"contents\": [\n    {\n      \"total_price\": 25.99,\n      \"weight\": 1.5,\n      \"weight_unit\": \"grams\",\n      \"item_id\": 123,\n      \"non_cannabis_product_id\": 456,\n      \"notes\": \"Special handling required\",\n      \"package_ids\": [\n        1,\n        2,\n        3\n      ],\n      \"discount\": {\n        \"type\": \"fixed\",\n        \"amount\": 10,\n        \"reason\": \"10$ off\"\n      }\n    },\n    {\n      \"total_price\": 25.99,\n      \"weight\": 1.5,\n      \"weight_unit\": \"grams\",\n      \"item_id\": 123,\n      \"non_cannabis_product_id\": 456,\n      \"notes\": \"Special handling required\",\n      \"package_ids\": [\n        1,\n        2,\n        3\n      ],\n      \"discount\": {\n        \"type\": \"fixed\",\n        \"amount\": 10,\n        \"reason\": \"10$ off\"\n      }\n    }\n  ],\n  \"payments\": [\n    {\n      \"amount\": 100,\n      \"date\": \"2025-02-04\",\n      \"reference_number\": \"PAY-123\"\n    },\n    {\n      \"amount\": 100,\n      \"date\": \"2025-02-04\",\n      \"reference_number\": \"PAY-123\"\n    }\n  ],\n  \"internal_notes\": \"Handle with care\",\n  \"payment_terms\": \"Net 30\",\n  \"payment_notes\": \"Payment due by end of month\",\n  \"terms_and_conditions\": \"Standard terms apply\",\n  \"return_policy\": \"30-day return policy\",\n  \"sales_rep_email\": \"john.doe@example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9ddb9611-6024-4208-a038-8a18f440cc62",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales_orders",
+                    ":sales_order_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sales_order_id",
+                      "description": "(Required) ID of Sales Order to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customer_id\": 2,\n  \"name\": \"Order #123\",\n  \"status\": \"pending\",\n  \"delivery_date\": \"2025-02-04T14:00:00Z\",\n  \"other_tax_rate\": 5,\n  \"local_tax_rate\": 2.5,\n  \"state_tax_rate\": 7,\n  \"external_identifier\": \"SAP-ORDER-12345\",\n  \"delivery_fee\": 15.99,\n  \"payment_date\": \"2025-02-04T14:00:00Z\",\n  \"sales_order_credit\": {\n    \"type\": \"percentage\",\n    \"amount\": 25,\n    \"reason\": \"25% off\"\n  },\n  \"credits\": 1000,\n  \"pull_credit_from_customer\": false,\n  \"contents\": [\n    {\n      \"total_price\": 25.99,\n      \"weight\": 1.5,\n      \"weight_unit\": \"grams\",\n      \"item_id\": 123,\n      \"non_cannabis_product_id\": 456,\n      \"notes\": \"Special handling required\",\n      \"package_ids\": [\n        1,\n        2,\n        3\n      ],\n      \"discount\": {\n        \"type\": \"fixed\",\n        \"amount\": 10,\n        \"reason\": \"10$ off\"\n      }\n    },\n    {\n      \"total_price\": 25.99,\n      \"weight\": 1.5,\n      \"weight_unit\": \"grams\",\n      \"item_id\": 123,\n      \"non_cannabis_product_id\": 456,\n      \"notes\": \"Special handling required\",\n      \"package_ids\": [\n        1,\n        2,\n        3\n      ],\n      \"discount\": {\n        \"type\": \"fixed\",\n        \"amount\": 10,\n        \"reason\": \"10$ off\"\n      }\n    }\n  ],\n  \"payments\": [\n    {\n      \"amount\": 100,\n      \"date\": \"2025-02-04\",\n      \"reference_number\": \"PAY-123\"\n    },\n    {\n      \"amount\": 100,\n      \"date\": \"2025-02-04\",\n      \"reference_number\": \"PAY-123\"\n    }\n  ],\n  \"internal_notes\": \"Handle with care\",\n  \"payment_terms\": \"Net 30\",\n  \"payment_notes\": \"Payment due by end of month\",\n  \"terms_and_conditions\": \"Standard terms apply\",\n  \"return_policy\": \"30-day return policy\",\n  \"sales_rep_email\": \"john.doe@example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "994b60e4-54c2-4721-98f8-4aff1a6ecd1c",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales_orders",
+                    ":sales_order_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sales_order_id",
+                      "description": "(Required) ID of Sales Order to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customer_id\": 2,\n  \"name\": \"Order #123\",\n  \"status\": \"pending\",\n  \"delivery_date\": \"2025-02-04T14:00:00Z\",\n  \"other_tax_rate\": 5,\n  \"local_tax_rate\": 2.5,\n  \"state_tax_rate\": 7,\n  \"external_identifier\": \"SAP-ORDER-12345\",\n  \"delivery_fee\": 15.99,\n  \"payment_date\": \"2025-02-04T14:00:00Z\",\n  \"sales_order_credit\": {\n    \"type\": \"percentage\",\n    \"amount\": 25,\n    \"reason\": \"25% off\"\n  },\n  \"credits\": 1000,\n  \"pull_credit_from_customer\": false,\n  \"contents\": [\n    {\n      \"total_price\": 25.99,\n      \"weight\": 1.5,\n      \"weight_unit\": \"grams\",\n      \"item_id\": 123,\n      \"non_cannabis_product_id\": 456,\n      \"notes\": \"Special handling required\",\n      \"package_ids\": [\n        1,\n        2,\n        3\n      ],\n      \"discount\": {\n        \"type\": \"fixed\",\n        \"amount\": 10,\n        \"reason\": \"10$ off\"\n      }\n    },\n    {\n      \"total_price\": 25.99,\n      \"weight\": 1.5,\n      \"weight_unit\": \"grams\",\n      \"item_id\": 123,\n      \"non_cannabis_product_id\": 456,\n      \"notes\": \"Special handling required\",\n      \"package_ids\": [\n        1,\n        2,\n        3\n      ],\n      \"discount\": {\n        \"type\": \"fixed\",\n        \"amount\": 10,\n        \"reason\": \"10$ off\"\n      }\n    }\n  ],\n  \"payments\": [\n    {\n      \"amount\": 100,\n      \"date\": \"2025-02-04\",\n      \"reference_number\": \"PAY-123\"\n    },\n    {\n      \"amount\": 100,\n      \"date\": \"2025-02-04\",\n      \"reference_number\": \"PAY-123\"\n    }\n  ],\n  \"internal_notes\": \"Handle with care\",\n  \"payment_terms\": \"Net 30\",\n  \"payment_notes\": \"Payment due by end of month\",\n  \"terms_and_conditions\": \"Standard terms apply\",\n  \"return_policy\": \"30-day return policy\",\n  \"sales_rep_email\": \"john.doe@example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "daa3971a-d8cf-496d-b1c4-90d33d0b081b",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales_orders",
+                    ":sales_order_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sales_order_id",
+                      "description": "(Required) ID of Sales Order to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customer_id\": 2,\n  \"name\": \"Order #123\",\n  \"status\": \"pending\",\n  \"delivery_date\": \"2025-02-04T14:00:00Z\",\n  \"other_tax_rate\": 5,\n  \"local_tax_rate\": 2.5,\n  \"state_tax_rate\": 7,\n  \"external_identifier\": \"SAP-ORDER-12345\",\n  \"delivery_fee\": 15.99,\n  \"payment_date\": \"2025-02-04T14:00:00Z\",\n  \"sales_order_credit\": {\n    \"type\": \"percentage\",\n    \"amount\": 25,\n    \"reason\": \"25% off\"\n  },\n  \"credits\": 1000,\n  \"pull_credit_from_customer\": false,\n  \"contents\": [\n    {\n      \"total_price\": 25.99,\n      \"weight\": 1.5,\n      \"weight_unit\": \"grams\",\n      \"item_id\": 123,\n      \"non_cannabis_product_id\": 456,\n      \"notes\": \"Special handling required\",\n      \"package_ids\": [\n        1,\n        2,\n        3\n      ],\n      \"discount\": {\n        \"type\": \"fixed\",\n        \"amount\": 10,\n        \"reason\": \"10$ off\"\n      }\n    },\n    {\n      \"total_price\": 25.99,\n      \"weight\": 1.5,\n      \"weight_unit\": \"grams\",\n      \"item_id\": 123,\n      \"non_cannabis_product_id\": 456,\n      \"notes\": \"Special handling required\",\n      \"package_ids\": [\n        1,\n        2,\n        3\n      ],\n      \"discount\": {\n        \"type\": \"fixed\",\n        \"amount\": 10,\n        \"reason\": \"10$ off\"\n      }\n    }\n  ],\n  \"payments\": [\n    {\n      \"amount\": 100,\n      \"date\": \"2025-02-04\",\n      \"reference_number\": \"PAY-123\"\n    },\n    {\n      \"amount\": 100,\n      \"date\": \"2025-02-04\",\n      \"reference_number\": \"PAY-123\"\n    }\n  ],\n  \"internal_notes\": \"Handle with care\",\n  \"payment_terms\": \"Net 30\",\n  \"payment_notes\": \"Payment due by end of month\",\n  \"terms_and_conditions\": \"Standard terms apply\",\n  \"return_policy\": \"30-day return policy\",\n  \"sales_rep_email\": \"john.doe@example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7382cda7-9571-4591-8248-03bab6300cc9",
+          "name": "GetSalesOrderContents",
+          "request": {
+            "name": "GetSalesOrderContents",
+            "description": {
+              "content": "Get Sales Order Contents by Sales Order ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sales_orders",
+                ":sales_order_id",
+                "contents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "sales_order_id",
+                  "description": "(Required) Sales Order ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1d9ea6e9-5371-41e0-810b-46f87ddf82af",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales_orders",
+                    ":sales_order_id",
+                    "contents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sales_order_id",
+                      "description": "(Required) Sales Order ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 2141,\n    \"weight\": 7177.952272838117,\n    \"weight_unit\": \"string\",\n    \"unit_price\": 3567.070126660464,\n    \"total_price\": 2085.487230021883,\n    \"item\": {\n      \"id\": 7036,\n      \"name\": \"Blue Dream - Trim\",\n      \"sku\": \"22657\"\n    },\n    \"brand\": {\n      \"id\": 2823.642610551933,\n      \"name\": \"string\"\n    },\n    \"product_id\": null,\n    \"product_brand\": {\n      \"id\": 8792.547141713065,\n      \"name\": \"string\"\n    },\n    \"is_sample\": true,\n    \"package_ids\": [\n      5039,\n      4651\n    ],\n    \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n    \"order\": 3120,\n    \"discount\": {\n      \"type\": \"fixed\",\n      \"amount\": 10,\n      \"reason\": \"10$ off\"\n    },\n    \"weight_unit_id\": 7488,\n    \"weight_unit_name\": \"string\"\n  },\n  {\n    \"id\": 3381,\n    \"weight\": 9883.280009914119,\n    \"weight_unit\": \"string\",\n    \"unit_price\": 3972.2557536679637,\n    \"total_price\": 3056.3950165564934,\n    \"item\": {\n      \"id\": 7036,\n      \"name\": \"Blue Dream - Trim\",\n      \"sku\": \"22657\"\n    },\n    \"brand\": {\n      \"id\": 4137.282143589379,\n      \"name\": \"string\"\n    },\n    \"product_id\": null,\n    \"product_brand\": {\n      \"id\": 571.6118619109778,\n      \"name\": \"string\"\n    },\n    \"is_sample\": false,\n    \"package_ids\": [\n      8491,\n      9522\n    ],\n    \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n    \"order\": 3267,\n    \"discount\": {\n      \"type\": \"fixed\",\n      \"amount\": 10,\n      \"reason\": \"10$ off\"\n    },\n    \"weight_unit_id\": 153,\n    \"weight_unit_name\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "88a17218-9590-43a0-b328-0159681ec0ff",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales_orders",
+                    ":sales_order_id",
+                    "contents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sales_order_id",
+                      "description": "(Required) Sales Order ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "915ca8b2-4eb3-4d73-9c23-2ff6e3675bae",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales_orders",
+                    ":sales_order_id",
+                    "contents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sales_order_id",
+                      "description": "(Required) Sales Order ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d7723fa9-79e4-460d-bce4-6c287162a7d2",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales_orders",
+                    ":sales_order_id",
+                    "contents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sales_order_id",
+                      "description": "(Required) Sales Order ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a8d98644-92d8-4a03-94f3-5f04d24ea9e7",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales_orders",
+                    ":sales_order_id",
+                    "contents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sales_order_id",
+                      "description": "(Required) Sales Order ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "19b2703d-d818-4145-818e-0b36cc621326",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales_orders",
+                    ":sales_order_id",
+                    "contents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sales_order_id",
+                      "description": "(Required) Sales Order ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "38666859-19d7-4b8f-a605-c00653210446",
+          "name": "GetSalesOrderPayments",
+          "request": {
+            "name": "GetSalesOrderPayments",
+            "description": {
+              "content": "Get Sales Order Payments by Sales Order ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sales_orders",
+                ":sales_order_id",
+                "payments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "sales_order_id",
+                  "description": "(Required) Sales Order ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "024f5fdd-90a7-4135-93a1-1785e3f66b50",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales_orders",
+                    ":sales_order_id",
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sales_order_id",
+                      "description": "(Required) Sales Order ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"amount\": 8163.80128980864,\n    \"date\": 1890,\n    \"id\": 1294,\n    \"sales_order_id\": 7826,\n    \"reference_number\": \"string\",\n    \"external_transaction_name\": null,\n    \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n  },\n  {\n    \"amount\": 3541.5369270847873,\n    \"date\": 7516,\n    \"id\": 2414,\n    \"sales_order_id\": 8384,\n    \"reference_number\": \"string\",\n    \"external_transaction_name\": null,\n    \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0674533d-3d9f-495b-914c-8ab575d28989",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales_orders",
+                    ":sales_order_id",
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sales_order_id",
+                      "description": "(Required) Sales Order ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "819e98b1-41ee-4764-8cc0-0727e8d1a22f",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales_orders",
+                    ":sales_order_id",
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sales_order_id",
+                      "description": "(Required) Sales Order ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "07308f9f-5e66-4136-9b86-ac256ed4efe3",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales_orders",
+                    ":sales_order_id",
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sales_order_id",
+                      "description": "(Required) Sales Order ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d0c11f5a-64ff-422b-bf12-2f294d5e5144",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales_orders",
+                    ":sales_order_id",
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sales_order_id",
+                      "description": "(Required) Sales Order ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "456524a3-3174-4619-83cf-70880e9ade28",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales_orders",
+                    ":sales_order_id",
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sales_order_id",
+                      "description": "(Required) Sales Order ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "09724f97-cc2b-48ac-87cf-20fbb7c4d9e5",
+          "name": "UpdateSalesOrderStatus",
+          "request": {
+            "name": "UpdateSalesOrderStatus",
+            "description": {
+              "content": "Update the status of a Sales Order.\nValid status values: created, approved, filled, shipped, accepted, archived, requested, canceled\nTo cancel a sales order, use status_name = \"canceled\"\nNote: Cannot cancel orders that are shipped, accepted, returned, or archived.\n__CALLING THIS ENDPOINT WILL MODIFY YOUR DATA IRREVERSIBLY. ONLY CALL THIS ON SANDBOX DATA DURING DEVELOPMENT/CODING/TESTING.__\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sales_orders",
+                ":sales_order_id",
+                "status",
+                ":status_name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "sales_order_id",
+                  "description": "(Required) ID of Sales Order to update status"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "status_name",
+                  "description": "(Required) New status for the Sales Order (created, approved, filled, shipped, accepted, archived, requested, canceled)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "517c11ab-1b98-485c-bee1-72e6917dc97b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales_orders",
+                    ":sales_order_id",
+                    "status",
+                    ":status_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sales_order_id",
+                      "description": "(Required) ID of Sales Order to update status"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "status_name",
+                      "description": "(Required) New status for the Sales Order (created, approved, filled, shipped, accepted, archived, requested, canceled)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"previous_status\": \"string\",\n  \"new_status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "da556fc9-1d76-4b42-bb85-f74bbbe00b9a",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales_orders",
+                    ":sales_order_id",
+                    "status",
+                    ":status_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sales_order_id",
+                      "description": "(Required) ID of Sales Order to update status"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "status_name",
+                      "description": "(Required) New status for the Sales Order (created, approved, filled, shipped, accepted, archived, requested, canceled)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6db7bc91-2db2-466e-b92c-a178ef5d3a5c",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales_orders",
+                    ":sales_order_id",
+                    "status",
+                    ":status_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sales_order_id",
+                      "description": "(Required) ID of Sales Order to update status"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "status_name",
+                      "description": "(Required) New status for the Sales Order (created, approved, filled, shipped, accepted, archived, requested, canceled)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "343fdc33-76b8-4b3d-b5ca-4e15d1e9b98a",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales_orders",
+                    ":sales_order_id",
+                    "status",
+                    ":status_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sales_order_id",
+                      "description": "(Required) ID of Sales Order to update status"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "status_name",
+                      "description": "(Required) New status for the Sales Order (created, approved, filled, shipped, accepted, archived, requested, canceled)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3e9e929e-ede5-4308-bc19-e0a4de17449b",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales_orders",
+                    ":sales_order_id",
+                    "status",
+                    ":status_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sales_order_id",
+                      "description": "(Required) ID of Sales Order to update status"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "status_name",
+                      "description": "(Required) New status for the Sales Order (created, approved, filled, shipped, accepted, archived, requested, canceled)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "aaa1d3db-f632-47bc-ac75-b988d7e429d4",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales_orders",
+                    ":sales_order_id",
+                    "status",
+                    ":status_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sales_order_id",
+                      "description": "(Required) ID of Sales Order to update status"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "status_name",
+                      "description": "(Required) New status for the Sales Order (created, approved, filled, shipped, accepted, archived, requested, canceled)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fa523695-9fad-4078-833c-f8d290d2bab8",
+          "name": "GetPayments",
+          "request": {
+            "name": "GetPayments",
+            "description": {
+              "content": "Return sales order payments across all of the company's facilities, newest first.\nFilter by received date with the `where` parameter, e.g. `where=payment_date >= '2026-01-01'`.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "facility_id",
+                  "value": "<integer>",
+                  "description": "Facility ID (optional)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "2000",
+                  "description": "Max number of records to return (optional). Cannot exceed 2000"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Offset for the returned records (optional)"
+                },
+                {
+                  "disabled": false,
+                  "key": "order_by",
+                  "value": "<string>",
+                  "description": "Order-by clause, in SQL format (optional)"
+                },
+                {
+                  "disabled": false,
+                  "key": "where",
+                  "value": "<string>",
+                  "description": "Filter results using SQL-like WHERE clause syntax (optional).\n\n**Supported operators**: =, >, <, >=, <=, BETWEEN, IN, LIKE, AND, OR\n\n**Supported patterns**:\n- Equality: `status='Active'`\n- Comparison: `updated_at >= '2024-01-01'`\n- Range: `id BETWEEN 1 AND 10000`\n- List: `status IN ('Active', 'Pending')`\n- Pattern: `sku LIKE 'ABC%'`\n- Compound: `facility_id=123 AND is_active=true`\n"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ce528df9-3831-4dbd-8202-97ec2f3846c8",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "facility_id",
+                      "value": "123"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"amount\": 8163.80128980864,\n    \"date\": 1890,\n    \"id\": 1294,\n    \"sales_order_id\": 7826,\n    \"reference_number\": \"string\",\n    \"external_transaction_name\": null,\n    \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n  },\n  {\n    \"amount\": 3541.5369270847873,\n    \"date\": 7516,\n    \"id\": 2414,\n    \"sales_order_id\": 8384,\n    \"reference_number\": \"string\",\n    \"external_transaction_name\": null,\n    \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ca51345d-eb49-4ffb-8ca3-d16877b0cc48",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "facility_id",
+                      "value": "123"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "66abdb80-8df1-4764-931b-d416a7e9e36b",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "facility_id",
+                      "value": "123"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1b8fb084-84a7-45ac-945d-52b251ab714d",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "facility_id",
+                      "value": "123"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "accbfb0e-edec-4df0-9adc-0e0e4dfaab42",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "facility_id",
+                      "value": "123"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d11857b6-e6c6-4651-95a4-4efe75cedb0d",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "facility_id",
+                      "value": "123"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "582e78bd-8cd1-4108-ac0d-ef52daf17eac",
+          "name": "GetPayment",
+          "request": {
+            "name": "GetPayment",
+            "description": {
+              "content": "Get a sales order payment by ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payments",
+                ":payment_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "payment_id",
+                  "description": "(Required) Payment ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fb44796a-dfe1-443f-8e12-26c16a7db921",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":payment_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "payment_id",
+                      "description": "(Required) Payment ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"amount\": 113.9604797204452,\n  \"date\": 9540,\n  \"id\": 4244,\n  \"sales_order_id\": 6347,\n  \"reference_number\": \"string\",\n  \"external_transaction_name\": null,\n  \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b9fe81c6-c67f-4ded-bc03-d0971586f2be",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":payment_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "payment_id",
+                      "description": "(Required) Payment ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "26deba9f-1899-4793-a405-d33985ef0816",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":payment_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "payment_id",
+                      "description": "(Required) Payment ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "af10fe73-dde1-415b-8fe4-80689d430cab",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":payment_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "payment_id",
+                      "description": "(Required) Payment ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "94524141-972f-4113-a81a-fe46c600f90c",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":payment_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "payment_id",
+                      "description": "(Required) Payment ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "961761c2-b06b-4e0e-a9d4-b68bbe4f5e54",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":payment_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "payment_id",
+                      "description": "(Required) Payment ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.canix.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "cf1fc1da-50ec-4123-8ec0-da4b935289da",
+    "name": "Canix Sales Orders API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# Introduction\nThis API documentation describes the endpoints used by third-party developers to get Canix data for their account.\n# Authentication\nCanix API uses API Keys for authentication. You can generate an API key on our [API page](https://app.canix.com/company/api), and on your API requests use the `X-API-KEY` header with the API key value you generated.\nWe strongly recommend using a secrets manager. Plain text files like dotenv lead to accidental costly leaks. Use [Doppler](https://doppler.com/) or similar options for a developer friendly experience. AWS and Google Cloud have native solutions as well.\n\nContact Support:\n Name: Canix Support\n Email: help@canix.com",
+      "type": "text/plain"
+    }
+  }
+}

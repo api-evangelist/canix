@@ -1,0 +1,105 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Canix Customers API",
+    "version": "1.3.10"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Customers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GetCustomers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.canix.com/api/v1/customers",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Max number of records to return (optional). Cannot exceed 2000"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for the returned records (optional)"
+              },
+              {
+                "name": "order_by",
+                "value": "",
+                "type": "query",
+                "description": "Order-by clause, in SQL format (optional)"
+              },
+              {
+                "name": "where",
+                "value": "",
+                "type": "query",
+                "description": "Filter results using SQL-like WHERE clause syntax (optional).\n\n**Supported operators**: =, >, <, >=, <=, BETWEEN, IN, LIKE, AND, OR\n\n**Supported patterns**:\n- Equality: `status='Active'`\n- Comparison: `updated_at >= '2024-01-01'`\n- Range: `id BETWEEN 1 AND 10000`\n- List: `status IN ('Active', 'Pending')`\n- Pattern: `sku LIKE 'ABC%'`\n- Compound: `facility_id=123 AND is_active=true`\n"
+              }
+            ]
+          },
+          "docs": "Return active Customers"
+        },
+        {
+          "info": {
+            "name": "GetCustomer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.canix.com/api/v1/customers/:customer_id",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "Customer ID"
+              }
+            ]
+          },
+          "docs": "Get Customer by ID"
+        },
+        {
+          "info": {
+            "name": "AdjustCustomerCredit",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.canix.com/api/v1/customers/:customer_id/credits",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "Customer ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adjust the customer's credit balance. A negative amount reduces the balance. The balance can be applied to sales orders after taxes via the `credits` and `pull_credit_from_customer` fields on sales order create/update."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

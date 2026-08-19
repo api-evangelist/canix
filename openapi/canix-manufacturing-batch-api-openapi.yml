@@ -1,0 +1,168 @@
+openapi: 3.2.0
+info:
+  title: Canix Manufacturing Batch API
+  x-logo:
+    url: https://assets.website-files.com/5ee52a0f4be6ffc2aaeb52cd/5ee52a0f4be6ff20e7eb534f_canix-logo.svg
+    backgroundColor: '#FFFFFF'
+    altText: Canix logo
+  description: '# Introduction
+
+    This API documentation describes the endpoints used by third-party developers to get Canix data for their account.
+
+    # Authentication
+
+    Canix API uses API Keys for authentication. You can generate an API key on our [API page](https://app.canix.com/company/api), and on your API requests use the `X-API-KEY` header with the API key value you generated.
+
+    We strongly recommend using a secrets manager. Plain text files like dotenv lead to accidental costly leaks. Use [Doppler](https://doppler.com/) or similar options for a developer friendly experience. AWS and Google Cloud have native solutions as well.'
+  contact:
+    name: Canix Support
+    url: https://help.canix.com/
+    email: help@canix.com
+  version: 1.3.10
+servers:
+- url: https://api.canix.com/api/v1
+  variables: {}
+security:
+- ApiKeyAuth: []
+tags:
+- name: Manufacturing Batch
+paths:
+  /manu_batches:
+    get:
+      tags:
+      - Manufacturing Batch
+      summary: GetManuBatches
+      description: Get All Manufacturing Batches
+      operationId: GetManuBatches
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ManuBatch'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          $ref: '#/components/responses/401NotAuthenticated'
+        '403':
+          $ref: '#/components/responses/403AccessDenied'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '500':
+          $ref: '#/components/responses/500ServerError'
+  /manu_batches/{manu_batch_id}:
+    get:
+      tags:
+      - Manufacturing Batch
+      summary: GetManuBatch
+      description: Get Manufacturing Batch by ID
+      operationId: GetManuBatchById
+      parameters:
+      - name: manu_batch_id
+        in: path
+        description: ID of Manufacturing Batch to return
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManuBatch'
+              example:
+                id: 2
+                status: Run 3 of 3
+                current_location: processing room
+                start_date: '2022-05-01'
+                end_date: '2022-05-30'
+                created_at: '2022-04-15T12:33:00.000Z'
+                updated_at: '2022-05-22T07:21:00.000Z'
+                notes: notes about this batch
+                manufacturing_run_ids:
+                - 8
+                - 9
+                - 10
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          $ref: '#/components/responses/401NotAuthenticated'
+        '403':
+          $ref: '#/components/responses/403AccessDenied'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '500':
+          $ref: '#/components/responses/500ServerError'
+components:
+  responses:
+    400BadRequest:
+      description: Bad request
+    401NotAuthenticated:
+      description: Not authenticated
+    403AccessDenied:
+      description: Access denied
+    404NotFound:
+      description: The specified resource was not found
+    500ServerError:
+      description: Server error
+  schemas:
+    ManuBatch:
+      title: Manufacturing Batch Info
+      type: object
+      required:
+      - id
+      - created_at
+      - updated_at
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          description: Name of the manufacturing batch
+        template_name:
+          type: string
+          description: Name of the template used to create this batch
+        status:
+          type: string
+        current_location:
+          type: string
+        start_date:
+          type: string
+        end_date:
+          type: string
+        created_at:
+          type: string
+          description: Timestamp that the record was created in Canix
+        updated_at:
+          type: string
+          description: Timestamp that the record was last updated in Canix
+        notes:
+          type: string
+        manufacturing_run_ids:
+          type: array
+          items:
+            type: integer
+      example:
+        id: 2
+        name: Batch 2023-001
+        template_name: Standard Process Template
+        status: Run 3 of 3
+        current_location: processing room
+        start_date: '2022-05-01'
+        end_date: '2022-05-30'
+        created_at: '2022-04-15T12:33:00.000Z'
+        updated_at: '2022-05-22T07:21:00.000Z'
+        notes: notes about this batch
+        manufacturing_run_ids:
+        - 8
+        - 9
+        - 10
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY

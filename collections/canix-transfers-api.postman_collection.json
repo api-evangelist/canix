@@ -1,0 +1,785 @@
+{
+  "item": [
+    {
+      "id": "6cf08445-03df-43c2-bac5-1196942518e4",
+      "name": "Transfers",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "887a8916-eb27-49bd-b5c9-665fc4e7bdc3",
+          "name": "GetTransfers",
+          "request": {
+            "name": "GetTransfers",
+            "description": {
+              "content": "Return active Transfers",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transfers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "2000",
+                  "description": "Max number of records to return (optional). Cannot exceed 2000"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Offset for the returned records (optional)"
+                },
+                {
+                  "disabled": false,
+                  "key": "order_by",
+                  "value": "<string>",
+                  "description": "Order-by clause, in SQL format (optional)"
+                },
+                {
+                  "disabled": false,
+                  "key": "where",
+                  "value": "<string>",
+                  "description": "Filter results using SQL-like WHERE clause syntax (optional).\n\n**Supported operators**: =, >, <, >=, <=, BETWEEN, IN, LIKE, AND, OR\n\n**Supported patterns**:\n- Equality: `status='Active'`\n- Comparison: `updated_at >= '2024-01-01'`\n- Range: `id BETWEEN 1 AND 10000`\n- List: `status IN ('Active', 'Pending')`\n- Pattern: `sku LIKE 'ABC%'`\n- Compound: `facility_id=123 AND is_active=true`\n"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d529aeff-80f2-4b2d-b680-a6698e489453",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 123,\n    \"name\": \"Transfer\",\n    \"manifest_number\": \"string\",\n    \"is_active\": true,\n    \"destinations\": [\n      {\n        \"id\": 123,\n        \"destination_facility\": \"401-N0909\",\n        \"transfer_type\": \"Affilliated\",\n        \"route\": \"string\",\n        \"departure_time\": \"2018-11-06 08:00:00+00:00\",\n        \"contents\": [\n          {\n            \"package\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"status\": \"string\",\n            \"sale_price\": 12.34,\n            \"shipped_weight\": 10,\n            \"shipped_weight_unit\": \"Grams\",\n            \"received_weight\": 10,\n            \"received_weight_unit\": \"Grams\",\n            \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n          },\n          {\n            \"package\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"status\": \"string\",\n            \"sale_price\": 12.34,\n            \"shipped_weight\": 10,\n            \"shipped_weight_unit\": \"Grams\",\n            \"received_weight\": 10,\n            \"received_weight_unit\": \"Grams\",\n            \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n          }\n        ],\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n      },\n      {\n        \"id\": 123,\n        \"destination_facility\": \"401-N0909\",\n        \"transfer_type\": \"Affilliated\",\n        \"route\": \"string\",\n        \"departure_time\": \"2018-11-06 08:00:00+00:00\",\n        \"contents\": [\n          {\n            \"package\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"status\": \"string\",\n            \"sale_price\": 12.34,\n            \"shipped_weight\": 10,\n            \"shipped_weight_unit\": \"Grams\",\n            \"received_weight\": 10,\n            \"received_weight_unit\": \"Grams\",\n            \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n          },\n          {\n            \"package\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"status\": \"string\",\n            \"sale_price\": 12.34,\n            \"shipped_weight\": 10,\n            \"shipped_weight_unit\": \"Grams\",\n            \"received_weight\": 10,\n            \"received_weight_unit\": \"Grams\",\n            \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n          }\n        ],\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n      }\n    ],\n    \"sales_order\": {\n      \"id\": 2794,\n      \"facility_id\": 2429,\n      \"name\": \"string\",\n      \"status\": \"string\",\n      \"delivery_date\": \"string\",\n      \"other_tax_rate\": 264.8031306602261,\n      \"local_tax_rate\": 795.1416108034571,\n      \"state_tax_rate\": 3559.0428777790385,\n      \"external_identifier\": \"string\",\n      \"created_at\": \"string\",\n      \"customer\": {\n        \"id\": 7529,\n        \"contact_name\": \"string\",\n        \"company_name\": \"string\",\n        \"facility_license_number\": \"string\",\n        \"license_type\": \"string\",\n        \"customer_number\": \"string\",\n        \"license_expiration_date\": \"string\",\n        \"phone\": \"string\",\n        \"email\": \"string\",\n        \"territory\": \"string\",\n        \"address\": {\n          \"street\": \"123 Cumberland St\",\n          \"street2\": \"West\",\n          \"city\": \"Somerset\",\n          \"county\": \"KY\",\n          \"state\": \"CO\",\n          \"country\": \"USA\",\n          \"postal_code\": \"string\"\n        },\n        \"notes\": \"string\",\n        \"outstanding_balance\": 7093.172459186711,\n        \"credit\": 6552.091028848912,\n        \"dba\": \"Doing Business As\",\n        \"is_active\": false,\n        \"created_at\": \"2018-11-06 08:00:00+00:00\",\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n      },\n      \"delivery_fee\": 9877.552410302422,\n      \"payment_date\": \"string\",\n      \"payment_terms\": \"string\",\n      \"subtotal\": 647.206906656933,\n      \"total_cultivation_tax\": 4367.40834494613,\n      \"total_price\": 327.68306285477223,\n      \"total_paid\": 264.0051542904631,\n      \"credits\": 2043.7485283246692,\n      \"discount\": 6140.051922999486,\n      \"remaining_balance\": 7145.404733050096,\n      \"internal_notes\": \"string\",\n      \"payments\": [\n        {\n          \"amount\": 1464.3988393381358,\n          \"date\": 6089,\n          \"id\": 3342,\n          \"sales_order_id\": 8478,\n          \"reference_number\": null,\n          \"external_transaction_name\": null,\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n        },\n        {\n          \"amount\": 2593.3924796651995,\n          \"date\": 3123,\n          \"id\": 6456,\n          \"sales_order_id\": 9795,\n          \"reference_number\": null,\n          \"external_transaction_name\": \"string\",\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n        }\n      ],\n      \"sales_order_credit\": {\n        \"type\": \"fixed\",\n        \"amount\": 10,\n        \"reason\": \"Black Friday Sale\"\n      },\n      \"display_status\": \"string\",\n      \"contents\": [\n        {\n          \"id\": 2943,\n          \"weight\": 895.7831614701295,\n          \"weight_unit\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"unit_price\": 5142.338825092788,\n          \"total_price\": 6943.589390099721,\n          \"item\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"brand\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"product_id\": 7018,\n          \"product_brand\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"is_sample\": false,\n          \"package_ids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n          \"order\": 2538,\n          \"discount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"weight_unit_id\": 1223,\n          \"weight_unit_name\": \"string\"\n        },\n        {\n          \"id\": 7957,\n          \"weight\": 9370.042667899806,\n          \"weight_unit\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"unit_price\": 1488.143799445638,\n          \"total_price\": 6105.988985899217,\n          \"item\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"brand\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"product_id\": null,\n          \"product_brand\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"is_sample\": false,\n          \"package_ids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n          \"order\": 5734,\n          \"discount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"weight_unit_id\": 3516,\n          \"weight_unit_name\": \"string\"\n        }\n      ],\n      \"sales_representative\": {\n        \"id\": 123,\n        \"name\": \"John Doe\",\n        \"email\": \"j@d.com\"\n      },\n      \"invoice_url\": \"https://www.app.canix.com/sales/invoice/view/123456\",\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n    },\n    \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n  },\n  {\n    \"id\": 123,\n    \"name\": \"Transfer\",\n    \"manifest_number\": \"string\",\n    \"is_active\": true,\n    \"destinations\": [\n      {\n        \"id\": 123,\n        \"destination_facility\": \"401-N0909\",\n        \"transfer_type\": \"Affilliated\",\n        \"route\": \"string\",\n        \"departure_time\": \"2018-11-06 08:00:00+00:00\",\n        \"contents\": [\n          {\n            \"package\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"status\": \"string\",\n            \"sale_price\": 12.34,\n            \"shipped_weight\": 10,\n            \"shipped_weight_unit\": \"Grams\",\n            \"received_weight\": 10,\n            \"received_weight_unit\": \"Grams\",\n            \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n          },\n          {\n            \"package\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"status\": \"string\",\n            \"sale_price\": 12.34,\n            \"shipped_weight\": 10,\n            \"shipped_weight_unit\": \"Grams\",\n            \"received_weight\": 10,\n            \"received_weight_unit\": \"Grams\",\n            \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n          }\n        ],\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n      },\n      {\n        \"id\": 123,\n        \"destination_facility\": \"401-N0909\",\n        \"transfer_type\": \"Affilliated\",\n        \"route\": \"string\",\n        \"departure_time\": \"2018-11-06 08:00:00+00:00\",\n        \"contents\": [\n          {\n            \"package\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"status\": \"string\",\n            \"sale_price\": 12.34,\n            \"shipped_weight\": 10,\n            \"shipped_weight_unit\": \"Grams\",\n            \"received_weight\": 10,\n            \"received_weight_unit\": \"Grams\",\n            \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n          },\n          {\n            \"package\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"status\": \"string\",\n            \"sale_price\": 12.34,\n            \"shipped_weight\": 10,\n            \"shipped_weight_unit\": \"Grams\",\n            \"received_weight\": 10,\n            \"received_weight_unit\": \"Grams\",\n            \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n          }\n        ],\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n      }\n    ],\n    \"sales_order\": {\n      \"id\": 581,\n      \"facility_id\": 6254,\n      \"name\": \"string\",\n      \"status\": \"string\",\n      \"delivery_date\": \"string\",\n      \"other_tax_rate\": 1870.282985465187,\n      \"local_tax_rate\": 6634.745614992279,\n      \"state_tax_rate\": 2949.2435090696868,\n      \"external_identifier\": \"string\",\n      \"created_at\": \"string\",\n      \"customer\": {\n        \"id\": 1657,\n        \"contact_name\": \"string\",\n        \"company_name\": \"string\",\n        \"facility_license_number\": \"string\",\n        \"license_type\": \"string\",\n        \"customer_number\": \"string\",\n        \"license_expiration_date\": \"string\",\n        \"phone\": \"string\",\n        \"email\": \"string\",\n        \"territory\": \"string\",\n        \"address\": {\n          \"street\": \"123 Cumberland St\",\n          \"street2\": \"West\",\n          \"city\": \"Somerset\",\n          \"county\": \"KY\",\n          \"state\": \"CO\",\n          \"country\": \"USA\",\n          \"postal_code\": \"string\"\n        },\n        \"notes\": \"string\",\n        \"outstanding_balance\": 1565.643191220023,\n        \"credit\": 8115.49002176247,\n        \"dba\": \"Doing Business As\",\n        \"is_active\": false,\n        \"created_at\": \"2018-11-06 08:00:00+00:00\",\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n      },\n      \"delivery_fee\": 3320.627975396606,\n      \"payment_date\": \"string\",\n      \"payment_terms\": \"string\",\n      \"subtotal\": 5436.863537804899,\n      \"total_cultivation_tax\": 9007.162700947925,\n      \"total_price\": 2787.958476500604,\n      \"total_paid\": 4897.2382203053385,\n      \"credits\": 9970.545417441654,\n      \"discount\": 7918.779568139932,\n      \"remaining_balance\": 2174.497530477858,\n      \"internal_notes\": \"string\",\n      \"payments\": [\n        {\n          \"amount\": 6535.470002871007,\n          \"date\": 972,\n          \"id\": 2697,\n          \"sales_order_id\": 2352,\n          \"reference_number\": null,\n          \"external_transaction_name\": \"string\",\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n        },\n        {\n          \"amount\": 7131.4690100252155,\n          \"date\": 6836,\n          \"id\": 528,\n          \"sales_order_id\": 7348,\n          \"reference_number\": null,\n          \"external_transaction_name\": null,\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n        }\n      ],\n      \"sales_order_credit\": {\n        \"type\": \"fixed\",\n        \"amount\": 10,\n        \"reason\": \"Black Friday Sale\"\n      },\n      \"display_status\": \"string\",\n      \"contents\": [\n        {\n          \"id\": 8158,\n          \"weight\": 7780.621280256723,\n          \"weight_unit\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"unit_price\": 3176.7705916242885,\n          \"total_price\": 6467.00101644002,\n          \"item\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"brand\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"product_id\": null,\n          \"product_brand\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"is_sample\": false,\n          \"package_ids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n          \"order\": 5749,\n          \"discount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"weight_unit_id\": 8951,\n          \"weight_unit_name\": \"string\"\n        },\n        {\n          \"id\": 9303,\n          \"weight\": 2245.3278823429278,\n          \"weight_unit\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"unit_price\": 394.2218048205592,\n          \"total_price\": 3484.709586564794,\n          \"item\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"brand\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"product_id\": null,\n          \"product_brand\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"is_sample\": true,\n          \"package_ids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n          \"order\": 1465,\n          \"discount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"weight_unit_id\": 7553,\n          \"weight_unit_name\": \"string\"\n        }\n      ],\n      \"sales_representative\": {\n        \"id\": 123,\n        \"name\": \"John Doe\",\n        \"email\": \"j@d.com\"\n      },\n      \"invoice_url\": \"https://www.app.canix.com/sales/invoice/view/123456\",\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n    },\n    \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bc229536-efbb-48c7-9b1e-c00e076dfade",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8efb2f91-1daa-454d-a782-179284cde5cd",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d131fbba-fc9e-40ad-9638-ffcd0610344e",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b6d3d218-8167-4c07-99dd-ef1562417798",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "15023382-6a6b-4519-9e7a-4c48fe92f6ff",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "17896c3a-26fe-4088-9a2d-024aaf959024",
+          "name": "GetTransfer",
+          "request": {
+            "name": "GetTransfer",
+            "description": {
+              "content": "Get Transfer by ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transfers",
+                ":transfer_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "transfer_id",
+                  "description": "(Required) Transfer ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "06bcccf9-d64a-4979-a026-a75a83eb4425",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfers",
+                    ":transfer_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "transfer_id",
+                      "description": "(Required) Transfer ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 123,\n  \"name\": \"Transfer\",\n  \"manifest_number\": \"string\",\n  \"is_active\": false,\n  \"destinations\": [\n    {\n      \"id\": 123,\n      \"destination_facility\": \"401-N0909\",\n      \"transfer_type\": \"Affilliated\",\n      \"route\": \"string\",\n      \"departure_time\": \"2018-11-06 08:00:00+00:00\",\n      \"contents\": [\n        {\n          \"package\": {\n            \"id\": 2436,\n            \"tag\": \"string\",\n            \"is_active\": true,\n            \"is_testing_package\": true,\n            \"status\": \"string\",\n            \"item\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"weight\": 2273.2444066831126,\n            \"original_weight\": 8338.51067476431,\n            \"weight_unit\": \"string\",\n            \"packaged_date\": \"string\",\n            \"production_batch_date\": \"1970-08-17\",\n            \"expiration_date\": \"string\",\n            \"received_date\": \"string\",\n            \"location\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"production_batch\": \"string\",\n            \"lot_id\": \"string\",\n            \"cultivation_tax\": 9103.774295191133,\n            \"available_for_sale\": false,\n            \"cannabis_cogs\": 6168.5238204874395,\n            \"non_cannabis_inventory_cogs\": 4081.8281750665265,\n            \"source_packages\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"destination_packages\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"source_facility\": \"string\",\n            \"source_facility_name\": \"string\",\n            \"source_harvests\": \"string\",\n            \"notes\": \"string\",\n            \"brand\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"lab_test_url\": \"https://www.lab.com/lab-test/123456\",\n            \"coa_url\": \"https://s3.amazonaws.com/bucket/coa/abc123.pdf?X-Amz-Signature=...\",\n            \"test_results\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cogs\": {\n              \"labor\": 10,\n              \"non_cannabis\": 120,\n              \"cannabis\": 30,\n              \"total\": 160\n            },\n            \"original_cogs\": {\n              \"labor\": 10,\n              \"non_cannabis\": 120,\n              \"cannabis\": 30,\n              \"total\": 160\n            },\n            \"manufacturing_run\": {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"status\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"start_date\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"end_date\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"facility_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n            \"tested_package_tag\": \"string\",\n            \"test_status\": \"string\",\n            \"test_date\": \"1967-05-06\",\n            \"lab_test_info\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"status\": \"string\",\n          \"sale_price\": 12.34,\n          \"shipped_weight\": 10,\n          \"shipped_weight_unit\": \"Grams\",\n          \"received_weight\": 10,\n          \"received_weight_unit\": \"Grams\",\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n        },\n        {\n          \"package\": {\n            \"id\": 4154,\n            \"tag\": \"string\",\n            \"is_active\": false,\n            \"is_testing_package\": true,\n            \"status\": \"string\",\n            \"item\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"weight\": 1469.363441988084,\n            \"original_weight\": 429.3373415050028,\n            \"weight_unit\": \"string\",\n            \"packaged_date\": \"string\",\n            \"production_batch_date\": null,\n            \"expiration_date\": \"string\",\n            \"received_date\": \"string\",\n            \"location\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"production_batch\": \"string\",\n            \"lot_id\": \"string\",\n            \"cultivation_tax\": 9053.91586267348,\n            \"available_for_sale\": true,\n            \"cannabis_cogs\": 4026.0215125340314,\n            \"non_cannabis_inventory_cogs\": 2611.763983029363,\n            \"source_packages\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"destination_packages\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"source_facility\": \"string\",\n            \"source_facility_name\": \"string\",\n            \"source_harvests\": \"string\",\n            \"notes\": \"string\",\n            \"brand\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"lab_test_url\": \"https://www.lab.com/lab-test/123456\",\n            \"coa_url\": \"https://s3.amazonaws.com/bucket/coa/abc123.pdf?X-Amz-Signature=...\",\n            \"test_results\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cogs\": {\n              \"labor\": 10,\n              \"non_cannabis\": 120,\n              \"cannabis\": 30,\n              \"total\": 160\n            },\n            \"original_cogs\": {\n              \"labor\": 10,\n              \"non_cannabis\": 120,\n              \"cannabis\": 30,\n              \"total\": 160\n            },\n            \"manufacturing_run\": {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"status\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"start_date\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"end_date\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"facility_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n            \"tested_package_tag\": \"string\",\n            \"test_status\": \"string\",\n            \"test_date\": \"2025-06-30\",\n            \"lab_test_info\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"status\": \"string\",\n          \"sale_price\": 12.34,\n          \"shipped_weight\": 10,\n          \"shipped_weight_unit\": \"Grams\",\n          \"received_weight\": 10,\n          \"received_weight_unit\": \"Grams\",\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n        }\n      ],\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n    },\n    {\n      \"id\": 123,\n      \"destination_facility\": \"401-N0909\",\n      \"transfer_type\": \"Affilliated\",\n      \"route\": \"string\",\n      \"departure_time\": \"2018-11-06 08:00:00+00:00\",\n      \"contents\": [\n        {\n          \"package\": {\n            \"id\": 1216,\n            \"tag\": \"string\",\n            \"is_active\": true,\n            \"is_testing_package\": false,\n            \"status\": \"string\",\n            \"item\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"weight\": 1539.0095983625417,\n            \"original_weight\": 7268.871409471574,\n            \"weight_unit\": \"string\",\n            \"packaged_date\": \"string\",\n            \"production_batch_date\": null,\n            \"expiration_date\": \"string\",\n            \"received_date\": \"string\",\n            \"location\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"production_batch\": \"string\",\n            \"lot_id\": \"string\",\n            \"cultivation_tax\": 7641.188853328818,\n            \"available_for_sale\": true,\n            \"cannabis_cogs\": 5610.391004623891,\n            \"non_cannabis_inventory_cogs\": 9084.290542989518,\n            \"source_packages\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"destination_packages\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"source_facility\": \"string\",\n            \"source_facility_name\": \"string\",\n            \"source_harvests\": \"string\",\n            \"notes\": \"string\",\n            \"brand\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"lab_test_url\": \"https://www.lab.com/lab-test/123456\",\n            \"coa_url\": \"https://s3.amazonaws.com/bucket/coa/abc123.pdf?X-Amz-Signature=...\",\n            \"test_results\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cogs\": {\n              \"labor\": 10,\n              \"non_cannabis\": 120,\n              \"cannabis\": 30,\n              \"total\": 160\n            },\n            \"original_cogs\": {\n              \"labor\": 10,\n              \"non_cannabis\": 120,\n              \"cannabis\": 30,\n              \"total\": 160\n            },\n            \"manufacturing_run\": {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"status\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"start_date\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"end_date\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"facility_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n            \"tested_package_tag\": \"string\",\n            \"test_status\": \"string\",\n            \"test_date\": \"2005-02-23\",\n            \"lab_test_info\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"status\": \"string\",\n          \"sale_price\": 12.34,\n          \"shipped_weight\": 10,\n          \"shipped_weight_unit\": \"Grams\",\n          \"received_weight\": 10,\n          \"received_weight_unit\": \"Grams\",\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n        },\n        {\n          \"package\": {\n            \"id\": 1453,\n            \"tag\": \"string\",\n            \"is_active\": false,\n            \"is_testing_package\": true,\n            \"status\": \"string\",\n            \"item\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"weight\": 418.44826165124414,\n            \"original_weight\": 2718.9586200043004,\n            \"weight_unit\": \"string\",\n            \"packaged_date\": \"string\",\n            \"production_batch_date\": \"1957-05-22\",\n            \"expiration_date\": \"string\",\n            \"received_date\": \"string\",\n            \"location\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"production_batch\": \"string\",\n            \"lot_id\": \"string\",\n            \"cultivation_tax\": 2509.6321885695606,\n            \"available_for_sale\": false,\n            \"cannabis_cogs\": 4051.1476240732836,\n            \"non_cannabis_inventory_cogs\": 6627.077427109043,\n            \"source_packages\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"destination_packages\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"source_facility\": \"string\",\n            \"source_facility_name\": \"string\",\n            \"source_harvests\": \"string\",\n            \"notes\": \"string\",\n            \"brand\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"lab_test_url\": \"https://www.lab.com/lab-test/123456\",\n            \"coa_url\": \"https://s3.amazonaws.com/bucket/coa/abc123.pdf?X-Amz-Signature=...\",\n            \"test_results\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cogs\": {\n              \"labor\": 10,\n              \"non_cannabis\": 120,\n              \"cannabis\": 30,\n              \"total\": 160\n            },\n            \"original_cogs\": {\n              \"labor\": 10,\n              \"non_cannabis\": 120,\n              \"cannabis\": 30,\n              \"total\": 160\n            },\n            \"manufacturing_run\": {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"status\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"start_date\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"end_date\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"facility_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n            \"tested_package_tag\": \"string\",\n            \"test_status\": \"string\",\n            \"test_date\": \"1957-09-19\",\n            \"lab_test_info\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"status\": \"string\",\n          \"sale_price\": 12.34,\n          \"shipped_weight\": 10,\n          \"shipped_weight_unit\": \"Grams\",\n          \"received_weight\": 10,\n          \"received_weight_unit\": \"Grams\",\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n        }\n      ],\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n    }\n  ],\n  \"sales_order\": {\n    \"id\": 639,\n    \"facility_id\": 6959,\n    \"name\": \"string\",\n    \"status\": \"string\",\n    \"delivery_date\": \"string\",\n    \"other_tax_rate\": 4823.88028785577,\n    \"local_tax_rate\": 8170.192362461553,\n    \"state_tax_rate\": 8238.753876319495,\n    \"external_identifier\": \"string\",\n    \"created_at\": \"string\",\n    \"customer\": {\n      \"id\": 1711,\n      \"contact_name\": \"string\",\n      \"company_name\": \"string\",\n      \"facility_license_number\": \"string\",\n      \"license_type\": \"string\",\n      \"customer_number\": \"string\",\n      \"license_expiration_date\": \"string\",\n      \"phone\": \"string\",\n      \"email\": \"string\",\n      \"territory\": \"string\",\n      \"address\": {\n        \"street\": \"123 Cumberland St\",\n        \"street2\": \"West\",\n        \"city\": \"Somerset\",\n        \"county\": \"KY\",\n        \"state\": \"CO\",\n        \"country\": \"USA\",\n        \"postal_code\": \"string\"\n      },\n      \"notes\": \"string\",\n      \"outstanding_balance\": 3827.618980712264,\n      \"credit\": 2277.3367935689394,\n      \"dba\": \"Doing Business As\",\n      \"is_active\": true,\n      \"created_at\": \"2018-11-06 08:00:00+00:00\",\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n    },\n    \"delivery_fee\": 4038.5812819457456,\n    \"payment_date\": \"string\",\n    \"payment_terms\": \"string\",\n    \"subtotal\": 821.1177734777897,\n    \"total_cultivation_tax\": 9092.46330153035,\n    \"total_price\": 3328.017379646214,\n    \"total_paid\": 2617.949464470771,\n    \"credits\": 7435.117770827144,\n    \"discount\": 8731.10379803758,\n    \"remaining_balance\": 1646.1594769026221,\n    \"internal_notes\": \"string\",\n    \"payments\": [\n      {\n        \"amount\": 1815.0460555492386,\n        \"date\": 3544,\n        \"id\": 7893,\n        \"sales_order_id\": 4701,\n        \"reference_number\": null,\n        \"external_transaction_name\": \"string\",\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n      },\n      {\n        \"amount\": 8356.078522599319,\n        \"date\": 7543,\n        \"id\": 6579,\n        \"sales_order_id\": 8547,\n        \"reference_number\": null,\n        \"external_transaction_name\": \"string\",\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n      }\n    ],\n    \"sales_order_credit\": {\n      \"type\": \"fixed\",\n      \"amount\": 10,\n      \"reason\": \"Black Friday Sale\"\n    },\n    \"display_status\": \"string\",\n    \"contents\": [\n      {\n        \"id\": 112,\n        \"weight\": 6280.2122395550505,\n        \"weight_unit\": \"string\",\n        \"unit_price\": 2825.572204747304,\n        \"total_price\": 9586.97027780707,\n        \"item\": {\n          \"id\": 7036,\n          \"name\": \"Blue Dream - Trim\",\n          \"sku\": \"22657\"\n        },\n        \"brand\": {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"product_id\": 6463,\n        \"product_brand\": {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"is_sample\": false,\n        \"package_ids\": [\n          1259,\n          3782\n        ],\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n        \"order\": 9282,\n        \"discount\": {\n          \"type\": \"fixed\",\n          \"amount\": 10,\n          \"reason\": \"Black Friday Sale\"\n        },\n        \"weight_unit_id\": 3550,\n        \"weight_unit_name\": \"string\"\n      },\n      {\n        \"id\": 8261,\n        \"weight\": 3268.4482066767196,\n        \"weight_unit\": \"string\",\n        \"unit_price\": 2922.2655496118664,\n        \"total_price\": 3033.743980621444,\n        \"item\": {\n          \"id\": 7036,\n          \"name\": \"Blue Dream - Trim\",\n          \"sku\": \"22657\"\n        },\n        \"brand\": {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"product_id\": null,\n        \"product_brand\": {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"is_sample\": true,\n        \"package_ids\": [\n          7533,\n          2101\n        ],\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n        \"order\": 8350,\n        \"discount\": {\n          \"type\": \"fixed\",\n          \"amount\": 10,\n          \"reason\": \"Black Friday Sale\"\n        },\n        \"weight_unit_id\": 4944,\n        \"weight_unit_name\": \"string\"\n      }\n    ],\n    \"sales_representative\": {\n      \"id\": 123,\n      \"name\": \"John Doe\",\n      \"email\": \"j@d.com\"\n    },\n    \"invoice_url\": \"https://www.app.canix.com/sales/invoice/view/123456\",\n    \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n  },\n  \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b8822b83-5d0c-45ed-ba22-5cd17f7763ab",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfers",
+                    ":transfer_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "transfer_id",
+                      "description": "(Required) Transfer ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6493b752-3503-47c2-a6b5-f8a0136f1eee",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfers",
+                    ":transfer_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "transfer_id",
+                      "description": "(Required) Transfer ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8bc9bcfd-646c-4db2-bbfa-3f209fb5638b",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfers",
+                    ":transfer_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "transfer_id",
+                      "description": "(Required) Transfer ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4558b5d0-a326-4bfb-8c4c-ab99b623e1f4",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfers",
+                    ":transfer_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "transfer_id",
+                      "description": "(Required) Transfer ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d28dceb8-27e6-4511-82de-91a9df7c8026",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfers",
+                    ":transfer_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "transfer_id",
+                      "description": "(Required) Transfer ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.canix.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "da550eef-1683-4e4a-af39-5fe783c03799",
+    "name": "Canix Transfers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# Introduction\nThis API documentation describes the endpoints used by third-party developers to get Canix data for their account.\n# Authentication\nCanix API uses API Keys for authentication. You can generate an API key on our [API page](https://app.canix.com/company/api), and on your API requests use the `X-API-KEY` header with the API key value you generated.\nWe strongly recommend using a secrets manager. Plain text files like dotenv lead to accidental costly leaks. Use [Doppler](https://doppler.com/) or similar options for a developer friendly experience. AWS and Google Cloud have native solutions as well.\n\nContact Support:\n Name: Canix Support\n Email: help@canix.com",
+      "type": "text/plain"
+    }
+  }
+}

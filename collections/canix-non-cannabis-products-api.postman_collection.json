@@ -1,0 +1,1549 @@
+{
+  "item": [
+    {
+      "id": "209ad12f-c9e7-4ec4-b964-aaf99a41e977",
+      "name": "Non-Cannabis Products",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8be82a7b-dba9-48d8-821d-8c8e11efd14b",
+          "name": "GetNonCannabisProducts",
+          "request": {
+            "name": "GetNonCannabisProducts",
+            "description": {
+              "content": "Return all Non-Cannabis Products for the user's company",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "non_cannabis_products"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "facility_ids",
+                  "value": "<integer>",
+                  "description": "Facility IDs (optional)"
+                },
+                {
+                  "disabled": false,
+                  "key": "facility_ids",
+                  "value": "<integer>",
+                  "description": "Facility IDs (optional)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "2000",
+                  "description": "Max number of records to return (optional). Cannot exceed 2000"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Offset for the returned records (optional)"
+                },
+                {
+                  "disabled": false,
+                  "key": "order_by",
+                  "value": "<string>",
+                  "description": "Order-by clause, in SQL format (optional)"
+                },
+                {
+                  "disabled": false,
+                  "key": "where",
+                  "value": "<string>",
+                  "description": "Filter results using SQL-like WHERE clause syntax (optional).\n\n**Supported operators**: =, >, <, >=, <=, BETWEEN, IN, LIKE, AND, OR\n\n**Supported patterns**:\n- Equality: `status='Active'`\n- Comparison: `updated_at >= '2024-01-01'`\n- Range: `id BETWEEN 1 AND 10000`\n- List: `status IN ('Active', 'Pending')`\n- Pattern: `sku LIKE 'ABC%'`\n- Compound: `facility_id=123 AND is_active=true`\n"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a10a9b80-17f4-4ca4-9d44-4f3680cea4d7",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "non_cannabis_products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "facility_ids",
+                      "value": "123"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 123,\n    \"name\": \"Pro System\",\n    \"is_active\": true,\n    \"facilities\": {\n      \"id\": 123,\n      \"name\": \"Test Facility\",\n      \"license_number\": \"4a-x123\",\n      \"is_active\": true,\n      \"address\": {\n        \"street\": \"123 Cumberland St\",\n        \"street2\": \"West\",\n        \"city\": \"Somerset\",\n        \"county\": \"KY\",\n        \"state\": \"CO\",\n        \"country\": \"USA\",\n        \"postal_code\": \"string\"\n      }\n    },\n    \"category\": {\n      \"id\": 123,\n      \"name\": \"Preroll Materials\",\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n    },\n    \"location\": {\n      \"id\": 123,\n      \"name\": \"Pro System\",\n      \"sqft\": 14.4,\n      \"num_lights\": 42,\n      \"parent_location\": {\n        \"id\": 123,\n        \"name\": \"Pro System\",\n        \"sqft\": 14.4,\n        \"num_lights\": 42,\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n        \"is_active\": true\n      },\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n      \"is_active\": true\n    },\n    \"sku\": \"0.5EC\",\n    \"notes\": \"This product requires special handling\",\n    \"available_quantity\": 196,\n    \"weight_unit\": \"Each\",\n    \"par\": 100,\n    \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n    \"current_standard_costing\": {\n      \"id\": 123,\n      \"standard_cost_amount\": 12.1111,\n      \"standard_cost_currency\": \"USD\",\n      \"start_date\": \"2023-04-19\",\n      \"end_date\": \"2023-05-19\"\n    },\n    \"submits_to_metrc\": true,\n    \"additive_type\": \"fertilizer\",\n    \"product_trade_name\": \"string\",\n    \"epa_registration_name\": \"string\",\n    \"product_supplier\": \"string\",\n    \"application_device\": \"string\",\n    \"active_ingredients\": [\n      {\n        \"name\": \"string\",\n        \"percentage\": 9330.014620393094\n      },\n      {\n        \"name\": \"string\",\n        \"percentage\": 9186.908076892303\n      }\n    ]\n  },\n  {\n    \"id\": 123,\n    \"name\": \"Pro System\",\n    \"is_active\": true,\n    \"facilities\": {\n      \"id\": 123,\n      \"name\": \"Test Facility\",\n      \"license_number\": \"4a-x123\",\n      \"is_active\": true,\n      \"address\": {\n        \"street\": \"123 Cumberland St\",\n        \"street2\": \"West\",\n        \"city\": \"Somerset\",\n        \"county\": \"KY\",\n        \"state\": \"CO\",\n        \"country\": \"USA\",\n        \"postal_code\": \"string\"\n      }\n    },\n    \"category\": {\n      \"id\": 123,\n      \"name\": \"Preroll Materials\",\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n    },\n    \"location\": {\n      \"id\": 123,\n      \"name\": \"Pro System\",\n      \"sqft\": 14.4,\n      \"num_lights\": 42,\n      \"parent_location\": {\n        \"id\": 123,\n        \"name\": \"Pro System\",\n        \"sqft\": 14.4,\n        \"num_lights\": 42,\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n        \"is_active\": true\n      },\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n      \"is_active\": true\n    },\n    \"sku\": \"0.5EC\",\n    \"notes\": \"This product requires special handling\",\n    \"available_quantity\": 196,\n    \"weight_unit\": \"Each\",\n    \"par\": 100,\n    \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n    \"current_standard_costing\": {\n      \"id\": 123,\n      \"standard_cost_amount\": 12.1111,\n      \"standard_cost_currency\": \"USD\",\n      \"start_date\": \"2023-04-19\",\n      \"end_date\": \"2023-05-19\"\n    },\n    \"submits_to_metrc\": true,\n    \"additive_type\": \"fertilizer\",\n    \"product_trade_name\": \"string\",\n    \"epa_registration_name\": \"string\",\n    \"product_supplier\": \"string\",\n    \"application_device\": \"string\",\n    \"active_ingredients\": [\n      {\n        \"name\": \"string\",\n        \"percentage\": 2278.8297385375213\n      },\n      {\n        \"name\": \"string\",\n        \"percentage\": 1501.315988796198\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5c0ec865-31ac-4e01-9636-5803208456a3",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "non_cannabis_products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "facility_ids",
+                      "value": "123"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "727f1734-a749-4f5f-a912-66867fd12b31",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "non_cannabis_products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "facility_ids",
+                      "value": "123"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6eb4cb95-423a-47a3-8b38-310bbf7ba096",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "non_cannabis_products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "facility_ids",
+                      "value": "123"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "668f5e60-1cee-4069-b421-c80d9747a60d",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "non_cannabis_products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "facility_ids",
+                      "value": "123"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5e7ae31b-b23d-4771-ad6e-9ccb367aa581",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "non_cannabis_products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "facility_ids",
+                      "value": "123"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "92928024-5df0-4595-ab7b-0dc9f2191993",
+          "name": "PostNonCannabisProduct",
+          "request": {
+            "name": "PostNonCannabisProduct",
+            "description": {
+              "content": "__CALLING THIS ENDPOINT WILL MODIFY YOUR DATA IRREVERSIBLY. ONLY CALL THIS ON SANDBOX DATA DURING DEVELOPMENT/CODING/TESTING.__ Each request creates the product in a single facility (facility_id). To share a product across additional facilities, contact support or use the app.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "non_cannabis_products"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"weight_unit_id\": \"<integer>\",\n  \"facility_id\": \"<integer>\",\n  \"sku\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"par\": \"<number>\",\n  \"allow_partial_unit_deduction\": \"<boolean>\",\n  \"non_cannabis_product_category_id\": \"<integer>\",\n  \"location_id\": \"<integer>\",\n  \"brand_id\": \"<integer>\",\n  \"standard_cost\": \"<number>\",\n  \"standard_cost_start_date\": \"<date>\",\n  \"standard_cost_end_date\": \"<date>\",\n  \"submits_to_metrc\": \"<boolean>\",\n  \"additive_type\": \"<string>\",\n  \"product_trade_name\": \"<string>\",\n  \"epa_registration_name\": \"<string>\",\n  \"product_supplier\": \"<string>\",\n  \"application_device\": \"<string>\",\n  \"active_ingredients\": [\n    {\n      \"name\": \"<string>\",\n      \"percentage\": \"<number>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"percentage\": \"<number>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fdba5c57-d441-46c6-9feb-b9f3e3f4286e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "non_cannabis_products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Fertilizer\",\n  \"weight_unit_id\": 15,\n  \"facility_id\": 1,\n  \"sku\": \"FERT-01\",\n  \"notes\": \"Store away from direct sunlight\",\n  \"par\": 100,\n  \"allow_partial_unit_deduction\": true,\n  \"non_cannabis_product_category_id\": 12,\n  \"location_id\": 42,\n  \"brand_id\": 5,\n  \"standard_cost\": 4.5,\n  \"standard_cost_start_date\": \"2024-01-01\",\n  \"submits_to_metrc\": true,\n  \"additive_type\": \"fertilizer\",\n  \"product_trade_name\": \"Pro Grow Fertilizer\",\n  \"epa_registration_name\": \"EPA-12345-1\",\n  \"product_supplier\": \"AgroSupply Co\",\n  \"application_device\": \"Foliar sprayer\",\n  \"active_ingredients\": [\n    {\n      \"name\": \"Nitrogen\",\n      \"percentage\": 10\n    },\n    {\n      \"name\": \"Phosphorus\",\n      \"percentage\": 5\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 123,\n  \"name\": \"Pro System\",\n  \"is_active\": false,\n  \"facilities\": {\n    \"id\": 123,\n    \"name\": \"Test Facility\",\n    \"license_number\": \"4a-x123\",\n    \"is_active\": true,\n    \"address\": {\n      \"street\": \"123 Cumberland St\",\n      \"street2\": \"West\",\n      \"city\": \"Somerset\",\n      \"county\": \"KY\",\n      \"state\": \"CO\",\n      \"country\": \"USA\",\n      \"postal_code\": \"string\"\n    }\n  },\n  \"category\": {\n    \"id\": 123,\n    \"name\": \"Preroll Materials\",\n    \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n  },\n  \"location\": {\n    \"id\": 123,\n    \"name\": \"Pro System\",\n    \"sqft\": 14.4,\n    \"num_lights\": 42,\n    \"parent_location\": {\n      \"id\": 123,\n      \"name\": \"Pro System\",\n      \"sqft\": 14.4,\n      \"num_lights\": 42,\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n      \"is_active\": true\n    },\n    \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n    \"is_active\": true\n  },\n  \"sku\": \"0.5EC\",\n  \"notes\": \"This product requires special handling\",\n  \"available_quantity\": 196,\n  \"weight_unit\": \"Each\",\n  \"par\": 100,\n  \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n  \"current_standard_costing\": {\n    \"id\": 123,\n    \"standard_cost_amount\": 12.1111,\n    \"standard_cost_currency\": \"USD\",\n    \"start_date\": \"2023-04-19\",\n    \"end_date\": \"2023-05-19\"\n  },\n  \"submits_to_metrc\": true,\n  \"additive_type\": \"fertilizer\",\n  \"product_trade_name\": \"string\",\n  \"epa_registration_name\": \"string\",\n  \"product_supplier\": \"string\",\n  \"application_device\": \"string\",\n  \"active_ingredients\": [\n    {\n      \"name\": \"string\",\n      \"percentage\": 1652.4850761746845\n    },\n    {\n      \"name\": \"string\",\n      \"percentage\": 4514.880687473114\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "db683ae4-bbd9-4037-9183-84c07e882e1a",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "non_cannabis_products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Fertilizer\",\n  \"weight_unit_id\": 15,\n  \"facility_id\": 1,\n  \"sku\": \"FERT-01\",\n  \"notes\": \"Store away from direct sunlight\",\n  \"par\": 100,\n  \"allow_partial_unit_deduction\": true,\n  \"non_cannabis_product_category_id\": 12,\n  \"location_id\": 42,\n  \"brand_id\": 5,\n  \"standard_cost\": 4.5,\n  \"standard_cost_start_date\": \"2024-01-01\",\n  \"submits_to_metrc\": true,\n  \"additive_type\": \"fertilizer\",\n  \"product_trade_name\": \"Pro Grow Fertilizer\",\n  \"epa_registration_name\": \"EPA-12345-1\",\n  \"product_supplier\": \"AgroSupply Co\",\n  \"application_device\": \"Foliar sprayer\",\n  \"active_ingredients\": [\n    {\n      \"name\": \"Nitrogen\",\n      \"percentage\": 10\n    },\n    {\n      \"name\": \"Phosphorus\",\n      \"percentage\": 5\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6fca2849-25e6-4609-83ba-b29b0435c8d2",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "non_cannabis_products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Fertilizer\",\n  \"weight_unit_id\": 15,\n  \"facility_id\": 1,\n  \"sku\": \"FERT-01\",\n  \"notes\": \"Store away from direct sunlight\",\n  \"par\": 100,\n  \"allow_partial_unit_deduction\": true,\n  \"non_cannabis_product_category_id\": 12,\n  \"location_id\": 42,\n  \"brand_id\": 5,\n  \"standard_cost\": 4.5,\n  \"standard_cost_start_date\": \"2024-01-01\",\n  \"submits_to_metrc\": true,\n  \"additive_type\": \"fertilizer\",\n  \"product_trade_name\": \"Pro Grow Fertilizer\",\n  \"epa_registration_name\": \"EPA-12345-1\",\n  \"product_supplier\": \"AgroSupply Co\",\n  \"application_device\": \"Foliar sprayer\",\n  \"active_ingredients\": [\n    {\n      \"name\": \"Nitrogen\",\n      \"percentage\": 10\n    },\n    {\n      \"name\": \"Phosphorus\",\n      \"percentage\": 5\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d4d215db-a62e-4aa8-803e-7f3c541b80d4",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "non_cannabis_products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Fertilizer\",\n  \"weight_unit_id\": 15,\n  \"facility_id\": 1,\n  \"sku\": \"FERT-01\",\n  \"notes\": \"Store away from direct sunlight\",\n  \"par\": 100,\n  \"allow_partial_unit_deduction\": true,\n  \"non_cannabis_product_category_id\": 12,\n  \"location_id\": 42,\n  \"brand_id\": 5,\n  \"standard_cost\": 4.5,\n  \"standard_cost_start_date\": \"2024-01-01\",\n  \"submits_to_metrc\": true,\n  \"additive_type\": \"fertilizer\",\n  \"product_trade_name\": \"Pro Grow Fertilizer\",\n  \"epa_registration_name\": \"EPA-12345-1\",\n  \"product_supplier\": \"AgroSupply Co\",\n  \"application_device\": \"Foliar sprayer\",\n  \"active_ingredients\": [\n    {\n      \"name\": \"Nitrogen\",\n      \"percentage\": 10\n    },\n    {\n      \"name\": \"Phosphorus\",\n      \"percentage\": 5\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "86ae667b-5699-470c-9f72-fd4bdf256522",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "non_cannabis_products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Fertilizer\",\n  \"weight_unit_id\": 15,\n  \"facility_id\": 1,\n  \"sku\": \"FERT-01\",\n  \"notes\": \"Store away from direct sunlight\",\n  \"par\": 100,\n  \"allow_partial_unit_deduction\": true,\n  \"non_cannabis_product_category_id\": 12,\n  \"location_id\": 42,\n  \"brand_id\": 5,\n  \"standard_cost\": 4.5,\n  \"standard_cost_start_date\": \"2024-01-01\",\n  \"submits_to_metrc\": true,\n  \"additive_type\": \"fertilizer\",\n  \"product_trade_name\": \"Pro Grow Fertilizer\",\n  \"epa_registration_name\": \"EPA-12345-1\",\n  \"product_supplier\": \"AgroSupply Co\",\n  \"application_device\": \"Foliar sprayer\",\n  \"active_ingredients\": [\n    {\n      \"name\": \"Nitrogen\",\n      \"percentage\": 10\n    },\n    {\n      \"name\": \"Phosphorus\",\n      \"percentage\": 5\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "714ebfc1-d879-4142-865c-886387ce3a44",
+              "name": "Metrc submission failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "non_cannabis_products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Fertilizer\",\n  \"weight_unit_id\": 15,\n  \"facility_id\": 1,\n  \"sku\": \"FERT-01\",\n  \"notes\": \"Store away from direct sunlight\",\n  \"par\": 100,\n  \"allow_partial_unit_deduction\": true,\n  \"non_cannabis_product_category_id\": 12,\n  \"location_id\": 42,\n  \"brand_id\": 5,\n  \"standard_cost\": 4.5,\n  \"standard_cost_start_date\": \"2024-01-01\",\n  \"submits_to_metrc\": true,\n  \"additive_type\": \"fertilizer\",\n  \"product_trade_name\": \"Pro Grow Fertilizer\",\n  \"epa_registration_name\": \"EPA-12345-1\",\n  \"product_supplier\": \"AgroSupply Co\",\n  \"application_device\": \"Foliar sprayer\",\n  \"active_ingredients\": [\n    {\n      \"name\": \"Nitrogen\",\n      \"percentage\": 10\n    },\n    {\n      \"name\": \"Phosphorus\",\n      \"percentage\": 5\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Metrc submission failed: ...\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2d9bf389-4a41-4757-aa1e-caeaf8ba10c0",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "non_cannabis_products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Fertilizer\",\n  \"weight_unit_id\": 15,\n  \"facility_id\": 1,\n  \"sku\": \"FERT-01\",\n  \"notes\": \"Store away from direct sunlight\",\n  \"par\": 100,\n  \"allow_partial_unit_deduction\": true,\n  \"non_cannabis_product_category_id\": 12,\n  \"location_id\": 42,\n  \"brand_id\": 5,\n  \"standard_cost\": 4.5,\n  \"standard_cost_start_date\": \"2024-01-01\",\n  \"submits_to_metrc\": true,\n  \"additive_type\": \"fertilizer\",\n  \"product_trade_name\": \"Pro Grow Fertilizer\",\n  \"epa_registration_name\": \"EPA-12345-1\",\n  \"product_supplier\": \"AgroSupply Co\",\n  \"application_device\": \"Foliar sprayer\",\n  \"active_ingredients\": [\n    {\n      \"name\": \"Nitrogen\",\n      \"percentage\": 10\n    },\n    {\n      \"name\": \"Phosphorus\",\n      \"percentage\": 5\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b45b1fb5-f39b-486a-b0be-1d4218d5b37d",
+          "name": "GetNonCannabisProduct",
+          "request": {
+            "name": "GetNonCannabisProduct",
+            "description": {
+              "content": "Get Non-Cannabis Product by ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "non_cannabis_products",
+                ":non_cannabis_product_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "non_cannabis_product_id",
+                  "description": "(Required) Non-Cannabis Product ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ce8e0ef2-ac28-4a53-bfb4-12f031312608",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "non_cannabis_products",
+                    ":non_cannabis_product_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "non_cannabis_product_id",
+                      "description": "(Required) Non-Cannabis Product ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 123,\n  \"name\": \"Pro System\",\n  \"is_active\": false,\n  \"facilities\": {\n    \"id\": 123,\n    \"name\": \"Test Facility\",\n    \"license_number\": \"4a-x123\",\n    \"is_active\": true,\n    \"address\": {\n      \"street\": \"123 Cumberland St\",\n      \"street2\": \"West\",\n      \"city\": \"Somerset\",\n      \"county\": \"KY\",\n      \"state\": \"CO\",\n      \"country\": \"USA\",\n      \"postal_code\": \"string\"\n    }\n  },\n  \"category\": {\n    \"id\": 123,\n    \"name\": \"Preroll Materials\",\n    \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n  },\n  \"location\": {\n    \"id\": 123,\n    \"name\": \"Pro System\",\n    \"sqft\": 14.4,\n    \"num_lights\": 42,\n    \"parent_location\": {\n      \"id\": 123,\n      \"name\": \"Pro System\",\n      \"sqft\": 14.4,\n      \"num_lights\": 42,\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n      \"is_active\": true\n    },\n    \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n    \"is_active\": true\n  },\n  \"sku\": \"0.5EC\",\n  \"notes\": \"This product requires special handling\",\n  \"available_quantity\": 196,\n  \"weight_unit\": \"Each\",\n  \"par\": 100,\n  \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n  \"current_standard_costing\": {\n    \"id\": 123,\n    \"standard_cost_amount\": 12.1111,\n    \"standard_cost_currency\": \"USD\",\n    \"start_date\": \"2023-04-19\",\n    \"end_date\": \"2023-05-19\"\n  },\n  \"submits_to_metrc\": true,\n  \"additive_type\": \"fertilizer\",\n  \"product_trade_name\": \"string\",\n  \"epa_registration_name\": \"string\",\n  \"product_supplier\": \"string\",\n  \"application_device\": \"string\",\n  \"active_ingredients\": [\n    {\n      \"name\": \"string\",\n      \"percentage\": 1652.4850761746845\n    },\n    {\n      \"name\": \"string\",\n      \"percentage\": 4514.880687473114\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "29eab241-3940-4231-872a-8b33e0444e19",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "non_cannabis_products",
+                    ":non_cannabis_product_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "non_cannabis_product_id",
+                      "description": "(Required) Non-Cannabis Product ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3af7672c-4afa-4068-811c-48e8c6dfd409",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "non_cannabis_products",
+                    ":non_cannabis_product_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "non_cannabis_product_id",
+                      "description": "(Required) Non-Cannabis Product ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d449e662-8d22-41b2-a56a-ed58f72e5e11",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "non_cannabis_products",
+                    ":non_cannabis_product_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "non_cannabis_product_id",
+                      "description": "(Required) Non-Cannabis Product ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "60f16671-6736-4018-a10e-d982b9dcd220",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "non_cannabis_products",
+                    ":non_cannabis_product_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "non_cannabis_product_id",
+                      "description": "(Required) Non-Cannabis Product ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a8ec1a95-cdbc-4d7e-b917-8053278def89",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "non_cannabis_products",
+                    ":non_cannabis_product_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "non_cannabis_product_id",
+                      "description": "(Required) Non-Cannabis Product ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dffda369-66fb-4663-b98f-7614dc963c43",
+          "name": "GetNonCannabisProductBOMs",
+          "request": {
+            "name": "GetNonCannabisProductBOMs",
+            "description": {
+              "content": "Get Bills of Materials associated with a Non-Cannabis Product",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "non_cannabis_products",
+                ":non_cannabis_product_id",
+                "boms"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "non_cannabis_product_id",
+                  "description": "(Required) Non-Cannabis Product ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1d227b1e-6b66-435e-9d57-05c5a357ebda",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "non_cannabis_products",
+                    ":non_cannabis_product_id",
+                    "boms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "non_cannabis_product_id",
+                      "description": "(Required) Non-Cannabis Product ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 12,\n    \"name\": \"Bulk - Dark Chocolate Peaks - 10mg\",\n    \"active_date\": \"2023-01-01\",\n    \"expiration_date\": \"2023-12-31\",\n    \"proportion_type\": \"single_instance\",\n    \"last_updated_at\": \"2023-01-15T10:30:00.000Z\",\n    \"source_non_cannabis_products\": [\n      {\n        \"name\": \"1/8th Jar\",\n        \"non_cannabis_product_id\": 24,\n        \"quantity\": 1,\n        \"weight_unit\": \"Each\",\n        \"application_setting\": \"proportional\"\n      }\n    ],\n    \"source_cannabis_items\": [\n      {\n        \"quantity\": 100,\n        \"weight_unit\": \"Grams\",\n        \"item\": {\n          \"id\": 242,\n          \"name\": \"Hammer Bud\"\n        },\n        \"item_category\": null,\n        \"item_sub_category\": null\n      }\n    ],\n    \"output_items\": [\n      {\n        \"item_id\": 370,\n        \"name\": \"Jarred Flower\",\n        \"quantity\": 50,\n        \"weight_unit\": \"Grams\",\n        \"item_category\": null,\n        \"item_sub_category\": null\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1f07ca31-ed9b-4535-9579-ac4a7edb6ac4",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "non_cannabis_products",
+                    ":non_cannabis_product_id",
+                    "boms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "non_cannabis_product_id",
+                      "description": "(Required) Non-Cannabis Product ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ac872de0-426f-4202-9a95-0a8a2d707bbd",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "non_cannabis_products",
+                    ":non_cannabis_product_id",
+                    "boms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "non_cannabis_product_id",
+                      "description": "(Required) Non-Cannabis Product ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f58249b5-9f07-4064-a60b-08d0b94f39e9",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "non_cannabis_products",
+                    ":non_cannabis_product_id",
+                    "boms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "non_cannabis_product_id",
+                      "description": "(Required) Non-Cannabis Product ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8bd6167f-eacd-47ad-8032-e59b80abc566",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "non_cannabis_products",
+                    ":non_cannabis_product_id",
+                    "boms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "non_cannabis_product_id",
+                      "description": "(Required) Non-Cannabis Product ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "dd5c27a5-8cf8-4933-b0f2-70c5d5b5478b",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "non_cannabis_products",
+                    ":non_cannabis_product_id",
+                    "boms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "non_cannabis_product_id",
+                      "description": "(Required) Non-Cannabis Product ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.canix.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a8fcac64-0bdc-46fb-bd27-de69d6158e02",
+    "name": "Canix Non-Cannabis Products API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# Introduction\nThis API documentation describes the endpoints used by third-party developers to get Canix data for their account.\n# Authentication\nCanix API uses API Keys for authentication. You can generate an API key on our [API page](https://app.canix.com/company/api), and on your API requests use the `X-API-KEY` header with the API key value you generated.\nWe strongly recommend using a secrets manager. Plain text files like dotenv lead to accidental costly leaks. Use [Doppler](https://doppler.com/) or similar options for a developer friendly experience. AWS and Google Cloud have native solutions as well.\n\nContact Support:\n Name: Canix Support\n Email: help@canix.com",
+      "type": "text/plain"
+    }
+  }
+}

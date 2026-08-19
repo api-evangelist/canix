@@ -1,0 +1,197 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Canix Items API",
+    "version": "1.3.10"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Items",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GetItems",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.canix.com/api/v1/items",
+            "params": [
+              {
+                "name": "facility_id",
+                "value": "123",
+                "type": "query",
+                "description": "Facility ID (optional)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Max number of records to return (optional). Cannot exceed 2000"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for the returned records (optional)"
+              },
+              {
+                "name": "order_by",
+                "value": "",
+                "type": "query",
+                "description": "Order-by clause, in SQL format (optional)"
+              },
+              {
+                "name": "where",
+                "value": "",
+                "type": "query",
+                "description": "Filter results using SQL-like WHERE clause syntax (optional).\n\n**Supported operators**: =, >, <, >=, <=, BETWEEN, IN, LIKE, AND, OR\n\n**Supported patterns**:\n- Equality: `status='Active'`\n- Comparison: `updated_at >= '2024-01-01'`\n- Range: `id BETWEEN 1 AND 10000`\n- List: `status IN ('Active', 'Pending')`\n- Pattern: `sku LIKE 'ABC%'`\n- Compound: `facility_id=123 AND is_active=true`\n"
+              }
+            ]
+          },
+          "docs": "Return items"
+        },
+        {
+          "info": {
+            "name": "CreateItem",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.canix.com/api/v1/items",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "__CALLING THIS ENDPOINT WILL MODIFY YOUR DATA IRREVERSIBLY. ONLY CALL THIS ON SANDBOX DATA DURING DEVELOPMENT/CODING/TESTING.__"
+        },
+        {
+          "info": {
+            "name": "GetItem",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.canix.com/api/v1/items/:item_id",
+            "params": [
+              {
+                "name": "item_id",
+                "value": "",
+                "type": "path",
+                "description": "Item ID"
+              }
+            ]
+          },
+          "docs": "Get Item by ID"
+        },
+        {
+          "info": {
+            "name": "UpdateItem",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.canix.com/api/v1/items/:item_id",
+            "params": [
+              {
+                "name": "item_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of Item to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "__CALLING THIS ENDPOINT WILL MODIFY YOUR DATA IRREVERSIBLY. ONLY CALL THIS ON SANDBOX DATA DURING DEVELOPMENT/CODING/TESTING.__"
+        },
+        {
+          "info": {
+            "name": "Delete Item",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.canix.com/api/v1/items/:item_id",
+            "params": [
+              {
+                "name": "item_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "__CALLING THIS ENDPOINT WILL MODIFY YOUR DATA IRREVERSIBLY. ONLY CALL THIS ON SANDBOX DATA DURING DEVELOPMENT/CODING/TESTING.__"
+        },
+        {
+          "info": {
+            "name": "AddItemStandardCost",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.canix.com/api/v1/items/:item_id/standard_cost",
+            "params": [
+              {
+                "name": "item_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of Item to add standard cost"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "__CALLING THIS ENDPOINT WILL MODIFY YOUR DATA IRREVERSIBLY. ONLY CALL THIS ON SANDBOX DATA DURING DEVELOPMENT/CODING/TESTING.__"
+        },
+        {
+          "info": {
+            "name": "Create METRC Item Photos",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.canix.com/api/v1/items/photos",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create METRC Item Photos"
+        },
+        {
+          "info": {
+            "name": "Create METRC Item Files",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.canix.com/api/v1/items/files",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create METRC Item Files"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

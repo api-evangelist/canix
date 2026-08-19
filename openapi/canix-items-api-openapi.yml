@@ -1,0 +1,979 @@
+openapi: 3.2.0
+info:
+  title: Canix Items API
+  x-logo:
+    url: https://assets.website-files.com/5ee52a0f4be6ffc2aaeb52cd/5ee52a0f4be6ff20e7eb534f_canix-logo.svg
+    backgroundColor: '#FFFFFF'
+    altText: Canix logo
+  description: '# Introduction
+
+    This API documentation describes the endpoints used by third-party developers to get Canix data for their account.
+
+    # Authentication
+
+    Canix API uses API Keys for authentication. You can generate an API key on our [API page](https://app.canix.com/company/api), and on your API requests use the `X-API-KEY` header with the API key value you generated.
+
+    We strongly recommend using a secrets manager. Plain text files like dotenv lead to accidental costly leaks. Use [Doppler](https://doppler.com/) or similar options for a developer friendly experience. AWS and Google Cloud have native solutions as well.'
+  contact:
+    name: Canix Support
+    url: https://help.canix.com/
+    email: help@canix.com
+  version: 1.3.10
+servers:
+- url: https://api.canix.com/api/v1
+  variables: {}
+security:
+- ApiKeyAuth: []
+tags:
+- name: Items
+paths:
+  /items:
+    get:
+      tags:
+      - Items
+      summary: GetItems
+      description: Return items
+      operationId: GetItems
+      parameters:
+      - name: facility_id
+        in: query
+        description: Facility ID (optional)
+        example: 123
+        required: false
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/limitParam'
+      - $ref: '#/components/parameters/offsetParam'
+      - $ref: '#/components/parameters/orderByParam'
+      - $ref: '#/components/parameters/whereParam'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Item'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          $ref: '#/components/responses/401NotAuthenticated'
+        '403':
+          $ref: '#/components/responses/403AccessDenied'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '500':
+          $ref: '#/components/responses/500ServerError'
+    post:
+      tags:
+      - Items
+      summary: CreateItem
+      description: __CALLING THIS ENDPOINT WILL MODIFY YOUR DATA IRREVERSIBLY. ONLY CALL THIS ON SANDBOX DATA DURING DEVELOPMENT/CODING/TESTING.__
+      operationId: CreateItem
+      requestBody:
+        required: true
+        description: Create a new Item
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateItemRequestBody'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Item'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          $ref: '#/components/responses/401NotAuthenticated'
+        '403':
+          $ref: '#/components/responses/403AccessDenied'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '500':
+          $ref: '#/components/responses/500ServerError'
+  /items/{item_id}:
+    get:
+      tags:
+      - Items
+      summary: GetItem
+      description: Get Item by ID
+      operationId: GetItemById
+      parameters:
+      - name: item_id
+        in: path
+        description: Item ID
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Item'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          $ref: '#/components/responses/401NotAuthenticated'
+        '403':
+          $ref: '#/components/responses/403AccessDenied'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '500':
+          $ref: '#/components/responses/500ServerError'
+    put:
+      tags:
+      - Items
+      summary: UpdateItem
+      description: __CALLING THIS ENDPOINT WILL MODIFY YOUR DATA IRREVERSIBLY. ONLY CALL THIS ON SANDBOX DATA DURING DEVELOPMENT/CODING/TESTING.__
+      operationId: UpdateItem
+      parameters:
+      - name: item_id
+        in: path
+        description: ID of Item to update
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        description: Update an existing Item
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateItemRequestBody'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Item'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          $ref: '#/components/responses/401NotAuthenticated'
+        '403':
+          $ref: '#/components/responses/403AccessDenied'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '500':
+          $ref: '#/components/responses/500ServerError'
+    delete:
+      tags:
+      - Items
+      summary: Delete Item
+      description: __CALLING THIS ENDPOINT WILL MODIFY YOUR DATA IRREVERSIBLY. ONLY CALL THIS ON SANDBOX DATA DURING DEVELOPMENT/CODING/TESTING.__
+      operationId: DeleteItem
+      parameters:
+      - name: item_id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: No Content
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '500':
+          $ref: '#/components/responses/500ServerError'
+  /items/{item_id}/standard_cost:
+    post:
+      tags:
+      - Items
+      summary: AddItemStandardCost
+      description: __CALLING THIS ENDPOINT WILL MODIFY YOUR DATA IRREVERSIBLY. ONLY CALL THIS ON SANDBOX DATA DURING DEVELOPMENT/CODING/TESTING.__
+      operationId: AddItemStandardCost
+      parameters:
+      - name: item_id
+        in: path
+        description: ID of Item to add standard cost
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        description: Add standard cost to an Item
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItemStandardCostRequestBody'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemStandardCost'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          $ref: '#/components/responses/401NotAuthenticated'
+        '403':
+          $ref: '#/components/responses/403AccessDenied'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '500':
+          $ref: '#/components/responses/500ServerError'
+  /items/photos:
+    post:
+      tags:
+      - Items
+      summary: Create METRC Item Photos
+      description: Create METRC Item Photos
+      operationId: CreateMETRCItemPhotos
+      requestBody:
+        required: true
+        description: Create METRC Item Photos
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateMETRCItemPhotosRequestBody'
+      responses:
+        '201':
+          description: CREATED
+          content:
+            application/json:
+              schema:
+                properties:
+                  photo_ids:
+                    type: array
+                    description: IDs of the photos that were created
+                    items:
+                      type: integer
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          $ref: '#/components/responses/401NotAuthenticated'
+        '403':
+          $ref: '#/components/responses/403AccessDenied'
+        '500':
+          $ref: '#/components/responses/500ServerError'
+  /items/files:
+    post:
+      tags:
+      - Items
+      summary: Create METRC Item Files
+      description: Create METRC Item Files
+      operationId: CreateMETRCItemFiles
+      requestBody:
+        required: true
+        description: Create METRC Item Files
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateMETRCItemFilesRequestBody'
+      responses:
+        '201':
+          description: CREATED
+          content:
+            application/json:
+              schema:
+                properties:
+                  file_ids:
+                    type: array
+                    description: IDs of the files that were created
+                    items:
+                      type: integer
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          $ref: '#/components/responses/401NotAuthenticated'
+        '403':
+          $ref: '#/components/responses/403AccessDenied'
+        '500':
+          $ref: '#/components/responses/500ServerError'
+components:
+  parameters:
+    offsetParam:
+      name: offset
+      in: query
+      description: Offset for the returned records (optional)
+      schema:
+        type: integer
+        default: 0
+        example: 20
+    whereParam:
+      name: where
+      in: query
+      description: 'Filter results using SQL-like WHERE clause syntax (optional).
+
+
+        **Supported operators**: =, >, <, >=, <=, BETWEEN, IN, LIKE, AND, OR
+
+
+        **Supported patterns**:
+
+        - Equality: `status=''Active''`
+
+        - Comparison: `updated_at >= ''2024-01-01''`
+
+        - Range: `id BETWEEN 1 AND 10000`
+
+        - List: `status IN (''Active'', ''Pending'')`
+
+        - Pattern: `sku LIKE ''ABC%''`
+
+        - Compound: `facility_id=123 AND is_active=true`
+
+        '
+      schema:
+        type: string
+        example: status='Active' AND updated_at >= '2024-01-01'
+    orderByParam:
+      name: order_by
+      in: query
+      description: Order-by clause, in SQL format (optional)
+      schema:
+        type: string
+        example: id desc
+    limitParam:
+      name: limit
+      in: query
+      description: Max number of records to return (optional). Cannot exceed 2000
+      required: false
+      style: form
+      schema:
+        type: integer
+        default: 2000
+        example: 100
+  schemas:
+    ItemStandardCostRequestBody:
+      title: Item Standard Cost Request Body
+      type: object
+      required:
+      - cost
+      - start_date
+      properties:
+        cost:
+          type: number
+          format: float
+          description: The standard cost value to be set
+          example: 10.5
+        start_date:
+          type: string
+          format: date-time
+          description: When this standard cost becomes effective
+          example: '2024-02-03T00:00:00Z'
+        end_date:
+          type: string
+          format: date-time
+          description: Optional. When this standard cost expires
+          example: '2024-12-31T23:59:59Z'
+    ItemStandardCost:
+      title: ItemStandardCost
+      required:
+      - id
+      - standard_cost_amount
+      - standard_cost_currency
+      - start_date
+      properties:
+        id:
+          type: integer
+          example: 123
+        standard_cost_amount:
+          type: number
+          example: 12.1111
+        standard_cost_currency:
+          type: string
+          example: USD
+        start_date:
+          type: string
+          example: '2023-04-19'
+        end_date:
+          type: string
+          example: '2023-05-19'
+    ItemType:
+      title: ItemType
+      required:
+      - id
+      - name
+      - facility_id
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        quantity_type:
+          type: string
+        requires_strain:
+          type: boolean
+        requires_unit_volume:
+          type: boolean
+        requires_unit_weight:
+          type: boolean
+        requires_unit_thc_weight:
+          type: boolean
+        requires_unit_cbd_weight:
+          type: boolean
+        requires_unit_cbd_percent:
+          type: boolean
+        requires_unit_thc_percent:
+          type: boolean
+        requires_public_ingredients:
+          type: boolean
+        requires_administration_method:
+          type: boolean
+        requires_serving_size:
+          type: boolean
+        requires_supply_duration_days:
+          type: boolean
+        requires_number_of_doses:
+          type: boolean
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+    CreateItemRequestBody:
+      title: Item Request Body
+      type: object
+      required:
+      - name
+      - item_type_id
+      - weight_unit
+      properties:
+        name:
+          type: string
+          example: Blue Dream
+          description: Name of the item
+        is_active:
+          type: boolean
+          example: true
+          description: Whether the item is active. Defaults to true if not provided
+        strain_id:
+          type: integer
+          example: 1
+          description: ID of the associated strain
+        item_type_id:
+          type: integer
+          example: 1
+          description: ID of the item category
+        item_sub_type_id:
+          type: integer
+          example: 2
+          description: ID of the item sub-category
+        weight_unit:
+          type: string
+          example: g
+          description: Weight unit for the item
+        unit_weight_unit:
+          type: string
+          example: mg
+          description: Weight unit for individual units
+        unit_weight:
+          type: number
+          format: float
+          example: 1.5
+          description: Weight of individual units
+        sku:
+          type: string
+          example: BD001
+          description: Stock keeping unit identifier
+        notes:
+          type: string
+          example: Special handling required
+        brand_id:
+          type: integer
+          example: 3
+          description: ID of the associated brand
+        description:
+          type: string
+          example: High quality strain
+        serving_size:
+          type: string
+          example: 1 capsule
+        number_of_doses:
+          type: integer
+          example: 30
+          description: Number of doses in the item
+        unit_cbd_weight:
+          type: number
+          format: float
+          example: 10.5
+          description: CBD weight per unit
+        unit_thc_weight:
+          type: number
+          format: float
+          example: 5.0
+          description: THC weight per unit
+        unit_cbd_percent:
+          type: number
+          format: float
+          example: 15.5
+          description: CBD percentage
+        unit_thc_percent:
+          type: number
+          format: float
+          example: 20.0
+          description: THC percentage
+        public_ingredients:
+          type: string
+          example: Cannabis extract, MCT oil
+        supply_duration_days:
+          type: integer
+          example: 30
+          description: Duration of supply in days
+        administration_method:
+          type: string
+          example: oral
+        unit_cbd_weight_unit:
+          type: string
+          example: mg
+          description: Weight unit for CBD content
+        unit_thc_weight_unit:
+          type: string
+          example: mg
+          description: Weight unit for THC content
+        accounting_inventory_type:
+          type: string
+          example: finished_good
+          description: Type of inventory for accounting purposes
+        photo_ids:
+          type: array
+          items:
+            type: integer
+          example:
+          - 1
+          - 2
+          - 3
+          description: IDs of photos to associate with the item
+        metrc_item_brand:
+          type: string
+          example: 'Brand #1'
+          description: Item Brand for METRC
+    IdName:
+      title: IdName
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+    CrossStrain:
+      title: Cross Strain
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          example: Lemon Skunk
+          description: Strain name
+        notes:
+          type: string
+          example: Terpenes .63%
+          description: Notes
+        sku:
+          type: string
+          example: BIOJJ
+          description: SKU
+        testing_status:
+          type: string
+          example: InHouse
+          description: 'Testing status: InHouse, ThirdParty, None, NA'
+        indica_percent:
+          type: number
+          example: 45.0
+          description: Indica Percentage
+        sativa_percent:
+          type: number
+          example: 55.0
+          description: Sativa Percentage
+    Item:
+      title: Item
+      required:
+      - id
+      - name
+      - facility_id
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        is_active:
+          type: boolean
+        item_type:
+          type: string
+        brand:
+          $ref: '#/components/schemas/IdName'
+        product_id:
+          type: integer
+          description: ID of the active Product this item belongs to, if any
+        product_brand:
+          $ref: '#/components/schemas/IdName'
+        quantity_type:
+          type: string
+        sku:
+          type: string
+        current_standard_cost:
+          $ref: '#/components/schemas/ItemStandardCost'
+        accounting_inventory_type:
+          type: string
+        notes:
+          type: string
+        facility_id:
+          type: integer
+        strain:
+          $ref: '#/components/schemas/Strain'
+        type:
+          $ref: '#/components/schemas/ItemType'
+        sub_type:
+          $ref: '#/components/schemas/ItemSubType'
+        weight_unit:
+          type: string
+        unit_weight:
+          type: number
+        unit_weight_unit:
+          type: string
+        case_quantity:
+          type: string
+        case_quantity_unit:
+          type: string
+        unit_cbd_weight:
+          type: number
+        unit_cbd_weight_unit:
+          type: string
+        unit_thc_weight:
+          type: number
+        unit_thc_weight_unit:
+          type: string
+        unit_cbd_percent:
+          type: number
+        unit_thc_percent:
+          type: number
+        description:
+          type: string
+        serving_size:
+          type: number
+        number_of_doses:
+          type: number
+        public_ingredients:
+          type: string
+        supply_duration_days:
+          type: number
+        administration_method:
+          type: string
+        allergens:
+          type: string
+        transfer_source_license:
+          type: string
+          description: Facility license number of the originating facility. Non-editable.
+        bills_of_materials:
+          type: array
+          items:
+            type: object
+            properties:
+              url:
+                type: string
+              name:
+                type: string
+              package_weight:
+                type: number
+              unit:
+                type: string
+        sage_item:
+          type: object
+          properties:
+            external_id:
+              type: string
+            name:
+              type: string
+        leaflink_item:
+          type: object
+          properties:
+            external_id:
+              type: string
+            name:
+              type: string
+        dutchie_product:
+          type: object
+          properties:
+            external_id:
+              type: string
+            name:
+              type: string
+        phenotype:
+          type: string
+        total_for_sale:
+          type: number
+          description: Total quantity marked as available to sell
+        ordered:
+          type: number
+          description: Total quantity ordered from in-progress sales orders
+        backordered:
+          type: number
+          description: Total quantity backordered from in-progress sales orders
+        unordered:
+          type: number
+          description: Quantity available to sell minus ordered quantity (minimum 0)
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+      example:
+        id: 7036
+        name: Blue Dream - Trim
+        sku: '22657'
+        current_standard_costing:
+          id:
+            type: integer
+            example: 123
+          standard_cost_amount:
+            type: number
+            example: 12.1111
+          standard_cost_currency:
+            type: string
+            example: USD
+          start_date:
+            type: string
+            example: '2023-04-19'
+          end_date:
+            type: string
+          example: '2023-05-19'
+        is_active: true
+        facility_id: 14
+        type:
+          id: 884
+          name: Clone - Cutting
+          quantity_type: CountBased
+          product_category: Plants
+        sub_type: null
+        brand: null
+        product_id: 512
+        product_brand: null
+        quantity_type: CountBased
+        notes: ''
+        accounting_inventory_type: raw_materials
+        strain: null
+        weight_unit: Each
+        unit_weight: 10
+        unit_weight_unit: Grams
+        case_quantity: 100
+        case_unit: Each
+        description: Clone
+        allergens: Can s 2
+        transfer_source_license: '1234567890'
+        bills_of_materials:
+        - url: https://www.app.canix.com/inventory/non-cannabis/bill-of-materials/123
+          name: Bill of Materials
+          package_weight: 10
+          unit: g
+        sage_item:
+          external_id: '1234567890'
+          name: Sage Item
+        leaflink_item: null
+        dutchie_product: null
+        phenotype: Indica
+        total_for_sale: 100
+        ordered: 25
+        backordered: 10
+        unordered: 75
+        updated_at: '2021-03-16T23:49:03.175Z'
+    UpdateItemRequestBody:
+      title: Item Update Request Body
+      type: object
+      properties:
+        name:
+          type: string
+          example: Blue Dream
+          description: The name of the item
+        is_active:
+          type: boolean
+          example: true
+          description: Whether the item is active
+        item_category_id:
+          type: integer
+          example: 1
+          description: ID of the item category
+        item_sub_category_id:
+          type: integer
+          example: 2
+          description: ID of the item sub category
+        brand_id:
+          type: integer
+          example: 3
+          description: ID of the brand
+        description:
+          type: string
+          example: High quality strain
+          description: Description of the item
+        notes:
+          type: string
+          example: Internal notes about the item
+        sku:
+          type: string
+          example: BD-001
+          description: Stock keeping unit identifier
+        serving_size:
+          type: string
+          example: 1g
+          description: Size of a single serving
+        number_of_doses:
+          type: integer
+          example: 10
+          description: Number of doses in the item
+        unit_thc_weight:
+          type: number
+          format: float
+          example: 10.5
+          description: THC weight per unit
+        unit_cbd_weight:
+          type: number
+          format: float
+          example: 5.2
+          description: CBD weight per unit
+        unit_thc_percent:
+          type: number
+          example: 18.5
+          description: THC percentage
+        unit_cbd_percent:
+          type: number
+          example: 2.5
+          description: CBD percentage
+        public_ingredients:
+          type: string
+          example: Cannabis
+          description: Public list of ingredients
+        supply_duration_days:
+          type: integer
+          example: 30
+          description: Duration of supply in days
+        administration_method:
+          type: string
+          example: Oral
+          description: Method of administration
+        photo_ids:
+          type: array
+          items:
+            type: integer
+          example:
+          - 1
+          - 2
+          - 3
+          description: IDs of photos to associate with the item
+        metrc_item_brand:
+          type: string
+          example: 'Brand #1'
+          description: Item Brand for METRC
+    CreateMETRCItemFilesRequestBody:
+      title: CreateMETRCItemFileRequestBody
+      required:
+      - facility_id
+      - files
+      properties:
+        facility_id:
+          type: integer
+        files:
+          type: array
+          items:
+            type: object
+            properties:
+              filename:
+                type: string
+              encoded_file_base64:
+                type: string
+                description: A Base64 string containing the encoded file
+    Strain:
+      title: Strain
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          example: Lemon Skunk
+          description: Strain name
+        notes:
+          type: string
+          example: Terpenes .63%
+          description: Notes
+        sku:
+          type: string
+          example: BIOJJ
+          description: SKU
+        testing_status:
+          type: string
+          example: InHouse
+          description: 'Testing status: InHouse, ThirdParty, None, NA'
+        indica_percent:
+          type: number
+          example: 45.0
+          description: Indica Percentage
+        sativa_percent:
+          type: number
+          example: 55.0
+          description: Sativa Percentage
+        cross_strains:
+          type: array
+          description: Cross strains
+          items:
+            $ref: '#/components/schemas/CrossStrain'
+    ItemSubType:
+      title: ItemSubType
+      required:
+      - id
+      - name
+      - weight_unit
+      - item_category
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        weight_unit:
+          type: string
+        category:
+          $ref: '#/components/schemas/ItemType'
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+    CreateMETRCItemPhotosRequestBody:
+      title: CreateMETRCItemPhotosRequestBody
+      required:
+      - facility_id
+      - photos
+      properties:
+        facility_id:
+          type: integer
+        photos:
+          type: array
+          items:
+            type: object
+            properties:
+              attachment_type:
+                enum:
+                - product
+                - label
+                - packaging
+                description: 'The type of attachment intended for the item. Must be one of the following: product, label, packaging'
+              filename:
+                type: string
+              encoded_image_base64:
+                type: string
+                description: A Base64 string containing the encoded image
+  responses:
+    403AccessDenied:
+      description: Access denied
+    404NotFound:
+      description: The specified resource was not found
+    400BadRequest:
+      description: Bad request
+    401NotAuthenticated:
+      description: Not authenticated
+    500ServerError:
+      description: Server error
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY

@@ -1,0 +1,815 @@
+{
+  "item": [
+    {
+      "id": "21c92011-fa9c-47f7-b9b4-456306dc04a6",
+      "name": "Products",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8a5218f7-f206-4049-a536-feb44bf1f33a",
+          "name": "GetProducts",
+          "request": {
+            "name": "GetProducts",
+            "description": {
+              "content": "Return products",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "products"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "facility_id",
+                  "value": "<integer>",
+                  "description": "Facility ID (optional)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "2000",
+                  "description": "Max number of records to return (optional). Cannot exceed 2000"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Offset for the returned records (optional)"
+                },
+                {
+                  "disabled": false,
+                  "key": "order_by",
+                  "value": "<string>",
+                  "description": "Order-by clause, in SQL format (optional)"
+                },
+                {
+                  "disabled": false,
+                  "key": "where",
+                  "value": "<string>",
+                  "description": "Filter results using SQL-like WHERE clause syntax (optional).\n\n**Supported operators**: =, >, <, >=, <=, BETWEEN, IN, LIKE, AND, OR\n\n**Supported patterns**:\n- Equality: `status='Active'`\n- Comparison: `updated_at >= '2024-01-01'`\n- Range: `id BETWEEN 1 AND 10000`\n- List: `status IN ('Active', 'Pending')`\n- Pattern: `sku LIKE 'ABC%'`\n- Compound: `facility_id=123 AND is_active=true`\n"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "15147160-20a6-4adf-ab0f-95e68660d7ee",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "facility_id",
+                      "value": "123"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 9449,\n    \"name\": \"string\",\n    \"facility_id\": 42,\n    \"sku\": \"string\",\n    \"is_active\": true,\n    \"type\": {\n      \"id\": 9290,\n      \"name\": \"string\",\n      \"quantity_type\": \"string\",\n      \"requires_strain\": true,\n      \"requires_unit_volume\": true,\n      \"requires_unit_weight\": false,\n      \"requires_unit_thc_weight\": true,\n      \"requires_unit_cbd_weight\": false,\n      \"requires_unit_cbd_percent\": false,\n      \"requires_unit_thc_percent\": true,\n      \"requires_public_ingredients\": true,\n      \"requires_administration_method\": false,\n      \"requires_serving_size\": true,\n      \"requires_supply_duration_days\": false,\n      \"requires_number_of_doses\": false,\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n    },\n    \"sub_type\": {\n      \"id\": 7203,\n      \"name\": \"string\",\n      \"weight_unit\": \"string\",\n      \"category\": {\n        \"id\": 914,\n        \"name\": \"string\",\n        \"quantity_type\": \"string\",\n        \"requires_strain\": true,\n        \"requires_unit_volume\": true,\n        \"requires_unit_weight\": false,\n        \"requires_unit_thc_weight\": true,\n        \"requires_unit_cbd_weight\": true,\n        \"requires_unit_cbd_percent\": false,\n        \"requires_unit_thc_percent\": false,\n        \"requires_public_ingredients\": true,\n        \"requires_administration_method\": false,\n        \"requires_serving_size\": false,\n        \"requires_supply_duration_days\": true,\n        \"requires_number_of_doses\": true,\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n      },\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n    },\n    \"brand\": {\n      \"id\": 6969.459222383838,\n      \"name\": \"string\"\n    },\n    \"strain\": {\n      \"id\": 3313,\n      \"name\": \"Lemon Skunk\",\n      \"notes\": \"Terpenes .63%\",\n      \"sku\": \"BIOJJ\",\n      \"testing_status\": \"InHouse\",\n      \"indica_percent\": 45,\n      \"sativa_percent\": 55,\n      \"cross_strains\": [\n        {\n          \"id\": 4342,\n          \"name\": \"Lemon Skunk\",\n          \"notes\": \"Terpenes .63%\",\n          \"sku\": \"BIOJJ\",\n          \"testing_status\": \"InHouse\",\n          \"indica_percent\": 45,\n          \"sativa_percent\": 55\n        },\n        {\n          \"id\": 4447,\n          \"name\": \"Lemon Skunk\",\n          \"notes\": \"Terpenes .63%\",\n          \"sku\": \"BIOJJ\",\n          \"testing_status\": \"InHouse\",\n          \"indica_percent\": 45,\n          \"sativa_percent\": 55\n        }\n      ]\n    },\n    \"sale_unit\": \"string\",\n    \"total_for_sale\": 9236.31842447442,\n    \"ordered\": 4908.660830667118,\n    \"backordered\": 1434.724319370123,\n    \"unordered\": 7911.551718232576,\n    \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n  },\n  {\n    \"id\": 991,\n    \"name\": \"string\",\n    \"facility_id\": 29,\n    \"sku\": \"string\",\n    \"is_active\": true,\n    \"type\": {\n      \"id\": 3780,\n      \"name\": \"string\",\n      \"quantity_type\": \"string\",\n      \"requires_strain\": false,\n      \"requires_unit_volume\": true,\n      \"requires_unit_weight\": true,\n      \"requires_unit_thc_weight\": true,\n      \"requires_unit_cbd_weight\": true,\n      \"requires_unit_cbd_percent\": true,\n      \"requires_unit_thc_percent\": true,\n      \"requires_public_ingredients\": false,\n      \"requires_administration_method\": false,\n      \"requires_serving_size\": true,\n      \"requires_supply_duration_days\": true,\n      \"requires_number_of_doses\": false,\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n    },\n    \"sub_type\": {\n      \"id\": 2719,\n      \"name\": \"string\",\n      \"weight_unit\": \"string\",\n      \"category\": {\n        \"id\": 9252,\n        \"name\": \"string\",\n        \"quantity_type\": \"string\",\n        \"requires_strain\": true,\n        \"requires_unit_volume\": true,\n        \"requires_unit_weight\": true,\n        \"requires_unit_thc_weight\": true,\n        \"requires_unit_cbd_weight\": true,\n        \"requires_unit_cbd_percent\": false,\n        \"requires_unit_thc_percent\": false,\n        \"requires_public_ingredients\": true,\n        \"requires_administration_method\": false,\n        \"requires_serving_size\": true,\n        \"requires_supply_duration_days\": true,\n        \"requires_number_of_doses\": true,\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n      },\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n    },\n    \"brand\": {\n      \"id\": 9712.7747878503,\n      \"name\": \"string\"\n    },\n    \"strain\": {\n      \"id\": 7770,\n      \"name\": \"Lemon Skunk\",\n      \"notes\": \"Terpenes .63%\",\n      \"sku\": \"BIOJJ\",\n      \"testing_status\": \"InHouse\",\n      \"indica_percent\": 45,\n      \"sativa_percent\": 55,\n      \"cross_strains\": [\n        {\n          \"id\": 5932,\n          \"name\": \"Lemon Skunk\",\n          \"notes\": \"Terpenes .63%\",\n          \"sku\": \"BIOJJ\",\n          \"testing_status\": \"InHouse\",\n          \"indica_percent\": 45,\n          \"sativa_percent\": 55\n        },\n        {\n          \"id\": 65,\n          \"name\": \"Lemon Skunk\",\n          \"notes\": \"Terpenes .63%\",\n          \"sku\": \"BIOJJ\",\n          \"testing_status\": \"InHouse\",\n          \"indica_percent\": 45,\n          \"sativa_percent\": 55\n        }\n      ]\n    },\n    \"sale_unit\": \"string\",\n    \"total_for_sale\": 2276.3151206634016,\n    \"ordered\": 5276.652331337589,\n    \"backordered\": 6582.1205224713585,\n    \"unordered\": 983.5800691575358,\n    \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4a85925d-0755-4af1-ad60-d997a710f0f2",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "facility_id",
+                      "value": "123"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "92bdc03d-92a8-4e01-8e4a-f6dbd5c74928",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "facility_id",
+                      "value": "123"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "40dc7f04-69ac-4ee5-968a-c3aa39206160",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "facility_id",
+                      "value": "123"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "dcc96985-0338-4dd5-88e7-c64b4313c02a",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "facility_id",
+                      "value": "123"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7980efbc-b959-4362-b155-cde2599d68b0",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "facility_id",
+                      "value": "123"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d315afeb-c14c-4682-999f-8b57e54a6a99",
+          "name": "GetProduct",
+          "request": {
+            "name": "GetProduct",
+            "description": {
+              "content": "Get Product by ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "products",
+                ":product_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "product_id",
+                  "description": "(Required) Product ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "49519fd3-c66d-4dd3-add4-7baff4a63361",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products",
+                    ":product_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "product_id",
+                      "description": "(Required) Product ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 6377,\n  \"name\": \"string\",\n  \"facility_id\": 7982,\n  \"sku\": \"string\",\n  \"is_active\": false,\n  \"type\": {\n    \"id\": 1541,\n    \"name\": \"string\",\n    \"quantity_type\": \"string\",\n    \"requires_strain\": true,\n    \"requires_unit_volume\": true,\n    \"requires_unit_weight\": false,\n    \"requires_unit_thc_weight\": true,\n    \"requires_unit_cbd_weight\": true,\n    \"requires_unit_cbd_percent\": true,\n    \"requires_unit_thc_percent\": false,\n    \"requires_public_ingredients\": false,\n    \"requires_administration_method\": true,\n    \"requires_serving_size\": true,\n    \"requires_supply_duration_days\": false,\n    \"requires_number_of_doses\": true,\n    \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n  },\n  \"sub_type\": {\n    \"id\": 6755,\n    \"name\": \"string\",\n    \"weight_unit\": \"string\",\n    \"category\": {\n      \"id\": 4645,\n      \"name\": \"string\",\n      \"quantity_type\": \"string\",\n      \"requires_strain\": true,\n      \"requires_unit_volume\": false,\n      \"requires_unit_weight\": true,\n      \"requires_unit_thc_weight\": true,\n      \"requires_unit_cbd_weight\": false,\n      \"requires_unit_cbd_percent\": true,\n      \"requires_unit_thc_percent\": false,\n      \"requires_public_ingredients\": false,\n      \"requires_administration_method\": true,\n      \"requires_serving_size\": true,\n      \"requires_supply_duration_days\": false,\n      \"requires_number_of_doses\": false,\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n    },\n    \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n  },\n  \"brand\": {\n    \"id\": 2792.176911888721,\n    \"name\": \"string\"\n  },\n  \"strain\": {\n    \"id\": 926,\n    \"name\": \"Lemon Skunk\",\n    \"notes\": \"Terpenes .63%\",\n    \"sku\": \"BIOJJ\",\n    \"testing_status\": \"InHouse\",\n    \"indica_percent\": 45,\n    \"sativa_percent\": 55,\n    \"cross_strains\": [\n      {\n        \"id\": 9529,\n        \"name\": \"Lemon Skunk\",\n        \"notes\": \"Terpenes .63%\",\n        \"sku\": \"BIOJJ\",\n        \"testing_status\": \"InHouse\",\n        \"indica_percent\": 45,\n        \"sativa_percent\": 55\n      },\n      {\n        \"id\": 4287,\n        \"name\": \"Lemon Skunk\",\n        \"notes\": \"Terpenes .63%\",\n        \"sku\": \"BIOJJ\",\n        \"testing_status\": \"InHouse\",\n        \"indica_percent\": 45,\n        \"sativa_percent\": 55\n      }\n    ]\n  },\n  \"sale_unit\": \"string\",\n  \"total_for_sale\": 5331.9895556957645,\n  \"ordered\": 2766.4428586980093,\n  \"backordered\": 6233.598863131827,\n  \"unordered\": 8045.146863445045,\n  \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4d2f4356-86b8-4288-9252-1affb512ca44",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products",
+                    ":product_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "product_id",
+                      "description": "(Required) Product ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e85be1d6-b847-436c-a848-08cac7583c0d",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products",
+                    ":product_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "product_id",
+                      "description": "(Required) Product ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9950dc97-224d-4165-bc64-d5eb9d990283",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products",
+                    ":product_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "product_id",
+                      "description": "(Required) Product ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "389499d0-2bbd-4bf7-8610-2915b722073d",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products",
+                    ":product_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "product_id",
+                      "description": "(Required) Product ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2b69504e-4618-4a3f-b00c-31149ff42e37",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products",
+                    ":product_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "product_id",
+                      "description": "(Required) Product ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.canix.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e02cb95f-c0d2-4795-bc53-94846e855c7d",
+    "name": "Canix Products API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# Introduction\nThis API documentation describes the endpoints used by third-party developers to get Canix data for their account.\n# Authentication\nCanix API uses API Keys for authentication. You can generate an API key on our [API page](https://app.canix.com/company/api), and on your API requests use the `X-API-KEY` header with the API key value you generated.\nWe strongly recommend using a secrets manager. Plain text files like dotenv lead to accidental costly leaks. Use [Doppler](https://doppler.com/) or similar options for a developer friendly experience. AWS and Google Cloud have native solutions as well.\n\nContact Support:\n Name: Canix Support\n Email: help@canix.com",
+      "type": "text/plain"
+    }
+  }
+}

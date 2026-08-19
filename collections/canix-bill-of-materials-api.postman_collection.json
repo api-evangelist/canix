@@ -1,0 +1,658 @@
+{
+  "item": [
+    {
+      "id": "084a9bbd-ddb2-4fa7-98c1-beb5570a9df4",
+      "name": "Bill of Materials",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0bed4295-cbb2-4006-a727-36b7d6b222a0",
+          "name": "GetBillsOfMaterials",
+          "request": {
+            "name": "GetBillsOfMaterials",
+            "description": {
+              "content": "Get all Bills of Materials",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "bills_of_materials"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "26b8c4b4-edc3-4469-b435-315e28ae4e7e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bills_of_materials"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 5699,\n    \"name\": \"string\",\n    \"proportion_type\": \"string\",\n    \"active_date\": \"1949-06-29\",\n    \"expiration_date\": \"1956-01-17\",\n    \"last_updated_at\": \"2000-10-12T16:53:01.852Z\",\n    \"source_non_cannabis_products\": [\n      {\n        \"name\": \"1/8th Jar\",\n        \"non_cannabis_product_id\": 24,\n        \"quantity\": 1,\n        \"weight_unit\": \"Each\",\n        \"application_setting\": \"proportional\"\n      },\n      {\n        \"name\": \"1/8th Jar\",\n        \"non_cannabis_product_id\": 24,\n        \"quantity\": 1,\n        \"weight_unit\": \"Each\",\n        \"application_setting\": \"proportional\"\n      }\n    ],\n    \"source_cannabis_items\": [\n      {\n        \"quantity\": 8552.946979353346,\n        \"weight_unit\": \"string\",\n        \"item\": {\n          \"id\": 3139,\n          \"name\": \"string\"\n        },\n        \"item_category\": {\n          \"id\": 8595,\n          \"name\": \"string\"\n        },\n        \"item_sub_category\": {\n          \"id\": 3646,\n          \"name\": \"string\"\n        }\n      },\n      {\n        \"quantity\": 362.192226519169,\n        \"weight_unit\": \"string\",\n        \"item\": {\n          \"id\": 9143,\n          \"name\": \"string\"\n        },\n        \"item_category\": {\n          \"id\": 2048,\n          \"name\": \"string\"\n        },\n        \"item_sub_category\": {\n          \"id\": 3990,\n          \"name\": \"string\"\n        }\n      }\n    ],\n    \"output_items\": [\n      {\n        \"name\": null,\n        \"item_id\": 7626,\n        \"quantity\": 4041.348103233554,\n        \"weight_unit\": \"string\",\n        \"item_category\": {\n          \"id\": 8615,\n          \"name\": \"string\"\n        },\n        \"item_sub_category\": {\n          \"id\": 2200,\n          \"name\": \"string\"\n        }\n      },\n      {\n        \"name\": \"string\",\n        \"item_id\": 7480,\n        \"quantity\": 3966.277961921292,\n        \"weight_unit\": \"string\",\n        \"item_category\": {\n          \"id\": 4624,\n          \"name\": \"string\"\n        },\n        \"item_sub_category\": {\n          \"id\": 9376,\n          \"name\": \"string\"\n        }\n      }\n    ]\n  },\n  {\n    \"id\": 2070,\n    \"name\": \"string\",\n    \"proportion_type\": \"string\",\n    \"active_date\": \"1972-05-14\",\n    \"expiration_date\": \"1981-12-03\",\n    \"last_updated_at\": \"1979-08-22T15:49:21.792Z\",\n    \"source_non_cannabis_products\": [\n      {\n        \"name\": \"1/8th Jar\",\n        \"non_cannabis_product_id\": 24,\n        \"quantity\": 1,\n        \"weight_unit\": \"Each\",\n        \"application_setting\": \"proportional\"\n      },\n      {\n        \"name\": \"1/8th Jar\",\n        \"non_cannabis_product_id\": 24,\n        \"quantity\": 1,\n        \"weight_unit\": \"Each\",\n        \"application_setting\": \"proportional\"\n      }\n    ],\n    \"source_cannabis_items\": [\n      {\n        \"quantity\": 7536.213610804418,\n        \"weight_unit\": \"string\",\n        \"item\": {\n          \"id\": 59,\n          \"name\": \"string\"\n        },\n        \"item_category\": {\n          \"id\": 4368,\n          \"name\": \"string\"\n        },\n        \"item_sub_category\": {\n          \"id\": 816,\n          \"name\": \"string\"\n        }\n      },\n      {\n        \"quantity\": 6041.183179982558,\n        \"weight_unit\": \"string\",\n        \"item\": {\n          \"id\": 2565,\n          \"name\": \"string\"\n        },\n        \"item_category\": {\n          \"id\": 7060,\n          \"name\": \"string\"\n        },\n        \"item_sub_category\": {\n          \"id\": 5290,\n          \"name\": \"string\"\n        }\n      }\n    ],\n    \"output_items\": [\n      {\n        \"name\": \"string\",\n        \"item_id\": 9410,\n        \"quantity\": 9017.982414324139,\n        \"weight_unit\": \"string\",\n        \"item_category\": {\n          \"id\": 5685,\n          \"name\": \"string\"\n        },\n        \"item_sub_category\": {\n          \"id\": 2991,\n          \"name\": \"string\"\n        }\n      },\n      {\n        \"name\": null,\n        \"item_id\": 4756,\n        \"quantity\": 5121.190302084842,\n        \"weight_unit\": \"string\",\n        \"item_category\": {\n          \"id\": 9455,\n          \"name\": \"string\"\n        },\n        \"item_sub_category\": {\n          \"id\": 4195,\n          \"name\": \"string\"\n        }\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "395a94d8-27eb-4aaa-becb-7916ec904baf",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bills_of_materials"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c1c7466c-c072-4665-b6c3-2176677fe3d0",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bills_of_materials"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "11279936-7ef9-4c2b-ad54-1441aed36dfa",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bills_of_materials"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "03eb11fd-7876-455a-8f13-6295c78ae180",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bills_of_materials"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0e44d7c1-9251-49d9-a892-6971629e4538",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bills_of_materials"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b73b9cf5-ba8d-4dce-a6cc-b827e49fec43",
+          "name": "GetBillOfMaterials",
+          "request": {
+            "name": "GetBillOfMaterials",
+            "description": {
+              "content": "Get Bill of Materials by ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "bills_of_materials",
+                ":bill_of_materials_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "bill_of_materials_id",
+                  "description": "(Required) ID of Bill of Materials to return"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e1b99804-2224-4f11-96e2-4a7dd0868806",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bills_of_materials",
+                    ":bill_of_materials_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "bill_of_materials_id",
+                      "description": "(Required) ID of Bill of Materials to return"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 12,\n  \"name\": \"Bulk - Dark Chocolate Peaks - 5mg\",\n  \"active_date\": \"2023-01-01\",\n  \"expiration_date\": \"2023-12-31\",\n  \"proportion_type\": \"single_instance\",\n  \"source_non_cannabis_products\": [\n    {\n      \"name\": \"1/8th Jar\",\n      \"non_cannabis_product_id\": 24,\n      \"quantity\": 1,\n      \"weight_unit\": \"Each\",\n      \"application_setting\": \"proportional\"\n    },\n    {\n      \"name\": \"Gloves - Large\",\n      \"non_cannabis_product_id\": 56,\n      \"quantity\": 2,\n      \"weight_unit\": \"Each\",\n      \"application_setting\": \"fixed\"\n    }\n  ],\n  \"source_cannabis_items\": [\n    {\n      \"name\": \"Hammer Bud\",\n      \"item_id\": 242,\n      \"item_category_id\": null,\n      \"item_sub_category_id\": null,\n      \"quantity\": 20,\n      \"weight_unit\": \"Grams\"\n    },\n    {\n      \"name\": \"B Buds\",\n      \"item_id\": null,\n      \"item_category_id\": 98,\n      \"item_sub_category_id\": null,\n      \"quantity\": 25,\n      \"weight_unit\": \"Grams\"\n    }\n  ],\n  \"output_items\": [\n    {\n      \"name\": \"Jarred Flower\",\n      \"item_id\": 370,\n      \"quantity\": 50,\n      \"weight_unit\": \"Grams\",\n      \"item_category\": null,\n      \"item_sub_category\": null\n    },\n    {\n      \"name\": null,\n      \"item_id\": 371,\n      \"quantity\": 25,\n      \"weight_unit\": \"Grams\",\n      \"item_category\": {\n        \"id\": 98,\n        \"name\": \"B Buds\"\n      },\n      \"item_sub_category\": null\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "22e1efc8-8e04-45f8-be28-95fa609d8aff",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bills_of_materials",
+                    ":bill_of_materials_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "bill_of_materials_id",
+                      "description": "(Required) ID of Bill of Materials to return"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ff2c7f61-c0fa-4d36-851e-11b9db21d19f",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bills_of_materials",
+                    ":bill_of_materials_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "bill_of_materials_id",
+                      "description": "(Required) ID of Bill of Materials to return"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "91aaa1ec-a78a-4d6c-ad86-f9ef02e5fd63",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bills_of_materials",
+                    ":bill_of_materials_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "bill_of_materials_id",
+                      "description": "(Required) ID of Bill of Materials to return"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6220ce91-1d5c-4313-b354-1a0d7e221f62",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bills_of_materials",
+                    ":bill_of_materials_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "bill_of_materials_id",
+                      "description": "(Required) ID of Bill of Materials to return"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cd77e15b-22f5-416f-ade5-afa33c520605",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bills_of_materials",
+                    ":bill_of_materials_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "bill_of_materials_id",
+                      "description": "(Required) ID of Bill of Materials to return"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.canix.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "974eaa06-aeec-4d6f-bb80-481428826568",
+    "name": "Canix Bill of Materials API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# Introduction\nThis API documentation describes the endpoints used by third-party developers to get Canix data for their account.\n# Authentication\nCanix API uses API Keys for authentication. You can generate an API key on our [API page](https://app.canix.com/company/api), and on your API requests use the `X-API-KEY` header with the API key value you generated.\nWe strongly recommend using a secrets manager. Plain text files like dotenv lead to accidental costly leaks. Use [Doppler](https://doppler.com/) or similar options for a developer friendly experience. AWS and Google Cloud have native solutions as well.\n\nContact Support:\n Name: Canix Support\n Email: help@canix.com",
+      "type": "text/plain"
+    }
+  }
+}

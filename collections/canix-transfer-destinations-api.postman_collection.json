@@ -1,0 +1,785 @@
+{
+  "item": [
+    {
+      "id": "a05a6c26-c4b3-45c1-883c-bdea19a96614",
+      "name": "Transfer Destinations",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "22bd914c-a3b4-4c01-9519-644f62f3c27b",
+          "name": "GetTransferDestinations",
+          "request": {
+            "name": "GetTransferDestinations",
+            "description": {
+              "content": "Return Transfer Destinations",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transfer_destinations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "2000",
+                  "description": "Max number of records to return (optional). Cannot exceed 2000"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Offset for the returned records (optional)"
+                },
+                {
+                  "disabled": false,
+                  "key": "order_by",
+                  "value": "<string>",
+                  "description": "Order-by clause, in SQL format (optional)"
+                },
+                {
+                  "disabled": false,
+                  "key": "where",
+                  "value": "<string>",
+                  "description": "Filter results using SQL-like WHERE clause syntax (optional).\n\n**Supported operators**: =, >, <, >=, <=, BETWEEN, IN, LIKE, AND, OR\n\n**Supported patterns**:\n- Equality: `status='Active'`\n- Comparison: `updated_at >= '2024-01-01'`\n- Range: `id BETWEEN 1 AND 10000`\n- List: `status IN ('Active', 'Pending')`\n- Pattern: `sku LIKE 'ABC%'`\n- Compound: `facility_id=123 AND is_active=true`\n"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0f161fe5-97e9-4181-bf7d-37e7a9cb1eb5",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfer_destinations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 123,\n    \"destination_facility\": \"401-N0909\",\n    \"transfer_type\": \"Affilliated\",\n    \"route\": \"string\",\n    \"departure_time\": \"2018-11-06 08:00:00+00:00\",\n    \"contents\": [\n      {\n        \"package\": {\n          \"id\": 8520,\n          \"tag\": \"string\",\n          \"is_active\": true,\n          \"is_testing_package\": false,\n          \"status\": \"string\",\n          \"item\": {\n            \"id\": 7036,\n            \"name\": \"Blue Dream - Trim\",\n            \"sku\": \"22657\",\n            \"current_standard_costing\": {\n              \"id\": {\n                \"type\": \"integer\",\n                \"example\": 123\n              },\n              \"standard_cost_amount\": {\n                \"type\": \"number\",\n                \"example\": 12.1111\n              },\n              \"standard_cost_currency\": {\n                \"type\": \"string\",\n                \"example\": \"USD\"\n              },\n              \"start_date\": {\n                \"type\": \"string\",\n                \"example\": \"2023-04-19\"\n              },\n              \"end_date\": {\n                \"type\": \"string\"\n              },\n              \"example\": \"2023-05-19\"\n            },\n            \"is_active\": true,\n            \"facility_id\": 14,\n            \"type\": {\n              \"id\": 884,\n              \"name\": \"Clone - Cutting\",\n              \"quantity_type\": \"CountBased\",\n              \"product_category\": \"Plants\"\n            },\n            \"sub_type\": null,\n            \"brand\": null,\n            \"product_id\": 512,\n            \"product_brand\": null,\n            \"quantity_type\": \"CountBased\",\n            \"notes\": \"\",\n            \"accounting_inventory_type\": \"raw_materials\",\n            \"strain\": null,\n            \"weight_unit\": \"Each\",\n            \"unit_weight\": 10,\n            \"unit_weight_unit\": \"Grams\",\n            \"case_quantity\": 100,\n            \"case_unit\": \"Each\",\n            \"description\": \"Clone\",\n            \"allergens\": \"Can s 2\",\n            \"transfer_source_license\": \"1234567890\",\n            \"bills_of_materials\": [\n              {\n                \"url\": \"https://www.app.canix.com/inventory/non-cannabis/bill-of-materials/123\",\n                \"name\": \"Bill of Materials\",\n                \"package_weight\": 10,\n                \"unit\": \"g\"\n              }\n            ],\n            \"sage_item\": {\n              \"external_id\": \"1234567890\",\n              \"name\": \"Sage Item\"\n            },\n            \"leaflink_item\": null,\n            \"dutchie_product\": null,\n            \"phenotype\": \"Indica\",\n            \"total_for_sale\": 100,\n            \"ordered\": 25,\n            \"backordered\": 10,\n            \"unordered\": 75,\n            \"updated_at\": \"2021-03-16T23:49:03.175Z\"\n          },\n          \"weight\": 412.0841345956494,\n          \"original_weight\": 5623.977187220538,\n          \"weight_unit\": \"string\",\n          \"packaged_date\": \"string\",\n          \"production_batch_date\": \"1964-07-18\",\n          \"expiration_date\": \"string\",\n          \"received_date\": \"string\",\n          \"location\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sqft\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"num_lights\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parent_location\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"is_active\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"production_batch\": \"string\",\n          \"lot_id\": \"string\",\n          \"cultivation_tax\": 7224.7474021015005,\n          \"available_for_sale\": true,\n          \"cannabis_cogs\": 3912.1066656817516,\n          \"non_cannabis_inventory_cogs\": 4688.038301775496,\n          \"source_packages\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"destination_packages\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"source_facility\": \"string\",\n          \"source_facility_name\": \"string\",\n          \"source_harvests\": \"string\",\n          \"notes\": \"string\",\n          \"brand\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"lab_test_url\": \"https://www.lab.com/lab-test/123456\",\n          \"coa_url\": \"https://s3.amazonaws.com/bucket/coa/abc123.pdf?X-Amz-Signature=...\",\n          \"test_results\": {\n            \"thc\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cbd\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cbn\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cbg\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cbga\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cbc\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cbca\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cbda\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"thca\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"delta_8_thc\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"delta_9_thc\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"delta_9_thca\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"delta_8_thca\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"thcv\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"thcva\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"total_cbd\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"total_cbg\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"total_delta_9_thc\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"total_thc\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"total_cannabinoid\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"test_status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"tested_package_tag\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"test_date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"terpenes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"cogs\": {\n            \"labor\": 10,\n            \"non_cannabis\": 120,\n            \"cannabis\": 30,\n            \"total\": 160\n          },\n          \"original_cogs\": {\n            \"labor\": 10,\n            \"non_cannabis\": 120,\n            \"cannabis\": 30,\n            \"total\": 160\n          },\n          \"manufacturing_run\": {\n            \"id\": 12,\n            \"name\": \"string\",\n            \"status\": \"string\",\n            \"start_date\": null,\n            \"end_date\": \"2006-05-07\",\n            \"facility_id\": 1150\n          },\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n          \"tested_package_tag\": \"string\",\n          \"test_status\": \"string\",\n          \"test_date\": \"1991-12-12\",\n          \"lab_test_info\": {\n            \"testing_facility_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"testing_facility_license\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"status\": \"string\",\n        \"sale_price\": 12.34,\n        \"shipped_weight\": 10,\n        \"shipped_weight_unit\": \"Grams\",\n        \"received_weight\": 10,\n        \"received_weight_unit\": \"Grams\",\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n      },\n      {\n        \"package\": {\n          \"id\": 4537,\n          \"tag\": \"string\",\n          \"is_active\": true,\n          \"is_testing_package\": true,\n          \"status\": \"string\",\n          \"item\": {\n            \"id\": 7036,\n            \"name\": \"Blue Dream - Trim\",\n            \"sku\": \"22657\",\n            \"current_standard_costing\": {\n              \"id\": {\n                \"type\": \"integer\",\n                \"example\": 123\n              },\n              \"standard_cost_amount\": {\n                \"type\": \"number\",\n                \"example\": 12.1111\n              },\n              \"standard_cost_currency\": {\n                \"type\": \"string\",\n                \"example\": \"USD\"\n              },\n              \"start_date\": {\n                \"type\": \"string\",\n                \"example\": \"2023-04-19\"\n              },\n              \"end_date\": {\n                \"type\": \"string\"\n              },\n              \"example\": \"2023-05-19\"\n            },\n            \"is_active\": true,\n            \"facility_id\": 14,\n            \"type\": {\n              \"id\": 884,\n              \"name\": \"Clone - Cutting\",\n              \"quantity_type\": \"CountBased\",\n              \"product_category\": \"Plants\"\n            },\n            \"sub_type\": null,\n            \"brand\": null,\n            \"product_id\": 512,\n            \"product_brand\": null,\n            \"quantity_type\": \"CountBased\",\n            \"notes\": \"\",\n            \"accounting_inventory_type\": \"raw_materials\",\n            \"strain\": null,\n            \"weight_unit\": \"Each\",\n            \"unit_weight\": 10,\n            \"unit_weight_unit\": \"Grams\",\n            \"case_quantity\": 100,\n            \"case_unit\": \"Each\",\n            \"description\": \"Clone\",\n            \"allergens\": \"Can s 2\",\n            \"transfer_source_license\": \"1234567890\",\n            \"bills_of_materials\": [\n              {\n                \"url\": \"https://www.app.canix.com/inventory/non-cannabis/bill-of-materials/123\",\n                \"name\": \"Bill of Materials\",\n                \"package_weight\": 10,\n                \"unit\": \"g\"\n              }\n            ],\n            \"sage_item\": {\n              \"external_id\": \"1234567890\",\n              \"name\": \"Sage Item\"\n            },\n            \"leaflink_item\": null,\n            \"dutchie_product\": null,\n            \"phenotype\": \"Indica\",\n            \"total_for_sale\": 100,\n            \"ordered\": 25,\n            \"backordered\": 10,\n            \"unordered\": 75,\n            \"updated_at\": \"2021-03-16T23:49:03.175Z\"\n          },\n          \"weight\": 5830.383722608804,\n          \"original_weight\": 123.685733488057,\n          \"weight_unit\": \"string\",\n          \"packaged_date\": \"string\",\n          \"production_batch_date\": null,\n          \"expiration_date\": \"string\",\n          \"received_date\": \"string\",\n          \"location\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sqft\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"num_lights\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parent_location\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"is_active\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"production_batch\": \"string\",\n          \"lot_id\": \"string\",\n          \"cultivation_tax\": 525.2983998679928,\n          \"available_for_sale\": true,\n          \"cannabis_cogs\": 8299.195229027167,\n          \"non_cannabis_inventory_cogs\": 5601.440785337396,\n          \"source_packages\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"destination_packages\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"source_facility\": \"string\",\n          \"source_facility_name\": \"string\",\n          \"source_harvests\": \"string\",\n          \"notes\": \"string\",\n          \"brand\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"lab_test_url\": \"https://www.lab.com/lab-test/123456\",\n          \"coa_url\": \"https://s3.amazonaws.com/bucket/coa/abc123.pdf?X-Amz-Signature=...\",\n          \"test_results\": {\n            \"thc\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cbd\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cbn\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cbg\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cbga\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cbc\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cbca\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cbda\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"thca\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"delta_8_thc\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"delta_9_thc\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"delta_9_thca\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"delta_8_thca\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"thcv\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"thcva\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"total_cbd\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"total_cbg\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"total_delta_9_thc\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"total_thc\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"total_cannabinoid\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"test_status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"tested_package_tag\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"test_date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"terpenes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"cogs\": {\n            \"labor\": 10,\n            \"non_cannabis\": 120,\n            \"cannabis\": 30,\n            \"total\": 160\n          },\n          \"original_cogs\": {\n            \"labor\": 10,\n            \"non_cannabis\": 120,\n            \"cannabis\": 30,\n            \"total\": 160\n          },\n          \"manufacturing_run\": {\n            \"id\": 5892,\n            \"name\": \"string\",\n            \"status\": \"string\",\n            \"start_date\": \"2011-06-05\",\n            \"end_date\": \"1990-09-25\",\n            \"facility_id\": 6473\n          },\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n          \"tested_package_tag\": \"string\",\n          \"test_status\": \"string\",\n          \"test_date\": \"1957-05-16\",\n          \"lab_test_info\": {\n            \"testing_facility_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"testing_facility_license\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"status\": \"string\",\n        \"sale_price\": 12.34,\n        \"shipped_weight\": 10,\n        \"shipped_weight_unit\": \"Grams\",\n        \"received_weight\": 10,\n        \"received_weight_unit\": \"Grams\",\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n      }\n    ],\n    \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n  },\n  {\n    \"id\": 123,\n    \"destination_facility\": \"401-N0909\",\n    \"transfer_type\": \"Affilliated\",\n    \"route\": \"string\",\n    \"departure_time\": \"2018-11-06 08:00:00+00:00\",\n    \"contents\": [\n      {\n        \"package\": {\n          \"id\": 12,\n          \"tag\": \"string\",\n          \"is_active\": false,\n          \"is_testing_package\": false,\n          \"status\": \"string\",\n          \"item\": {\n            \"id\": 7036,\n            \"name\": \"Blue Dream - Trim\",\n            \"sku\": \"22657\",\n            \"current_standard_costing\": {\n              \"id\": {\n                \"type\": \"integer\",\n                \"example\": 123\n              },\n              \"standard_cost_amount\": {\n                \"type\": \"number\",\n                \"example\": 12.1111\n              },\n              \"standard_cost_currency\": {\n                \"type\": \"string\",\n                \"example\": \"USD\"\n              },\n              \"start_date\": {\n                \"type\": \"string\",\n                \"example\": \"2023-04-19\"\n              },\n              \"end_date\": {\n                \"type\": \"string\"\n              },\n              \"example\": \"2023-05-19\"\n            },\n            \"is_active\": true,\n            \"facility_id\": 14,\n            \"type\": {\n              \"id\": 884,\n              \"name\": \"Clone - Cutting\",\n              \"quantity_type\": \"CountBased\",\n              \"product_category\": \"Plants\"\n            },\n            \"sub_type\": null,\n            \"brand\": null,\n            \"product_id\": 512,\n            \"product_brand\": null,\n            \"quantity_type\": \"CountBased\",\n            \"notes\": \"\",\n            \"accounting_inventory_type\": \"raw_materials\",\n            \"strain\": null,\n            \"weight_unit\": \"Each\",\n            \"unit_weight\": 10,\n            \"unit_weight_unit\": \"Grams\",\n            \"case_quantity\": 100,\n            \"case_unit\": \"Each\",\n            \"description\": \"Clone\",\n            \"allergens\": \"Can s 2\",\n            \"transfer_source_license\": \"1234567890\",\n            \"bills_of_materials\": [\n              {\n                \"url\": \"https://www.app.canix.com/inventory/non-cannabis/bill-of-materials/123\",\n                \"name\": \"Bill of Materials\",\n                \"package_weight\": 10,\n                \"unit\": \"g\"\n              }\n            ],\n            \"sage_item\": {\n              \"external_id\": \"1234567890\",\n              \"name\": \"Sage Item\"\n            },\n            \"leaflink_item\": null,\n            \"dutchie_product\": null,\n            \"phenotype\": \"Indica\",\n            \"total_for_sale\": 100,\n            \"ordered\": 25,\n            \"backordered\": 10,\n            \"unordered\": 75,\n            \"updated_at\": \"2021-03-16T23:49:03.175Z\"\n          },\n          \"weight\": 4101.126168539227,\n          \"original_weight\": 7982.227689224092,\n          \"weight_unit\": \"string\",\n          \"packaged_date\": \"string\",\n          \"production_batch_date\": \"2001-07-03\",\n          \"expiration_date\": \"string\",\n          \"received_date\": \"string\",\n          \"location\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sqft\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"num_lights\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parent_location\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"is_active\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"production_batch\": \"string\",\n          \"lot_id\": \"string\",\n          \"cultivation_tax\": 9012.885214728944,\n          \"available_for_sale\": false,\n          \"cannabis_cogs\": 7206.271215819372,\n          \"non_cannabis_inventory_cogs\": 5162.441979171386,\n          \"source_packages\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"destination_packages\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"source_facility\": \"string\",\n          \"source_facility_name\": \"string\",\n          \"source_harvests\": \"string\",\n          \"notes\": \"string\",\n          \"brand\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"lab_test_url\": \"https://www.lab.com/lab-test/123456\",\n          \"coa_url\": \"https://s3.amazonaws.com/bucket/coa/abc123.pdf?X-Amz-Signature=...\",\n          \"test_results\": {\n            \"thc\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cbd\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cbn\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cbg\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cbga\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cbc\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cbca\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cbda\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"thca\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"delta_8_thc\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"delta_9_thc\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"delta_9_thca\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"delta_8_thca\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"thcv\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"thcva\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"total_cbd\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"total_cbg\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"total_delta_9_thc\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"total_thc\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"total_cannabinoid\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"test_status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"tested_package_tag\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"test_date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"terpenes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"cogs\": {\n            \"labor\": 10,\n            \"non_cannabis\": 120,\n            \"cannabis\": 30,\n            \"total\": 160\n          },\n          \"original_cogs\": {\n            \"labor\": 10,\n            \"non_cannabis\": 120,\n            \"cannabis\": 30,\n            \"total\": 160\n          },\n          \"manufacturing_run\": {\n            \"id\": 9410,\n            \"name\": \"string\",\n            \"status\": \"string\",\n            \"start_date\": \"2014-08-31\",\n            \"end_date\": null,\n            \"facility_id\": 4495\n          },\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n          \"tested_package_tag\": \"string\",\n          \"test_status\": \"string\",\n          \"test_date\": \"1970-12-29\",\n          \"lab_test_info\": {\n            \"testing_facility_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"testing_facility_license\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"status\": \"string\",\n        \"sale_price\": 12.34,\n        \"shipped_weight\": 10,\n        \"shipped_weight_unit\": \"Grams\",\n        \"received_weight\": 10,\n        \"received_weight_unit\": \"Grams\",\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n      },\n      {\n        \"package\": {\n          \"id\": 9151,\n          \"tag\": \"string\",\n          \"is_active\": true,\n          \"is_testing_package\": false,\n          \"status\": \"string\",\n          \"item\": {\n            \"id\": 7036,\n            \"name\": \"Blue Dream - Trim\",\n            \"sku\": \"22657\",\n            \"current_standard_costing\": {\n              \"id\": {\n                \"type\": \"integer\",\n                \"example\": 123\n              },\n              \"standard_cost_amount\": {\n                \"type\": \"number\",\n                \"example\": 12.1111\n              },\n              \"standard_cost_currency\": {\n                \"type\": \"string\",\n                \"example\": \"USD\"\n              },\n              \"start_date\": {\n                \"type\": \"string\",\n                \"example\": \"2023-04-19\"\n              },\n              \"end_date\": {\n                \"type\": \"string\"\n              },\n              \"example\": \"2023-05-19\"\n            },\n            \"is_active\": true,\n            \"facility_id\": 14,\n            \"type\": {\n              \"id\": 884,\n              \"name\": \"Clone - Cutting\",\n              \"quantity_type\": \"CountBased\",\n              \"product_category\": \"Plants\"\n            },\n            \"sub_type\": null,\n            \"brand\": null,\n            \"product_id\": 512,\n            \"product_brand\": null,\n            \"quantity_type\": \"CountBased\",\n            \"notes\": \"\",\n            \"accounting_inventory_type\": \"raw_materials\",\n            \"strain\": null,\n            \"weight_unit\": \"Each\",\n            \"unit_weight\": 10,\n            \"unit_weight_unit\": \"Grams\",\n            \"case_quantity\": 100,\n            \"case_unit\": \"Each\",\n            \"description\": \"Clone\",\n            \"allergens\": \"Can s 2\",\n            \"transfer_source_license\": \"1234567890\",\n            \"bills_of_materials\": [\n              {\n                \"url\": \"https://www.app.canix.com/inventory/non-cannabis/bill-of-materials/123\",\n                \"name\": \"Bill of Materials\",\n                \"package_weight\": 10,\n                \"unit\": \"g\"\n              }\n            ],\n            \"sage_item\": {\n              \"external_id\": \"1234567890\",\n              \"name\": \"Sage Item\"\n            },\n            \"leaflink_item\": null,\n            \"dutchie_product\": null,\n            \"phenotype\": \"Indica\",\n            \"total_for_sale\": 100,\n            \"ordered\": 25,\n            \"backordered\": 10,\n            \"unordered\": 75,\n            \"updated_at\": \"2021-03-16T23:49:03.175Z\"\n          },\n          \"weight\": 9239.065716808402,\n          \"original_weight\": 4156.264498094027,\n          \"weight_unit\": \"string\",\n          \"packaged_date\": \"string\",\n          \"production_batch_date\": \"1964-07-10\",\n          \"expiration_date\": \"string\",\n          \"received_date\": \"string\",\n          \"location\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sqft\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"num_lights\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parent_location\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"is_active\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"production_batch\": \"string\",\n          \"lot_id\": \"string\",\n          \"cultivation_tax\": 481.176841690093,\n          \"available_for_sale\": false,\n          \"cannabis_cogs\": 137.28093293361553,\n          \"non_cannabis_inventory_cogs\": 2546.5450116914767,\n          \"source_packages\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"destination_packages\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"source_facility\": \"string\",\n          \"source_facility_name\": \"string\",\n          \"source_harvests\": \"string\",\n          \"notes\": \"string\",\n          \"brand\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"lab_test_url\": \"https://www.lab.com/lab-test/123456\",\n          \"coa_url\": \"https://s3.amazonaws.com/bucket/coa/abc123.pdf?X-Amz-Signature=...\",\n          \"test_results\": {\n            \"thc\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cbd\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cbn\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cbg\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cbga\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cbc\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cbca\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cbda\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"thca\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"delta_8_thc\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"delta_9_thc\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"delta_9_thca\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"delta_8_thca\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"thcv\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"thcva\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"total_cbd\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"total_cbg\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"total_delta_9_thc\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"total_thc\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"total_cannabinoid\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"test_status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"tested_package_tag\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"test_date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"terpenes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"cogs\": {\n            \"labor\": 10,\n            \"non_cannabis\": 120,\n            \"cannabis\": 30,\n            \"total\": 160\n          },\n          \"original_cogs\": {\n            \"labor\": 10,\n            \"non_cannabis\": 120,\n            \"cannabis\": 30,\n            \"total\": 160\n          },\n          \"manufacturing_run\": {\n            \"id\": 3607,\n            \"name\": \"string\",\n            \"status\": \"string\",\n            \"start_date\": \"2019-09-04\",\n            \"end_date\": \"2012-12-12\",\n            \"facility_id\": 7667\n          },\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n          \"tested_package_tag\": \"string\",\n          \"test_status\": \"string\",\n          \"test_date\": \"1951-06-02\",\n          \"lab_test_info\": {\n            \"testing_facility_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"testing_facility_license\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"status\": \"string\",\n        \"sale_price\": 12.34,\n        \"shipped_weight\": 10,\n        \"shipped_weight_unit\": \"Grams\",\n        \"received_weight\": 10,\n        \"received_weight_unit\": \"Grams\",\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n      }\n    ],\n    \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "de009208-b5e4-472f-bae9-4aeb1ffe401f",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfer_destinations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "db967631-45e1-4e50-a6cf-3165eb9cf883",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfer_destinations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1226cb0d-5de6-49db-8360-8886234ba7c4",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfer_destinations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4ef4e73f-0cb0-4a76-9498-3d229fedb7e7",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfer_destinations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8c49d885-07be-424b-978e-761e894e5bb6",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfer_destinations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "48ea4907-7efa-40ff-9e50-2dc290e99426",
+          "name": "GetTransferDestination",
+          "request": {
+            "name": "GetTransferDestination",
+            "description": {
+              "content": "Get Transfer Destination by ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transfer_destinations",
+                ":transfer_destination_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "transfer_destination_id",
+                  "description": "(Required) Transfer Destination ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "780e5f08-1cfb-4b7b-9f2d-0994da2efb00",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfer_destinations",
+                    ":transfer_destination_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "transfer_destination_id",
+                      "description": "(Required) Transfer Destination ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 123,\n  \"destination_facility\": \"401-N0909\",\n  \"transfer_type\": \"Affilliated\",\n  \"route\": \"string\",\n  \"departure_time\": \"2018-11-06 08:00:00+00:00\",\n  \"contents\": [\n    {\n      \"package\": {\n        \"id\": 6683,\n        \"tag\": \"string\",\n        \"is_active\": true,\n        \"is_testing_package\": true,\n        \"status\": \"string\",\n        \"item\": {\n          \"id\": 5316,\n          \"name\": \"string\",\n          \"facility_id\": 3973,\n          \"is_active\": true,\n          \"item_type\": \"string\",\n          \"brand\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"product_id\": 4065,\n          \"product_brand\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"quantity_type\": \"string\",\n          \"sku\": \"string\",\n          \"current_standard_cost\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"standard_cost_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"standard_cost_currency\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"start_date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"end_date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"accounting_inventory_type\": \"string\",\n          \"notes\": \"string\",\n          \"strain\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"notes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sku\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"testing_status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"indica_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sativa_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cross_strains\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"type\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"quantity_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_strain\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_volume\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_thc_weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_cbd_weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_cbd_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_thc_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_public_ingredients\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_administration_method\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_serving_size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_supply_duration_days\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_number_of_doses\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"sub_type\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"weight_unit\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"category\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"weight_unit\": \"string\",\n          \"unit_weight\": 8323.246957151403,\n          \"unit_weight_unit\": \"string\",\n          \"case_quantity\": \"string\",\n          \"case_quantity_unit\": \"string\",\n          \"unit_cbd_weight\": 1163.3103934888434,\n          \"unit_cbd_weight_unit\": \"string\",\n          \"unit_thc_weight\": 248.01420575190414,\n          \"unit_thc_weight_unit\": \"string\",\n          \"unit_cbd_percent\": 9049.215776970084,\n          \"unit_thc_percent\": 5411.094182388766,\n          \"description\": \"string\",\n          \"serving_size\": 9809.46577035211,\n          \"number_of_doses\": 5379.044986949621,\n          \"public_ingredients\": \"string\",\n          \"supply_duration_days\": 5466.05878384906,\n          \"administration_method\": \"string\",\n          \"allergens\": \"string\",\n          \"transfer_source_license\": \"string\",\n          \"bills_of_materials\": [\n            {\n              \"url\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"package_weight\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unit\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"url\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"package_weight\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unit\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"sage_item\": {\n            \"external_id\": \"string\",\n            \"name\": \"string\"\n          },\n          \"leaflink_item\": {\n            \"external_id\": \"string\",\n            \"name\": \"string\"\n          },\n          \"dutchie_product\": {\n            \"external_id\": \"string\",\n            \"name\": \"string\"\n          },\n          \"phenotype\": \"string\",\n          \"total_for_sale\": 3020.808426556285,\n          \"ordered\": 6289.965827839732,\n          \"backordered\": 4351.844444269343,\n          \"unordered\": 3674.7876281378312,\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n        },\n        \"weight\": 9491.131481906046,\n        \"original_weight\": 8988.417238353773,\n        \"weight_unit\": \"string\",\n        \"packaged_date\": \"string\",\n        \"production_batch_date\": \"2012-02-16\",\n        \"expiration_date\": \"string\",\n        \"received_date\": \"string\",\n        \"location\": {\n          \"id\": 123,\n          \"name\": \"Pro System\",\n          \"sqft\": 14.4,\n          \"num_lights\": 42,\n          \"parent_location\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sqft\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"num_lights\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"is_active\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n          \"is_active\": true\n        },\n        \"production_batch\": \"string\",\n        \"lot_id\": \"string\",\n        \"cultivation_tax\": 277.44691879263985,\n        \"available_for_sale\": true,\n        \"cannabis_cogs\": 5740.92623894077,\n        \"non_cannabis_inventory_cogs\": 5793.909873171879,\n        \"source_packages\": [\n          {\n            \"id\": 5592,\n            \"tag\": \"string\",\n            \"weight\": 8019.589982213254,\n            \"weight_unit\": \"string\",\n            \"item\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": 6485,\n            \"tag\": \"string\",\n            \"weight\": 5061.405364755534,\n            \"weight_unit\": \"string\",\n            \"item\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"destination_packages\": [\n          {\n            \"id\": 2045,\n            \"tag\": \"string\",\n            \"weight\": 3171.740778292538,\n            \"weight_unit\": \"string\",\n            \"item\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": 3435,\n            \"tag\": \"string\",\n            \"weight\": 6425.307531944485,\n            \"weight_unit\": \"string\",\n            \"item\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"source_facility\": \"string\",\n        \"source_facility_name\": \"string\",\n        \"source_harvests\": \"string\",\n        \"notes\": \"string\",\n        \"brand\": {\n          \"id\": 7520,\n          \"name\": \"string\",\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n        },\n        \"lab_test_url\": \"https://www.lab.com/lab-test/123456\",\n        \"coa_url\": \"https://s3.amazonaws.com/bucket/coa/abc123.pdf?X-Amz-Signature=...\",\n        \"test_results\": {\n          \"thc\": [\n            {\n              \"value\": 12.345,\n              \"measure\": \"percent\"\n            },\n            {\n              \"value\": 0.12345,\n              \"measure\": \"mg/g\"\n            },\n            {\n              \"value\": 5.6789,\n              \"measure\": \"mg\"\n            }\n          ],\n          \"cbd\": [\n            {\n              \"value\": 34.567,\n              \"measure\": \"percent\"\n            },\n            {\n              \"value\": 2.3456,\n              \"measure\": \"mg/g\"\n            },\n            {\n              \"value\": 9.1234,\n              \"measure\": \"mg\"\n            }\n          ],\n          \"cbn\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"cbg\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"cbga\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"cbc\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"cbca\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"cbda\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"thca\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"delta_8_thc\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"delta_9_thc\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"delta_9_thca\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"delta_8_thca\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"thcv\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"thcva\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"total_cbd\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"total_cbg\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"total_delta_9_thc\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"total_thc\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"total_cannabinoid\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"test_status\": \"string\",\n          \"tested_package_tag\": \"string\",\n          \"test_date\": \"1996-12-27\",\n          \"terpenes\": {\n            \"measure\": \"percent\",\n            \"top_three\": \"string\",\n            \"values\": \"string\"\n          }\n        },\n        \"cogs\": {\n          \"labor\": 10,\n          \"non_cannabis\": 120,\n          \"cannabis\": 30,\n          \"total\": 160\n        },\n        \"original_cogs\": {\n          \"labor\": 10,\n          \"non_cannabis\": 120,\n          \"cannabis\": 30,\n          \"total\": 160\n        },\n        \"manufacturing_run\": {\n          \"id\": 9545,\n          \"name\": \"string\",\n          \"status\": \"string\",\n          \"start_date\": null,\n          \"end_date\": \"2013-07-28\",\n          \"facility_id\": 7240\n        },\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n        \"tested_package_tag\": \"string\",\n        \"test_status\": \"string\",\n        \"test_date\": \"1970-05-25\",\n        \"lab_test_info\": {\n          \"testing_facility_name\": \"string\",\n          \"testing_facility_license\": \"string\"\n        }\n      },\n      \"status\": \"string\",\n      \"sale_price\": 12.34,\n      \"shipped_weight\": 10,\n      \"shipped_weight_unit\": \"Grams\",\n      \"received_weight\": 10,\n      \"received_weight_unit\": \"Grams\",\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n    },\n    {\n      \"package\": {\n        \"id\": 1062,\n        \"tag\": \"string\",\n        \"is_active\": false,\n        \"is_testing_package\": false,\n        \"status\": \"string\",\n        \"item\": {\n          \"id\": 697,\n          \"name\": \"string\",\n          \"facility_id\": 8346,\n          \"is_active\": true,\n          \"item_type\": \"string\",\n          \"brand\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"product_id\": 2183,\n          \"product_brand\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"quantity_type\": \"string\",\n          \"sku\": \"string\",\n          \"current_standard_cost\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"standard_cost_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"standard_cost_currency\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"start_date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"end_date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"accounting_inventory_type\": \"string\",\n          \"notes\": \"string\",\n          \"strain\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"notes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sku\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"testing_status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"indica_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sativa_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cross_strains\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"type\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"quantity_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_strain\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_volume\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_thc_weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_cbd_weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_cbd_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_unit_thc_percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_public_ingredients\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_administration_method\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_serving_size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_supply_duration_days\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requires_number_of_doses\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"sub_type\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"weight_unit\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"category\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"weight_unit\": \"string\",\n          \"unit_weight\": 4895.533192238946,\n          \"unit_weight_unit\": \"string\",\n          \"case_quantity\": \"string\",\n          \"case_quantity_unit\": \"string\",\n          \"unit_cbd_weight\": 9557.926422601668,\n          \"unit_cbd_weight_unit\": \"string\",\n          \"unit_thc_weight\": 3152.1231168230447,\n          \"unit_thc_weight_unit\": \"string\",\n          \"unit_cbd_percent\": 2832.953785343092,\n          \"unit_thc_percent\": 2717.8370909683367,\n          \"description\": \"string\",\n          \"serving_size\": 8758.7779086532,\n          \"number_of_doses\": 9364.62210369034,\n          \"public_ingredients\": \"string\",\n          \"supply_duration_days\": 8687.10232607678,\n          \"administration_method\": \"string\",\n          \"allergens\": \"string\",\n          \"transfer_source_license\": \"string\",\n          \"bills_of_materials\": [\n            {\n              \"url\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"package_weight\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unit\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"url\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"package_weight\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unit\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"sage_item\": {\n            \"external_id\": \"string\",\n            \"name\": \"string\"\n          },\n          \"leaflink_item\": {\n            \"external_id\": \"string\",\n            \"name\": \"string\"\n          },\n          \"dutchie_product\": {\n            \"external_id\": \"string\",\n            \"name\": \"string\"\n          },\n          \"phenotype\": \"string\",\n          \"total_for_sale\": 2921.420407224686,\n          \"ordered\": 5904.363028266021,\n          \"backordered\": 9854.624094509696,\n          \"unordered\": 4498.673595850598,\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n        },\n        \"weight\": 2705.32127762116,\n        \"original_weight\": 9113.580872378818,\n        \"weight_unit\": \"string\",\n        \"packaged_date\": \"string\",\n        \"production_batch_date\": \"2003-03-18\",\n        \"expiration_date\": \"string\",\n        \"received_date\": \"string\",\n        \"location\": {\n          \"id\": 123,\n          \"name\": \"Pro System\",\n          \"sqft\": 14.4,\n          \"num_lights\": 42,\n          \"parent_location\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sqft\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"num_lights\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"is_active\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n          \"is_active\": true\n        },\n        \"production_batch\": \"string\",\n        \"lot_id\": \"string\",\n        \"cultivation_tax\": 797.4854679685673,\n        \"available_for_sale\": true,\n        \"cannabis_cogs\": 6761.297584596968,\n        \"non_cannabis_inventory_cogs\": 5096.675084940678,\n        \"source_packages\": [\n          {\n            \"id\": 8575,\n            \"tag\": \"string\",\n            \"weight\": 8667.581064922631,\n            \"weight_unit\": \"string\",\n            \"item\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": 6386,\n            \"tag\": \"string\",\n            \"weight\": 2571.7589461426073,\n            \"weight_unit\": \"string\",\n            \"item\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"destination_packages\": [\n          {\n            \"id\": 5283,\n            \"tag\": \"string\",\n            \"weight\": 8775.887341975718,\n            \"weight_unit\": \"string\",\n            \"item\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": 2446,\n            \"tag\": \"string\",\n            \"weight\": 8537.999493021895,\n            \"weight_unit\": \"string\",\n            \"item\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"source_facility\": \"string\",\n        \"source_facility_name\": \"string\",\n        \"source_harvests\": \"string\",\n        \"notes\": \"string\",\n        \"brand\": {\n          \"id\": 9099,\n          \"name\": \"string\",\n          \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n        },\n        \"lab_test_url\": \"https://www.lab.com/lab-test/123456\",\n        \"coa_url\": \"https://s3.amazonaws.com/bucket/coa/abc123.pdf?X-Amz-Signature=...\",\n        \"test_results\": {\n          \"thc\": [\n            {\n              \"value\": 12.345,\n              \"measure\": \"percent\"\n            },\n            {\n              \"value\": 0.12345,\n              \"measure\": \"mg/g\"\n            },\n            {\n              \"value\": 5.6789,\n              \"measure\": \"mg\"\n            }\n          ],\n          \"cbd\": [\n            {\n              \"value\": 34.567,\n              \"measure\": \"percent\"\n            },\n            {\n              \"value\": 2.3456,\n              \"measure\": \"mg/g\"\n            },\n            {\n              \"value\": 9.1234,\n              \"measure\": \"mg\"\n            }\n          ],\n          \"cbn\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"cbg\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"cbga\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"cbc\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"cbca\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"cbda\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"thca\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"delta_8_thc\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"delta_9_thc\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"delta_9_thca\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"delta_8_thca\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"thcv\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"thcva\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"total_cbd\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"total_cbg\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"total_delta_9_thc\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"total_thc\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"total_cannabinoid\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"test_status\": \"string\",\n          \"tested_package_tag\": \"string\",\n          \"test_date\": \"2024-04-14\",\n          \"terpenes\": {\n            \"measure\": \"percent\",\n            \"top_three\": \"string\",\n            \"values\": \"string\"\n          }\n        },\n        \"cogs\": {\n          \"labor\": 10,\n          \"non_cannabis\": 120,\n          \"cannabis\": 30,\n          \"total\": 160\n        },\n        \"original_cogs\": {\n          \"labor\": 10,\n          \"non_cannabis\": 120,\n          \"cannabis\": 30,\n          \"total\": 160\n        },\n        \"manufacturing_run\": {\n          \"id\": 9533,\n          \"name\": \"string\",\n          \"status\": \"string\",\n          \"start_date\": \"1974-05-24\",\n          \"end_date\": \"1998-02-19\",\n          \"facility_id\": 1291\n        },\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\",\n        \"tested_package_tag\": \"string\",\n        \"test_status\": \"string\",\n        \"test_date\": \"2007-07-18\",\n        \"lab_test_info\": {\n          \"testing_facility_name\": \"string\",\n          \"testing_facility_license\": \"string\"\n        }\n      },\n      \"status\": \"string\",\n      \"sale_price\": 12.34,\n      \"shipped_weight\": 10,\n      \"shipped_weight_unit\": \"Grams\",\n      \"received_weight\": 10,\n      \"received_weight_unit\": \"Grams\",\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n    }\n  ],\n  \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bf9b64c6-45c0-486d-a138-adc5e05d35ed",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfer_destinations",
+                    ":transfer_destination_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "transfer_destination_id",
+                      "description": "(Required) Transfer Destination ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "29346e19-6f8c-48ed-86e8-e12c4fda13ec",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfer_destinations",
+                    ":transfer_destination_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "transfer_destination_id",
+                      "description": "(Required) Transfer Destination ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f9a58b5d-fca1-4679-b489-3007ed59f3b7",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfer_destinations",
+                    ":transfer_destination_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "transfer_destination_id",
+                      "description": "(Required) Transfer Destination ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ec74e2b8-6f1c-4db6-9af4-b0225a23211f",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfer_destinations",
+                    ":transfer_destination_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "transfer_destination_id",
+                      "description": "(Required) Transfer Destination ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "79280892-825b-4e60-8aeb-85c7e328318a",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfer_destinations",
+                    ":transfer_destination_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "transfer_destination_id",
+                      "description": "(Required) Transfer Destination ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.canix.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "09e1b257-0fe2-4717-b5d0-53ba9c54d8dd",
+    "name": "Canix Transfer Destinations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# Introduction\nThis API documentation describes the endpoints used by third-party developers to get Canix data for their account.\n# Authentication\nCanix API uses API Keys for authentication. You can generate an API key on our [API page](https://app.canix.com/company/api), and on your API requests use the `X-API-KEY` header with the API key value you generated.\nWe strongly recommend using a secrets manager. Plain text files like dotenv lead to accidental costly leaks. Use [Doppler](https://doppler.com/) or similar options for a developer friendly experience. AWS and Google Cloud have native solutions as well.\n\nContact Support:\n Name: Canix Support\n Email: help@canix.com",
+      "type": "text/plain"
+    }
+  }
+}

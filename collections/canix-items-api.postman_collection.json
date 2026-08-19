@@ -1,0 +1,2718 @@
+{
+  "item": [
+    {
+      "id": "51906583-bf69-4642-90af-d6229261712d",
+      "name": "Items",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "60cb579d-7b87-4c09-8c22-eeb9692dcace",
+          "name": "GetItems",
+          "request": {
+            "name": "GetItems",
+            "description": {
+              "content": "Return items",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "items"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "facility_id",
+                  "value": "<integer>",
+                  "description": "Facility ID (optional)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "2000",
+                  "description": "Max number of records to return (optional). Cannot exceed 2000"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Offset for the returned records (optional)"
+                },
+                {
+                  "disabled": false,
+                  "key": "order_by",
+                  "value": "<string>",
+                  "description": "Order-by clause, in SQL format (optional)"
+                },
+                {
+                  "disabled": false,
+                  "key": "where",
+                  "value": "<string>",
+                  "description": "Filter results using SQL-like WHERE clause syntax (optional).\n\n**Supported operators**: =, >, <, >=, <=, BETWEEN, IN, LIKE, AND, OR\n\n**Supported patterns**:\n- Equality: `status='Active'`\n- Comparison: `updated_at >= '2024-01-01'`\n- Range: `id BETWEEN 1 AND 10000`\n- List: `status IN ('Active', 'Pending')`\n- Pattern: `sku LIKE 'ABC%'`\n- Compound: `facility_id=123 AND is_active=true`\n"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "36c9125f-f958-4633-9e61-ca6d7489fab4",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "facility_id",
+                      "value": "123"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 2661,\n    \"name\": \"string\",\n    \"facility_id\": 8446,\n    \"is_active\": true,\n    \"item_type\": \"string\",\n    \"brand\": {\n      \"id\": 1833.7805642171622,\n      \"name\": \"string\"\n    },\n    \"product_id\": 4532,\n    \"product_brand\": {\n      \"id\": 3256.0261391845793,\n      \"name\": \"string\"\n    },\n    \"quantity_type\": \"string\",\n    \"sku\": \"string\",\n    \"current_standard_cost\": {\n      \"id\": 123,\n      \"standard_cost_amount\": 12.1111,\n      \"standard_cost_currency\": \"USD\",\n      \"start_date\": \"2023-04-19\",\n      \"end_date\": \"2023-05-19\"\n    },\n    \"accounting_inventory_type\": \"string\",\n    \"notes\": \"string\",\n    \"strain\": {\n      \"id\": 9958,\n      \"name\": \"Lemon Skunk\",\n      \"notes\": \"Terpenes .63%\",\n      \"sku\": \"BIOJJ\",\n      \"testing_status\": \"InHouse\",\n      \"indica_percent\": 45,\n      \"sativa_percent\": 55,\n      \"cross_strains\": [\n        {\n          \"id\": 4569,\n          \"name\": \"Lemon Skunk\",\n          \"notes\": \"Terpenes .63%\",\n          \"sku\": \"BIOJJ\",\n          \"testing_status\": \"InHouse\",\n          \"indica_percent\": 45,\n          \"sativa_percent\": 55\n        },\n        {\n          \"id\": 6325,\n          \"name\": \"Lemon Skunk\",\n          \"notes\": \"Terpenes .63%\",\n          \"sku\": \"BIOJJ\",\n          \"testing_status\": \"InHouse\",\n          \"indica_percent\": 45,\n          \"sativa_percent\": 55\n        }\n      ]\n    },\n    \"type\": {\n      \"id\": 4653,\n      \"name\": \"string\",\n      \"quantity_type\": \"string\",\n      \"requires_strain\": false,\n      \"requires_unit_volume\": false,\n      \"requires_unit_weight\": false,\n      \"requires_unit_thc_weight\": false,\n      \"requires_unit_cbd_weight\": false,\n      \"requires_unit_cbd_percent\": false,\n      \"requires_unit_thc_percent\": true,\n      \"requires_public_ingredients\": false,\n      \"requires_administration_method\": false,\n      \"requires_serving_size\": false,\n      \"requires_supply_duration_days\": true,\n      \"requires_number_of_doses\": false,\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n    },\n    \"sub_type\": {\n      \"id\": 904,\n      \"name\": \"string\",\n      \"weight_unit\": \"string\",\n      \"category\": {\n        \"id\": 6307,\n        \"name\": \"string\",\n        \"quantity_type\": \"string\",\n        \"requires_strain\": false,\n        \"requires_unit_volume\": true,\n        \"requires_unit_weight\": true,\n        \"requires_unit_thc_weight\": true,\n        \"requires_unit_cbd_weight\": true,\n        \"requires_unit_cbd_percent\": false,\n        \"requires_unit_thc_percent\": false,\n        \"requires_public_ingredients\": false,\n        \"requires_administration_method\": true,\n        \"requires_serving_size\": true,\n        \"requires_supply_duration_days\": true,\n        \"requires_number_of_doses\": true,\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n      },\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n    },\n    \"weight_unit\": \"string\",\n    \"unit_weight\": 2601.50226271328,\n    \"unit_weight_unit\": \"string\",\n    \"case_quantity\": \"string\",\n    \"case_quantity_unit\": \"string\",\n    \"unit_cbd_weight\": 6297.21202279461,\n    \"unit_cbd_weight_unit\": \"string\",\n    \"unit_thc_weight\": 5012.42024904703,\n    \"unit_thc_weight_unit\": \"string\",\n    \"unit_cbd_percent\": 3095.4061774953357,\n    \"unit_thc_percent\": 6612.705528016651,\n    \"description\": \"string\",\n    \"serving_size\": 7250.286176450391,\n    \"number_of_doses\": 5886.1876877623135,\n    \"public_ingredients\": \"string\",\n    \"supply_duration_days\": 1403.9521704862923,\n    \"administration_method\": \"string\",\n    \"allergens\": \"string\",\n    \"transfer_source_license\": \"string\",\n    \"bills_of_materials\": [\n      {\n        \"url\": \"string\",\n        \"name\": \"string\",\n        \"package_weight\": 5036.935110444406,\n        \"unit\": \"string\"\n      },\n      {\n        \"url\": \"string\",\n        \"name\": \"string\",\n        \"package_weight\": 2597.595554480425,\n        \"unit\": \"string\"\n      }\n    ],\n    \"sage_item\": {\n      \"external_id\": \"string\",\n      \"name\": \"string\"\n    },\n    \"leaflink_item\": {\n      \"external_id\": \"string\",\n      \"name\": \"string\"\n    },\n    \"dutchie_product\": {\n      \"external_id\": \"string\",\n      \"name\": \"string\"\n    },\n    \"phenotype\": \"string\",\n    \"total_for_sale\": 5326.010050918618,\n    \"ordered\": 8014.8436901618015,\n    \"backordered\": 8209.160025227218,\n    \"unordered\": 1008.7770827864895,\n    \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n  },\n  {\n    \"id\": 3458,\n    \"name\": \"string\",\n    \"facility_id\": 4243,\n    \"is_active\": true,\n    \"item_type\": \"string\",\n    \"brand\": {\n      \"id\": 7011.711781725888,\n      \"name\": \"string\"\n    },\n    \"product_id\": 9794,\n    \"product_brand\": {\n      \"id\": 5580.955044269012,\n      \"name\": \"string\"\n    },\n    \"quantity_type\": \"string\",\n    \"sku\": \"string\",\n    \"current_standard_cost\": {\n      \"id\": 123,\n      \"standard_cost_amount\": 12.1111,\n      \"standard_cost_currency\": \"USD\",\n      \"start_date\": \"2023-04-19\",\n      \"end_date\": \"2023-05-19\"\n    },\n    \"accounting_inventory_type\": \"string\",\n    \"notes\": \"string\",\n    \"strain\": {\n      \"id\": 7295,\n      \"name\": \"Lemon Skunk\",\n      \"notes\": \"Terpenes .63%\",\n      \"sku\": \"BIOJJ\",\n      \"testing_status\": \"InHouse\",\n      \"indica_percent\": 45,\n      \"sativa_percent\": 55,\n      \"cross_strains\": [\n        {\n          \"id\": 1681,\n          \"name\": \"Lemon Skunk\",\n          \"notes\": \"Terpenes .63%\",\n          \"sku\": \"BIOJJ\",\n          \"testing_status\": \"InHouse\",\n          \"indica_percent\": 45,\n          \"sativa_percent\": 55\n        },\n        {\n          \"id\": 7420,\n          \"name\": \"Lemon Skunk\",\n          \"notes\": \"Terpenes .63%\",\n          \"sku\": \"BIOJJ\",\n          \"testing_status\": \"InHouse\",\n          \"indica_percent\": 45,\n          \"sativa_percent\": 55\n        }\n      ]\n    },\n    \"type\": {\n      \"id\": 2002,\n      \"name\": \"string\",\n      \"quantity_type\": \"string\",\n      \"requires_strain\": false,\n      \"requires_unit_volume\": true,\n      \"requires_unit_weight\": true,\n      \"requires_unit_thc_weight\": false,\n      \"requires_unit_cbd_weight\": false,\n      \"requires_unit_cbd_percent\": true,\n      \"requires_unit_thc_percent\": true,\n      \"requires_public_ingredients\": true,\n      \"requires_administration_method\": true,\n      \"requires_serving_size\": true,\n      \"requires_supply_duration_days\": false,\n      \"requires_number_of_doses\": false,\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n    },\n    \"sub_type\": {\n      \"id\": 2774,\n      \"name\": \"string\",\n      \"weight_unit\": \"string\",\n      \"category\": {\n        \"id\": 2398,\n        \"name\": \"string\",\n        \"quantity_type\": \"string\",\n        \"requires_strain\": true,\n        \"requires_unit_volume\": true,\n        \"requires_unit_weight\": false,\n        \"requires_unit_thc_weight\": false,\n        \"requires_unit_cbd_weight\": false,\n        \"requires_unit_cbd_percent\": false,\n        \"requires_unit_thc_percent\": true,\n        \"requires_public_ingredients\": true,\n        \"requires_administration_method\": false,\n        \"requires_serving_size\": false,\n        \"requires_supply_duration_days\": false,\n        \"requires_number_of_doses\": true,\n        \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n      },\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n    },\n    \"weight_unit\": \"string\",\n    \"unit_weight\": 4861.388960582971,\n    \"unit_weight_unit\": \"string\",\n    \"case_quantity\": \"string\",\n    \"case_quantity_unit\": \"string\",\n    \"unit_cbd_weight\": 6311.1316289376655,\n    \"unit_cbd_weight_unit\": \"string\",\n    \"unit_thc_weight\": 7838.863878373847,\n    \"unit_thc_weight_unit\": \"string\",\n    \"unit_cbd_percent\": 2990.4214018956554,\n    \"unit_thc_percent\": 2210.6306855394664,\n    \"description\": \"string\",\n    \"serving_size\": 8032.686348609318,\n    \"number_of_doses\": 3888.379792654577,\n    \"public_ingredients\": \"string\",\n    \"supply_duration_days\": 1597.940100971602,\n    \"administration_method\": \"string\",\n    \"allergens\": \"string\",\n    \"transfer_source_license\": \"string\",\n    \"bills_of_materials\": [\n      {\n        \"url\": \"string\",\n        \"name\": \"string\",\n        \"package_weight\": 7841.95447052623,\n        \"unit\": \"string\"\n      },\n      {\n        \"url\": \"string\",\n        \"name\": \"string\",\n        \"package_weight\": 1893.0844555480853,\n        \"unit\": \"string\"\n      }\n    ],\n    \"sage_item\": {\n      \"external_id\": \"string\",\n      \"name\": \"string\"\n    },\n    \"leaflink_item\": {\n      \"external_id\": \"string\",\n      \"name\": \"string\"\n    },\n    \"dutchie_product\": {\n      \"external_id\": \"string\",\n      \"name\": \"string\"\n    },\n    \"phenotype\": \"string\",\n    \"total_for_sale\": 957.8860035273873,\n    \"ordered\": 8521.949394903244,\n    \"backordered\": 2359.5164994922293,\n    \"unordered\": 1859.7842466998804,\n    \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "24aac322-7084-4d88-bab1-5c6af2de9b1b",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "facility_id",
+                      "value": "123"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9663dc60-6748-4982-9374-4bb5f5729b59",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "facility_id",
+                      "value": "123"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7b742581-752f-4d4a-8662-331b8d9e898c",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "facility_id",
+                      "value": "123"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "dc7d2e96-5533-4047-943a-821e5aa38124",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "facility_id",
+                      "value": "123"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "54331b77-6119-4bb7-aa29-114bd0543ece",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "facility_id",
+                      "value": "123"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id desc"
+                    },
+                    {
+                      "key": "where",
+                      "value": "status='Active' AND updated_at >= '2024-01-01'"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3140a945-afb2-4143-8a6c-c79f109dffbb",
+          "name": "CreateItem",
+          "request": {
+            "name": "CreateItem",
+            "description": {
+              "content": "__CALLING THIS ENDPOINT WILL MODIFY YOUR DATA IRREVERSIBLY. ONLY CALL THIS ON SANDBOX DATA DURING DEVELOPMENT/CODING/TESTING.__",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "items"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"item_type_id\": \"<integer>\",\n  \"weight_unit\": \"<string>\",\n  \"is_active\": \"<boolean>\",\n  \"strain_id\": \"<integer>\",\n  \"item_sub_type_id\": \"<integer>\",\n  \"unit_weight_unit\": \"<string>\",\n  \"unit_weight\": \"<float>\",\n  \"sku\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"brand_id\": \"<integer>\",\n  \"description\": \"<string>\",\n  \"serving_size\": \"<string>\",\n  \"number_of_doses\": \"<integer>\",\n  \"unit_cbd_weight\": \"<float>\",\n  \"unit_thc_weight\": \"<float>\",\n  \"unit_cbd_percent\": \"<float>\",\n  \"unit_thc_percent\": \"<float>\",\n  \"public_ingredients\": \"<string>\",\n  \"supply_duration_days\": \"<integer>\",\n  \"administration_method\": \"<string>\",\n  \"unit_cbd_weight_unit\": \"<string>\",\n  \"unit_thc_weight_unit\": \"<string>\",\n  \"accounting_inventory_type\": \"<string>\",\n  \"photo_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"metrc_item_brand\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "82346a39-afe1-4f65-a936-3fc65c6439a2",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Blue Dream\",\n  \"item_type_id\": 1,\n  \"weight_unit\": \"g\",\n  \"is_active\": true,\n  \"strain_id\": 1,\n  \"item_sub_type_id\": 2,\n  \"unit_weight_unit\": \"mg\",\n  \"unit_weight\": 1.5,\n  \"sku\": \"BD001\",\n  \"notes\": \"Special handling required\",\n  \"brand_id\": 3,\n  \"description\": \"High quality strain\",\n  \"serving_size\": \"1 capsule\",\n  \"number_of_doses\": 30,\n  \"unit_cbd_weight\": 10.5,\n  \"unit_thc_weight\": 5,\n  \"unit_cbd_percent\": 15.5,\n  \"unit_thc_percent\": 20,\n  \"public_ingredients\": \"Cannabis extract, MCT oil\",\n  \"supply_duration_days\": 30,\n  \"administration_method\": \"oral\",\n  \"unit_cbd_weight_unit\": \"mg\",\n  \"unit_thc_weight_unit\": \"mg\",\n  \"accounting_inventory_type\": \"finished_good\",\n  \"photo_ids\": [\n    1,\n    2,\n    3\n  ],\n  \"metrc_item_brand\": \"Brand #1\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 7214,\n  \"name\": \"string\",\n  \"facility_id\": 5808,\n  \"is_active\": true,\n  \"item_type\": \"string\",\n  \"brand\": {\n    \"id\": 2631.2760489437105,\n    \"name\": \"string\"\n  },\n  \"product_id\": 4065,\n  \"product_brand\": {\n    \"id\": 5958.629868588779,\n    \"name\": \"string\"\n  },\n  \"quantity_type\": \"string\",\n  \"sku\": \"string\",\n  \"current_standard_cost\": {\n    \"id\": 123,\n    \"standard_cost_amount\": 12.1111,\n    \"standard_cost_currency\": \"USD\",\n    \"start_date\": \"2023-04-19\",\n    \"end_date\": \"2023-05-19\"\n  },\n  \"accounting_inventory_type\": \"string\",\n  \"notes\": \"string\",\n  \"strain\": {\n    \"id\": 3540,\n    \"name\": \"Lemon Skunk\",\n    \"notes\": \"Terpenes .63%\",\n    \"sku\": \"BIOJJ\",\n    \"testing_status\": \"InHouse\",\n    \"indica_percent\": 45,\n    \"sativa_percent\": 55,\n    \"cross_strains\": [\n      {\n        \"id\": 4867,\n        \"name\": \"Lemon Skunk\",\n        \"notes\": \"Terpenes .63%\",\n        \"sku\": \"BIOJJ\",\n        \"testing_status\": \"InHouse\",\n        \"indica_percent\": 45,\n        \"sativa_percent\": 55\n      },\n      {\n        \"id\": 4607,\n        \"name\": \"Lemon Skunk\",\n        \"notes\": \"Terpenes .63%\",\n        \"sku\": \"BIOJJ\",\n        \"testing_status\": \"InHouse\",\n        \"indica_percent\": 45,\n        \"sativa_percent\": 55\n      }\n    ]\n  },\n  \"type\": {\n    \"id\": 3979,\n    \"name\": \"string\",\n    \"quantity_type\": \"string\",\n    \"requires_strain\": true,\n    \"requires_unit_volume\": false,\n    \"requires_unit_weight\": true,\n    \"requires_unit_thc_weight\": true,\n    \"requires_unit_cbd_weight\": false,\n    \"requires_unit_cbd_percent\": true,\n    \"requires_unit_thc_percent\": true,\n    \"requires_public_ingredients\": true,\n    \"requires_administration_method\": true,\n    \"requires_serving_size\": true,\n    \"requires_supply_duration_days\": false,\n    \"requires_number_of_doses\": true,\n    \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n  },\n  \"sub_type\": {\n    \"id\": 368,\n    \"name\": \"string\",\n    \"weight_unit\": \"string\",\n    \"category\": {\n      \"id\": 1970,\n      \"name\": \"string\",\n      \"quantity_type\": \"string\",\n      \"requires_strain\": false,\n      \"requires_unit_volume\": false,\n      \"requires_unit_weight\": false,\n      \"requires_unit_thc_weight\": true,\n      \"requires_unit_cbd_weight\": true,\n      \"requires_unit_cbd_percent\": false,\n      \"requires_unit_thc_percent\": false,\n      \"requires_public_ingredients\": true,\n      \"requires_administration_method\": false,\n      \"requires_serving_size\": true,\n      \"requires_supply_duration_days\": true,\n      \"requires_number_of_doses\": true,\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n    },\n    \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n  },\n  \"weight_unit\": \"string\",\n  \"unit_weight\": 2655.141334263619,\n  \"unit_weight_unit\": \"string\",\n  \"case_quantity\": \"string\",\n  \"case_quantity_unit\": \"string\",\n  \"unit_cbd_weight\": 2233.010519352814,\n  \"unit_cbd_weight_unit\": \"string\",\n  \"unit_thc_weight\": 7896.459220618044,\n  \"unit_thc_weight_unit\": \"string\",\n  \"unit_cbd_percent\": 7251.474658080628,\n  \"unit_thc_percent\": 8941.151959410912,\n  \"description\": \"string\",\n  \"serving_size\": 6319.809258781814,\n  \"number_of_doses\": 365.76323569115885,\n  \"public_ingredients\": \"string\",\n  \"supply_duration_days\": 8976.786885581161,\n  \"administration_method\": \"string\",\n  \"allergens\": \"string\",\n  \"transfer_source_license\": \"string\",\n  \"bills_of_materials\": [\n    {\n      \"url\": \"string\",\n      \"name\": \"string\",\n      \"package_weight\": 8072.172980803285,\n      \"unit\": \"string\"\n    },\n    {\n      \"url\": \"string\",\n      \"name\": \"string\",\n      \"package_weight\": 5680.88490171902,\n      \"unit\": \"string\"\n    }\n  ],\n  \"sage_item\": {\n    \"external_id\": \"string\",\n    \"name\": \"string\"\n  },\n  \"leaflink_item\": {\n    \"external_id\": \"string\",\n    \"name\": \"string\"\n  },\n  \"dutchie_product\": {\n    \"external_id\": \"string\",\n    \"name\": \"string\"\n  },\n  \"phenotype\": \"string\",\n  \"total_for_sale\": 1746.3471020519216,\n  \"ordered\": 9070.80248120691,\n  \"backordered\": 2009.0483679186189,\n  \"unordered\": 2899.416255719979,\n  \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a8dca90f-0915-4f45-b1cc-abdda909e483",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Blue Dream\",\n  \"item_type_id\": 1,\n  \"weight_unit\": \"g\",\n  \"is_active\": true,\n  \"strain_id\": 1,\n  \"item_sub_type_id\": 2,\n  \"unit_weight_unit\": \"mg\",\n  \"unit_weight\": 1.5,\n  \"sku\": \"BD001\",\n  \"notes\": \"Special handling required\",\n  \"brand_id\": 3,\n  \"description\": \"High quality strain\",\n  \"serving_size\": \"1 capsule\",\n  \"number_of_doses\": 30,\n  \"unit_cbd_weight\": 10.5,\n  \"unit_thc_weight\": 5,\n  \"unit_cbd_percent\": 15.5,\n  \"unit_thc_percent\": 20,\n  \"public_ingredients\": \"Cannabis extract, MCT oil\",\n  \"supply_duration_days\": 30,\n  \"administration_method\": \"oral\",\n  \"unit_cbd_weight_unit\": \"mg\",\n  \"unit_thc_weight_unit\": \"mg\",\n  \"accounting_inventory_type\": \"finished_good\",\n  \"photo_ids\": [\n    1,\n    2,\n    3\n  ],\n  \"metrc_item_brand\": \"Brand #1\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "59d0b131-c5cb-429e-b7b2-ea79387ad85b",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Blue Dream\",\n  \"item_type_id\": 1,\n  \"weight_unit\": \"g\",\n  \"is_active\": true,\n  \"strain_id\": 1,\n  \"item_sub_type_id\": 2,\n  \"unit_weight_unit\": \"mg\",\n  \"unit_weight\": 1.5,\n  \"sku\": \"BD001\",\n  \"notes\": \"Special handling required\",\n  \"brand_id\": 3,\n  \"description\": \"High quality strain\",\n  \"serving_size\": \"1 capsule\",\n  \"number_of_doses\": 30,\n  \"unit_cbd_weight\": 10.5,\n  \"unit_thc_weight\": 5,\n  \"unit_cbd_percent\": 15.5,\n  \"unit_thc_percent\": 20,\n  \"public_ingredients\": \"Cannabis extract, MCT oil\",\n  \"supply_duration_days\": 30,\n  \"administration_method\": \"oral\",\n  \"unit_cbd_weight_unit\": \"mg\",\n  \"unit_thc_weight_unit\": \"mg\",\n  \"accounting_inventory_type\": \"finished_good\",\n  \"photo_ids\": [\n    1,\n    2,\n    3\n  ],\n  \"metrc_item_brand\": \"Brand #1\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6062318b-2167-422f-9d98-b980593bcdaf",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Blue Dream\",\n  \"item_type_id\": 1,\n  \"weight_unit\": \"g\",\n  \"is_active\": true,\n  \"strain_id\": 1,\n  \"item_sub_type_id\": 2,\n  \"unit_weight_unit\": \"mg\",\n  \"unit_weight\": 1.5,\n  \"sku\": \"BD001\",\n  \"notes\": \"Special handling required\",\n  \"brand_id\": 3,\n  \"description\": \"High quality strain\",\n  \"serving_size\": \"1 capsule\",\n  \"number_of_doses\": 30,\n  \"unit_cbd_weight\": 10.5,\n  \"unit_thc_weight\": 5,\n  \"unit_cbd_percent\": 15.5,\n  \"unit_thc_percent\": 20,\n  \"public_ingredients\": \"Cannabis extract, MCT oil\",\n  \"supply_duration_days\": 30,\n  \"administration_method\": \"oral\",\n  \"unit_cbd_weight_unit\": \"mg\",\n  \"unit_thc_weight_unit\": \"mg\",\n  \"accounting_inventory_type\": \"finished_good\",\n  \"photo_ids\": [\n    1,\n    2,\n    3\n  ],\n  \"metrc_item_brand\": \"Brand #1\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f467c567-6ac6-4901-b36c-93820e119bec",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Blue Dream\",\n  \"item_type_id\": 1,\n  \"weight_unit\": \"g\",\n  \"is_active\": true,\n  \"strain_id\": 1,\n  \"item_sub_type_id\": 2,\n  \"unit_weight_unit\": \"mg\",\n  \"unit_weight\": 1.5,\n  \"sku\": \"BD001\",\n  \"notes\": \"Special handling required\",\n  \"brand_id\": 3,\n  \"description\": \"High quality strain\",\n  \"serving_size\": \"1 capsule\",\n  \"number_of_doses\": 30,\n  \"unit_cbd_weight\": 10.5,\n  \"unit_thc_weight\": 5,\n  \"unit_cbd_percent\": 15.5,\n  \"unit_thc_percent\": 20,\n  \"public_ingredients\": \"Cannabis extract, MCT oil\",\n  \"supply_duration_days\": 30,\n  \"administration_method\": \"oral\",\n  \"unit_cbd_weight_unit\": \"mg\",\n  \"unit_thc_weight_unit\": \"mg\",\n  \"accounting_inventory_type\": \"finished_good\",\n  \"photo_ids\": [\n    1,\n    2,\n    3\n  ],\n  \"metrc_item_brand\": \"Brand #1\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d07b13e3-76d8-45f7-9e3a-6057a36007f8",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Blue Dream\",\n  \"item_type_id\": 1,\n  \"weight_unit\": \"g\",\n  \"is_active\": true,\n  \"strain_id\": 1,\n  \"item_sub_type_id\": 2,\n  \"unit_weight_unit\": \"mg\",\n  \"unit_weight\": 1.5,\n  \"sku\": \"BD001\",\n  \"notes\": \"Special handling required\",\n  \"brand_id\": 3,\n  \"description\": \"High quality strain\",\n  \"serving_size\": \"1 capsule\",\n  \"number_of_doses\": 30,\n  \"unit_cbd_weight\": 10.5,\n  \"unit_thc_weight\": 5,\n  \"unit_cbd_percent\": 15.5,\n  \"unit_thc_percent\": 20,\n  \"public_ingredients\": \"Cannabis extract, MCT oil\",\n  \"supply_duration_days\": 30,\n  \"administration_method\": \"oral\",\n  \"unit_cbd_weight_unit\": \"mg\",\n  \"unit_thc_weight_unit\": \"mg\",\n  \"accounting_inventory_type\": \"finished_good\",\n  \"photo_ids\": [\n    1,\n    2,\n    3\n  ],\n  \"metrc_item_brand\": \"Brand #1\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "60f99c7b-1b67-4c9f-a15c-a994cece06a2",
+          "name": "GetItem",
+          "request": {
+            "name": "GetItem",
+            "description": {
+              "content": "Get Item by ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "items",
+                ":item_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "item_id",
+                  "description": "(Required) Item ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f9340a45-3c20-4496-9424-208cbf3ed723",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":item_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "item_id",
+                      "description": "(Required) Item ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 7214,\n  \"name\": \"string\",\n  \"facility_id\": 5808,\n  \"is_active\": true,\n  \"item_type\": \"string\",\n  \"brand\": {\n    \"id\": 2631.2760489437105,\n    \"name\": \"string\"\n  },\n  \"product_id\": 4065,\n  \"product_brand\": {\n    \"id\": 5958.629868588779,\n    \"name\": \"string\"\n  },\n  \"quantity_type\": \"string\",\n  \"sku\": \"string\",\n  \"current_standard_cost\": {\n    \"id\": 123,\n    \"standard_cost_amount\": 12.1111,\n    \"standard_cost_currency\": \"USD\",\n    \"start_date\": \"2023-04-19\",\n    \"end_date\": \"2023-05-19\"\n  },\n  \"accounting_inventory_type\": \"string\",\n  \"notes\": \"string\",\n  \"strain\": {\n    \"id\": 3540,\n    \"name\": \"Lemon Skunk\",\n    \"notes\": \"Terpenes .63%\",\n    \"sku\": \"BIOJJ\",\n    \"testing_status\": \"InHouse\",\n    \"indica_percent\": 45,\n    \"sativa_percent\": 55,\n    \"cross_strains\": [\n      {\n        \"id\": 4867,\n        \"name\": \"Lemon Skunk\",\n        \"notes\": \"Terpenes .63%\",\n        \"sku\": \"BIOJJ\",\n        \"testing_status\": \"InHouse\",\n        \"indica_percent\": 45,\n        \"sativa_percent\": 55\n      },\n      {\n        \"id\": 4607,\n        \"name\": \"Lemon Skunk\",\n        \"notes\": \"Terpenes .63%\",\n        \"sku\": \"BIOJJ\",\n        \"testing_status\": \"InHouse\",\n        \"indica_percent\": 45,\n        \"sativa_percent\": 55\n      }\n    ]\n  },\n  \"type\": {\n    \"id\": 3979,\n    \"name\": \"string\",\n    \"quantity_type\": \"string\",\n    \"requires_strain\": true,\n    \"requires_unit_volume\": false,\n    \"requires_unit_weight\": true,\n    \"requires_unit_thc_weight\": true,\n    \"requires_unit_cbd_weight\": false,\n    \"requires_unit_cbd_percent\": true,\n    \"requires_unit_thc_percent\": true,\n    \"requires_public_ingredients\": true,\n    \"requires_administration_method\": true,\n    \"requires_serving_size\": true,\n    \"requires_supply_duration_days\": false,\n    \"requires_number_of_doses\": true,\n    \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n  },\n  \"sub_type\": {\n    \"id\": 368,\n    \"name\": \"string\",\n    \"weight_unit\": \"string\",\n    \"category\": {\n      \"id\": 1970,\n      \"name\": \"string\",\n      \"quantity_type\": \"string\",\n      \"requires_strain\": false,\n      \"requires_unit_volume\": false,\n      \"requires_unit_weight\": false,\n      \"requires_unit_thc_weight\": true,\n      \"requires_unit_cbd_weight\": true,\n      \"requires_unit_cbd_percent\": false,\n      \"requires_unit_thc_percent\": false,\n      \"requires_public_ingredients\": true,\n      \"requires_administration_method\": false,\n      \"requires_serving_size\": true,\n      \"requires_supply_duration_days\": true,\n      \"requires_number_of_doses\": true,\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n    },\n    \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n  },\n  \"weight_unit\": \"string\",\n  \"unit_weight\": 2655.141334263619,\n  \"unit_weight_unit\": \"string\",\n  \"case_quantity\": \"string\",\n  \"case_quantity_unit\": \"string\",\n  \"unit_cbd_weight\": 2233.010519352814,\n  \"unit_cbd_weight_unit\": \"string\",\n  \"unit_thc_weight\": 7896.459220618044,\n  \"unit_thc_weight_unit\": \"string\",\n  \"unit_cbd_percent\": 7251.474658080628,\n  \"unit_thc_percent\": 8941.151959410912,\n  \"description\": \"string\",\n  \"serving_size\": 6319.809258781814,\n  \"number_of_doses\": 365.76323569115885,\n  \"public_ingredients\": \"string\",\n  \"supply_duration_days\": 8976.786885581161,\n  \"administration_method\": \"string\",\n  \"allergens\": \"string\",\n  \"transfer_source_license\": \"string\",\n  \"bills_of_materials\": [\n    {\n      \"url\": \"string\",\n      \"name\": \"string\",\n      \"package_weight\": 8072.172980803285,\n      \"unit\": \"string\"\n    },\n    {\n      \"url\": \"string\",\n      \"name\": \"string\",\n      \"package_weight\": 5680.88490171902,\n      \"unit\": \"string\"\n    }\n  ],\n  \"sage_item\": {\n    \"external_id\": \"string\",\n    \"name\": \"string\"\n  },\n  \"leaflink_item\": {\n    \"external_id\": \"string\",\n    \"name\": \"string\"\n  },\n  \"dutchie_product\": {\n    \"external_id\": \"string\",\n    \"name\": \"string\"\n  },\n  \"phenotype\": \"string\",\n  \"total_for_sale\": 1746.3471020519216,\n  \"ordered\": 9070.80248120691,\n  \"backordered\": 2009.0483679186189,\n  \"unordered\": 2899.416255719979,\n  \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "70a5efba-f9b2-495d-a112-9b5d530556c6",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":item_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "item_id",
+                      "description": "(Required) Item ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "57594103-6854-4934-8752-0994b4a4681b",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":item_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "item_id",
+                      "description": "(Required) Item ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7ab39849-23a5-4fac-a546-e008e1e1b65d",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":item_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "item_id",
+                      "description": "(Required) Item ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "eded4230-b475-4b9b-9e7e-8cdf4392cd57",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":item_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "item_id",
+                      "description": "(Required) Item ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a5f6924b-e172-41dd-a869-f4d7b85c21c0",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":item_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "item_id",
+                      "description": "(Required) Item ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eeda7158-18b9-4e37-9953-a0f090dba700",
+          "name": "UpdateItem",
+          "request": {
+            "name": "UpdateItem",
+            "description": {
+              "content": "__CALLING THIS ENDPOINT WILL MODIFY YOUR DATA IRREVERSIBLY. ONLY CALL THIS ON SANDBOX DATA DURING DEVELOPMENT/CODING/TESTING.__",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "items",
+                ":item_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "item_id",
+                  "description": "(Required) ID of Item to update"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"is_active\": \"<boolean>\",\n  \"item_category_id\": \"<integer>\",\n  \"item_sub_category_id\": \"<integer>\",\n  \"brand_id\": \"<integer>\",\n  \"description\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"sku\": \"<string>\",\n  \"serving_size\": \"<string>\",\n  \"number_of_doses\": \"<integer>\",\n  \"unit_thc_weight\": \"<float>\",\n  \"unit_cbd_weight\": \"<float>\",\n  \"unit_thc_percent\": \"<number>\",\n  \"unit_cbd_percent\": \"<number>\",\n  \"public_ingredients\": \"<string>\",\n  \"supply_duration_days\": \"<integer>\",\n  \"administration_method\": \"<string>\",\n  \"photo_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"metrc_item_brand\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dd323367-addb-40cd-851d-d3c21a528fd0",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":item_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "item_id",
+                      "description": "(Required) ID of Item to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Blue Dream\",\n  \"is_active\": true,\n  \"item_category_id\": 1,\n  \"item_sub_category_id\": 2,\n  \"brand_id\": 3,\n  \"description\": \"High quality strain\",\n  \"notes\": \"Internal notes about the item\",\n  \"sku\": \"BD-001\",\n  \"serving_size\": \"1g\",\n  \"number_of_doses\": 10,\n  \"unit_thc_weight\": 10.5,\n  \"unit_cbd_weight\": 5.2,\n  \"unit_thc_percent\": 18.5,\n  \"unit_cbd_percent\": 2.5,\n  \"public_ingredients\": \"Cannabis\",\n  \"supply_duration_days\": 30,\n  \"administration_method\": \"Oral\",\n  \"photo_ids\": [\n    1,\n    2,\n    3\n  ],\n  \"metrc_item_brand\": \"Brand #1\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 7214,\n  \"name\": \"string\",\n  \"facility_id\": 5808,\n  \"is_active\": true,\n  \"item_type\": \"string\",\n  \"brand\": {\n    \"id\": 2631.2760489437105,\n    \"name\": \"string\"\n  },\n  \"product_id\": 4065,\n  \"product_brand\": {\n    \"id\": 5958.629868588779,\n    \"name\": \"string\"\n  },\n  \"quantity_type\": \"string\",\n  \"sku\": \"string\",\n  \"current_standard_cost\": {\n    \"id\": 123,\n    \"standard_cost_amount\": 12.1111,\n    \"standard_cost_currency\": \"USD\",\n    \"start_date\": \"2023-04-19\",\n    \"end_date\": \"2023-05-19\"\n  },\n  \"accounting_inventory_type\": \"string\",\n  \"notes\": \"string\",\n  \"strain\": {\n    \"id\": 3540,\n    \"name\": \"Lemon Skunk\",\n    \"notes\": \"Terpenes .63%\",\n    \"sku\": \"BIOJJ\",\n    \"testing_status\": \"InHouse\",\n    \"indica_percent\": 45,\n    \"sativa_percent\": 55,\n    \"cross_strains\": [\n      {\n        \"id\": 4867,\n        \"name\": \"Lemon Skunk\",\n        \"notes\": \"Terpenes .63%\",\n        \"sku\": \"BIOJJ\",\n        \"testing_status\": \"InHouse\",\n        \"indica_percent\": 45,\n        \"sativa_percent\": 55\n      },\n      {\n        \"id\": 4607,\n        \"name\": \"Lemon Skunk\",\n        \"notes\": \"Terpenes .63%\",\n        \"sku\": \"BIOJJ\",\n        \"testing_status\": \"InHouse\",\n        \"indica_percent\": 45,\n        \"sativa_percent\": 55\n      }\n    ]\n  },\n  \"type\": {\n    \"id\": 3979,\n    \"name\": \"string\",\n    \"quantity_type\": \"string\",\n    \"requires_strain\": true,\n    \"requires_unit_volume\": false,\n    \"requires_unit_weight\": true,\n    \"requires_unit_thc_weight\": true,\n    \"requires_unit_cbd_weight\": false,\n    \"requires_unit_cbd_percent\": true,\n    \"requires_unit_thc_percent\": true,\n    \"requires_public_ingredients\": true,\n    \"requires_administration_method\": true,\n    \"requires_serving_size\": true,\n    \"requires_supply_duration_days\": false,\n    \"requires_number_of_doses\": true,\n    \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n  },\n  \"sub_type\": {\n    \"id\": 368,\n    \"name\": \"string\",\n    \"weight_unit\": \"string\",\n    \"category\": {\n      \"id\": 1970,\n      \"name\": \"string\",\n      \"quantity_type\": \"string\",\n      \"requires_strain\": false,\n      \"requires_unit_volume\": false,\n      \"requires_unit_weight\": false,\n      \"requires_unit_thc_weight\": true,\n      \"requires_unit_cbd_weight\": true,\n      \"requires_unit_cbd_percent\": false,\n      \"requires_unit_thc_percent\": false,\n      \"requires_public_ingredients\": true,\n      \"requires_administration_method\": false,\n      \"requires_serving_size\": true,\n      \"requires_supply_duration_days\": true,\n      \"requires_number_of_doses\": true,\n      \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n    },\n    \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n  },\n  \"weight_unit\": \"string\",\n  \"unit_weight\": 2655.141334263619,\n  \"unit_weight_unit\": \"string\",\n  \"case_quantity\": \"string\",\n  \"case_quantity_unit\": \"string\",\n  \"unit_cbd_weight\": 2233.010519352814,\n  \"unit_cbd_weight_unit\": \"string\",\n  \"unit_thc_weight\": 7896.459220618044,\n  \"unit_thc_weight_unit\": \"string\",\n  \"unit_cbd_percent\": 7251.474658080628,\n  \"unit_thc_percent\": 8941.151959410912,\n  \"description\": \"string\",\n  \"serving_size\": 6319.809258781814,\n  \"number_of_doses\": 365.76323569115885,\n  \"public_ingredients\": \"string\",\n  \"supply_duration_days\": 8976.786885581161,\n  \"administration_method\": \"string\",\n  \"allergens\": \"string\",\n  \"transfer_source_license\": \"string\",\n  \"bills_of_materials\": [\n    {\n      \"url\": \"string\",\n      \"name\": \"string\",\n      \"package_weight\": 8072.172980803285,\n      \"unit\": \"string\"\n    },\n    {\n      \"url\": \"string\",\n      \"name\": \"string\",\n      \"package_weight\": 5680.88490171902,\n      \"unit\": \"string\"\n    }\n  ],\n  \"sage_item\": {\n    \"external_id\": \"string\",\n    \"name\": \"string\"\n  },\n  \"leaflink_item\": {\n    \"external_id\": \"string\",\n    \"name\": \"string\"\n  },\n  \"dutchie_product\": {\n    \"external_id\": \"string\",\n    \"name\": \"string\"\n  },\n  \"phenotype\": \"string\",\n  \"total_for_sale\": 1746.3471020519216,\n  \"ordered\": 9070.80248120691,\n  \"backordered\": 2009.0483679186189,\n  \"unordered\": 2899.416255719979,\n  \"updated_at\": \"2018-11-06 08:00:00+00:00\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8ce98d95-9645-4f17-968a-730e536487e3",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":item_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "item_id",
+                      "description": "(Required) ID of Item to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Blue Dream\",\n  \"is_active\": true,\n  \"item_category_id\": 1,\n  \"item_sub_category_id\": 2,\n  \"brand_id\": 3,\n  \"description\": \"High quality strain\",\n  \"notes\": \"Internal notes about the item\",\n  \"sku\": \"BD-001\",\n  \"serving_size\": \"1g\",\n  \"number_of_doses\": 10,\n  \"unit_thc_weight\": 10.5,\n  \"unit_cbd_weight\": 5.2,\n  \"unit_thc_percent\": 18.5,\n  \"unit_cbd_percent\": 2.5,\n  \"public_ingredients\": \"Cannabis\",\n  \"supply_duration_days\": 30,\n  \"administration_method\": \"Oral\",\n  \"photo_ids\": [\n    1,\n    2,\n    3\n  ],\n  \"metrc_item_brand\": \"Brand #1\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e2b541d9-3505-4834-9af9-c46f3873b5fb",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":item_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "item_id",
+                      "description": "(Required) ID of Item to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Blue Dream\",\n  \"is_active\": true,\n  \"item_category_id\": 1,\n  \"item_sub_category_id\": 2,\n  \"brand_id\": 3,\n  \"description\": \"High quality strain\",\n  \"notes\": \"Internal notes about the item\",\n  \"sku\": \"BD-001\",\n  \"serving_size\": \"1g\",\n  \"number_of_doses\": 10,\n  \"unit_thc_weight\": 10.5,\n  \"unit_cbd_weight\": 5.2,\n  \"unit_thc_percent\": 18.5,\n  \"unit_cbd_percent\": 2.5,\n  \"public_ingredients\": \"Cannabis\",\n  \"supply_duration_days\": 30,\n  \"administration_method\": \"Oral\",\n  \"photo_ids\": [\n    1,\n    2,\n    3\n  ],\n  \"metrc_item_brand\": \"Brand #1\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "68a7174e-0c01-499e-a3ae-80a80e360563",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":item_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "item_id",
+                      "description": "(Required) ID of Item to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Blue Dream\",\n  \"is_active\": true,\n  \"item_category_id\": 1,\n  \"item_sub_category_id\": 2,\n  \"brand_id\": 3,\n  \"description\": \"High quality strain\",\n  \"notes\": \"Internal notes about the item\",\n  \"sku\": \"BD-001\",\n  \"serving_size\": \"1g\",\n  \"number_of_doses\": 10,\n  \"unit_thc_weight\": 10.5,\n  \"unit_cbd_weight\": 5.2,\n  \"unit_thc_percent\": 18.5,\n  \"unit_cbd_percent\": 2.5,\n  \"public_ingredients\": \"Cannabis\",\n  \"supply_duration_days\": 30,\n  \"administration_method\": \"Oral\",\n  \"photo_ids\": [\n    1,\n    2,\n    3\n  ],\n  \"metrc_item_brand\": \"Brand #1\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "139df071-1ddb-4f1a-8265-f22cca918bf8",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":item_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "item_id",
+                      "description": "(Required) ID of Item to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Blue Dream\",\n  \"is_active\": true,\n  \"item_category_id\": 1,\n  \"item_sub_category_id\": 2,\n  \"brand_id\": 3,\n  \"description\": \"High quality strain\",\n  \"notes\": \"Internal notes about the item\",\n  \"sku\": \"BD-001\",\n  \"serving_size\": \"1g\",\n  \"number_of_doses\": 10,\n  \"unit_thc_weight\": 10.5,\n  \"unit_cbd_weight\": 5.2,\n  \"unit_thc_percent\": 18.5,\n  \"unit_cbd_percent\": 2.5,\n  \"public_ingredients\": \"Cannabis\",\n  \"supply_duration_days\": 30,\n  \"administration_method\": \"Oral\",\n  \"photo_ids\": [\n    1,\n    2,\n    3\n  ],\n  \"metrc_item_brand\": \"Brand #1\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9cebecb5-8f4a-459f-9060-f6c76720efb0",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":item_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "item_id",
+                      "description": "(Required) ID of Item to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Blue Dream\",\n  \"is_active\": true,\n  \"item_category_id\": 1,\n  \"item_sub_category_id\": 2,\n  \"brand_id\": 3,\n  \"description\": \"High quality strain\",\n  \"notes\": \"Internal notes about the item\",\n  \"sku\": \"BD-001\",\n  \"serving_size\": \"1g\",\n  \"number_of_doses\": 10,\n  \"unit_thc_weight\": 10.5,\n  \"unit_cbd_weight\": 5.2,\n  \"unit_thc_percent\": 18.5,\n  \"unit_cbd_percent\": 2.5,\n  \"public_ingredients\": \"Cannabis\",\n  \"supply_duration_days\": 30,\n  \"administration_method\": \"Oral\",\n  \"photo_ids\": [\n    1,\n    2,\n    3\n  ],\n  \"metrc_item_brand\": \"Brand #1\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8a8ab034-1282-4b4e-ad17-21ea0ef08ecb",
+          "name": "Delete Item",
+          "request": {
+            "name": "Delete Item",
+            "description": {
+              "content": "__CALLING THIS ENDPOINT WILL MODIFY YOUR DATA IRREVERSIBLY. ONLY CALL THIS ON SANDBOX DATA DURING DEVELOPMENT/CODING/TESTING.__",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "items",
+                ":item_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "item_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9c8c9520-7ed2-42bf-98dd-9c1401425cc3",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":item_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "item_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ac09567b-1937-46d7-a6bc-7d65576ea847",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":item_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "item_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ae185c8d-ef18-44df-a2dd-af84983ca76e",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":item_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "item_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a6c4cec7-da9f-4f99-b715-b396a25aaa71",
+          "name": "AddItemStandardCost",
+          "request": {
+            "name": "AddItemStandardCost",
+            "description": {
+              "content": "__CALLING THIS ENDPOINT WILL MODIFY YOUR DATA IRREVERSIBLY. ONLY CALL THIS ON SANDBOX DATA DURING DEVELOPMENT/CODING/TESTING.__",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "items",
+                ":item_id",
+                "standard_cost"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "item_id",
+                  "description": "(Required) ID of Item to add standard cost"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cost\": \"<float>\",\n  \"start_date\": \"<dateTime>\",\n  \"end_date\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "90350279-f5ef-41a1-b8a5-3a9a73e878b1",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":item_id",
+                    "standard_cost"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "item_id",
+                      "description": "(Required) ID of Item to add standard cost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cost\": 10.5,\n  \"start_date\": \"2024-02-03T00:00:00Z\",\n  \"end_date\": \"2024-12-31T23:59:59Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 123,\n  \"standard_cost_amount\": 12.1111,\n  \"standard_cost_currency\": \"USD\",\n  \"start_date\": \"2023-04-19\",\n  \"end_date\": \"2023-05-19\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5c49b74a-30e6-4c1b-8de5-409a581317f6",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":item_id",
+                    "standard_cost"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "item_id",
+                      "description": "(Required) ID of Item to add standard cost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cost\": 10.5,\n  \"start_date\": \"2024-02-03T00:00:00Z\",\n  \"end_date\": \"2024-12-31T23:59:59Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1ff5dfcb-168c-4f9c-a4ce-888f6ae119e3",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":item_id",
+                    "standard_cost"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "item_id",
+                      "description": "(Required) ID of Item to add standard cost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cost\": 10.5,\n  \"start_date\": \"2024-02-03T00:00:00Z\",\n  \"end_date\": \"2024-12-31T23:59:59Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7482bb24-3201-44a0-9a33-23d6ff58bd26",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":item_id",
+                    "standard_cost"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "item_id",
+                      "description": "(Required) ID of Item to add standard cost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cost\": 10.5,\n  \"start_date\": \"2024-02-03T00:00:00Z\",\n  \"end_date\": \"2024-12-31T23:59:59Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "155fabeb-8ecc-4897-a990-60cb0d670a91",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":item_id",
+                    "standard_cost"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "item_id",
+                      "description": "(Required) ID of Item to add standard cost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cost\": 10.5,\n  \"start_date\": \"2024-02-03T00:00:00Z\",\n  \"end_date\": \"2024-12-31T23:59:59Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "64b21998-4451-48c2-838b-94b91f5a2f6d",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":item_id",
+                    "standard_cost"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "item_id",
+                      "description": "(Required) ID of Item to add standard cost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cost\": 10.5,\n  \"start_date\": \"2024-02-03T00:00:00Z\",\n  \"end_date\": \"2024-12-31T23:59:59Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "422ab178-95a5-43ff-918a-31df729c2939",
+          "name": "Create METRC Item Photos",
+          "request": {
+            "name": "Create METRC Item Photos",
+            "description": {
+              "content": "Create METRC Item Photos",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "items",
+                "photos"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"facility_id\": \"<integer>\",\n  \"photos\": [\n    {\n      \"attachment_type\": \"<string>\",\n      \"filename\": \"<string>\",\n      \"encoded_image_base64\": \"<string>\"\n    },\n    {\n      \"attachment_type\": \"<string>\",\n      \"filename\": \"<string>\",\n      \"encoded_image_base64\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fe3758c8-6182-4b76-b8f5-5c895a07e95f",
+              "name": "CREATED",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    "photos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"facility_id\": \"<integer>\",\n  \"photos\": [\n    {\n      \"attachment_type\": \"<string>\",\n      \"filename\": \"<string>\",\n      \"encoded_image_base64\": \"<string>\"\n    },\n    {\n      \"attachment_type\": \"<string>\",\n      \"filename\": \"<string>\",\n      \"encoded_image_base64\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"photo_ids\": [\n    261,\n    6678\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4af1558c-a02b-4b41-a5cc-25b84cb4336c",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    "photos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"facility_id\": \"<integer>\",\n  \"photos\": [\n    {\n      \"attachment_type\": \"<string>\",\n      \"filename\": \"<string>\",\n      \"encoded_image_base64\": \"<string>\"\n    },\n    {\n      \"attachment_type\": \"<string>\",\n      \"filename\": \"<string>\",\n      \"encoded_image_base64\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0b28d94a-aadf-4542-9d54-dcf62b4ce3c2",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    "photos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"facility_id\": \"<integer>\",\n  \"photos\": [\n    {\n      \"attachment_type\": \"<string>\",\n      \"filename\": \"<string>\",\n      \"encoded_image_base64\": \"<string>\"\n    },\n    {\n      \"attachment_type\": \"<string>\",\n      \"filename\": \"<string>\",\n      \"encoded_image_base64\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c396fc45-d5f4-4b23-bd8f-1352e07e7779",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    "photos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"facility_id\": \"<integer>\",\n  \"photos\": [\n    {\n      \"attachment_type\": \"<string>\",\n      \"filename\": \"<string>\",\n      \"encoded_image_base64\": \"<string>\"\n    },\n    {\n      \"attachment_type\": \"<string>\",\n      \"filename\": \"<string>\",\n      \"encoded_image_base64\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "70d2a924-c0ac-4408-865c-c8b92221daca",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    "photos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"facility_id\": \"<integer>\",\n  \"photos\": [\n    {\n      \"attachment_type\": \"<string>\",\n      \"filename\": \"<string>\",\n      \"encoded_image_base64\": \"<string>\"\n    },\n    {\n      \"attachment_type\": \"<string>\",\n      \"filename\": \"<string>\",\n      \"encoded_image_base64\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8427a9fb-3b19-4e79-bb8d-47e9fdbd7f12",
+          "name": "Create METRC Item Files",
+          "request": {
+            "name": "Create METRC Item Files",
+            "description": {
+              "content": "Create METRC Item Files",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "items",
+                "files"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"facility_id\": \"<integer>\",\n  \"files\": [\n    {\n      \"filename\": \"<string>\",\n      \"encoded_file_base64\": \"<string>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"encoded_file_base64\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "33c85635-dde0-4b2a-a1c1-6300e218fb18",
+              "name": "CREATED",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"facility_id\": \"<integer>\",\n  \"files\": [\n    {\n      \"filename\": \"<string>\",\n      \"encoded_file_base64\": \"<string>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"encoded_file_base64\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"file_ids\": [\n    8744,\n    596\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f2ed0d56-f160-4c44-aa79-52fc910d59f7",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"facility_id\": \"<integer>\",\n  \"files\": [\n    {\n      \"filename\": \"<string>\",\n      \"encoded_file_base64\": \"<string>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"encoded_file_base64\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "486d5b2b-391a-4f6f-960b-14e3314be61d",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"facility_id\": \"<integer>\",\n  \"files\": [\n    {\n      \"filename\": \"<string>\",\n      \"encoded_file_base64\": \"<string>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"encoded_file_base64\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a071eeb2-d3b0-4f53-99a7-c81674ae1a79",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"facility_id\": \"<integer>\",\n  \"files\": [\n    {\n      \"filename\": \"<string>\",\n      \"encoded_file_base64\": \"<string>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"encoded_file_base64\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f3f3b7f2-39ad-47ba-8226-fe5d4793e47e",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"facility_id\": \"<integer>\",\n  \"files\": [\n    {\n      \"filename\": \"<string>\",\n      \"encoded_file_base64\": \"<string>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"encoded_file_base64\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.canix.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "fb13b269-788c-4b44-8e29-ddb2f3e0e5bf",
+    "name": "Canix Items API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# Introduction\nThis API documentation describes the endpoints used by third-party developers to get Canix data for their account.\n# Authentication\nCanix API uses API Keys for authentication. You can generate an API key on our [API page](https://app.canix.com/company/api), and on your API requests use the `X-API-KEY` header with the API key value you generated.\nWe strongly recommend using a secrets manager. Plain text files like dotenv lead to accidental costly leaks. Use [Doppler](https://doppler.com/) or similar options for a developer friendly experience. AWS and Google Cloud have native solutions as well.\n\nContact Support:\n Name: Canix Support\n Email: help@canix.com",
+      "type": "text/plain"
+    }
+  }
+}

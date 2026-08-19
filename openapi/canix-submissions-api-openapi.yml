@@ -1,0 +1,237 @@
+openapi: 3.2.0
+info:
+  title: Canix Submissions API
+  x-logo:
+    url: https://assets.website-files.com/5ee52a0f4be6ffc2aaeb52cd/5ee52a0f4be6ff20e7eb534f_canix-logo.svg
+    backgroundColor: '#FFFFFF'
+    altText: Canix logo
+  description: '# Introduction
+
+    This API documentation describes the endpoints used by third-party developers to get Canix data for their account.
+
+    # Authentication
+
+    Canix API uses API Keys for authentication. You can generate an API key on our [API page](https://app.canix.com/company/api), and on your API requests use the `X-API-KEY` header with the API key value you generated.
+
+    We strongly recommend using a secrets manager. Plain text files like dotenv lead to accidental costly leaks. Use [Doppler](https://doppler.com/) or similar options for a developer friendly experience. AWS and Google Cloud have native solutions as well.'
+  contact:
+    name: Canix Support
+    url: https://help.canix.com/
+    email: help@canix.com
+  version: 1.3.10
+servers:
+- url: https://api.canix.com/api/v1
+  variables: {}
+security:
+- ApiKeyAuth: []
+tags:
+- name: Submissions
+paths:
+  /submissions/{submission_id}:
+    get:
+      tags:
+      - Submissions
+      summary: GetSubmission
+      description: 'Get Submission by ID. A submission represents an asynchronous action (such as creating a package,
+
+        adjusting inventory, submitting a transfer, etc.) that may be pending, successful, failed, or
+
+        require approval. Use this endpoint to poll the status of a submission after initiating an action.
+
+        '
+      operationId: GetSubmissionById
+      parameters:
+      - name: submission_id
+        in: path
+        description: Submission UUID
+        required: true
+        schema:
+          type: string
+        example: U3VibWlzc2lvbjo0NTY3ODk=
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Submission'
+              examples:
+                success:
+                  summary: Successful submission
+                  value:
+                    uuid: U3VibWlzc2lvbjo0NTY3ODk=
+                    status: SUCCESS
+                    readable_name: Create Package
+                    description: 'Package created from harvest
+
+                      Tag: 1A40000000000000001'
+                    error_message: ''
+                    result:
+                      package_id: 12345
+                      tag: 1A40000000000000001
+                    created_at: '2024-01-15T10:30:00.000Z'
+                    last_run_at: '2024-01-15T10:30:05.000Z'
+                pending:
+                  summary: Pending submission
+                  value:
+                    uuid: U3VibWlzc2lvbjo0NTY3OTA=
+                    status: PENDING
+                    readable_name: Adjust Package
+                    description: Adjusting package weight
+                    error_message: ''
+                    result: null
+                    created_at: '2024-01-15T10:30:00.000Z'
+                    last_run_at: null
+                failed:
+                  summary: Failed submission
+                  value:
+                    uuid: U3VibWlzc2lvbjo0NTY3OTE=
+                    status: FAILED
+                    readable_name: Create Transfer
+                    description: Transfer to ABC Dispensary
+                    error_message: Invalid destination license number
+                    result: null
+                    created_at: '2024-01-15T10:30:00.000Z'
+                    last_run_at: '2024-01-15T10:30:10.000Z'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          $ref: '#/components/responses/401NotAuthenticated'
+        '403':
+          $ref: '#/components/responses/403AccessDenied'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '422':
+          description: Unable to fetch submission data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Unable to fetch submission data
+        '500':
+          $ref: '#/components/responses/500ServerError'
+components:
+  responses:
+    400BadRequest:
+      description: Bad request
+    401NotAuthenticated:
+      description: Not authenticated
+    403AccessDenied:
+      description: Access denied
+    404NotFound:
+      description: The specified resource was not found
+    500ServerError:
+      description: Server error
+  schemas:
+    SubmissionStatus:
+      title: Submission Status
+      type: string
+      description: 'The current status of the submission:
+
+        - **CREATED**: Transaction queued for processing
+
+        - **PENDING_APPROVAL**: Transaction awaiting admin approval
+
+        - **PENDING**: Transaction pending response from compliance system
+
+        - **RETRYING**: Transaction failed but will be automatically retried
+
+        - **FAILED**: Transaction failed permanently
+
+        - **SUCCESS**: Transaction completed successfully
+
+        - **DENIED**: Transaction was reviewed by an admin and denied
+
+        - **ABORTED**: Transaction has been aborted
+
+        - **PARTIAL_FAILURE**: Some steps succeeded but others failed
+
+        '
+      enum:
+      - CREATED
+      - PENDING_APPROVAL
+      - PENDING
+      - RETRYING
+      - FAILED
+      - SUCCESS
+      - DENIED
+      - ABORTED
+      - PARTIAL_FAILURE
+      example: SUCCESS
+    Submission:
+      title: Submission
+      description: 'A submission represents an asynchronous action (such as creating a package, adjusting inventory,
+
+        submitting a transfer, etc.) that may be pending, successful, failed, or require approval.
+
+        '
+      type: object
+      required:
+      - uuid
+      - status
+      - created_at
+      properties:
+        uuid:
+          type: string
+          description: The unique identifier for the submission
+          example: U3VibWlzc2lvbjo0NTY3ODk=
+        status:
+          $ref: '#/components/schemas/SubmissionStatus'
+        readable_name:
+          type:
+          - string
+          - 'null'
+          description: Human-readable name describing the submission action
+          example: Create Package
+        description:
+          type: string
+          description: Detailed description of the submission, may include multiple lines
+          example: 'Package created from harvest
+
+            Tag: 1A40000000000000001'
+        error_message:
+          type: string
+          description: Error message if the submission failed, empty string otherwise
+          example: ''
+        result:
+          type:
+          - object
+          - 'null'
+          description: Result data from a successful submission (e.g., created record IDs)
+          additionalProperties: true
+          example:
+            package_id: 12345
+            tag: 1A40000000000000001
+        created_at:
+          type: string
+          format: date-time
+          description: When the submission was created
+          example: '2024-01-15T10:30:00.000Z'
+        last_run_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: When the submission was last executed (null if not yet run)
+          example: '2024-01-15T10:30:05.000Z'
+      example:
+        uuid: U3VibWlzc2lvbjo0NTY3ODk=
+        status: SUCCESS
+        readable_name: Create Package
+        description: 'Package created from harvest
+
+          Tag: 1A40000000000000001'
+        error_message: ''
+        result:
+          package_id: 12345
+          tag: 1A40000000000000001
+        created_at: '2024-01-15T10:30:00.000Z'
+        last_run_at: '2024-01-15T10:30:05.000Z'
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY
