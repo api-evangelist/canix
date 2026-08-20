@@ -18,6 +18,19 @@ modified: '2026-08-09'
 tags:
 - Cannabis
 - ERP
+- Seed-to-Sale
+- Compliance
+- Inventory Management
+- Supply Chain
+- Track and Trace
+- Manufacturing
+- Agriculture
+- Metrc
+- Cultivation
+- Distribution
+tags_raw:
+- Cannabis
+- ERP
 - Seed to Sale
 - Compliance
 - Inventory Management
@@ -46,6 +59,11 @@ apis:
   humanURL: https://www.canix.com/blog-posts/ask-your-data-anything-canix-launches-mcp-server
   baseURL: https://api.canix.com/mcp
   tags:
+  - MCP
+  - Artificial Intelligence
+  - Cannabis
+  - Reporting
+  tags_raw:
   - MCP
   - AI
   - Cannabis
@@ -223,6 +241,8 @@ apis:
   humanURL: https://www.canix.com/product/api
   baseURL: https://api.canix.com/api/v1
   tags:
+  - Item
+  tags_raw:
   - Items
   properties:
   - type: OpenAPI
@@ -367,6 +387,8 @@ apis:
   humanURL: https://www.canix.com/product/api
   baseURL: https://api.canix.com/api/v1
   tags:
+  - Product
+  tags_raw:
   - Products
   properties:
   - type: OpenAPI
