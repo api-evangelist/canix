@@ -8,6 +8,18 @@ description: Canix is a cannabis enterprise resource planning (ERP) and seed-to-
   plus RFID and scale hardware support. Canix publishes a public OpenAPI 3.0.3 contract for its REST API
   at api.canix.com, and in July 2026 launched a hosted Model Context Protocol (MCP) server that lets AI
   assistants query Canix sales and inventory data in natural language.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://assets.website-files.com/5ee52a0f4be6ffc2aaeb52cd/5ee52a0f4be6ff20e7eb534f_canix-logo.svg
 url: https://raw.githubusercontent.com/api-evangelist/canix/refs/heads/main/apis.yml
 x-type: company
