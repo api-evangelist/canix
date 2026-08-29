@@ -576,6 +576,9 @@ apis:
   - type: ErrorCatalog
     url: errors/canix-problem-types.yml
 common:
+- type: CapabilityMap
+  url: capabilities/canix-capability-edges.yml
+  name: Canix Business Capability Map
 - type: AgenticAccess
   url: agentic-access/canix-agentic-access.yml
 - type: DomainSecurity
