@@ -287,6 +287,8 @@ apis:
   humanURL: https://www.canix.com/product/api
   baseURL: https://api.canix.com/api/v1
   tags:
+  - Location
+  tags_raw:
   - Locations
   properties:
   - type: OpenAPI
@@ -487,6 +489,8 @@ apis:
   humanURL: https://www.canix.com/product/api
   baseURL: https://api.canix.com/api/v1
   tags:
+  - Strain
+  tags_raw:
   - Strains
   properties:
   - type: OpenAPI
