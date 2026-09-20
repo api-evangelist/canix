@@ -11,7 +11,7 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 4
+edge_count: 7
 edges:
 - tag: Purchase Orders
   spec_file: canix-purchase-orders-api-openapi.yml
@@ -34,6 +34,17 @@ edges:
     UpdateStandardCost; schema ItemStandardCost
   reason: Maintenance of item standard cost records maps directly to Cost Accounting Management, whose
     definition names standard costing. Small surface but unambiguous in intent.
+- tag: Harvests
+  spec_file: canix-harvests-api-openapi.yml
+  capability_id: BC-3560.20
+  capability_id_l1: BC-3560
+  capability_name: Field Harvest Operations
+  confidence: 0.72
+  evidence: 'GET /harvests  GetHarvests; schemas: Harvest, CrossStrain, Location, Strain, ParentLocation'
+  reason: Harvest records tied to strain and grow location in a cultivation seed-to-sale system represent
+    crop harvest execution records. L2 assignment to Field Harvest Operations is inferred from the Harvest/Location/Strain
+    schema shape rather than stated explicitly, hence moderate confidence.
+  recovered_from: vertical-agriculture-food-production-edges.json
 - tag: Customers
   spec_file: canix-customers-api-openapi.yml
   capability_id: BC-420.10
@@ -43,6 +54,28 @@ edges:
   evidence: GET /customers, GET /customers/{customer_id}, schemas Customer, CustomerExtended, Address
   reason: Maintains and retrieves customer master records for the wholesale cannabis distributor; customer
     data management is the best fit, though the AdjustCustomerCredit operation adds a receivables flavour.
+- tag: Plant Batches
+  spec_file: canix-plant-batches-api-openapi.yml
+  capability_id: BC-3500
+  capability_id_l1: BC-3500
+  capability_name: Crop Production Management
+  confidence: 0.7
+  evidence: 'GET /plant_batches GetPlantBatches; schemas: PlantBatch, Strain, CrossStrain, Location'
+  reason: Plant batches are groups of immature cannabis plants tracked by strain and growing location
+    — on-farm cropping operations. Crop Production Management at L1; the read-only batch records do not
+    clearly isolate planting/sowing versus monitoring, so no L2.
+  recovered_from: vertical-agriculture-food-production-edges.json
+- tag: Plants
+  spec_file: canix-plants-api-openapi.yml
+  capability_id: BC-3500
+  capability_id_l1: BC-3500
+  capability_name: Crop Production Management
+  confidence: 0.7
+  evidence: 'GET /plants GetPlants; GET /plants/count; schemas: Plant, Harvest, Strain, Location, PlantBatch'
+  reason: Individual growing-plant records linked to harvest, strain and location represent cultivation
+    crop production tracking. L1 Crop Production Management; no operation pins a single sub-capability
+    (planting, monitoring and harvest all appear in the schema set).
+  recovered_from: vertical-agriculture-food-production-edges.json
 - tag: Vendors
   spec_file: canix-vendors-api-openapi.yml
   capability_id: BC-510
