@@ -7,13 +7,7 @@ info:
     altText: Canix logo
   description: '# Introduction
 
-    This API documentation describes the endpoints used by third-party developers to get Canix data for their account.
-
-    # Authentication
-
-    Canix API uses API Keys for authentication. You can generate an API key on our [API page](https://app.canix.com/company/api), and on your API requests use the `X-API-KEY` header with the API key value you generated.
-
-    We strongly recommend using a secrets manager. Plain text files like dotenv lead to accidental costly leaks. Use [Doppler](https://doppler.com/) or similar options for a developer friendly experience. AWS and Google Cloud have native solutions as well.'
+    This API documentation describes the endpoints used by third-party developers to get Canix data for their account.'
   contact:
     name: Canix Support
     url: https://help.canix.com/
@@ -131,62 +125,43 @@ paths:
           $ref: '#/components/responses/500ServerError'
 components:
   responses:
-    400BadRequest:
-      description: Bad request
-    403AccessDenied:
-      description: Access denied
-    401NotAuthenticated:
-      description: Not authenticated
     404NotFound:
       description: The specified resource was not found
+    401NotAuthenticated:
+      description: Not authenticated
+    403AccessDenied:
+      description: Access denied
+    400BadRequest:
+      description: Bad request
     500ServerError:
       description: Server error
   schemas:
-    BillOfMaterialsOutputItem:
-      title: Output Item Info
+    BillOfMaterialsSourceNonCannabisProduct:
+      title: Source Non Cannabis Product Info
       type: object
       required:
+      - non_cannabis_product_id
       - name
-      - item_id
       - quantity
       - weight_unit
+      - application_setting
       properties:
-        name:
-          type:
-          - string
-          - 'null'
-          description: Name of the output item. Null when the output targets an item category or sub-category instead of a concrete item; item_category / item_sub_category identify the output in that case.
-        item_id:
+        non_cannabis_product_id:
           type: integer
+        name:
+          type: string
         quantity:
           type: number
         weight_unit:
           type: string
-        item_category:
-          type:
-          - object
-          - 'null'
-          properties:
-            id:
-              type: integer
-            name:
-              type: string
-        item_sub_category:
-          type:
-          - object
-          - 'null'
-          properties:
-            id:
-              type: integer
-            name:
-              type: string
+        application_setting:
+          type: string
       example:
-        name: Jarred Flower
-        item_id: 370
-        quantity: 50
-        weight_unit: Grams
-        item_category: null
-        item_sub_category: null
+        name: 1/8th Jar
+        non_cannabis_product_id: 24
+        quantity: 1
+        weight_unit: Each
+        application_setting: proportional
     BillOfMaterials:
       title: Bill of Materials Info
       type: object
@@ -271,6 +246,51 @@ components:
             id: 98
             name: B Buds
           item_sub_category: null
+    BillOfMaterialsOutputItem:
+      title: Output Item Info
+      type: object
+      required:
+      - name
+      - item_id
+      - quantity
+      - weight_unit
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: Name of the output item. Null when the output targets an item category or sub-category instead of a concrete item; item_category / item_sub_category identify the output in that case.
+        item_id:
+          type: integer
+        quantity:
+          type: number
+        weight_unit:
+          type: string
+        item_category:
+          type:
+          - object
+          - 'null'
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+        item_sub_category:
+          type:
+          - object
+          - 'null'
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+      example:
+        name: Jarred Flower
+        item_id: 370
+        quantity: 50
+        weight_unit: Grams
+        item_category: null
+        item_sub_category: null
     BillOfMaterialsSourceCannabisItem:
       title: Source Cannabis Item Info
       type: object
@@ -317,32 +337,6 @@ components:
           name: Hammer Bud
         item_category: null
         item_sub_category: null
-    BillOfMaterialsSourceNonCannabisProduct:
-      title: Source Non Cannabis Product Info
-      type: object
-      required:
-      - non_cannabis_product_id
-      - name
-      - quantity
-      - weight_unit
-      - application_setting
-      properties:
-        non_cannabis_product_id:
-          type: integer
-        name:
-          type: string
-        quantity:
-          type: number
-        weight_unit:
-          type: string
-        application_setting:
-          type: string
-      example:
-        name: 1/8th Jar
-        non_cannabis_product_id: 24
-        quantity: 1
-        weight_unit: Each
-        application_setting: proportional
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

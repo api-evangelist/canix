@@ -7,13 +7,7 @@ info:
     altText: Canix logo
   description: '# Introduction
 
-    This API documentation describes the endpoints used by third-party developers to get Canix data for their account.
-
-    # Authentication
-
-    Canix API uses API Keys for authentication. You can generate an API key on our [API page](https://app.canix.com/company/api), and on your API requests use the `X-API-KEY` header with the API key value you generated.
-
-    We strongly recommend using a secrets manager. Plain text files like dotenv lead to accidental costly leaks. Use [Doppler](https://doppler.com/) or similar options for a developer friendly experience. AWS and Google Cloud have native solutions as well.'
+    This API documentation describes the endpoints used by third-party developers to get Canix data for their account.'
   contact:
     name: Canix Support
     url: https://help.canix.com/
@@ -146,18 +140,108 @@ paths:
         '500':
           $ref: '#/components/responses/500ServerError'
 components:
-  responses:
-    400BadRequest:
-      description: Bad request
-    401NotAuthenticated:
-      description: Not authenticated
-    403AccessDenied:
-      description: Access denied
-    404NotFound:
-      description: The specified resource was not found
-    500ServerError:
-      description: Server error
   schemas:
+    ManuBatchRunNonCannabisInput:
+      title: Non Cannabis Input
+      type: object
+      required:
+      - non_cannabis_product_name
+      - non_cannabis_product_id
+      - quantity
+      - weight_unit
+      properties:
+        non_cannabis_product_name:
+          type: string
+        non_cannabis_product_id:
+          type: integer
+        lot:
+          type: string
+        lot_id:
+          type: integer
+        quantity:
+          type: number
+        weight_unit:
+          type: string
+        cost:
+          type: number
+      example:
+        non_cannabis_product_name: Fertilizer
+        non_cannabis_product_id: 145
+        lot: DL21309
+        lot_id: 253
+        quantity: 100.5
+        weight_unit: Grams
+        cost: 2.5
+    ManuBatchRunCannabisInput:
+      title: Cannabis Input
+      type: object
+      required:
+      - quantity
+      - weight_unit
+      properties:
+        package_id:
+          type: integer
+        package_tag:
+          type: string
+        quantity:
+          type: number
+        weight_unit:
+          type: string
+        psi:
+          type: number
+        cost:
+          type: number
+      example:
+        package_id: 3501
+        package_tag: 1A4FF0000000022000000719
+        quantity: 2.54
+        weight_unit: Grams
+        psi: 600.0
+        cost: 14.3
+    Labor:
+      title: Labor Info
+      type: object
+      required:
+      - hours_worked
+      properties:
+        employee_name:
+          type: string
+        hours_worked:
+          type: number
+        cost:
+          type: number
+      example:
+        employee_name: Jane Doe
+        hours_worked: 0.5
+        cost: 10
+    Machine:
+      title: Machine Info
+      type: object
+      properties:
+        temperature:
+          type: number
+        temperature_unit:
+          type: string
+          description: Options are 'Celcius' and 'Fahrenheit'
+        solvent_id:
+          type: integer
+        solvent_quantity:
+          type: number
+        solvent_weight_unit:
+          type: string
+        time_in_solvent_ms:
+          type: integer
+        time_in_solvent_display_units:
+          type: string
+          description: Options are 'Week', 'Day', 'Hour', 'Minute' and 'Second'
+      example:
+        temperature: 20.1
+        temperature_unit: Celcius
+        solvent_id: 150
+        solvent_quantity: 10.5
+        solvent_weight_unit: Grams
+        time_in_solvent_ms: 2400
+        time_in_solvent_display_units: Second
     ManuBatchRunCannabisOutput:
       title: Cannabis Output
       type: object
@@ -178,6 +262,37 @@ components:
         package_tag: 1A4FF0000000022000001419
         quantity: 500
         weight_unit: Grams
+    Waste:
+      title: Waste Info
+      type: object
+      required:
+      - package_id
+      - package_tag
+      - quantity
+      - weight_unit
+      properties:
+        package_id:
+          type: integer
+        package_tag:
+          type: string
+        quantity:
+          type: number
+        weight_unit:
+          type: string
+        reason:
+          type: string
+        date:
+          type: string
+        notes:
+          type: string
+      example:
+        package_id: 4601
+        package_tag: 1A4FF0000000022000004423
+        quantity: 50
+        weight_unit: Grams
+        reason: Waste Destruction
+        date: '2022-05-24'
+        notes: waste from production
     ManuBatchRun:
       title: Manufacturing Run
       required:
@@ -308,138 +423,17 @@ components:
           reason: Waste Destruction
           date: '2022-05-24'
           notes: waste from production
-    ManuBatchRunNonCannabisInput:
-      title: Non Cannabis Input
-      type: object
-      required:
-      - non_cannabis_product_name
-      - non_cannabis_product_id
-      - quantity
-      - weight_unit
-      properties:
-        non_cannabis_product_name:
-          type: string
-        non_cannabis_product_id:
-          type: integer
-        lot:
-          type: string
-        lot_id:
-          type: integer
-        quantity:
-          type: number
-        weight_unit:
-          type: string
-        cost:
-          type: number
-      example:
-        non_cannabis_product_name: Fertilizer
-        non_cannabis_product_id: 145
-        lot: DL21309
-        lot_id: 253
-        quantity: 100.5
-        weight_unit: Grams
-        cost: 2.5
-    Labor:
-      title: Labor Info
-      type: object
-      required:
-      - hours_worked
-      properties:
-        employee_name:
-          type: string
-        hours_worked:
-          type: number
-        cost:
-          type: number
-      example:
-        employee_name: Jane Doe
-        hours_worked: 0.5
-        cost: 10
-    Waste:
-      title: Waste Info
-      type: object
-      required:
-      - package_id
-      - package_tag
-      - quantity
-      - weight_unit
-      properties:
-        package_id:
-          type: integer
-        package_tag:
-          type: string
-        quantity:
-          type: number
-        weight_unit:
-          type: string
-        reason:
-          type: string
-        date:
-          type: string
-        notes:
-          type: string
-      example:
-        package_id: 4601
-        package_tag: 1A4FF0000000022000004423
-        quantity: 50
-        weight_unit: Grams
-        reason: Waste Destruction
-        date: '2022-05-24'
-        notes: waste from production
-    Machine:
-      title: Machine Info
-      type: object
-      properties:
-        temperature:
-          type: number
-        temperature_unit:
-          type: string
-          description: Options are 'Celcius' and 'Fahrenheit'
-        solvent_id:
-          type: integer
-        solvent_quantity:
-          type: number
-        solvent_weight_unit:
-          type: string
-        time_in_solvent_ms:
-          type: integer
-        time_in_solvent_display_units:
-          type: string
-          description: Options are 'Week', 'Day', 'Hour', 'Minute' and 'Second'
-      example:
-        temperature: 20.1
-        temperature_unit: Celcius
-        solvent_id: 150
-        solvent_quantity: 10.5
-        solvent_weight_unit: Grams
-        time_in_solvent_ms: 2400
-        time_in_solvent_display_units: Second
-    ManuBatchRunCannabisInput:
-      title: Cannabis Input
-      type: object
-      required:
-      - quantity
-      - weight_unit
-      properties:
-        package_id:
-          type: integer
-        package_tag:
-          type: string
-        quantity:
-          type: number
-        weight_unit:
-          type: string
-        psi:
-          type: number
-        cost:
-          type: number
-      example:
-        package_id: 3501
-        package_tag: 1A4FF0000000022000000719
-        quantity: 2.54
-        weight_unit: Grams
-        psi: 600.0
-        cost: 14.3
+  responses:
+    401NotAuthenticated:
+      description: Not authenticated
+    403AccessDenied:
+      description: Access denied
+    404NotFound:
+      description: The specified resource was not found
+    400BadRequest:
+      description: Bad request
+    500ServerError:
+      description: Server error
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

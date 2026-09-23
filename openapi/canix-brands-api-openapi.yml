@@ -7,13 +7,7 @@ info:
     altText: Canix logo
   description: '# Introduction
 
-    This API documentation describes the endpoints used by third-party developers to get Canix data for their account.
-
-    # Authentication
-
-    Canix API uses API Keys for authentication. You can generate an API key on our [API page](https://app.canix.com/company/api), and on your API requests use the `X-API-KEY` header with the API key value you generated.
-
-    We strongly recommend using a secrets manager. Plain text files like dotenv lead to accidental costly leaks. Use [Doppler](https://doppler.com/) or similar options for a developer friendly experience. AWS and Google Cloud have native solutions as well.'
+    This API documentation describes the endpoints used by third-party developers to get Canix data for their account.'
   contact:
     name: Canix Support
     url: https://help.canix.com/
@@ -60,25 +54,32 @@ paths:
           $ref: '#/components/responses/500ServerError'
 components:
   responses:
-    400BadRequest:
-      description: Bad request
-    401NotAuthenticated:
-      description: Not authenticated
-    403AccessDenied:
-      description: Access denied
     404NotFound:
       description: The specified resource was not found
+    403AccessDenied:
+      description: Access denied
+    401NotAuthenticated:
+      description: Not authenticated
+    400BadRequest:
+      description: Bad request
     500ServerError:
       description: Server error
+  schemas:
+    Brand:
+      title: Brand
+      required:
+      - id
+      - name
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
   parameters:
-    offsetParam:
-      name: offset
-      in: query
-      description: Offset for the returned records (optional)
-      schema:
-        type: integer
-        default: 0
-        example: 20
     limitParam:
       name: limit
       in: query
@@ -89,6 +90,14 @@ components:
         type: integer
         default: 2000
         example: 100
+    offsetParam:
+      name: offset
+      in: query
+      description: Offset for the returned records (optional)
+      schema:
+        type: integer
+        default: 0
+        example: 20
     orderByParam:
       name: order_by
       in: query
@@ -123,21 +132,6 @@ components:
       schema:
         type: string
         example: status='Active' AND updated_at >= '2024-01-01'
-  schemas:
-    Brand:
-      title: Brand
-      required:
-      - id
-      - name
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        updated_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

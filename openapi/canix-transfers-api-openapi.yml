@@ -7,13 +7,7 @@ info:
     altText: Canix logo
   description: '# Introduction
 
-    This API documentation describes the endpoints used by third-party developers to get Canix data for their account.
-
-    # Authentication
-
-    Canix API uses API Keys for authentication. You can generate an API key on our [API page](https://app.canix.com/company/api), and on your API requests use the `X-API-KEY` header with the API key value you generated.
-
-    We strongly recommend using a secrets manager. Plain text files like dotenv lead to accidental costly leaks. Use [Doppler](https://doppler.com/) or similar options for a developer friendly experience. AWS and Google Cloud have native solutions as well.'
+    This API documentation describes the endpoints used by third-party developers to get Canix data for their account.'
   contact:
     name: Canix Support
     url: https://help.canix.com/
@@ -91,57 +85,156 @@ paths:
           $ref: '#/components/responses/500ServerError'
 components:
   schemas:
-    SalesOrderPayment:
-      title: Sales Order Payment
-      required:
-      - amount
-      - date
+    User:
+      title: User
       type: object
       properties:
         id:
           type: integer
-        sales_order_id:
+          example: 123
+        name:
+          type: string
+          example: John Doe
+        email:
+          type: string
+          example: j@d.com
+    Package:
+      title: Package
+      required:
+      - id
+      type: object
+      properties:
+        id:
           type: integer
-          description: ID of the sales order this payment was applied to
-        amount:
+        tag:
+          type: string
+        is_active:
+          type: boolean
+        is_testing_package:
+          type: boolean
+          description: Whether the package is flagged as a testing (lab sample) package.
+        status:
+          type: string
+        item:
+          $ref: '#/components/schemas/Item'
+        weight:
           type: number
-        date:
-          type: integer
-        reference_number:
+        original_weight:
+          type: number
+        weight_unit:
+          type: string
+        packaged_date:
+          type: string
+        production_batch_date:
           type:
           - string
           - 'null'
-          description: Payment reference number
-        external_transaction_name:
+          format: date
+          description: The production batch date for the package.
+        expiration_date:
+          type: string
+        received_date:
+          type: string
+        location:
+          $ref: '#/components/schemas/Location'
+        production_batch:
+          type: string
+        lot_id:
+          type: string
+        cultivation_tax:
+          type: number
+        available_for_sale:
+          type: boolean
+        cannabis_cogs:
+          type: number
+        non_cannabis_inventory_cogs:
+          type: number
+        source_packages:
+          type: array
+          items:
+            $ref: '#/components/schemas/SourcePackage'
+        destination_packages:
+          type: array
+          items:
+            $ref: '#/components/schemas/DestinationPackage'
+        source_facility:
+          type: string
+          description: Originating facility license number
+        source_facility_name:
+          type: string
+          description: Originating facility name
+        source_harvests:
+          type: string
+        notes:
+          type: string
+        brand:
+          $ref: '#/components/schemas/Brand'
+        lab_test_url:
+          type: string
+          description: URL to the latest lab test if it exists
+          example: https://www.lab.com/lab-test/123456
+        coa_url:
           type:
           - string
           - 'null'
-          description: Readable name of the linked external (e.g. accounting) transaction
+          description: URL to the Certificate of Analysis (COA) document. Returns either a direct URL or a presigned S3 URL (valid for 24 hours) if available.
+          example: https://s3.amazonaws.com/bucket/coa/abc123.pdf?X-Amz-Signature=...
+        test_results:
+          $ref: '#/components/schemas/TestResults'
+        cogs:
+          type: object
+          example:
+            labor: 10.0
+            non_cannabis: 120.0
+            cannabis: 30.0
+            total: 160.0
+        original_cogs:
+          type: object
+          description: COGS values at the time the package was created (before any later adjustments).
+          example:
+            labor: 10.0
+            non_cannabis: 120.0
+            cannabis: 30.0
+            total: 160.0
+        manufacturing_run:
+          type:
+          - object
+          - 'null'
+          description: Only returned by the show endpoint (GET /packages/{id}). Populated when the package is an output of a manufacturing run; null otherwise.
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+            status:
+              type: string
+            start_date:
+              type:
+              - string
+              - 'null'
+              format: date
+            end_date:
+              type:
+              - string
+              - 'null'
+              format: date
+            facility_id:
+              type: integer
         updated_at:
           type: string
           example: 2018-11-06 08:00:00+00:00
-      example:
-        id: 9001
-        sales_order_id: 584857
-        amount: 10000
-        date: '2021-05-24T19:58:00.000Z'
-        reference_number: CHK-1042
-        external_transaction_name: 'QBO Payment #55'
-        updated_at: '2021-05-24T19:58:00.000Z'
-    Sales_order_item:
-      title: Item
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
+        tested_package_tag:
           type: string
-        sku:
+          description: Tag identifying the package that has been tested
+        test_status:
           type: string
-      example:
-        id: 7036
-        name: Blue Dream - Trim
-        sku: '22657'
+          description: Status of the test (e.g., passed, failed, pending)
+        test_date:
+          type: string
+          format: date
+          description: Date when the test was conducted
+        lab_test_info:
+          $ref: '#/components/schemas/LabTestInfo'
     Discount:
       title: Discount
       type: object
@@ -159,43 +252,6 @@ components:
         type: fixed
         amount: 10.0
         reason: Black Friday Sale
-    LabTestInfo:
-      type: object
-      properties:
-        testing_facility_name:
-          type: string
-          description: Name of the facility where the testing was conducted.F
-        testing_facility_license:
-          type: string
-          description: License number of the testing facility.
-      required:
-      - testing_facility_name
-      - testing_facility_license
-    Address:
-      title: Address
-      type: object
-      properties:
-        street:
-          type: string
-          example: 123 Cumberland St
-        street2:
-          type: string
-          example: West
-        city:
-          type: string
-          example: Somerset
-        county:
-          type: string
-          example: KY
-        state:
-          type: string
-          example: CO
-        country:
-          type: string
-          example: USA
-        postal_code:
-          type: string
-          example: 42504
     SalesOrderItem:
       title: Sales Order Item
       required:
@@ -275,52 +331,16 @@ components:
           reason: 25% off
         updated_at: '2021-05-24T19:58:00.000Z'
         order: 1
-    Customer:
-      title: Customer
+    IdName:
+      title: IdName
       type: object
       properties:
         id:
-          type: integer
-        contact_name:
-          type: string
-        company_name:
-          type: string
-        facility_license_number:
-          type: string
-        license_type:
-          type: string
-        customer_number:
-          type: string
-        license_expiration_date:
-          type: string
-        phone:
-          type: string
-        email:
-          type: string
-        territory:
-          type: string
-        address:
-          $ref: '#/components/schemas/Address'
-        notes:
-          type: string
-        outstanding_balance:
           type: number
-        credit:
-          type: number
-          description: Current credit balance available to this customer
-        dba:
+        name:
           type: string
-          example: Doing Business As
-        is_active:
-          type: boolean
-        created_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
-        updated_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
-    Location:
-      title: Location
+    ParentLocation:
+      title: Parent Location
       required:
       - id
       - name
@@ -337,107 +357,185 @@ components:
         num_lights:
           type: integer
           example: 42
-        parent_location:
-          $ref: '#/components/schemas/ParentLocation'
         updated_at:
           type: string
           example: 2018-11-06 08:00:00+00:00
         is_active:
           type: boolean
           example: true
-    User:
-      title: User
+    SalesOrder:
+      title: Sales Order
+      required:
+      - id
+      - facility_id
+      - name
+      - status
+      - delivery_date
+      - other_tax_rate
+      - local_tax_rate
+      - state_tax_rate
       type: object
       properties:
         id:
           type: integer
-          example: 123
-        name:
-          type: string
-          example: John Doe
-        email:
-          type: string
-          example: j@d.com
-    Transfer:
-      title: Transfer
-      required:
-      - id
-      properties:
-        id:
+        facility_id:
           type: integer
-          example: 123
+          description: Facility ID (fk)
         name:
           type: string
-          example: Transfer
-        manifest_number:
+        external_identifier:
           type: string
-          example: 0000000028
-        is_active:
-          type: boolean
-        destinations:
+          description: External Sales Order ID (from partner system, not unique)
+        status:
+          type: string
+          description: status, can be one of 'created', 'approved', 'filled', 'shipped', 'rejected', 'accepted', 'archived', 'requested'
+        created_at:
+          type: string
+          description: Timestamp that the record was created in Canix
+        customer:
+          $ref: '#/components/schemas/Customer'
+        delivery_date:
+          type: string
+        delivery_fee:
+          type: number
+        payment_date:
+          type: string
+          description: Payment due date
+        payment_terms:
+          type: string
+        local_tax_rate:
+          type: number
+        state_tax_rate:
+          type: number
+        other_tax_rate:
+          type: number
+        subtotal:
+          type: number
+          description: Subtotal of all items
+        total_cultivation_tax:
+          type: number
+        total_price:
+          type: number
+          description: Total price (with taxes)
+        total_paid:
+          type: number
+        credits:
+          type: number
+          description: Customer credit applied to this order, as a positive number. Credits are applied after taxes, so they do not reduce the taxable subtotal. Writable on create/update via the `credits` request field.
+        discount:
+          type: number
+          description: Order-level discount amount (from `sales_order_credit`), as a positive number. Discounts are applied before taxes and reduce the taxable subtotal.
+        remaining_balance:
+          type: number
+        internal_notes:
+          type: string
+        payments:
+          description: Payments collected for this order
           type: array
           items:
-            $ref: '#/components/schemas/TransferDestination'
-        sales_order:
-          $ref: '#/components/schemas/SalesOrder'
+            $ref: '#/components/schemas/SalesOrderPayment'
+        sales_order_credit:
+          $ref: '#/components/schemas/Discount'
+        display_status:
+          type: string
+          description: The display status of the order. This is the custom status name if set, otherwise the standard status value.
+        contents:
+          description: Contents of the order (i.e. line items)
+          type: array
+          items:
+            allOf:
+            - $ref: '#/components/schemas/SalesOrderItem'
+            - type: object
+              properties:
+                weight_unit_id:
+                  type: integer
+                weight_unit_name:
+                  type: string
+        sales_representative:
+          schema: null
+          $ref: '#/components/schemas/User'
+        invoice_url:
+          type: string
+          description: URL to the latest invoice if it exists
+          example: https://www.app.canix.com/sales/invoice/view/123456
         updated_at:
           type: string
           example: 2018-11-06 08:00:00+00:00
-    DestinationPackage:
-      title: Destination Package
-      required:
-      - id
-      type: object
-      properties:
-        id:
-          type: integer
-        tag:
-          type: string
-        weight:
-          type: number
-        weight_unit:
-          type: string
-        item:
-          $ref: '#/components/schemas/IdName'
-    SourcePackage:
-      title: Source Package
-      required:
-      - id
-      type: object
-      properties:
-        id:
-          type: integer
-        tag:
-          type: string
-        weight:
-          type: number
-        weight_unit:
-          type: string
-        item:
-          $ref: '#/components/schemas/IdName'
-    ItemStandardCost:
-      title: ItemStandardCost
-      required:
-      - id
-      - standard_cost_amount
-      - standard_cost_currency
-      - start_date
-      properties:
-        id:
-          type: integer
-          example: 123
-        standard_cost_amount:
-          type: number
-          example: 12.1111
-        standard_cost_currency:
-          type: string
-          example: USD
-        start_date:
-          type: string
-          example: '2023-04-19'
-        end_date:
-          type: string
-          example: '2023-05-19'
+      example:
+        id: 84
+        name: 1074
+        external_identifier: SAP-ORDER-12345
+        facility_id: 14
+        status: created
+        customer:
+          id: 345
+          contact_name: John Smith
+          company_name: Zen Ltd
+          facility_license_number: 2020124
+          license_type: 3
+          customer_number: 247123
+          updated_at: 2020-04-24 02:18:42.703000+00:00
+          license_expiration_date: 2020-04-24
+          phone: 1222312
+          email: john.doe@twww.com",
+          territory: abc
+          address:
+            street: 123 Cumberland St
+            street2: West
+            city: DL
+            county: LN
+            state: OK
+            postal_code: 111001
+          notes: great customer!
+          outstanding_balance: 0
+        delivery_date: '2021-05-24T19:58:00.000Z'
+        delivery_fee: 2000
+        payment_date: '2021-05-24T19:58:00.000Z'
+        payment_terms: NET-14
+        local_tax_rate: 0
+        state_tax_rate: 0.27
+        other_tax_rate: 0
+        subtotal: 2124.22
+        total_cultivation_tax: 0
+        total_price: 2697.76
+        total_paid: 100.0
+        credits: 0
+        discount: 0
+        internal_notes: ''
+        remaining_balance: 2597.76
+        contents:
+        - id: 100
+          weight: 20
+          weight_unit: Each
+          unit_price: 20
+          total_price: 400
+          item:
+            id: 7036
+            name: Blue Dream - Trim
+            sku: '22657'
+          package_ids:
+          - 123
+          - 456
+          discount:
+            type: fixed
+            amount: 10.0
+            reason: 10$ off
+          updated_at: '2021-05-24T19:58:00.000Z'
+          order: 1
+        payments:
+        - date: '2021-05-24T19:58:00.000Z'
+          amount: 100
+        sales_representative:
+          id: 123,
+          name: John Doe
+          email: j@d.com
+        sales_order_credit:
+          type: percentage
+          amount: 25.0
+          reason: 25% off
+        display_status: Pending Review
+        invoice_url: https://www.app.canix.com/sales/invoice/view/123456
+        updated_at: '2021-05-24T19:58:00.000Z'
     ItemType:
       title: ItemType
       required:
@@ -479,30 +577,6 @@ components:
         updated_at:
           type: string
           example: 2018-11-06 08:00:00+00:00
-    TestResultValue:
-      title: TestResultValue
-      type: object
-      properties:
-        value:
-          type: number
-          format: double
-          example: 0.17501406232422
-        measure:
-          type: string
-          enum:
-          - mg
-          - mg/g
-          - mg/serving
-          - percent
-          example: mg/g
-    IdName:
-      title: IdName
-      type: object
-      properties:
-        id:
-          type: number
-        name:
-          type: string
     CrossStrain:
       title: Cross Strain
       required:
@@ -535,6 +609,144 @@ components:
           type: number
           example: 55.0
           description: Sativa Percentage
+    Location:
+      title: Location
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: integer
+          example: 123
+        name:
+          type: string
+          example: Pro System
+        sqft:
+          type: number
+          example: 14.4
+        num_lights:
+          type: integer
+          example: 42
+        parent_location:
+          $ref: '#/components/schemas/ParentLocation'
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+        is_active:
+          type: boolean
+          example: true
+    ItemSubType:
+      title: ItemSubType
+      required:
+      - id
+      - name
+      - weight_unit
+      - item_category
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        weight_unit:
+          type: string
+        category:
+          $ref: '#/components/schemas/ItemType'
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+    DestinationPackage:
+      title: Destination Package
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: integer
+        tag:
+          type: string
+        weight:
+          type: number
+        weight_unit:
+          type: string
+        item:
+          $ref: '#/components/schemas/IdName'
+    Sales_order_item:
+      title: Item
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        sku:
+          type: string
+      example:
+        id: 7036
+        name: Blue Dream - Trim
+        sku: '22657'
+    LabTestInfo:
+      type: object
+      properties:
+        testing_facility_name:
+          type: string
+          description: Name of the facility where the testing was conducted.F
+        testing_facility_license:
+          type: string
+          description: License number of the testing facility.
+      required:
+      - testing_facility_name
+      - testing_facility_license
+    Address:
+      title: Address
+      type: object
+      properties:
+        street:
+          type: string
+          example: 123 Cumberland St
+        street2:
+          type: string
+          example: West
+        city:
+          type: string
+          example: Somerset
+        county:
+          type: string
+          example: KY
+        state:
+          type: string
+          example: CO
+        country:
+          type: string
+          example: USA
+        postal_code:
+          type: string
+          example: 42504
+    Transfer:
+      title: Transfer
+      required:
+      - id
+      properties:
+        id:
+          type: integer
+          example: 123
+        name:
+          type: string
+          example: Transfer
+        manifest_number:
+          type: string
+          example: 0000000028
+        is_active:
+          type: boolean
+        destinations:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransferDestination'
+        sales_order:
+          $ref: '#/components/schemas/SalesOrder'
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
     Item:
       title: Item
       required:
@@ -725,20 +937,29 @@ components:
         backordered: 10
         unordered: 75
         updated_at: '2021-03-16T23:49:03.175Z'
-    Brand:
-      title: Brand
+    ItemStandardCost:
+      title: ItemStandardCost
       required:
       - id
-      - name
-      type: object
+      - standard_cost_amount
+      - standard_cost_currency
+      - start_date
       properties:
         id:
           type: integer
-        name:
+          example: 123
+        standard_cost_amount:
+          type: number
+          example: 12.1111
+        standard_cost_currency:
           type: string
-        updated_at:
+          example: USD
+        start_date:
           type: string
-          example: 2018-11-06 08:00:00+00:00
+          example: '2023-04-19'
+        end_date:
+          type: string
+          example: '2023-05-19'
     Strain:
       title: Strain
       required:
@@ -776,225 +997,8 @@ components:
           description: Cross strains
           items:
             $ref: '#/components/schemas/CrossStrain'
-    ItemSubType:
-      title: ItemSubType
-      required:
-      - id
-      - name
-      - weight_unit
-      - item_category
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        weight_unit:
-          type: string
-        category:
-          $ref: '#/components/schemas/ItemType'
-        updated_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
-    SalesOrder:
-      title: Sales Order
-      required:
-      - id
-      - facility_id
-      - name
-      - status
-      - delivery_date
-      - other_tax_rate
-      - local_tax_rate
-      - state_tax_rate
-      type: object
-      properties:
-        id:
-          type: integer
-        facility_id:
-          type: integer
-          description: Facility ID (fk)
-        name:
-          type: string
-        external_identifier:
-          type: string
-          description: External Sales Order ID (from partner system, not unique)
-        status:
-          type: string
-          description: status, can be one of 'created', 'approved', 'filled', 'shipped', 'rejected', 'accepted', 'archived', 'requested'
-        created_at:
-          type: string
-          description: Timestamp that the record was created in Canix
-        customer:
-          $ref: '#/components/schemas/Customer'
-        delivery_date:
-          type: string
-        delivery_fee:
-          type: number
-        payment_date:
-          type: string
-          description: Payment due date
-        payment_terms:
-          type: string
-        local_tax_rate:
-          type: number
-        state_tax_rate:
-          type: number
-        other_tax_rate:
-          type: number
-        subtotal:
-          type: number
-          description: Subtotal of all items
-        total_cultivation_tax:
-          type: number
-        total_price:
-          type: number
-          description: Total price (with taxes)
-        total_paid:
-          type: number
-        credits:
-          type: number
-          description: Customer credit applied to this order, as a positive number. Credits are applied after taxes, so they do not reduce the taxable subtotal. Writable on create/update via the `credits` request field.
-        discount:
-          type: number
-          description: Order-level discount amount (from `sales_order_credit`), as a positive number. Discounts are applied before taxes and reduce the taxable subtotal.
-        remaining_balance:
-          type: number
-        internal_notes:
-          type: string
-        payments:
-          description: Payments collected for this order
-          type: array
-          items:
-            $ref: '#/components/schemas/SalesOrderPayment'
-        sales_order_credit:
-          $ref: '#/components/schemas/Discount'
-        display_status:
-          type: string
-          description: The display status of the order. This is the custom status name if set, otherwise the standard status value.
-        contents:
-          description: Contents of the order (i.e. line items)
-          type: array
-          items:
-            allOf:
-            - $ref: '#/components/schemas/SalesOrderItem'
-            - type: object
-              properties:
-                weight_unit_id:
-                  type: integer
-                weight_unit_name:
-                  type: string
-        sales_representative:
-          schema: null
-          $ref: '#/components/schemas/User'
-        invoice_url:
-          type: string
-          description: URL to the latest invoice if it exists
-          example: https://www.app.canix.com/sales/invoice/view/123456
-        updated_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
-      example:
-        id: 84
-        name: 1074
-        external_identifier: SAP-ORDER-12345
-        facility_id: 14
-        status: created
-        customer:
-          id: 345
-          contact_name: John Smith
-          company_name: Zen Ltd
-          facility_license_number: 2020124
-          license_type: 3
-          customer_number: 247123
-          updated_at: 2020-04-24 02:18:42.703000+00:00
-          license_expiration_date: 2020-04-24
-          phone: 1222312
-          email: john.doe@twww.com",
-          territory: abc
-          address:
-            street: 123 Cumberland St
-            street2: West
-            city: DL
-            county: LN
-            state: OK
-            postal_code: 111001
-          notes: great customer!
-          outstanding_balance: 0
-        delivery_date: '2021-05-24T19:58:00.000Z'
-        delivery_fee: 2000
-        payment_date: '2021-05-24T19:58:00.000Z'
-        payment_terms: NET-14
-        local_tax_rate: 0
-        state_tax_rate: 0.27
-        other_tax_rate: 0
-        subtotal: 2124.22
-        total_cultivation_tax: 0
-        total_price: 2697.76
-        total_paid: 100.0
-        credits: 0
-        discount: 0
-        internal_notes: ''
-        remaining_balance: 2597.76
-        contents:
-        - id: 100
-          weight: 20
-          weight_unit: Each
-          unit_price: 20
-          total_price: 400
-          item:
-            id: 7036
-            name: Blue Dream - Trim
-            sku: '22657'
-          package_ids:
-          - 123
-          - 456
-          discount:
-            type: fixed
-            amount: 10.0
-            reason: 10$ off
-          updated_at: '2021-05-24T19:58:00.000Z'
-          order: 1
-        payments:
-        - date: '2021-05-24T19:58:00.000Z'
-          amount: 100
-        sales_representative:
-          id: 123,
-          name: John Doe
-          email: j@d.com
-        sales_order_credit:
-          type: percentage
-          amount: 25.0
-          reason: 25% off
-        display_status: Pending Review
-        invoice_url: https://www.app.canix.com/sales/invoice/view/123456
-        updated_at: '2021-05-24T19:58:00.000Z'
-    ParentLocation:
-      title: Parent Location
-      required:
-      - id
-      - name
-      properties:
-        id:
-          type: integer
-          example: 123
-        name:
-          type: string
-          example: Pro System
-        sqft:
-          type: number
-          example: 14.4
-        num_lights:
-          type: integer
-          example: 42
-        updated_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
-        is_active:
-          type: boolean
-          example: true
-    Package:
-      title: Package
+    SourcePackage:
+      title: Source Package
       required:
       - id
       type: object
@@ -1003,133 +1007,135 @@ components:
           type: integer
         tag:
           type: string
-        is_active:
-          type: boolean
-        is_testing_package:
-          type: boolean
-          description: Whether the package is flagged as a testing (lab sample) package.
-        status:
-          type: string
-        item:
-          $ref: '#/components/schemas/Item'
         weight:
-          type: number
-        original_weight:
           type: number
         weight_unit:
           type: string
-        packaged_date:
+        item:
+          $ref: '#/components/schemas/IdName'
+    Brand:
+      title: Brand
+      required:
+      - id
+      - name
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
           type: string
-        production_batch_date:
-          type:
-          - string
-          - 'null'
-          format: date
-          description: The production batch date for the package.
-        expiration_date:
-          type: string
-        received_date:
-          type: string
-        location:
-          $ref: '#/components/schemas/Location'
-        production_batch:
-          type: string
-        lot_id:
-          type: string
-        cultivation_tax:
-          type: number
-        available_for_sale:
-          type: boolean
-        cannabis_cogs:
-          type: number
-        non_cannabis_inventory_cogs:
-          type: number
-        source_packages:
-          type: array
-          items:
-            $ref: '#/components/schemas/SourcePackage'
-        destination_packages:
-          type: array
-          items:
-            $ref: '#/components/schemas/DestinationPackage'
-        source_facility:
-          type: string
-          description: Originating facility license number
-        source_facility_name:
-          type: string
-          description: Originating facility name
-        source_harvests:
-          type: string
-        notes:
-          type: string
-        brand:
-          $ref: '#/components/schemas/Brand'
-        lab_test_url:
-          type: string
-          description: URL to the latest lab test if it exists
-          example: https://www.lab.com/lab-test/123456
-        coa_url:
-          type:
-          - string
-          - 'null'
-          description: URL to the Certificate of Analysis (COA) document. Returns either a direct URL or a presigned S3 URL (valid for 24 hours) if available.
-          example: https://s3.amazonaws.com/bucket/coa/abc123.pdf?X-Amz-Signature=...
-        test_results:
-          $ref: '#/components/schemas/TestResults'
-        cogs:
-          type: object
-          example:
-            labor: 10.0
-            non_cannabis: 120.0
-            cannabis: 30.0
-            total: 160.0
-        original_cogs:
-          type: object
-          description: COGS values at the time the package was created (before any later adjustments).
-          example:
-            labor: 10.0
-            non_cannabis: 120.0
-            cannabis: 30.0
-            total: 160.0
-        manufacturing_run:
-          type:
-          - object
-          - 'null'
-          description: Only returned by the show endpoint (GET /packages/{id}). Populated when the package is an output of a manufacturing run; null otherwise.
-          properties:
-            id:
-              type: integer
-            name:
-              type: string
-            status:
-              type: string
-            start_date:
-              type:
-              - string
-              - 'null'
-              format: date
-            end_date:
-              type:
-              - string
-              - 'null'
-              format: date
-            facility_id:
-              type: integer
         updated_at:
           type: string
           example: 2018-11-06 08:00:00+00:00
-        tested_package_tag:
+    Customer:
+      title: Customer
+      type: object
+      properties:
+        id:
+          type: integer
+        contact_name:
           type: string
-          description: Tag identifying the package that has been tested
-        test_status:
+        company_name:
           type: string
-          description: Status of the test (e.g., passed, failed, pending)
-        test_date:
+        facility_license_number:
           type: string
-          format: date
-          description: Date when the test was conducted
-        lab_test_info:
-          $ref: '#/components/schemas/LabTestInfo'
+        license_type:
+          type: string
+        customer_number:
+          type: string
+        license_expiration_date:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+        territory:
+          type: string
+        address:
+          $ref: '#/components/schemas/Address'
+        notes:
+          type: string
+        outstanding_balance:
+          type: number
+        credit:
+          type: number
+          description: Current credit balance available to this customer
+        dba:
+          type: string
+          example: Doing Business As
+        is_active:
+          type: boolean
+        created_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+    PackageTransfer:
+      title: Package Transfer
+      required:
+      - id
+      - facility_id
+      properties:
+        package:
+          $ref: '#/components/schemas/Package'
+        status:
+          type: string
+        sale_price:
+          type: number
+          example: 12.34
+        shipped_weight:
+          type: number
+          example: 10.0
+        shipped_weight_unit:
+          type: string
+          example: Grams
+        received_weight:
+          type: number
+          example: 10.0
+        received_weight_unit:
+          type: string
+          example: Grams
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+    SalesOrderPayment:
+      title: Sales Order Payment
+      required:
+      - amount
+      - date
+      type: object
+      properties:
+        id:
+          type: integer
+        sales_order_id:
+          type: integer
+          description: ID of the sales order this payment was applied to
+        amount:
+          type: number
+        date:
+          type: integer
+        reference_number:
+          type:
+          - string
+          - 'null'
+          description: Payment reference number
+        external_transaction_name:
+          type:
+          - string
+          - 'null'
+          description: Readable name of the linked external (e.g. accounting) transaction
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+      example:
+        id: 9001
+        sales_order_id: 584857
+        amount: 10000
+        date: '2021-05-24T19:58:00.000Z'
+        reference_number: CHK-1042
+        external_transaction_name: 'QBO Payment #55'
+        updated_at: '2021-05-24T19:58:00.000Z'
     TestResults:
       title: TestResults
       type: object
@@ -1292,34 +1298,6 @@ components:
                 beta_caryophyllene: '0.01474344681'
                 caryophyllene_oxide: '0.00080207704'
                 endo_fenchyl_alcohol: '0.00415234658'
-    PackageTransfer:
-      title: Package Transfer
-      required:
-      - id
-      - facility_id
-      properties:
-        package:
-          $ref: '#/components/schemas/Package'
-        status:
-          type: string
-        sale_price:
-          type: number
-          example: 12.34
-        shipped_weight:
-          type: number
-          example: 10.0
-        shipped_weight_unit:
-          type: string
-          example: Grams
-        received_weight:
-          type: number
-          example: 10.0
-        received_weight_unit:
-          type: string
-          example: Grams
-        updated_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
     TransferDestination:
       title: Transfer Destination
       required:
@@ -1347,15 +1325,44 @@ components:
         updated_at:
           type: string
           example: 2018-11-06 08:00:00+00:00
+    TestResultValue:
+      title: TestResultValue
+      type: object
+      properties:
+        value:
+          type: number
+          format: double
+          example: 0.17501406232422
+        measure:
+          type: string
+          enum:
+          - mg
+          - mg/g
+          - mg/serving
+          - percent
+          example: mg/g
+  responses:
+    403AccessDenied:
+      description: Access denied
+    401NotAuthenticated:
+      description: Not authenticated
+    400BadRequest:
+      description: Bad request
+    500ServerError:
+      description: Server error
+    404NotFound:
+      description: The specified resource was not found
   parameters:
-    offsetParam:
-      name: offset
+    limitParam:
+      name: limit
       in: query
-      description: Offset for the returned records (optional)
+      description: Max number of records to return (optional). Cannot exceed 2000
+      required: false
+      style: form
       schema:
         type: integer
-        default: 0
-        example: 20
+        default: 2000
+        example: 100
     whereParam:
       name: where
       in: query
@@ -1383,6 +1390,14 @@ components:
       schema:
         type: string
         example: status='Active' AND updated_at >= '2024-01-01'
+    offsetParam:
+      name: offset
+      in: query
+      description: Offset for the returned records (optional)
+      schema:
+        type: integer
+        default: 0
+        example: 20
     orderByParam:
       name: order_by
       in: query
@@ -1390,27 +1405,6 @@ components:
       schema:
         type: string
         example: id desc
-    limitParam:
-      name: limit
-      in: query
-      description: Max number of records to return (optional). Cannot exceed 2000
-      required: false
-      style: form
-      schema:
-        type: integer
-        default: 2000
-        example: 100
-  responses:
-    403AccessDenied:
-      description: Access denied
-    404NotFound:
-      description: The specified resource was not found
-    400BadRequest:
-      description: Bad request
-    401NotAuthenticated:
-      description: Not authenticated
-    500ServerError:
-      description: Server error
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

@@ -7,13 +7,7 @@ info:
     altText: Canix logo
   description: '# Introduction
 
-    This API documentation describes the endpoints used by third-party developers to get Canix data for their account.
-
-    # Authentication
-
-    Canix API uses API Keys for authentication. You can generate an API key on our [API page](https://app.canix.com/company/api), and on your API requests use the `X-API-KEY` header with the API key value you generated.
-
-    We strongly recommend using a secrets manager. Plain text files like dotenv lead to accidental costly leaks. Use [Doppler](https://doppler.com/) or similar options for a developer friendly experience. AWS and Google Cloud have native solutions as well.'
+    This API documentation describes the endpoints used by third-party developers to get Canix data for their account.'
   contact:
     name: Canix Support
     url: https://help.canix.com/
@@ -225,7 +219,6 @@ paths:
       tags:
       - Items
       summary: Create METRC Item Photos
-      description: Create METRC Item Photos
       operationId: CreateMETRCItemPhotos
       requestBody:
         required: true
@@ -259,7 +252,6 @@ paths:
       tags:
       - Items
       summary: Create METRC Item Files
-      description: Create METRC Item Files
       operationId: CreateMETRCItemFiles
       requestBody:
         required: true
@@ -289,59 +281,6 @@ paths:
         '500':
           $ref: '#/components/responses/500ServerError'
 components:
-  parameters:
-    offsetParam:
-      name: offset
-      in: query
-      description: Offset for the returned records (optional)
-      schema:
-        type: integer
-        default: 0
-        example: 20
-    whereParam:
-      name: where
-      in: query
-      description: 'Filter results using SQL-like WHERE clause syntax (optional).
-
-
-        **Supported operators**: =, >, <, >=, <=, BETWEEN, IN, LIKE, AND, OR
-
-
-        **Supported patterns**:
-
-        - Equality: `status=''Active''`
-
-        - Comparison: `updated_at >= ''2024-01-01''`
-
-        - Range: `id BETWEEN 1 AND 10000`
-
-        - List: `status IN (''Active'', ''Pending'')`
-
-        - Pattern: `sku LIKE ''ABC%''`
-
-        - Compound: `facility_id=123 AND is_active=true`
-
-        '
-      schema:
-        type: string
-        example: status='Active' AND updated_at >= '2024-01-01'
-    orderByParam:
-      name: order_by
-      in: query
-      description: Order-by clause, in SQL format (optional)
-      schema:
-        type: string
-        example: id desc
-    limitParam:
-      name: limit
-      in: query
-      description: Max number of records to return (optional). Cannot exceed 2000
-      required: false
-      style: form
-      schema:
-        type: integer
-        default: 2000
-        example: 100
   schemas:
     ItemStandardCostRequestBody:
       title: Item Standard Cost Request Body
@@ -365,70 +304,24 @@ components:
           format: date-time
           description: Optional. When this standard cost expires
           example: '2024-12-31T23:59:59Z'
-    ItemStandardCost:
-      title: ItemStandardCost
+    CreateMETRCItemFilesRequestBody:
+      title: CreateMETRCItemFileRequestBody
       required:
-      - id
-      - standard_cost_amount
-      - standard_cost_currency
-      - start_date
-      properties:
-        id:
-          type: integer
-          example: 123
-        standard_cost_amount:
-          type: number
-          example: 12.1111
-        standard_cost_currency:
-          type: string
-          example: USD
-        start_date:
-          type: string
-          example: '2023-04-19'
-        end_date:
-          type: string
-          example: '2023-05-19'
-    ItemType:
-      title: ItemType
-      required:
-      - id
-      - name
       - facility_id
-      type: object
+      - files
       properties:
-        id:
+        facility_id:
           type: integer
-        name:
-          type: string
-        quantity_type:
-          type: string
-        requires_strain:
-          type: boolean
-        requires_unit_volume:
-          type: boolean
-        requires_unit_weight:
-          type: boolean
-        requires_unit_thc_weight:
-          type: boolean
-        requires_unit_cbd_weight:
-          type: boolean
-        requires_unit_cbd_percent:
-          type: boolean
-        requires_unit_thc_percent:
-          type: boolean
-        requires_public_ingredients:
-          type: boolean
-        requires_administration_method:
-          type: boolean
-        requires_serving_size:
-          type: boolean
-        requires_supply_duration_days:
-          type: boolean
-        requires_number_of_doses:
-          type: boolean
-        updated_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
+        files:
+          type: array
+          items:
+            type: object
+            properties:
+              filename:
+                type: string
+              encoded_file_base64:
+                type: string
+                description: A Base64 string containing the encoded file
     CreateItemRequestBody:
       title: Item Request Body
       type: object
@@ -546,14 +439,6 @@ components:
           type: string
           example: 'Brand #1'
           description: Item Brand for METRC
-    IdName:
-      title: IdName
-      type: object
-      properties:
-        id:
-          type: number
-        name:
-          type: string
     CrossStrain:
       title: Cross Strain
       required:
@@ -586,6 +471,91 @@ components:
           type: number
           example: 55.0
           description: Sativa Percentage
+    ItemType:
+      title: ItemType
+      required:
+      - id
+      - name
+      - facility_id
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        quantity_type:
+          type: string
+        requires_strain:
+          type: boolean
+        requires_unit_volume:
+          type: boolean
+        requires_unit_weight:
+          type: boolean
+        requires_unit_thc_weight:
+          type: boolean
+        requires_unit_cbd_weight:
+          type: boolean
+        requires_unit_cbd_percent:
+          type: boolean
+        requires_unit_thc_percent:
+          type: boolean
+        requires_public_ingredients:
+          type: boolean
+        requires_administration_method:
+          type: boolean
+        requires_serving_size:
+          type: boolean
+        requires_supply_duration_days:
+          type: boolean
+        requires_number_of_doses:
+          type: boolean
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+    ItemSubType:
+      title: ItemSubType
+      required:
+      - id
+      - name
+      - weight_unit
+      - item_category
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        weight_unit:
+          type: string
+        category:
+          $ref: '#/components/schemas/ItemType'
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+    CreateMETRCItemPhotosRequestBody:
+      title: CreateMETRCItemPhotosRequestBody
+      required:
+      - facility_id
+      - photos
+      properties:
+        facility_id:
+          type: integer
+        photos:
+          type: array
+          items:
+            type: object
+            properties:
+              attachment_type:
+                enum:
+                - product
+                - label
+                - packaging
+                description: 'The type of attachment intended for the item. Must be one of the following: product, label, packaging'
+              filename:
+                type: string
+              encoded_image_base64:
+                type: string
+                description: A Base64 string containing the encoded image
     Item:
       title: Item
       required:
@@ -776,6 +746,66 @@ components:
         backordered: 10
         unordered: 75
         updated_at: '2021-03-16T23:49:03.175Z'
+    ItemStandardCost:
+      title: ItemStandardCost
+      required:
+      - id
+      - standard_cost_amount
+      - standard_cost_currency
+      - start_date
+      properties:
+        id:
+          type: integer
+          example: 123
+        standard_cost_amount:
+          type: number
+          example: 12.1111
+        standard_cost_currency:
+          type: string
+          example: USD
+        start_date:
+          type: string
+          example: '2023-04-19'
+        end_date:
+          type: string
+          example: '2023-05-19'
+    Strain:
+      title: Strain
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          example: Lemon Skunk
+          description: Strain name
+        notes:
+          type: string
+          example: Terpenes .63%
+          description: Notes
+        sku:
+          type: string
+          example: BIOJJ
+          description: SKU
+        testing_status:
+          type: string
+          example: InHouse
+          description: 'Testing status: InHouse, ThirdParty, None, NA'
+        indica_percent:
+          type: number
+          example: 45.0
+          description: Indica Percentage
+        sativa_percent:
+          type: number
+          example: 55.0
+          description: Sativa Percentage
+        cross_strains:
+          type: array
+          description: Cross strains
+          items:
+            $ref: '#/components/schemas/CrossStrain'
     UpdateItemRequestBody:
       title: Item Update Request Body
       type: object
@@ -862,116 +892,78 @@ components:
           type: string
           example: 'Brand #1'
           description: Item Brand for METRC
-    CreateMETRCItemFilesRequestBody:
-      title: CreateMETRCItemFileRequestBody
-      required:
-      - facility_id
-      - files
-      properties:
-        facility_id:
-          type: integer
-        files:
-          type: array
-          items:
-            type: object
-            properties:
-              filename:
-                type: string
-              encoded_file_base64:
-                type: string
-                description: A Base64 string containing the encoded file
-    Strain:
-      title: Strain
-      required:
-      - id
-      - name
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-          example: Lemon Skunk
-          description: Strain name
-        notes:
-          type: string
-          example: Terpenes .63%
-          description: Notes
-        sku:
-          type: string
-          example: BIOJJ
-          description: SKU
-        testing_status:
-          type: string
-          example: InHouse
-          description: 'Testing status: InHouse, ThirdParty, None, NA'
-        indica_percent:
-          type: number
-          example: 45.0
-          description: Indica Percentage
-        sativa_percent:
-          type: number
-          example: 55.0
-          description: Sativa Percentage
-        cross_strains:
-          type: array
-          description: Cross strains
-          items:
-            $ref: '#/components/schemas/CrossStrain'
-    ItemSubType:
-      title: ItemSubType
-      required:
-      - id
-      - name
-      - weight_unit
-      - item_category
+    IdName:
+      title: IdName
       type: object
       properties:
         id:
-          type: integer
+          type: number
         name:
           type: string
-        weight_unit:
-          type: string
-        category:
-          $ref: '#/components/schemas/ItemType'
-        updated_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
-    CreateMETRCItemPhotosRequestBody:
-      title: CreateMETRCItemPhotosRequestBody
-      required:
-      - facility_id
-      - photos
-      properties:
-        facility_id:
-          type: integer
-        photos:
-          type: array
-          items:
-            type: object
-            properties:
-              attachment_type:
-                enum:
-                - product
-                - label
-                - packaging
-                description: 'The type of attachment intended for the item. Must be one of the following: product, label, packaging'
-              filename:
-                type: string
-              encoded_image_base64:
-                type: string
-                description: A Base64 string containing the encoded image
   responses:
     403AccessDenied:
       description: Access denied
-    404NotFound:
-      description: The specified resource was not found
-    400BadRequest:
-      description: Bad request
     401NotAuthenticated:
       description: Not authenticated
+    400BadRequest:
+      description: Bad request
     500ServerError:
       description: Server error
+    404NotFound:
+      description: The specified resource was not found
+  parameters:
+    limitParam:
+      name: limit
+      in: query
+      description: Max number of records to return (optional). Cannot exceed 2000
+      required: false
+      style: form
+      schema:
+        type: integer
+        default: 2000
+        example: 100
+    whereParam:
+      name: where
+      in: query
+      description: 'Filter results using SQL-like WHERE clause syntax (optional).
+
+
+        **Supported operators**: =, >, <, >=, <=, BETWEEN, IN, LIKE, AND, OR
+
+
+        **Supported patterns**:
+
+        - Equality: `status=''Active''`
+
+        - Comparison: `updated_at >= ''2024-01-01''`
+
+        - Range: `id BETWEEN 1 AND 10000`
+
+        - List: `status IN (''Active'', ''Pending'')`
+
+        - Pattern: `sku LIKE ''ABC%''`
+
+        - Compound: `facility_id=123 AND is_active=true`
+
+        '
+      schema:
+        type: string
+        example: status='Active' AND updated_at >= '2024-01-01'
+    offsetParam:
+      name: offset
+      in: query
+      description: Offset for the returned records (optional)
+      schema:
+        type: integer
+        default: 0
+        example: 20
+    orderByParam:
+      name: order_by
+      in: query
+      description: Order-by clause, in SQL format (optional)
+      schema:
+        type: string
+        example: id desc
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

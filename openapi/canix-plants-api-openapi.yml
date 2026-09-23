@@ -7,13 +7,7 @@ info:
     altText: Canix logo
   description: '# Introduction
 
-    This API documentation describes the endpoints used by third-party developers to get Canix data for their account.
-
-    # Authentication
-
-    Canix API uses API Keys for authentication. You can generate an API key on our [API page](https://app.canix.com/company/api), and on your API requests use the `X-API-KEY` header with the API key value you generated.
-
-    We strongly recommend using a secrets manager. Plain text files like dotenv lead to accidental costly leaks. Use [Doppler](https://doppler.com/) or similar options for a developer friendly experience. AWS and Google Cloud have native solutions as well.'
+    This API documentation describes the endpoints used by third-party developers to get Canix data for their account.'
   contact:
     name: Canix Support
     url: https://help.canix.com/
@@ -119,75 +113,49 @@ paths:
           $ref: '#/components/responses/500ServerError'
 components:
   responses:
-    400BadRequest:
-      description: Bad request
-    401NotAuthenticated:
-      description: Not authenticated
-    403AccessDenied:
-      description: Access denied
     404NotFound:
       description: The specified resource was not found
+    403AccessDenied:
+      description: Access denied
+    401NotAuthenticated:
+      description: Not authenticated
+    400BadRequest:
+      description: Bad request
     500ServerError:
       description: Server error
   schemas:
-    Plant:
-      title: Plant
+    CrossStrain:
+      title: Cross Strain
       required:
       - id
       - name
       properties:
         id:
           type: integer
-          example: 123
-        tag:
+        name:
           type: string
-          example: 1A4FF0000000022000000719
-        plant_batch:
-          $ref: '#/components/schemas/PlantBatch'
-        weight:
-          type: integer
-          example: 2
-        weight_unit:
-          type: string
-          example: Grams
-        growth_phase:
-          type: string
-          example: Flowering
-        state:
-          type: string
-          example: Tracked
-        strain:
-          $ref: '#/components/schemas/Strain'
-        location:
-          $ref: '#/components/schemas/Location'
-        planted_date:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
-        vegetative_date:
-          type: string
-          example: 2015-12-23 07:00:00+00:00
-        flowering_date:
-          type: string
-          example: 2016-04-18 06:00:00+00:00
-        harvested_date:
-          type: string
-          example: 2018-04-18 06:00:00+00:00
-        destroyed_date:
-          type: string
-          example: 2019-04-18 06:00:00+00:00
+          example: Lemon Skunk
+          description: Strain name
         notes:
           type: string
-          example: nice plant!
-        age_in_days:
+          example: Terpenes .63%
+          description: Notes
+        sku:
+          type: string
+          example: BIOJJ
+          description: SKU
+        testing_status:
+          type: string
+          example: InHouse
+          description: 'Testing status: InHouse, ThirdParty, None, NA'
+        indica_percent:
           type: number
-          example: 2039
-        harvest:
-          $ref: '#/components/schemas/Harvest'
-        lot_id:
-          type: string
-        updated_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
+          example: 45.0
+          description: Indica Percentage
+        sativa_percent:
+          type: number
+          example: 55.0
+          description: Sativa Percentage
     PlantBatch:
       title: Plant Batch
       required:
@@ -233,75 +201,6 @@ components:
         updated_at:
           type: string
           example: 2018-11-06 08:00:00+00:00
-    RecordCount:
-      title: Record Count
-      required:
-      - Count
-      properties:
-        count:
-          type: integer
-          example: 123
-    Strain:
-      title: Strain
-      required:
-      - id
-      - name
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-          example: Lemon Skunk
-          description: Strain name
-        notes:
-          type: string
-          example: Terpenes .63%
-          description: Notes
-        sku:
-          type: string
-          example: BIOJJ
-          description: SKU
-        testing_status:
-          type: string
-          example: InHouse
-          description: 'Testing status: InHouse, ThirdParty, None, NA'
-        indica_percent:
-          type: number
-          example: 45.0
-          description: Indica Percentage
-        sativa_percent:
-          type: number
-          example: 55.0
-          description: Sativa Percentage
-        cross_strains:
-          type: array
-          description: Cross strains
-          items:
-            $ref: '#/components/schemas/CrossStrain'
-    ParentLocation:
-      title: Parent Location
-      required:
-      - id
-      - name
-      properties:
-        id:
-          type: integer
-          example: 123
-        name:
-          type: string
-          example: Pro System
-        sqft:
-          type: number
-          example: 14.4
-        num_lights:
-          type: integer
-          example: 42
-        updated_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
-        is_active:
-          type: boolean
-          example: true
     Harvest:
       title: Harvest
       required:
@@ -376,8 +275,90 @@ components:
         is_active:
           type: boolean
           example: true
-    CrossStrain:
-      title: Cross Strain
+    ParentLocation:
+      title: Parent Location
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: integer
+          example: 123
+        name:
+          type: string
+          example: Pro System
+        sqft:
+          type: number
+          example: 14.4
+        num_lights:
+          type: integer
+          example: 42
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+        is_active:
+          type: boolean
+          example: true
+    Plant:
+      title: Plant
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: integer
+          example: 123
+        tag:
+          type: string
+          example: 1A4FF0000000022000000719
+        plant_batch:
+          $ref: '#/components/schemas/PlantBatch'
+        weight:
+          type: integer
+          example: 2
+        weight_unit:
+          type: string
+          example: Grams
+        growth_phase:
+          type: string
+          example: Flowering
+        state:
+          type: string
+          example: Tracked
+        strain:
+          $ref: '#/components/schemas/Strain'
+        location:
+          $ref: '#/components/schemas/Location'
+        planted_date:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+        vegetative_date:
+          type: string
+          example: 2015-12-23 07:00:00+00:00
+        flowering_date:
+          type: string
+          example: 2016-04-18 06:00:00+00:00
+        harvested_date:
+          type: string
+          example: 2018-04-18 06:00:00+00:00
+        destroyed_date:
+          type: string
+          example: 2019-04-18 06:00:00+00:00
+        notes:
+          type: string
+          example: nice plant!
+        age_in_days:
+          type: number
+          example: 2039
+        harvest:
+          $ref: '#/components/schemas/Harvest'
+        lot_id:
+          type: string
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+    Strain:
+      title: Strain
       required:
       - id
       - name
@@ -408,15 +389,20 @@ components:
           type: number
           example: 55.0
           description: Sativa Percentage
+        cross_strains:
+          type: array
+          description: Cross strains
+          items:
+            $ref: '#/components/schemas/CrossStrain'
+    RecordCount:
+      title: Record Count
+      required:
+      - Count
+      properties:
+        count:
+          type: integer
+          example: 123
   parameters:
-    offsetParam:
-      name: offset
-      in: query
-      description: Offset for the returned records (optional)
-      schema:
-        type: integer
-        default: 0
-        example: 20
     limitParam:
       name: limit
       in: query
@@ -427,6 +413,14 @@ components:
         type: integer
         default: 2000
         example: 100
+    offsetParam:
+      name: offset
+      in: query
+      description: Offset for the returned records (optional)
+      schema:
+        type: integer
+        default: 0
+        example: 20
     orderByParam:
       name: order_by
       in: query

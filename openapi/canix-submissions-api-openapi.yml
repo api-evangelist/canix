@@ -7,13 +7,7 @@ info:
     altText: Canix logo
   description: '# Introduction
 
-    This API documentation describes the endpoints used by third-party developers to get Canix data for their account.
-
-    # Authentication
-
-    Canix API uses API Keys for authentication. You can generate an API key on our [API page](https://app.canix.com/company/api), and on your API requests use the `X-API-KEY` header with the API key value you generated.
-
-    We strongly recommend using a secrets manager. Plain text files like dotenv lead to accidental costly leaks. Use [Doppler](https://doppler.com/) or similar options for a developer friendly experience. AWS and Google Cloud have native solutions as well.'
+    This API documentation describes the endpoints used by third-party developers to get Canix data for their account.'
   contact:
     name: Canix Support
     url: https://help.canix.com/
@@ -36,9 +30,7 @@ paths:
 
         adjusting inventory, submitting a transfer, etc.) that may be pending, successful, failed, or
 
-        require approval. Use this endpoint to poll the status of a submission after initiating an action.
-
-        '
+        require approval. Use this endpoint to poll the status of a submission after initiating an action.'
       operationId: GetSubmissionById
       parameters:
       - name: submission_id
@@ -115,52 +107,17 @@ paths:
           $ref: '#/components/responses/500ServerError'
 components:
   responses:
-    400BadRequest:
-      description: Bad request
+    404NotFound:
+      description: The specified resource was not found
     401NotAuthenticated:
       description: Not authenticated
     403AccessDenied:
       description: Access denied
-    404NotFound:
-      description: The specified resource was not found
+    400BadRequest:
+      description: Bad request
     500ServerError:
       description: Server error
   schemas:
-    SubmissionStatus:
-      title: Submission Status
-      type: string
-      description: 'The current status of the submission:
-
-        - **CREATED**: Transaction queued for processing
-
-        - **PENDING_APPROVAL**: Transaction awaiting admin approval
-
-        - **PENDING**: Transaction pending response from compliance system
-
-        - **RETRYING**: Transaction failed but will be automatically retried
-
-        - **FAILED**: Transaction failed permanently
-
-        - **SUCCESS**: Transaction completed successfully
-
-        - **DENIED**: Transaction was reviewed by an admin and denied
-
-        - **ABORTED**: Transaction has been aborted
-
-        - **PARTIAL_FAILURE**: Some steps succeeded but others failed
-
-        '
-      enum:
-      - CREATED
-      - PENDING_APPROVAL
-      - PENDING
-      - RETRYING
-      - FAILED
-      - SUCCESS
-      - DENIED
-      - ABORTED
-      - PARTIAL_FAILURE
-      example: SUCCESS
     Submission:
       title: Submission
       description: 'A submission represents an asynchronous action (such as creating a package, adjusting inventory,
@@ -230,6 +187,41 @@ components:
           tag: 1A40000000000000001
         created_at: '2024-01-15T10:30:00.000Z'
         last_run_at: '2024-01-15T10:30:05.000Z'
+    SubmissionStatus:
+      title: Submission Status
+      type: string
+      description: 'The current status of the submission:
+
+        - **CREATED**: Transaction queued for processing
+
+        - **PENDING_APPROVAL**: Transaction awaiting admin approval
+
+        - **PENDING**: Transaction pending response from compliance system
+
+        - **RETRYING**: Transaction failed but will be automatically retried
+
+        - **FAILED**: Transaction failed permanently
+
+        - **SUCCESS**: Transaction completed successfully
+
+        - **DENIED**: Transaction was reviewed by an admin and denied
+
+        - **ABORTED**: Transaction has been aborted
+
+        - **PARTIAL_FAILURE**: Some steps succeeded but others failed
+
+        '
+      enum:
+      - CREATED
+      - PENDING_APPROVAL
+      - PENDING
+      - RETRYING
+      - FAILED
+      - SUCCESS
+      - DENIED
+      - ABORTED
+      - PARTIAL_FAILURE
+      example: SUCCESS
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

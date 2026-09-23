@@ -7,13 +7,7 @@ info:
     altText: Canix logo
   description: '# Introduction
 
-    This API documentation describes the endpoints used by third-party developers to get Canix data for their account.
-
-    # Authentication
-
-    Canix API uses API Keys for authentication. You can generate an API key on our [API page](https://app.canix.com/company/api), and on your API requests use the `X-API-KEY` header with the API key value you generated.
-
-    We strongly recommend using a secrets manager. Plain text files like dotenv lead to accidental costly leaks. Use [Doppler](https://doppler.com/) or similar options for a developer friendly experience. AWS and Google Cloud have native solutions as well.'
+    This API documentation describes the endpoints used by third-party developers to get Canix data for their account.'
   contact:
     name: Canix Support
     url: https://help.canix.com/
@@ -242,9 +236,7 @@ paths:
 
         Note: Cannot cancel orders that are shipped, accepted, returned, or archived.
 
-        __CALLING THIS ENDPOINT WILL MODIFY YOUR DATA IRREVERSIBLY. ONLY CALL THIS ON SANDBOX DATA DURING DEVELOPMENT/CODING/TESTING.__
-
-        '
+        __CALLING THIS ENDPOINT WILL MODIFY YOUR DATA IRREVERSIBLY. ONLY CALL THIS ON SANDBOX DATA DURING DEVELOPMENT/CODING/TESTING.__'
       operationId: UpdateSalesOrderStatus
       parameters:
       - name: sales_order_id
@@ -302,9 +294,7 @@ paths:
       summary: GetPayments
       description: 'Return sales order payments across all of the company''s facilities, newest first.
 
-        Filter by received date with the `where` parameter, e.g. `where=payment_date >= ''2026-01-01''`.
-
-        '
+        Filter by received date with the `where` parameter, e.g. `where=payment_date >= ''2026-01-01''`.'
       operationId: GetPayments
       parameters:
       - name: facility_id
@@ -370,43 +360,19 @@ paths:
           $ref: '#/components/responses/500ServerError'
 components:
   schemas:
-    SalesOrderPayment:
-      title: Sales Order Payment
-      required:
-      - amount
-      - date
+    User:
+      title: User
       type: object
       properties:
         id:
           type: integer
-        sales_order_id:
-          type: integer
-          description: ID of the sales order this payment was applied to
-        amount:
-          type: number
-        date:
-          type: integer
-        reference_number:
-          type:
-          - string
-          - 'null'
-          description: Payment reference number
-        external_transaction_name:
-          type:
-          - string
-          - 'null'
-          description: Readable name of the linked external (e.g. accounting) transaction
-        updated_at:
+          example: 123
+        name:
           type: string
-          example: 2018-11-06 08:00:00+00:00
-      example:
-        id: 9001
-        sales_order_id: 584857
-        amount: 10000
-        date: '2021-05-24T19:58:00.000Z'
-        reference_number: CHK-1042
-        external_transaction_name: 'QBO Payment #55'
-        updated_at: '2021-05-24T19:58:00.000Z'
+          example: John Doe
+        email:
+          type: string
+          example: j@d.com
     Discount:
       title: Discount
       type: object
@@ -424,31 +390,6 @@ components:
         type: fixed
         amount: 10.0
         reason: Black Friday Sale
-    Address:
-      title: Address
-      type: object
-      properties:
-        street:
-          type: string
-          example: 123 Cumberland St
-        street2:
-          type: string
-          example: West
-        city:
-          type: string
-          example: Somerset
-        county:
-          type: string
-          example: KY
-        state:
-          type: string
-          example: CO
-        country:
-          type: string
-          example: USA
-        postal_code:
-          type: string
-          example: 42504
     SalesOrderItem:
       title: Sales Order Item
       required:
@@ -528,71 +469,6 @@ components:
           reason: 25% off
         updated_at: '2021-05-24T19:58:00.000Z'
         order: 1
-    Customer:
-      title: Customer
-      type: object
-      properties:
-        id:
-          type: integer
-        contact_name:
-          type: string
-        company_name:
-          type: string
-        facility_license_number:
-          type: string
-        license_type:
-          type: string
-        customer_number:
-          type: string
-        license_expiration_date:
-          type: string
-        phone:
-          type: string
-        email:
-          type: string
-        territory:
-          type: string
-        address:
-          $ref: '#/components/schemas/Address'
-        notes:
-          type: string
-        outstanding_balance:
-          type: number
-        credit:
-          type: number
-          description: Current credit balance available to this customer
-        dba:
-          type: string
-          example: Doing Business As
-        is_active:
-          type: boolean
-        created_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
-        updated_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
-    User:
-      title: User
-      type: object
-      properties:
-        id:
-          type: integer
-          example: 123
-        name:
-          type: string
-          example: John Doe
-        email:
-          type: string
-          example: j@d.com
-    IdName:
-      title: IdName
-      type: object
-      properties:
-        id:
-          type: number
-        name:
-          type: string
     SalesOrderRequestBody:
       title: Sales Order Request Body
       type: object
@@ -923,15 +799,142 @@ components:
         id: 7036
         name: Blue Dream - Trim
         sku: '22657'
+    Address:
+      title: Address
+      type: object
+      properties:
+        street:
+          type: string
+          example: 123 Cumberland St
+        street2:
+          type: string
+          example: West
+        city:
+          type: string
+          example: Somerset
+        county:
+          type: string
+          example: KY
+        state:
+          type: string
+          example: CO
+        country:
+          type: string
+          example: USA
+        postal_code:
+          type: string
+          example: 42504
+    Customer:
+      title: Customer
+      type: object
+      properties:
+        id:
+          type: integer
+        contact_name:
+          type: string
+        company_name:
+          type: string
+        facility_license_number:
+          type: string
+        license_type:
+          type: string
+        customer_number:
+          type: string
+        license_expiration_date:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+        territory:
+          type: string
+        address:
+          $ref: '#/components/schemas/Address'
+        notes:
+          type: string
+        outstanding_balance:
+          type: number
+        credit:
+          type: number
+          description: Current credit balance available to this customer
+        dba:
+          type: string
+          example: Doing Business As
+        is_active:
+          type: boolean
+        created_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+    SalesOrderPayment:
+      title: Sales Order Payment
+      required:
+      - amount
+      - date
+      type: object
+      properties:
+        id:
+          type: integer
+        sales_order_id:
+          type: integer
+          description: ID of the sales order this payment was applied to
+        amount:
+          type: number
+        date:
+          type: integer
+        reference_number:
+          type:
+          - string
+          - 'null'
+          description: Payment reference number
+        external_transaction_name:
+          type:
+          - string
+          - 'null'
+          description: Readable name of the linked external (e.g. accounting) transaction
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+      example:
+        id: 9001
+        sales_order_id: 584857
+        amount: 10000
+        date: '2021-05-24T19:58:00.000Z'
+        reference_number: CHK-1042
+        external_transaction_name: 'QBO Payment #55'
+        updated_at: '2021-05-24T19:58:00.000Z'
+    IdName:
+      title: IdName
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+  responses:
+    403AccessDenied:
+      description: Access denied
+    401NotAuthenticated:
+      description: Not authenticated
+    400BadRequest:
+      description: Bad request
+    500ServerError:
+      description: Server error
+    404NotFound:
+      description: The specified resource was not found
   parameters:
-    offsetParam:
-      name: offset
+    limitParam:
+      name: limit
       in: query
-      description: Offset for the returned records (optional)
+      description: Max number of records to return (optional). Cannot exceed 2000
+      required: false
+      style: form
       schema:
         type: integer
-        default: 0
-        example: 20
+        default: 2000
+        example: 100
     whereParam:
       name: where
       in: query
@@ -959,6 +962,14 @@ components:
       schema:
         type: string
         example: status='Active' AND updated_at >= '2024-01-01'
+    offsetParam:
+      name: offset
+      in: query
+      description: Offset for the returned records (optional)
+      schema:
+        type: integer
+        default: 0
+        example: 20
     orderByParam:
       name: order_by
       in: query
@@ -966,27 +977,6 @@ components:
       schema:
         type: string
         example: id desc
-    limitParam:
-      name: limit
-      in: query
-      description: Max number of records to return (optional). Cannot exceed 2000
-      required: false
-      style: form
-      schema:
-        type: integer
-        default: 2000
-        example: 100
-  responses:
-    403AccessDenied:
-      description: Access denied
-    404NotFound:
-      description: The specified resource was not found
-    400BadRequest:
-      description: Bad request
-    401NotAuthenticated:
-      description: Not authenticated
-    500ServerError:
-      description: Server error
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
