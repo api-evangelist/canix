@@ -54,16 +54,16 @@ paths:
           $ref: '#/components/responses/500ServerError'
 components:
   responses:
+    500ServerError:
+      description: Server error
     404NotFound:
       description: The specified resource was not found
+    400BadRequest:
+      description: Bad request
     403AccessDenied:
       description: Access denied
     401NotAuthenticated:
       description: Not authenticated
-    400BadRequest:
-      description: Bad request
-    500ServerError:
-      description: Server error
   schemas:
     Company:
       title: Company

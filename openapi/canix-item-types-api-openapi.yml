@@ -61,16 +61,69 @@ paths:
           $ref: '#/components/responses/500ServerError'
 components:
   responses:
-    404NotFound:
-      description: The specified resource was not found
-    403AccessDenied:
-      description: Access denied
-    401NotAuthenticated:
-      description: Not authenticated
-    400BadRequest:
-      description: Bad request
     500ServerError:
       description: Server error
+    404NotFound:
+      description: The specified resource was not found
+    400BadRequest:
+      description: Bad request
+    401NotAuthenticated:
+      description: Not authenticated
+    403AccessDenied:
+      description: Access denied
+  parameters:
+    whereParam:
+      name: where
+      in: query
+      description: 'Filter results using SQL-like WHERE clause syntax (optional).
+
+
+        **Supported operators**: =, >, <, >=, <=, BETWEEN, IN, LIKE, AND, OR
+
+
+        **Supported patterns**:
+
+        - Equality: `status=''Active''`
+
+        - Comparison: `updated_at >= ''2024-01-01''`
+
+        - Range: `id BETWEEN 1 AND 10000`
+
+        - List: `status IN (''Active'', ''Pending'')`
+
+        - Pattern: `sku LIKE ''ABC%''`
+
+        - Compound: `facility_id=123 AND is_active=true`
+
+        '
+      schema:
+        type: string
+        example: status='Active' AND updated_at >= '2024-01-01'
+    orderByParam:
+      name: order_by
+      in: query
+      description: Order-by clause, in SQL format (optional)
+      schema:
+        type: string
+        example: id desc
+    offsetParam:
+      name: offset
+      in: query
+      description: Offset for the returned records (optional)
+      schema:
+        type: integer
+        default: 0
+        example: 20
+    limitParam:
+      name: limit
+      in: query
+      description: Max number of records to return (optional). Cannot exceed 2000
+      required: false
+      style: form
+      schema:
+        type: integer
+        default: 2000
+        example: 100
   schemas:
     ItemType:
       title: ItemType
@@ -113,59 +166,6 @@ components:
         updated_at:
           type: string
           example: 2018-11-06 08:00:00+00:00
-  parameters:
-    limitParam:
-      name: limit
-      in: query
-      description: Max number of records to return (optional). Cannot exceed 2000
-      required: false
-      style: form
-      schema:
-        type: integer
-        default: 2000
-        example: 100
-    offsetParam:
-      name: offset
-      in: query
-      description: Offset for the returned records (optional)
-      schema:
-        type: integer
-        default: 0
-        example: 20
-    orderByParam:
-      name: order_by
-      in: query
-      description: Order-by clause, in SQL format (optional)
-      schema:
-        type: string
-        example: id desc
-    whereParam:
-      name: where
-      in: query
-      description: 'Filter results using SQL-like WHERE clause syntax (optional).
-
-
-        **Supported operators**: =, >, <, >=, <=, BETWEEN, IN, LIKE, AND, OR
-
-
-        **Supported patterns**:
-
-        - Equality: `status=''Active''`
-
-        - Comparison: `updated_at >= ''2024-01-01''`
-
-        - Range: `id BETWEEN 1 AND 10000`
-
-        - List: `status IN (''Active'', ''Pending'')`
-
-        - Pattern: `sku LIKE ''ABC%''`
-
-        - Compound: `facility_id=123 AND is_active=true`
-
-        '
-      schema:
-        type: string
-        example: status='Active' AND updated_at >= '2024-01-01'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

@@ -53,7 +53,7 @@ paths:
       - Bill of Materials
       summary: GetBillOfMaterials
       description: Get Bill of Materials by ID
-      operationId: GetBillOfMaterialsById
+      operationId: getBillsOfMaterialsByBillOfMaterialsId
       parameters:
       - name: bill_of_materials_id
         in: path
@@ -123,129 +123,10 @@ paths:
           $ref: '#/components/responses/404NotFound'
         '500':
           $ref: '#/components/responses/500ServerError'
+      x-operation-id-source: normalized
+      x-operation-id-original: GetBillOfMaterialsById
 components:
-  responses:
-    404NotFound:
-      description: The specified resource was not found
-    401NotAuthenticated:
-      description: Not authenticated
-    403AccessDenied:
-      description: Access denied
-    400BadRequest:
-      description: Bad request
-    500ServerError:
-      description: Server error
   schemas:
-    BillOfMaterialsSourceNonCannabisProduct:
-      title: Source Non Cannabis Product Info
-      type: object
-      required:
-      - non_cannabis_product_id
-      - name
-      - quantity
-      - weight_unit
-      - application_setting
-      properties:
-        non_cannabis_product_id:
-          type: integer
-        name:
-          type: string
-        quantity:
-          type: number
-        weight_unit:
-          type: string
-        application_setting:
-          type: string
-      example:
-        name: 1/8th Jar
-        non_cannabis_product_id: 24
-        quantity: 1
-        weight_unit: Each
-        application_setting: proportional
-    BillOfMaterials:
-      title: Bill of Materials Info
-      type: object
-      required:
-      - id
-      - name
-      - proportion_type
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        active_date:
-          type: string
-          format: date
-        expiration_date:
-          type: string
-          format: date
-        proportion_type:
-          type: string
-          description: single_instance means materials are applied to each output independently; all_instances means materials are applied across all output item quantities
-        last_updated_at:
-          type: string
-          format: date-time
-          description: Last updated timestamp
-        source_non_cannabis_products:
-          type: array
-          items:
-            $ref: '#/components/schemas/BillOfMaterialsSourceNonCannabisProduct'
-        source_cannabis_items:
-          type: array
-          items:
-            $ref: '#/components/schemas/BillOfMaterialsSourceCannabisItem'
-        output_items:
-          type: array
-          items:
-            $ref: '#/components/schemas/BillOfMaterialsOutputItem'
-      example:
-        id: 12
-        name: Bulk - Dark Chocolate Peaks - 10mg
-        active_date: '2023-01-01'
-        expiration_date: '2023-12-31'
-        proportion_type: single_instance
-        source_non_cannabis_products:
-        - name: 1/8th Jar
-          non_cannabis_product_id: 24
-          quantity: 1
-          weight_unit: Each
-          application_setting: proportional
-        - name: Gloves - Large
-          non_cannabis_product_id: 56
-          quantity: 2
-          weight_unit: Each
-          application_setting: fixed
-        source_cannabis_items:
-        - quantity: 20
-          weight_unit: Grams
-          item:
-            id: 242
-            name: Hammer Bud
-          item_category: null
-          item_sub_category: null
-        - quantity: 25
-          weight_unit: Grams
-          item: null
-          item_category:
-            id: 98
-            name: B Buds
-          item_sub_category: null
-        output_items:
-        - name: Jarred Flower
-          item_id: 370
-          quantity: 50
-          weight_unit: Grams
-          item_category: null
-          item_sub_category: null
-        - name: null
-          item_id: 371
-          quantity: 25
-          weight_unit: Grams
-          item_category:
-            id: 98
-            name: B Buds
-          item_sub_category: null
     BillOfMaterialsOutputItem:
       title: Output Item Info
       type: object
@@ -337,6 +218,127 @@ components:
           name: Hammer Bud
         item_category: null
         item_sub_category: null
+    BillOfMaterials:
+      title: Bill of Materials Info
+      type: object
+      required:
+      - id
+      - name
+      - proportion_type
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        active_date:
+          type: string
+          format: date
+        expiration_date:
+          type: string
+          format: date
+        proportion_type:
+          type: string
+          description: single_instance means materials are applied to each output independently; all_instances means materials are applied across all output item quantities
+        last_updated_at:
+          type: string
+          format: date-time
+          description: Last updated timestamp
+        source_non_cannabis_products:
+          type: array
+          items:
+            $ref: '#/components/schemas/BillOfMaterialsSourceNonCannabisProduct'
+        source_cannabis_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/BillOfMaterialsSourceCannabisItem'
+        output_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/BillOfMaterialsOutputItem'
+      example:
+        id: 12
+        name: Bulk - Dark Chocolate Peaks - 10mg
+        active_date: '2023-01-01'
+        expiration_date: '2023-12-31'
+        proportion_type: single_instance
+        source_non_cannabis_products:
+        - name: 1/8th Jar
+          non_cannabis_product_id: 24
+          quantity: 1
+          weight_unit: Each
+          application_setting: proportional
+        - name: Gloves - Large
+          non_cannabis_product_id: 56
+          quantity: 2
+          weight_unit: Each
+          application_setting: fixed
+        source_cannabis_items:
+        - quantity: 20
+          weight_unit: Grams
+          item:
+            id: 242
+            name: Hammer Bud
+          item_category: null
+          item_sub_category: null
+        - quantity: 25
+          weight_unit: Grams
+          item: null
+          item_category:
+            id: 98
+            name: B Buds
+          item_sub_category: null
+        output_items:
+        - name: Jarred Flower
+          item_id: 370
+          quantity: 50
+          weight_unit: Grams
+          item_category: null
+          item_sub_category: null
+        - name: null
+          item_id: 371
+          quantity: 25
+          weight_unit: Grams
+          item_category:
+            id: 98
+            name: B Buds
+          item_sub_category: null
+    BillOfMaterialsSourceNonCannabisProduct:
+      title: Source Non Cannabis Product Info
+      type: object
+      required:
+      - non_cannabis_product_id
+      - name
+      - quantity
+      - weight_unit
+      - application_setting
+      properties:
+        non_cannabis_product_id:
+          type: integer
+        name:
+          type: string
+        quantity:
+          type: number
+        weight_unit:
+          type: string
+        application_setting:
+          type: string
+      example:
+        name: 1/8th Jar
+        non_cannabis_product_id: 24
+        quantity: 1
+        weight_unit: Each
+        application_setting: proportional
+  responses:
+    500ServerError:
+      description: Server error
+    404NotFound:
+      description: The specified resource was not found
+    400BadRequest:
+      description: Bad request
+    403AccessDenied:
+      description: Access denied
+    401NotAuthenticated:
+      description: Not authenticated
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

@@ -360,19 +360,31 @@ paths:
           $ref: '#/components/responses/500ServerError'
 components:
   schemas:
-    User:
-      title: User
+    Address:
+      title: Address
       type: object
       properties:
-        id:
-          type: integer
-          example: 123
-        name:
+        street:
           type: string
-          example: John Doe
-        email:
+          example: 123 Cumberland St
+        street2:
           type: string
-          example: j@d.com
+          example: West
+        city:
+          type: string
+          example: Somerset
+        county:
+          type: string
+          example: KY
+        state:
+          type: string
+          example: CO
+        country:
+          type: string
+          example: USA
+        postal_code:
+          type: string
+          example: 42504
     Discount:
       title: Discount
       type: object
@@ -390,85 +402,43 @@ components:
         type: fixed
         amount: 10.0
         reason: Black Friday Sale
-    SalesOrderItem:
-      title: Sales Order Item
+    SalesOrderPayment:
+      title: Sales Order Payment
       required:
-      - id
-      - sales_order_id
+      - amount
+      - date
       type: object
       properties:
         id:
           type: integer
-        weight:
+        sales_order_id:
+          type: integer
+          description: ID of the sales order this payment was applied to
+        amount:
           type: number
-        weight_unit:
-          oneOf:
-          - type: string
-            description: Unit name or abbreviation
-          - type: integer
-            description: Unit id
-        unit_price:
-          type: number
-        total_price:
-          type: number
-          description: Total price (unit * weight)
-        item:
-          $ref: '#/components/schemas/Sales_order_item'
-        brand:
-          allOf:
-          - $ref: '#/components/schemas/IdName'
-          description: Brand of the sold item, product, or non-cannabis product (null if none)
-        product_id:
+        date:
+          type: integer
+        reference_number:
           type:
-          - integer
+          - string
           - 'null'
-          description: ID of the linked cannabis Product, if any
-        product_brand:
-          allOf:
-          - $ref: '#/components/schemas/IdName'
-          description: Brand of the linked cannabis Product, if any
-        is_sample:
-          type: boolean
-          description: Whether the line item is a trade sample
-        package_ids:
-          type: array
-          items:
-            type: integer
+          description: Payment reference number
+        external_transaction_name:
+          type:
+          - string
+          - 'null'
+          description: Readable name of the linked external (e.g. accounting) transaction
         updated_at:
           type: string
           example: 2018-11-06 08:00:00+00:00
-        order:
-          type: integer
-          description: Position of the item in the order
-        discount:
-          $ref: '#/components/schemas/Discount'
       example:
-        id: 100
-        weight: 20
-        weight_unit: Each
-        unit_price: 20
-        total_price: 400
-        item:
-          id: 7036
-          name: Blue Dream - Trim
-          sku: '22657'
-        brand:
-          id: 12
-          name: Sunshine Co
-        product_id: 4500
-        product_brand:
-          id: 12
-          name: Sunshine Co
-        is_sample: false
-        package_ids:
-        - 123
-        - 456
-        discount:
-          type: percentage
-          amount: 25.0
-          reason: 25% off
+        id: 9001
+        sales_order_id: 584857
+        amount: 10000
+        date: '2021-05-24T19:58:00.000Z'
+        reference_number: CHK-1042
+        external_transaction_name: 'QBO Payment #55'
         updated_at: '2021-05-24T19:58:00.000Z'
-        order: 1
     SalesOrderRequestBody:
       title: Sales Order Request Body
       type: object
@@ -785,45 +755,6 @@ components:
         display_status: Pending Review
         invoice_url: https://www.app.canix.com/sales/invoice/view/123456
         updated_at: '2021-05-24T19:58:00.000Z'
-    Sales_order_item:
-      title: Item
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        sku:
-          type: string
-      example:
-        id: 7036
-        name: Blue Dream - Trim
-        sku: '22657'
-    Address:
-      title: Address
-      type: object
-      properties:
-        street:
-          type: string
-          example: 123 Cumberland St
-        street2:
-          type: string
-          example: West
-        city:
-          type: string
-          example: Somerset
-        county:
-          type: string
-          example: KY
-        state:
-          type: string
-          example: CO
-        country:
-          type: string
-          example: USA
-        postal_code:
-          type: string
-          example: 42504
     Customer:
       title: Customer
       type: object
@@ -868,43 +799,99 @@ components:
         updated_at:
           type: string
           example: 2018-11-06 08:00:00+00:00
-    SalesOrderPayment:
-      title: Sales Order Payment
+    SalesOrderItem:
+      title: Sales Order Item
       required:
-      - amount
-      - date
+      - id
+      - sales_order_id
       type: object
       properties:
         id:
           type: integer
-        sales_order_id:
-          type: integer
-          description: ID of the sales order this payment was applied to
-        amount:
+        weight:
           type: number
-        date:
-          type: integer
-        reference_number:
+        weight_unit:
+          oneOf:
+          - type: string
+            description: Unit name or abbreviation
+          - type: integer
+            description: Unit id
+        unit_price:
+          type: number
+        total_price:
+          type: number
+          description: Total price (unit * weight)
+        item:
+          $ref: '#/components/schemas/Sales_order_item'
+        brand:
+          allOf:
+          - $ref: '#/components/schemas/IdName'
+          description: Brand of the sold item, product, or non-cannabis product (null if none)
+        product_id:
           type:
-          - string
+          - integer
           - 'null'
-          description: Payment reference number
-        external_transaction_name:
-          type:
-          - string
-          - 'null'
-          description: Readable name of the linked external (e.g. accounting) transaction
+          description: ID of the linked cannabis Product, if any
+        product_brand:
+          allOf:
+          - $ref: '#/components/schemas/IdName'
+          description: Brand of the linked cannabis Product, if any
+        is_sample:
+          type: boolean
+          description: Whether the line item is a trade sample
+        package_ids:
+          type: array
+          items:
+            type: integer
         updated_at:
           type: string
           example: 2018-11-06 08:00:00+00:00
+        order:
+          type: integer
+          description: Position of the item in the order
+        discount:
+          $ref: '#/components/schemas/Discount'
       example:
-        id: 9001
-        sales_order_id: 584857
-        amount: 10000
-        date: '2021-05-24T19:58:00.000Z'
-        reference_number: CHK-1042
-        external_transaction_name: 'QBO Payment #55'
+        id: 100
+        weight: 20
+        weight_unit: Each
+        unit_price: 20
+        total_price: 400
+        item:
+          id: 7036
+          name: Blue Dream - Trim
+          sku: '22657'
+        brand:
+          id: 12
+          name: Sunshine Co
+        product_id: 4500
+        product_brand:
+          id: 12
+          name: Sunshine Co
+        is_sample: false
+        package_ids:
+        - 123
+        - 456
+        discount:
+          type: percentage
+          amount: 25.0
+          reason: 25% off
         updated_at: '2021-05-24T19:58:00.000Z'
+        order: 1
+    Sales_order_item:
+      title: Item
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        sku:
+          type: string
+      example:
+        id: 7036
+        name: Blue Dream - Trim
+        sku: '22657'
     IdName:
       title: IdName
       type: object
@@ -913,28 +900,20 @@ components:
           type: number
         name:
           type: string
-  responses:
-    403AccessDenied:
-      description: Access denied
-    401NotAuthenticated:
-      description: Not authenticated
-    400BadRequest:
-      description: Bad request
-    500ServerError:
-      description: Server error
-    404NotFound:
-      description: The specified resource was not found
+    User:
+      title: User
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 123
+        name:
+          type: string
+          example: John Doe
+        email:
+          type: string
+          example: j@d.com
   parameters:
-    limitParam:
-      name: limit
-      in: query
-      description: Max number of records to return (optional). Cannot exceed 2000
-      required: false
-      style: form
-      schema:
-        type: integer
-        default: 2000
-        example: 100
     whereParam:
       name: where
       in: query
@@ -962,6 +941,23 @@ components:
       schema:
         type: string
         example: status='Active' AND updated_at >= '2024-01-01'
+    limitParam:
+      name: limit
+      in: query
+      description: Max number of records to return (optional). Cannot exceed 2000
+      required: false
+      style: form
+      schema:
+        type: integer
+        default: 2000
+        example: 100
+    orderByParam:
+      name: order_by
+      in: query
+      description: Order-by clause, in SQL format (optional)
+      schema:
+        type: string
+        example: id desc
     offsetParam:
       name: offset
       in: query
@@ -970,13 +966,17 @@ components:
         type: integer
         default: 0
         example: 20
-    orderByParam:
-      name: order_by
-      in: query
-      description: Order-by clause, in SQL format (optional)
-      schema:
-        type: string
-        example: id desc
+  responses:
+    403AccessDenied:
+      description: Access denied
+    500ServerError:
+      description: Server error
+    401NotAuthenticated:
+      description: Not authenticated
+    400BadRequest:
+      description: Bad request
+    404NotFound:
+      description: The specified resource was not found
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

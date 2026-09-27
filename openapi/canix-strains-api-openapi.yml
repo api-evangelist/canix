@@ -159,17 +159,88 @@ paths:
           $ref: '#/components/responses/500ServerError'
 components:
   responses:
-    404NotFound:
-      description: The specified resource was not found
-    403AccessDenied:
-      description: Access denied
-    401NotAuthenticated:
-      description: Not authenticated
-    400BadRequest:
-      description: Bad request
     500ServerError:
       description: Server error
+    404NotFound:
+      description: The specified resource was not found
+    400BadRequest:
+      description: Bad request
+    401NotAuthenticated:
+      description: Not authenticated
+    403AccessDenied:
+      description: Access denied
+  parameters:
+    whereParam:
+      name: where
+      in: query
+      description: 'Filter results using SQL-like WHERE clause syntax (optional).
+
+
+        **Supported operators**: =, >, <, >=, <=, BETWEEN, IN, LIKE, AND, OR
+
+
+        **Supported patterns**:
+
+        - Equality: `status=''Active''`
+
+        - Comparison: `updated_at >= ''2024-01-01''`
+
+        - Range: `id BETWEEN 1 AND 10000`
+
+        - List: `status IN (''Active'', ''Pending'')`
+
+        - Pattern: `sku LIKE ''ABC%''`
+
+        - Compound: `facility_id=123 AND is_active=true`
+
+        '
+      schema:
+        type: string
+        example: status='Active' AND updated_at >= '2024-01-01'
+    orderByParam:
+      name: order_by
+      in: query
+      description: Order-by clause, in SQL format (optional)
+      schema:
+        type: string
+        example: id desc
+    offsetParam:
+      name: offset
+      in: query
+      description: Offset for the returned records (optional)
+      schema:
+        type: integer
+        default: 0
+        example: 20
+    limitParam:
+      name: limit
+      in: query
+      description: Max number of records to return (optional). Cannot exceed 2000
+      required: false
+      style: form
+      schema:
+        type: integer
+        default: 2000
+        example: 100
   schemas:
+    StrainRequestBody:
+      title: Strain Request Body
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          example: Blue Dream
+        description:
+          type: string
+          example: A sativa-dominant hybrid
+        genetics:
+          type: string
+          example: Blueberry x Haze
+        active:
+          type: boolean
+          example: true
     CrossStrain:
       title: Cross Strain
       required:
@@ -202,6 +273,43 @@ components:
           type: number
           example: 55.0
           description: Sativa Percentage
+    Strain:
+      title: Strain
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          example: Lemon Skunk
+          description: Strain name
+        notes:
+          type: string
+          example: Terpenes .63%
+          description: Notes
+        sku:
+          type: string
+          example: BIOJJ
+          description: SKU
+        testing_status:
+          type: string
+          example: InHouse
+          description: 'Testing status: InHouse, ThirdParty, None, NA'
+        indica_percent:
+          type: number
+          example: 45.0
+          description: Indica Percentage
+        sativa_percent:
+          type: number
+          example: 55.0
+          description: Sativa Percentage
+        cross_strains:
+          type: array
+          description: Cross strains
+          items:
+            $ref: '#/components/schemas/CrossStrain'
     CreateStrainRequestBody:
       title: Strain Request Body
       type: object
@@ -262,114 +370,6 @@ components:
           type: string
           description: Current testing status of the strain
           example: Tested
-    StrainRequestBody:
-      title: Strain Request Body
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          example: Blue Dream
-        description:
-          type: string
-          example: A sativa-dominant hybrid
-        genetics:
-          type: string
-          example: Blueberry x Haze
-        active:
-          type: boolean
-          example: true
-    Strain:
-      title: Strain
-      required:
-      - id
-      - name
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-          example: Lemon Skunk
-          description: Strain name
-        notes:
-          type: string
-          example: Terpenes .63%
-          description: Notes
-        sku:
-          type: string
-          example: BIOJJ
-          description: SKU
-        testing_status:
-          type: string
-          example: InHouse
-          description: 'Testing status: InHouse, ThirdParty, None, NA'
-        indica_percent:
-          type: number
-          example: 45.0
-          description: Indica Percentage
-        sativa_percent:
-          type: number
-          example: 55.0
-          description: Sativa Percentage
-        cross_strains:
-          type: array
-          description: Cross strains
-          items:
-            $ref: '#/components/schemas/CrossStrain'
-  parameters:
-    limitParam:
-      name: limit
-      in: query
-      description: Max number of records to return (optional). Cannot exceed 2000
-      required: false
-      style: form
-      schema:
-        type: integer
-        default: 2000
-        example: 100
-    offsetParam:
-      name: offset
-      in: query
-      description: Offset for the returned records (optional)
-      schema:
-        type: integer
-        default: 0
-        example: 20
-    orderByParam:
-      name: order_by
-      in: query
-      description: Order-by clause, in SQL format (optional)
-      schema:
-        type: string
-        example: id desc
-    whereParam:
-      name: where
-      in: query
-      description: 'Filter results using SQL-like WHERE clause syntax (optional).
-
-
-        **Supported operators**: =, >, <, >=, <=, BETWEEN, IN, LIKE, AND, OR
-
-
-        **Supported patterns**:
-
-        - Equality: `status=''Active''`
-
-        - Comparison: `updated_at >= ''2024-01-01''`
-
-        - Range: `id BETWEEN 1 AND 10000`
-
-        - List: `status IN (''Active'', ''Pending'')`
-
-        - Pattern: `sku LIKE ''ABC%''`
-
-        - Compound: `facility_id=123 AND is_active=true`
-
-        '
-      schema:
-        type: string
-        example: status='Active' AND updated_at >= '2024-01-01'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

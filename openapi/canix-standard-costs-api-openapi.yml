@@ -135,16 +135,16 @@ paths:
           $ref: '#/components/responses/500ServerError'
 components:
   responses:
-    404NotFound:
-      description: The specified resource was not found
-    403AccessDenied:
-      description: Access denied
-    401NotAuthenticated:
-      description: Not authenticated
-    400BadRequest:
-      description: Bad request
     500ServerError:
       description: Server error
+    404NotFound:
+      description: The specified resource was not found
+    400BadRequest:
+      description: Bad request
+    401NotAuthenticated:
+      description: Not authenticated
+    403AccessDenied:
+      description: Access denied
   schemas:
     ItemStandardCost:
       title: ItemStandardCost
