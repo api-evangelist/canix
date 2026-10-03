@@ -360,48 +360,58 @@ paths:
           $ref: '#/components/responses/500ServerError'
 components:
   schemas:
-    Address:
-      title: Address
+    Customer:
+      title: Customer
       type: object
       properties:
-        street:
+        id:
+          type: integer
+        contact_name:
           type: string
-          example: 123 Cumberland St
-        street2:
+        company_name:
           type: string
-          example: West
-        city:
+        facility_license_number:
           type: string
-          example: Somerset
-        county:
+        license_type:
           type: string
-          example: KY
-        state:
+        customer_number:
           type: string
-          example: CO
-        country:
+        license_expiration_date:
           type: string
-          example: USA
-        postal_code:
+        phone:
           type: string
-          example: 42504
-    Discount:
-      title: Discount
-      type: object
-      properties:
-        type:
+        email:
           type: string
-          enum:
-          - fixed
-          - percentage
-        amount:
+        territory:
+          type: string
+        address:
+          $ref: '#/components/schemas/Address'
+        notes:
+          type: string
+        outstanding_balance:
           type: number
-        reason:
+        credit:
+          type: number
+          description: Current credit balance available to this customer
+        dba:
           type: string
-      example:
-        type: fixed
-        amount: 10.0
-        reason: Black Friday Sale
+          example: Doing Business As
+        is_active:
+          type: boolean
+        created_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+    IdName:
+      title: IdName
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
     SalesOrderPayment:
       title: Sales Order Payment
       required:
@@ -439,149 +449,85 @@ components:
         reference_number: CHK-1042
         external_transaction_name: 'QBO Payment #55'
         updated_at: '2021-05-24T19:58:00.000Z'
-    SalesOrderRequestBody:
-      title: Sales Order Request Body
-      type: object
+    SalesOrderItem:
+      title: Sales Order Item
       required:
-      - customer_id
-      - name
-      - status
-      - delivery_date
-      - other_tax_rate
-      - local_tax_rate
-      - state_tax_rate
+      - id
+      - sales_order_id
+      type: object
       properties:
-        customer_id:
-          description: The customer company id
+        id:
           type: integer
-          example: 2
-        name:
-          type: string
-          example: 'Order #123'
-        external_identifier:
-          type: string
-          example: SAP-ORDER-12345
-          description: External Sales Order ID (from partner system, not unique)
-        status:
-          type: string
-          example: pending
-        delivery_fee:
+        weight:
           type: number
-          format: float
-          example: 15.99
-        delivery_date:
-          type: string
-          format: date-time
-          example: '2025-02-04T14:00:00Z'
-        payment_date:
-          type: string
-          format: date-time
-          example: '2025-02-04T14:00:00Z'
-        sales_order_credit:
-          $ref: '#/components/schemas/Discount'
-          description: 'Order-level discount. Despite the name, this behaves as a discount, not a credit: it is applied before taxes and reduces the taxable subtotal. To apply a post-tax customer credit, use `credits` instead.'
-          example:
-            type: percentage
-            amount: 25.0
-            reason: 25% off
-        credits:
+        weight_unit:
+          oneOf:
+          - type: string
+            description: Unit name or abbreviation
+          - type: integer
+            description: Unit id
+        unit_price:
           type: number
-          description: Post-tax customer credit to apply to the order, as a positive number. Unlike `sales_order_credit`, this does not reduce the taxable subtotal; taxes are calculated on the full subtotal and the credit is subtracted from the total afterwards. Omit the field to leave an existing credit unchanged on update.
-          example: 1000.0
-        pull_credit_from_customer:
+        total_price:
+          type: number
+          description: Total price (unit * weight)
+        item:
+          $ref: '#/components/schemas/Sales_order_item'
+        brand:
+          allOf:
+          - $ref: '#/components/schemas/IdName'
+          description: Brand of the sold item, product, or non-cannabis product (null if none)
+        product_id:
+          type:
+          - integer
+          - 'null'
+          description: ID of the linked cannabis Product, if any
+        product_brand:
+          allOf:
+          - $ref: '#/components/schemas/IdName'
+          description: Brand of the linked cannabis Product, if any
+        is_sample:
           type: boolean
-          description: Only used together with `credits`. When true, the credit is deducted from the customer's credit balance (see POST /customers/{customer_id}/credits) and the request fails if the balance is insufficient. Defaults to false, which applies the credit without affecting the customer's balance.
-          example: false
-        contents:
+          description: Whether the line item is a trade sample
+        package_ids:
           type: array
           items:
-            type: object
-            required:
-            - total_price
-            - weight
-            - weight_unit
-            properties:
-              item_id:
-                type: integer
-                example: 123
-              non_cannabis_product_id:
-                type: integer
-                example: 456
-              total_price:
-                type: number
-                format: float
-                example: 25.99
-              weight:
-                type: number
-                format: float
-                example: 1.5
-              weight_unit:
-                type: string
-                example: grams
-              notes:
-                type: string
-                example: Special handling required
-              package_ids:
-                type: array
-                items:
-                  type: integer
-                example:
-                - 1
-                - 2
-                - 3
-              discount:
-                $ref: '#/components/schemas/Discount'
-                example:
-                  type: fixed
-                  amount: 10.0
-                  reason: 10$ off
-        payments:
-          type: array
-          items:
-            type: object
-            properties:
-              amount:
-                type: number
-                format: float
-                example: 100.0
-              date:
-                type: string
-                format: date
-                example: '2025-02-04'
-              reference_number:
-                type: string
-                example: PAY-123
-        other_tax_rate:
-          type: number
-          format: float
-          example: 5.0
-        local_tax_rate:
-          type: number
-          format: float
-          example: 2.5
-        state_tax_rate:
-          type: number
-          format: float
-          example: 7.0
-        internal_notes:
+            type: integer
+        updated_at:
           type: string
-          example: Handle with care
-        payment_terms:
-          type: string
-          example: Net 30
-        payment_notes:
-          type: string
-          example: Payment due by end of month
-        terms_and_conditions:
-          type: string
-          example: Standard terms apply
-        return_policy:
-          type: string
-          example: 30-day return policy
-        sales_rep_email:
-          type: string
-          example: john.doe@example.com
-          description: Email of the sales representative
+          example: 2018-11-06 08:00:00+00:00
+        order:
+          type: integer
+          description: Position of the item in the order
+        discount:
+          $ref: '#/components/schemas/Discount'
+      example:
+        id: 100
+        weight: 20
+        weight_unit: Each
+        unit_price: 20
+        total_price: 400
+        item:
+          id: 7036
+          name: Blue Dream - Trim
+          sku: '22657'
+        brand:
+          id: 12
+          name: Sunshine Co
+        product_id: 4500
+        product_brand:
+          id: 12
+          name: Sunshine Co
+        is_sample: false
+        package_ids:
+        - 123
+        - 456
+        discount:
+          type: percentage
+          amount: 25.0
+          reason: 25% off
+        updated_at: '2021-05-24T19:58:00.000Z'
+        order: 1
     SalesOrder:
       title: Sales Order
       required:
@@ -755,129 +701,149 @@ components:
         display_status: Pending Review
         invoice_url: https://www.app.canix.com/sales/invoice/view/123456
         updated_at: '2021-05-24T19:58:00.000Z'
-    Customer:
-      title: Customer
+    SalesOrderRequestBody:
+      title: Sales Order Request Body
       type: object
-      properties:
-        id:
-          type: integer
-        contact_name:
-          type: string
-        company_name:
-          type: string
-        facility_license_number:
-          type: string
-        license_type:
-          type: string
-        customer_number:
-          type: string
-        license_expiration_date:
-          type: string
-        phone:
-          type: string
-        email:
-          type: string
-        territory:
-          type: string
-        address:
-          $ref: '#/components/schemas/Address'
-        notes:
-          type: string
-        outstanding_balance:
-          type: number
-        credit:
-          type: number
-          description: Current credit balance available to this customer
-        dba:
-          type: string
-          example: Doing Business As
-        is_active:
-          type: boolean
-        created_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
-        updated_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
-    SalesOrderItem:
-      title: Sales Order Item
       required:
-      - id
-      - sales_order_id
-      type: object
+      - customer_id
+      - name
+      - status
+      - delivery_date
+      - other_tax_rate
+      - local_tax_rate
+      - state_tax_rate
       properties:
-        id:
+        customer_id:
+          description: The customer company id
           type: integer
-        weight:
+          example: 2
+        name:
+          type: string
+          example: 'Order #123'
+        external_identifier:
+          type: string
+          example: SAP-ORDER-12345
+          description: External Sales Order ID (from partner system, not unique)
+        status:
+          type: string
+          example: pending
+        delivery_fee:
           type: number
-        weight_unit:
-          oneOf:
-          - type: string
-            description: Unit name or abbreviation
-          - type: integer
-            description: Unit id
-        unit_price:
+          format: float
+          example: 15.99
+        delivery_date:
+          type: string
+          format: date-time
+          example: '2025-02-04T14:00:00Z'
+        payment_date:
+          type: string
+          format: date-time
+          example: '2025-02-04T14:00:00Z'
+        sales_order_credit:
+          $ref: '#/components/schemas/Discount'
+          description: 'Order-level discount. Despite the name, this behaves as a discount, not a credit: it is applied before taxes and reduces the taxable subtotal. To apply a post-tax customer credit, use `credits` instead.'
+          example:
+            type: percentage
+            amount: 25.0
+            reason: 25% off
+        credits:
           type: number
-        total_price:
-          type: number
-          description: Total price (unit * weight)
-        item:
-          $ref: '#/components/schemas/Sales_order_item'
-        brand:
-          allOf:
-          - $ref: '#/components/schemas/IdName'
-          description: Brand of the sold item, product, or non-cannabis product (null if none)
-        product_id:
-          type:
-          - integer
-          - 'null'
-          description: ID of the linked cannabis Product, if any
-        product_brand:
-          allOf:
-          - $ref: '#/components/schemas/IdName'
-          description: Brand of the linked cannabis Product, if any
-        is_sample:
+          description: Post-tax customer credit to apply to the order, as a positive number. Unlike `sales_order_credit`, this does not reduce the taxable subtotal; taxes are calculated on the full subtotal and the credit is subtracted from the total afterwards. Omit the field to leave an existing credit unchanged on update.
+          example: 1000.0
+        pull_credit_from_customer:
           type: boolean
-          description: Whether the line item is a trade sample
-        package_ids:
+          description: Only used together with `credits`. When true, the credit is deducted from the customer's credit balance (see POST /customers/{customer_id}/credits) and the request fails if the balance is insufficient. Defaults to false, which applies the credit without affecting the customer's balance.
+          example: false
+        contents:
           type: array
           items:
-            type: integer
-        updated_at:
+            type: object
+            required:
+            - total_price
+            - weight
+            - weight_unit
+            properties:
+              item_id:
+                type: integer
+                example: 123
+              non_cannabis_product_id:
+                type: integer
+                example: 456
+              total_price:
+                type: number
+                format: float
+                example: 25.99
+              weight:
+                type: number
+                format: float
+                example: 1.5
+              weight_unit:
+                type: string
+                example: grams
+              notes:
+                type: string
+                example: Special handling required
+              package_ids:
+                type: array
+                items:
+                  type: integer
+                example:
+                - 1
+                - 2
+                - 3
+              discount:
+                $ref: '#/components/schemas/Discount'
+                example:
+                  type: fixed
+                  amount: 10.0
+                  reason: 10$ off
+        payments:
+          type: array
+          items:
+            type: object
+            properties:
+              amount:
+                type: number
+                format: float
+                example: 100.0
+              date:
+                type: string
+                format: date
+                example: '2025-02-04'
+              reference_number:
+                type: string
+                example: PAY-123
+        other_tax_rate:
+          type: number
+          format: float
+          example: 5.0
+        local_tax_rate:
+          type: number
+          format: float
+          example: 2.5
+        state_tax_rate:
+          type: number
+          format: float
+          example: 7.0
+        internal_notes:
           type: string
-          example: 2018-11-06 08:00:00+00:00
-        order:
-          type: integer
-          description: Position of the item in the order
-        discount:
-          $ref: '#/components/schemas/Discount'
-      example:
-        id: 100
-        weight: 20
-        weight_unit: Each
-        unit_price: 20
-        total_price: 400
-        item:
-          id: 7036
-          name: Blue Dream - Trim
-          sku: '22657'
-        brand:
-          id: 12
-          name: Sunshine Co
-        product_id: 4500
-        product_brand:
-          id: 12
-          name: Sunshine Co
-        is_sample: false
-        package_ids:
-        - 123
-        - 456
-        discount:
-          type: percentage
-          amount: 25.0
-          reason: 25% off
-        updated_at: '2021-05-24T19:58:00.000Z'
-        order: 1
+          example: Handle with care
+        payment_terms:
+          type: string
+          example: Net 30
+        payment_notes:
+          type: string
+          example: Payment due by end of month
+        terms_and_conditions:
+          type: string
+          example: Standard terms apply
+        return_policy:
+          type: string
+          example: 30-day return policy
+        sales_rep_email:
+          type: string
+          example: john.doe@example.com
+          description: Email of the sales representative
     Sales_order_item:
       title: Item
       type: object
@@ -892,14 +858,6 @@ components:
         id: 7036
         name: Blue Dream - Trim
         sku: '22657'
-    IdName:
-      title: IdName
-      type: object
-      properties:
-        id:
-          type: number
-        name:
-          type: string
     User:
       title: User
       type: object
@@ -913,7 +871,75 @@ components:
         email:
           type: string
           example: j@d.com
+    Discount:
+      title: Discount
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - fixed
+          - percentage
+        amount:
+          type: number
+        reason:
+          type: string
+      example:
+        type: fixed
+        amount: 10.0
+        reason: Black Friday Sale
+    Address:
+      title: Address
+      type: object
+      properties:
+        street:
+          type: string
+          example: 123 Cumberland St
+        street2:
+          type: string
+          example: West
+        city:
+          type: string
+          example: Somerset
+        county:
+          type: string
+          example: KY
+        state:
+          type: string
+          example: CO
+        country:
+          type: string
+          example: USA
+        postal_code:
+          type: string
+          example: 42504
+  responses:
+    401NotAuthenticated:
+      description: Not authenticated
+    403AccessDenied:
+      description: Access denied
+    400BadRequest:
+      description: Bad request
+    500ServerError:
+      description: Server error
+    404NotFound:
+      description: The specified resource was not found
   parameters:
+    offsetParam:
+      name: offset
+      in: query
+      description: Offset for the returned records (optional)
+      schema:
+        type: integer
+        default: 0
+        example: 20
+    orderByParam:
+      name: order_by
+      in: query
+      description: Order-by clause, in SQL format (optional)
+      schema:
+        type: string
+        example: id desc
     whereParam:
       name: where
       in: query
@@ -951,32 +977,6 @@ components:
         type: integer
         default: 2000
         example: 100
-    orderByParam:
-      name: order_by
-      in: query
-      description: Order-by clause, in SQL format (optional)
-      schema:
-        type: string
-        example: id desc
-    offsetParam:
-      name: offset
-      in: query
-      description: Offset for the returned records (optional)
-      schema:
-        type: integer
-        default: 0
-        example: 20
-  responses:
-    403AccessDenied:
-      description: Access denied
-    500ServerError:
-      description: Server error
-    401NotAuthenticated:
-      description: Not authenticated
-    400BadRequest:
-      description: Bad request
-    404NotFound:
-      description: The specified resource was not found
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

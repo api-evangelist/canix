@@ -61,17 +61,27 @@ paths:
           $ref: '#/components/responses/500ServerError'
 components:
   responses:
-    500ServerError:
-      description: Server error
+    403AccessDenied:
+      description: Access denied
+    401NotAuthenticated:
+      description: Not authenticated
     404NotFound:
       description: The specified resource was not found
     400BadRequest:
       description: Bad request
-    401NotAuthenticated:
-      description: Not authenticated
-    403AccessDenied:
-      description: Access denied
+    500ServerError:
+      description: Server error
   parameters:
+    limitParam:
+      name: limit
+      in: query
+      description: Max number of records to return (optional). Cannot exceed 2000
+      required: false
+      style: form
+      schema:
+        type: integer
+        default: 2000
+        example: 100
     whereParam:
       name: where
       in: query
@@ -99,13 +109,6 @@ components:
       schema:
         type: string
         example: status='Active' AND updated_at >= '2024-01-01'
-    orderByParam:
-      name: order_by
-      in: query
-      description: Order-by clause, in SQL format (optional)
-      schema:
-        type: string
-        example: id desc
     offsetParam:
       name: offset
       in: query
@@ -114,16 +117,13 @@ components:
         type: integer
         default: 0
         example: 20
-    limitParam:
-      name: limit
+    orderByParam:
+      name: order_by
       in: query
-      description: Max number of records to return (optional). Cannot exceed 2000
-      required: false
-      style: form
+      description: Order-by clause, in SQL format (optional)
       schema:
-        type: integer
-        default: 2000
-        example: 100
+        type: string
+        example: id desc
   schemas:
     ItemType:
       title: ItemType

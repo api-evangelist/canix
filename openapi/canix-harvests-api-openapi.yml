@@ -85,104 +85,6 @@ paths:
           $ref: '#/components/responses/500ServerError'
 components:
   schemas:
-    Location:
-      title: Location
-      required:
-      - id
-      - name
-      properties:
-        id:
-          type: integer
-          example: 123
-        name:
-          type: string
-          example: Pro System
-        sqft:
-          type: number
-          example: 14.4
-        num_lights:
-          type: integer
-          example: 42
-        parent_location:
-          $ref: '#/components/schemas/ParentLocation'
-        updated_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
-        is_active:
-          type: boolean
-          example: true
-    ParentLocation:
-      title: Parent Location
-      required:
-      - id
-      - name
-      properties:
-        id:
-          type: integer
-          example: 123
-        name:
-          type: string
-          example: Pro System
-        sqft:
-          type: number
-          example: 14.4
-        num_lights:
-          type: integer
-          example: 42
-        updated_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
-        is_active:
-          type: boolean
-          example: true
-    Harvest:
-      title: Harvest
-      required:
-      - id
-      - name
-      properties:
-        id:
-          type: integer
-          example: 123
-        name:
-          type: string
-          example: Offline Manicure
-        strain:
-          $ref: '#/components/schemas/Strain'
-        drying_location:
-          $ref: '#/components/schemas/Location'
-        harvest_date:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
-        plant_count:
-          type: number
-          example: 3
-        average_plant_weight:
-          type: number
-          example: 107.7
-        notes:
-          type: string
-          example: nice harvest!
-        waste_weight:
-          type: number
-          example: 100
-        total_wet_weight:
-          type: number
-          example: 100
-        total_packaged_weight:
-          type: number
-          example: 100
-        finished_date:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
-        package_count:
-          type: integer
-          example: 100
-        lot_id:
-          type: string
-        updated_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
     CrossStrain:
       title: Cross Strain
       required:
@@ -252,18 +154,126 @@ components:
           description: Cross strains
           items:
             $ref: '#/components/schemas/CrossStrain'
+    Harvest:
+      title: Harvest
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: integer
+          example: 123
+        name:
+          type: string
+          example: Offline Manicure
+        strain:
+          $ref: '#/components/schemas/Strain'
+        drying_location:
+          $ref: '#/components/schemas/Location'
+        harvest_date:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+        plant_count:
+          type: number
+          example: 3
+        average_plant_weight:
+          type: number
+          example: 107.7
+        notes:
+          type: string
+          example: nice harvest!
+        waste_weight:
+          type: number
+          example: 100
+        total_wet_weight:
+          type: number
+          example: 100
+        total_packaged_weight:
+          type: number
+          example: 100
+        finished_date:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+        package_count:
+          type: integer
+          example: 100
+        lot_id:
+          type: string
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+    Location:
+      title: Location
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: integer
+          example: 123
+        name:
+          type: string
+          example: Pro System
+        sqft:
+          type: number
+          example: 14.4
+        num_lights:
+          type: integer
+          example: 42
+        parent_location:
+          $ref: '#/components/schemas/ParentLocation'
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+        is_active:
+          type: boolean
+          example: true
+    ParentLocation:
+      title: Parent Location
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: integer
+          example: 123
+        name:
+          type: string
+          example: Pro System
+        sqft:
+          type: number
+          example: 14.4
+        num_lights:
+          type: integer
+          example: 42
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+        is_active:
+          type: boolean
+          example: true
   responses:
-    500ServerError:
-      description: Server error
-    404NotFound:
-      description: The specified resource was not found
-    400BadRequest:
-      description: Bad request
     401NotAuthenticated:
       description: Not authenticated
     403AccessDenied:
       description: Access denied
+    404NotFound:
+      description: The specified resource was not found
+    400BadRequest:
+      description: Bad request
+    500ServerError:
+      description: Server error
   parameters:
+    limitParam:
+      name: limit
+      in: query
+      description: Max number of records to return (optional). Cannot exceed 2000
+      required: false
+      style: form
+      schema:
+        type: integer
+        default: 2000
+        example: 100
     whereParam:
       name: where
       in: query
@@ -291,13 +301,6 @@ components:
       schema:
         type: string
         example: status='Active' AND updated_at >= '2024-01-01'
-    orderByParam:
-      name: order_by
-      in: query
-      description: Order-by clause, in SQL format (optional)
-      schema:
-        type: string
-        example: id desc
     offsetParam:
       name: offset
       in: query
@@ -306,16 +309,13 @@ components:
         type: integer
         default: 0
         example: 20
-    limitParam:
-      name: limit
+    orderByParam:
+      name: order_by
       in: query
-      description: Max number of records to return (optional). Cannot exceed 2000
-      required: false
-      style: form
+      description: Order-by clause, in SQL format (optional)
       schema:
-        type: integer
-        default: 2000
-        example: 100
+        type: string
+        example: id desc
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

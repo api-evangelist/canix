@@ -85,31 +85,125 @@ paths:
           $ref: '#/components/responses/500ServerError'
 components:
   schemas:
-    Address:
-      title: Address
+    Customer:
+      title: Customer
       type: object
       properties:
-        street:
+        id:
+          type: integer
+        contact_name:
           type: string
-          example: 123 Cumberland St
-        street2:
+        company_name:
           type: string
-          example: West
-        city:
+        facility_license_number:
           type: string
-          example: Somerset
-        county:
+        license_type:
           type: string
-          example: KY
-        state:
+        customer_number:
           type: string
-          example: CO
-        country:
+        license_expiration_date:
           type: string
-          example: USA
-        postal_code:
+        phone:
           type: string
-          example: 42504
+        email:
+          type: string
+        territory:
+          type: string
+        address:
+          $ref: '#/components/schemas/Address'
+        notes:
+          type: string
+        outstanding_balance:
+          type: number
+        credit:
+          type: number
+          description: Current credit balance available to this customer
+        dba:
+          type: string
+          example: Doing Business As
+        is_active:
+          type: boolean
+        created_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+    TransferDestination:
+      title: Transfer Destination
+      required:
+      - id
+      properties:
+        id:
+          type: integer
+          example: 123
+        destination_facility:
+          type: string
+          example: 401-N0909
+        transfer_type:
+          type: string
+          example: Affilliated
+        route:
+          type: string
+          example: 55
+        departure_time:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+        contents:
+          type: array
+          items:
+            $ref: '#/components/schemas/PackageTransfer'
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+    DestinationPackage:
+      title: Destination Package
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: integer
+        tag:
+          type: string
+        weight:
+          type: number
+        weight_unit:
+          type: string
+        item:
+          $ref: '#/components/schemas/IdName'
+    CrossStrain:
+      title: Cross Strain
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          example: Lemon Skunk
+          description: Strain name
+        notes:
+          type: string
+          example: Terpenes .63%
+          description: Notes
+        sku:
+          type: string
+          example: BIOJJ
+          description: SKU
+        testing_status:
+          type: string
+          example: InHouse
+          description: 'Testing status: InHouse, ThirdParty, None, NA'
+        indica_percent:
+          type: number
+          example: 45.0
+          description: Indica Percentage
+        sativa_percent:
+          type: number
+          example: 55.0
+          description: Sativa Percentage
     SourcePackage:
       title: Source Package
       required:
@@ -126,23 +220,14 @@ components:
           type: string
         item:
           $ref: '#/components/schemas/IdName'
-    Discount:
-      title: Discount
+    IdName:
+      title: IdName
       type: object
       properties:
-        type:
-          type: string
-          enum:
-          - fixed
-          - percentage
-        amount:
+        id:
           type: number
-        reason:
+        name:
           type: string
-      example:
-        type: fixed
-        amount: 10.0
-        reason: Black Friday Sale
     SalesOrderPayment:
       title: Sales Order Payment
       required:
@@ -180,8 +265,153 @@ components:
         reference_number: CHK-1042
         external_transaction_name: 'QBO Payment #55'
         updated_at: '2021-05-24T19:58:00.000Z'
-    DestinationPackage:
-      title: Destination Package
+    SalesOrderItem:
+      title: Sales Order Item
+      required:
+      - id
+      - sales_order_id
+      type: object
+      properties:
+        id:
+          type: integer
+        weight:
+          type: number
+        weight_unit:
+          oneOf:
+          - type: string
+            description: Unit name or abbreviation
+          - type: integer
+            description: Unit id
+        unit_price:
+          type: number
+        total_price:
+          type: number
+          description: Total price (unit * weight)
+        item:
+          $ref: '#/components/schemas/Sales_order_item'
+        brand:
+          allOf:
+          - $ref: '#/components/schemas/IdName'
+          description: Brand of the sold item, product, or non-cannabis product (null if none)
+        product_id:
+          type:
+          - integer
+          - 'null'
+          description: ID of the linked cannabis Product, if any
+        product_brand:
+          allOf:
+          - $ref: '#/components/schemas/IdName'
+          description: Brand of the linked cannabis Product, if any
+        is_sample:
+          type: boolean
+          description: Whether the line item is a trade sample
+        package_ids:
+          type: array
+          items:
+            type: integer
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+        order:
+          type: integer
+          description: Position of the item in the order
+        discount:
+          $ref: '#/components/schemas/Discount'
+      example:
+        id: 100
+        weight: 20
+        weight_unit: Each
+        unit_price: 20
+        total_price: 400
+        item:
+          id: 7036
+          name: Blue Dream - Trim
+          sku: '22657'
+        brand:
+          id: 12
+          name: Sunshine Co
+        product_id: 4500
+        product_brand:
+          id: 12
+          name: Sunshine Co
+        is_sample: false
+        package_ids:
+        - 123
+        - 456
+        discount:
+          type: percentage
+          amount: 25.0
+          reason: 25% off
+        updated_at: '2021-05-24T19:58:00.000Z'
+        order: 1
+    Brand:
+      title: Brand
+      required:
+      - id
+      - name
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+    ParentLocation:
+      title: Parent Location
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: integer
+          example: 123
+        name:
+          type: string
+          example: Pro System
+        sqft:
+          type: number
+          example: 14.4
+        num_lights:
+          type: integer
+          example: 42
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+        is_active:
+          type: boolean
+          example: true
+    PackageTransfer:
+      title: Package Transfer
+      required:
+      - id
+      - facility_id
+      properties:
+        package:
+          $ref: '#/components/schemas/Package'
+        status:
+          type: string
+        sale_price:
+          type: number
+          example: 12.34
+        shipped_weight:
+          type: number
+          example: 10.0
+        shipped_weight_unit:
+          type: string
+          example: Grams
+        received_weight:
+          type: number
+          example: 10.0
+        received_weight_unit:
+          type: string
+          example: Grams
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+    Package:
+      title: Package
       required:
       - id
       type: object
@@ -190,49 +420,352 @@ components:
           type: integer
         tag:
           type: string
+        is_active:
+          type: boolean
+        is_testing_package:
+          type: boolean
+          description: Whether the package is flagged as a testing (lab sample) package.
+        status:
+          type: string
+        item:
+          $ref: '#/components/schemas/Item'
         weight:
+          type: number
+        original_weight:
           type: number
         weight_unit:
           type: string
-        item:
-          $ref: '#/components/schemas/IdName'
-    Strain:
-      title: Strain
+        packaged_date:
+          type: string
+        production_batch_date:
+          type:
+          - string
+          - 'null'
+          format: date
+          description: The production batch date for the package.
+        expiration_date:
+          type: string
+        received_date:
+          type: string
+        location:
+          $ref: '#/components/schemas/Location'
+        production_batch:
+          type: string
+        lot_id:
+          type: string
+        cultivation_tax:
+          type: number
+        available_for_sale:
+          type: boolean
+        cannabis_cogs:
+          type: number
+        non_cannabis_inventory_cogs:
+          type: number
+        source_packages:
+          type: array
+          items:
+            $ref: '#/components/schemas/SourcePackage'
+        destination_packages:
+          type: array
+          items:
+            $ref: '#/components/schemas/DestinationPackage'
+        source_facility:
+          type: string
+          description: Originating facility license number
+        source_facility_name:
+          type: string
+          description: Originating facility name
+        source_harvests:
+          type: string
+        notes:
+          type: string
+        brand:
+          $ref: '#/components/schemas/Brand'
+        lab_test_url:
+          type: string
+          description: URL to the latest lab test if it exists
+          example: https://www.lab.com/lab-test/123456
+        coa_url:
+          type:
+          - string
+          - 'null'
+          description: URL to the Certificate of Analysis (COA) document. Returns either a direct URL or a presigned S3 URL (valid for 24 hours) if available.
+          example: https://s3.amazonaws.com/bucket/coa/abc123.pdf?X-Amz-Signature=...
+        test_results:
+          $ref: '#/components/schemas/TestResults'
+        cogs:
+          type: object
+          example:
+            labor: 10.0
+            non_cannabis: 120.0
+            cannabis: 30.0
+            total: 160.0
+        original_cogs:
+          type: object
+          description: COGS values at the time the package was created (before any later adjustments).
+          example:
+            labor: 10.0
+            non_cannabis: 120.0
+            cannabis: 30.0
+            total: 160.0
+        manufacturing_run:
+          type:
+          - object
+          - 'null'
+          description: Only returned by the show endpoint (GET /packages/{id}). Populated when the package is an output of a manufacturing run; null otherwise.
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+            status:
+              type: string
+            start_date:
+              type:
+              - string
+              - 'null'
+              format: date
+            end_date:
+              type:
+              - string
+              - 'null'
+              format: date
+            facility_id:
+              type: integer
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+        tested_package_tag:
+          type: string
+          description: Tag identifying the package that has been tested
+        test_status:
+          type: string
+          description: Status of the test (e.g., passed, failed, pending)
+        test_date:
+          type: string
+          format: date
+          description: Date when the test was conducted
+        lab_test_info:
+          $ref: '#/components/schemas/LabTestInfo'
+    TestResults:
+      title: TestResults
+      type: object
+      properties:
+        thc:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestResultValue'
+          example:
+          - value: 12.345
+            measure: percent
+          - value: 0.12345
+            measure: mg/g
+          - value: 5.6789
+            measure: mg
+        cbd:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestResultValue'
+          example:
+          - value: 34.567
+            measure: percent
+          - value: 2.3456
+            measure: mg/g
+          - value: 9.1234
+            measure: mg
+        cbn:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestResultValue'
+        cbg:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestResultValue'
+        cbga:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestResultValue'
+        cbc:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestResultValue'
+        cbca:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestResultValue'
+        cbda:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestResultValue'
+        thca:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestResultValue'
+        delta_8_thc:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestResultValue'
+        delta_9_thc:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestResultValue'
+        delta_9_thca:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestResultValue'
+        delta_8_thca:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestResultValue'
+        thcv:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestResultValue'
+        thcva:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestResultValue'
+        total_cbd:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestResultValue'
+        total_cbg:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestResultValue'
+        total_delta_9_thc:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestResultValue'
+        total_thc:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestResultValue'
+        total_cannabinoid:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestResultValue'
+        test_status:
+          type: string
+          description: Status of the test (e.g., passed, failed, pending)
+        tested_package_tag:
+          type: string
+          description: Tag identifying the package that has been tested
+        test_date:
+          type: string
+          format: date
+          description: Date when the test was conducted
+        terpenes:
+          type: object
+          properties:
+            measure:
+              type: string
+              example: percent
+            top_three:
+              type: string
+              example:
+                beta_myrcene: '0.05104502943'
+                delta_limonene: '0.04842733428'
+                linalool: '0.01920111092'
+            values:
+              type: string
+              example:
+                nerol: '0.0'
+                cedrol: '0.0'
+                guaiol: '0.0'
+                borneol: '0.00097078668'
+                camphor: '0.0'
+                menthol: '0.0060455321'
+                3_carene: '0.0'
+                camphene: '0.0014924041'
+                geraniol: '0.00146493673'
+                linalool: '0.01920111092'
+                pulegone: '0.0'
+                sabinene: '0.0'
+                farnesene: '0.0'
+                valencene: '0.0'
+                eucalyptol: '0.0'
+                isoborneol: '0.0'
+                isopulegol: '0.0'
+                l_fenchone: '0.00107440035'
+                beta_pinene: '0.00758444019'
+                cis_ocimene: '0.0'
+                terpinolene: '0.0008523121'
+                alpha_pinene: '0.00507601301'
+                beta_myrcene: '0.05104502943'
+                alpha_cedrene: '0.0'
+                cis_nerolidol: '0.0'
+                trans_ocimene: '0.0'
+                alpha_humulene: '0.00563652811'
+                delta_limonene: '0.04842733428'
+                alpha_bisabolol: '0.00210912557'
+                alpha_terpineol: '0.0'
+                gamma_terpinene: '0.0'
+                gamma_terpineol: '0.0'
+                geranyl_acetate: '0.0'
+                trans_nerolidol: '0.0'
+                sabinene_hydrate: '0.0'
+                alpha_phellandrene: '0.0'
+                beta_caryophyllene: '0.01474344681'
+                caryophyllene_oxide: '0.00080207704'
+                endo_fenchyl_alcohol: '0.00415234658'
+    ItemType:
+      title: ItemType
       required:
       - id
       - name
+      - facility_id
+      type: object
       properties:
         id:
           type: integer
         name:
           type: string
-          example: Lemon Skunk
-          description: Strain name
-        notes:
+        quantity_type:
           type: string
-          example: Terpenes .63%
-          description: Notes
-        sku:
+        requires_strain:
+          type: boolean
+        requires_unit_volume:
+          type: boolean
+        requires_unit_weight:
+          type: boolean
+        requires_unit_thc_weight:
+          type: boolean
+        requires_unit_cbd_weight:
+          type: boolean
+        requires_unit_cbd_percent:
+          type: boolean
+        requires_unit_thc_percent:
+          type: boolean
+        requires_public_ingredients:
+          type: boolean
+        requires_administration_method:
+          type: boolean
+        requires_serving_size:
+          type: boolean
+        requires_supply_duration_days:
+          type: boolean
+        requires_number_of_doses:
+          type: boolean
+        updated_at:
           type: string
-          example: BIOJJ
-          description: SKU
-        testing_status:
-          type: string
-          example: InHouse
-          description: 'Testing status: InHouse, ThirdParty, None, NA'
-        indica_percent:
+          example: 2018-11-06 08:00:00+00:00
+    TestResultValue:
+      title: TestResultValue
+      type: object
+      properties:
+        value:
           type: number
-          example: 45.0
-          description: Indica Percentage
-        sativa_percent:
-          type: number
-          example: 55.0
-          description: Sativa Percentage
-        cross_strains:
-          type: array
-          description: Cross strains
-          items:
-            $ref: '#/components/schemas/CrossStrain'
+          format: double
+          example: 0.17501406232422
+        measure:
+          type: string
+          enum:
+          - mg
+          - mg/g
+          - mg/serving
+          - percent
+          example: mg/g
     SalesOrder:
       title: Sales Order
       required:
@@ -432,227 +965,6 @@ components:
         is_active:
           type: boolean
           example: true
-    Customer:
-      title: Customer
-      type: object
-      properties:
-        id:
-          type: integer
-        contact_name:
-          type: string
-        company_name:
-          type: string
-        facility_license_number:
-          type: string
-        license_type:
-          type: string
-        customer_number:
-          type: string
-        license_expiration_date:
-          type: string
-        phone:
-          type: string
-        email:
-          type: string
-        territory:
-          type: string
-        address:
-          $ref: '#/components/schemas/Address'
-        notes:
-          type: string
-        outstanding_balance:
-          type: number
-        credit:
-          type: number
-          description: Current credit balance available to this customer
-        dba:
-          type: string
-          example: Doing Business As
-        is_active:
-          type: boolean
-        created_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
-        updated_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
-    CrossStrain:
-      title: Cross Strain
-      required:
-      - id
-      - name
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-          example: Lemon Skunk
-          description: Strain name
-        notes:
-          type: string
-          example: Terpenes .63%
-          description: Notes
-        sku:
-          type: string
-          example: BIOJJ
-          description: SKU
-        testing_status:
-          type: string
-          example: InHouse
-          description: 'Testing status: InHouse, ThirdParty, None, NA'
-        indica_percent:
-          type: number
-          example: 45.0
-          description: Indica Percentage
-        sativa_percent:
-          type: number
-          example: 55.0
-          description: Sativa Percentage
-    SalesOrderItem:
-      title: Sales Order Item
-      required:
-      - id
-      - sales_order_id
-      type: object
-      properties:
-        id:
-          type: integer
-        weight:
-          type: number
-        weight_unit:
-          oneOf:
-          - type: string
-            description: Unit name or abbreviation
-          - type: integer
-            description: Unit id
-        unit_price:
-          type: number
-        total_price:
-          type: number
-          description: Total price (unit * weight)
-        item:
-          $ref: '#/components/schemas/Sales_order_item'
-        brand:
-          allOf:
-          - $ref: '#/components/schemas/IdName'
-          description: Brand of the sold item, product, or non-cannabis product (null if none)
-        product_id:
-          type:
-          - integer
-          - 'null'
-          description: ID of the linked cannabis Product, if any
-        product_brand:
-          allOf:
-          - $ref: '#/components/schemas/IdName'
-          description: Brand of the linked cannabis Product, if any
-        is_sample:
-          type: boolean
-          description: Whether the line item is a trade sample
-        package_ids:
-          type: array
-          items:
-            type: integer
-        updated_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
-        order:
-          type: integer
-          description: Position of the item in the order
-        discount:
-          $ref: '#/components/schemas/Discount'
-      example:
-        id: 100
-        weight: 20
-        weight_unit: Each
-        unit_price: 20
-        total_price: 400
-        item:
-          id: 7036
-          name: Blue Dream - Trim
-          sku: '22657'
-        brand:
-          id: 12
-          name: Sunshine Co
-        product_id: 4500
-        product_brand:
-          id: 12
-          name: Sunshine Co
-        is_sample: false
-        package_ids:
-        - 123
-        - 456
-        discount:
-          type: percentage
-          amount: 25.0
-          reason: 25% off
-        updated_at: '2021-05-24T19:58:00.000Z'
-        order: 1
-    Sales_order_item:
-      title: Item
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        sku:
-          type: string
-      example:
-        id: 7036
-        name: Blue Dream - Trim
-        sku: '22657'
-    LabTestInfo:
-      type: object
-      properties:
-        testing_facility_name:
-          type: string
-          description: Name of the facility where the testing was conducted.F
-        testing_facility_license:
-          type: string
-          description: License number of the testing facility.
-      required:
-      - testing_facility_name
-      - testing_facility_license
-    TestResultValue:
-      title: TestResultValue
-      type: object
-      properties:
-        value:
-          type: number
-          format: double
-          example: 0.17501406232422
-        measure:
-          type: string
-          enum:
-          - mg
-          - mg/g
-          - mg/serving
-          - percent
-          example: mg/g
-    ParentLocation:
-      title: Parent Location
-      required:
-      - id
-      - name
-      properties:
-        id:
-          type: integer
-          example: 123
-        name:
-          type: string
-          example: Pro System
-        sqft:
-          type: number
-          example: 14.4
-        num_lights:
-          type: integer
-          example: 42
-        updated_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
-        is_active:
-          type: boolean
-          example: true
     Item:
       title: Item
       required:
@@ -843,74 +1155,167 @@ components:
         backordered: 10
         unordered: 75
         updated_at: '2021-03-16T23:49:03.175Z'
-    TransferDestination:
-      title: Transfer Destination
-      required:
-      - id
+    LabTestInfo:
+      type: object
       properties:
-        id:
-          type: integer
-          example: 123
-        destination_facility:
+        testing_facility_name:
           type: string
-          example: 401-N0909
-        transfer_type:
+          description: Name of the facility where the testing was conducted.F
+        testing_facility_license:
           type: string
-          example: Affilliated
-        route:
-          type: string
-          example: 55
-        departure_time:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
-        contents:
-          type: array
-          items:
-            $ref: '#/components/schemas/PackageTransfer'
-        updated_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
-    ItemType:
-      title: ItemType
+          description: License number of the testing facility.
+      required:
+      - testing_facility_name
+      - testing_facility_license
+    ItemSubType:
+      title: ItemSubType
       required:
       - id
       - name
-      - facility_id
+      - weight_unit
+      - item_category
       type: object
       properties:
         id:
           type: integer
         name:
           type: string
-        quantity_type:
+        weight_unit:
           type: string
-        requires_strain:
-          type: boolean
-        requires_unit_volume:
-          type: boolean
-        requires_unit_weight:
-          type: boolean
-        requires_unit_thc_weight:
-          type: boolean
-        requires_unit_cbd_weight:
-          type: boolean
-        requires_unit_cbd_percent:
-          type: boolean
-        requires_unit_thc_percent:
-          type: boolean
-        requires_public_ingredients:
-          type: boolean
-        requires_administration_method:
-          type: boolean
-        requires_serving_size:
-          type: boolean
-        requires_supply_duration_days:
-          type: boolean
-        requires_number_of_doses:
-          type: boolean
+        category:
+          $ref: '#/components/schemas/ItemType'
         updated_at:
           type: string
           example: 2018-11-06 08:00:00+00:00
+    ItemStandardCost:
+      title: ItemStandardCost
+      required:
+      - id
+      - standard_cost_amount
+      - standard_cost_currency
+      - start_date
+      properties:
+        id:
+          type: integer
+          example: 123
+        standard_cost_amount:
+          type: number
+          example: 12.1111
+        standard_cost_currency:
+          type: string
+          example: USD
+        start_date:
+          type: string
+          example: '2023-04-19'
+        end_date:
+          type: string
+          example: '2023-05-19'
+    Strain:
+      title: Strain
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          example: Lemon Skunk
+          description: Strain name
+        notes:
+          type: string
+          example: Terpenes .63%
+          description: Notes
+        sku:
+          type: string
+          example: BIOJJ
+          description: SKU
+        testing_status:
+          type: string
+          example: InHouse
+          description: 'Testing status: InHouse, ThirdParty, None, NA'
+        indica_percent:
+          type: number
+          example: 45.0
+          description: Indica Percentage
+        sativa_percent:
+          type: number
+          example: 55.0
+          description: Sativa Percentage
+        cross_strains:
+          type: array
+          description: Cross strains
+          items:
+            $ref: '#/components/schemas/CrossStrain'
+    Sales_order_item:
+      title: Item
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        sku:
+          type: string
+      example:
+        id: 7036
+        name: Blue Dream - Trim
+        sku: '22657'
+    User:
+      title: User
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 123
+        name:
+          type: string
+          example: John Doe
+        email:
+          type: string
+          example: j@d.com
+    Discount:
+      title: Discount
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - fixed
+          - percentage
+        amount:
+          type: number
+        reason:
+          type: string
+      example:
+        type: fixed
+        amount: 10.0
+        reason: Black Friday Sale
+    Address:
+      title: Address
+      type: object
+      properties:
+        street:
+          type: string
+          example: 123 Cumberland St
+        street2:
+          type: string
+          example: West
+        city:
+          type: string
+          example: Somerset
+        county:
+          type: string
+          example: KY
+        state:
+          type: string
+          example: CO
+        country:
+          type: string
+          example: USA
+        postal_code:
+          type: string
+          example: 42504
     Transfer:
       title: Transfer
       required:
@@ -936,412 +1341,33 @@ components:
         updated_at:
           type: string
           example: 2018-11-06 08:00:00+00:00
-    IdName:
-      title: IdName
-      type: object
-      properties:
-        id:
-          type: number
-        name:
-          type: string
-    ItemStandardCost:
-      title: ItemStandardCost
-      required:
-      - id
-      - standard_cost_amount
-      - standard_cost_currency
-      - start_date
-      properties:
-        id:
-          type: integer
-          example: 123
-        standard_cost_amount:
-          type: number
-          example: 12.1111
-        standard_cost_currency:
-          type: string
-          example: USD
-        start_date:
-          type: string
-          example: '2023-04-19'
-        end_date:
-          type: string
-          example: '2023-05-19'
-    TestResults:
-      title: TestResults
-      type: object
-      properties:
-        thc:
-          type: array
-          items:
-            $ref: '#/components/schemas/TestResultValue'
-          example:
-          - value: 12.345
-            measure: percent
-          - value: 0.12345
-            measure: mg/g
-          - value: 5.6789
-            measure: mg
-        cbd:
-          type: array
-          items:
-            $ref: '#/components/schemas/TestResultValue'
-          example:
-          - value: 34.567
-            measure: percent
-          - value: 2.3456
-            measure: mg/g
-          - value: 9.1234
-            measure: mg
-        cbn:
-          type: array
-          items:
-            $ref: '#/components/schemas/TestResultValue'
-        cbg:
-          type: array
-          items:
-            $ref: '#/components/schemas/TestResultValue'
-        cbga:
-          type: array
-          items:
-            $ref: '#/components/schemas/TestResultValue'
-        cbc:
-          type: array
-          items:
-            $ref: '#/components/schemas/TestResultValue'
-        cbca:
-          type: array
-          items:
-            $ref: '#/components/schemas/TestResultValue'
-        cbda:
-          type: array
-          items:
-            $ref: '#/components/schemas/TestResultValue'
-        thca:
-          type: array
-          items:
-            $ref: '#/components/schemas/TestResultValue'
-        delta_8_thc:
-          type: array
-          items:
-            $ref: '#/components/schemas/TestResultValue'
-        delta_9_thc:
-          type: array
-          items:
-            $ref: '#/components/schemas/TestResultValue'
-        delta_9_thca:
-          type: array
-          items:
-            $ref: '#/components/schemas/TestResultValue'
-        delta_8_thca:
-          type: array
-          items:
-            $ref: '#/components/schemas/TestResultValue'
-        thcv:
-          type: array
-          items:
-            $ref: '#/components/schemas/TestResultValue'
-        thcva:
-          type: array
-          items:
-            $ref: '#/components/schemas/TestResultValue'
-        total_cbd:
-          type: array
-          items:
-            $ref: '#/components/schemas/TestResultValue'
-        total_cbg:
-          type: array
-          items:
-            $ref: '#/components/schemas/TestResultValue'
-        total_delta_9_thc:
-          type: array
-          items:
-            $ref: '#/components/schemas/TestResultValue'
-        total_thc:
-          type: array
-          items:
-            $ref: '#/components/schemas/TestResultValue'
-        total_cannabinoid:
-          type: array
-          items:
-            $ref: '#/components/schemas/TestResultValue'
-        test_status:
-          type: string
-          description: Status of the test (e.g., passed, failed, pending)
-        tested_package_tag:
-          type: string
-          description: Tag identifying the package that has been tested
-        test_date:
-          type: string
-          format: date
-          description: Date when the test was conducted
-        terpenes:
-          type: object
-          properties:
-            measure:
-              type: string
-              example: percent
-            top_three:
-              type: string
-              example:
-                beta_myrcene: '0.05104502943'
-                delta_limonene: '0.04842733428'
-                linalool: '0.01920111092'
-            values:
-              type: string
-              example:
-                nerol: '0.0'
-                cedrol: '0.0'
-                guaiol: '0.0'
-                borneol: '0.00097078668'
-                camphor: '0.0'
-                menthol: '0.0060455321'
-                3_carene: '0.0'
-                camphene: '0.0014924041'
-                geraniol: '0.00146493673'
-                linalool: '0.01920111092'
-                pulegone: '0.0'
-                sabinene: '0.0'
-                farnesene: '0.0'
-                valencene: '0.0'
-                eucalyptol: '0.0'
-                isoborneol: '0.0'
-                isopulegol: '0.0'
-                l_fenchone: '0.00107440035'
-                beta_pinene: '0.00758444019'
-                cis_ocimene: '0.0'
-                terpinolene: '0.0008523121'
-                alpha_pinene: '0.00507601301'
-                beta_myrcene: '0.05104502943'
-                alpha_cedrene: '0.0'
-                cis_nerolidol: '0.0'
-                trans_ocimene: '0.0'
-                alpha_humulene: '0.00563652811'
-                delta_limonene: '0.04842733428'
-                alpha_bisabolol: '0.00210912557'
-                alpha_terpineol: '0.0'
-                gamma_terpinene: '0.0'
-                gamma_terpineol: '0.0'
-                geranyl_acetate: '0.0'
-                trans_nerolidol: '0.0'
-                sabinene_hydrate: '0.0'
-                alpha_phellandrene: '0.0'
-                beta_caryophyllene: '0.01474344681'
-                caryophyllene_oxide: '0.00080207704'
-                endo_fenchyl_alcohol: '0.00415234658'
-    PackageTransfer:
-      title: Package Transfer
-      required:
-      - id
-      - facility_id
-      properties:
-        package:
-          $ref: '#/components/schemas/Package'
-        status:
-          type: string
-        sale_price:
-          type: number
-          example: 12.34
-        shipped_weight:
-          type: number
-          example: 10.0
-        shipped_weight_unit:
-          type: string
-          example: Grams
-        received_weight:
-          type: number
-          example: 10.0
-        received_weight_unit:
-          type: string
-          example: Grams
-        updated_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
-    Brand:
-      title: Brand
-      required:
-      - id
-      - name
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        updated_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
-    User:
-      title: User
-      type: object
-      properties:
-        id:
-          type: integer
-          example: 123
-        name:
-          type: string
-          example: John Doe
-        email:
-          type: string
-          example: j@d.com
-    ItemSubType:
-      title: ItemSubType
-      required:
-      - id
-      - name
-      - weight_unit
-      - item_category
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        weight_unit:
-          type: string
-        category:
-          $ref: '#/components/schemas/ItemType'
-        updated_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
-    Package:
-      title: Package
-      required:
-      - id
-      type: object
-      properties:
-        id:
-          type: integer
-        tag:
-          type: string
-        is_active:
-          type: boolean
-        is_testing_package:
-          type: boolean
-          description: Whether the package is flagged as a testing (lab sample) package.
-        status:
-          type: string
-        item:
-          $ref: '#/components/schemas/Item'
-        weight:
-          type: number
-        original_weight:
-          type: number
-        weight_unit:
-          type: string
-        packaged_date:
-          type: string
-        production_batch_date:
-          type:
-          - string
-          - 'null'
-          format: date
-          description: The production batch date for the package.
-        expiration_date:
-          type: string
-        received_date:
-          type: string
-        location:
-          $ref: '#/components/schemas/Location'
-        production_batch:
-          type: string
-        lot_id:
-          type: string
-        cultivation_tax:
-          type: number
-        available_for_sale:
-          type: boolean
-        cannabis_cogs:
-          type: number
-        non_cannabis_inventory_cogs:
-          type: number
-        source_packages:
-          type: array
-          items:
-            $ref: '#/components/schemas/SourcePackage'
-        destination_packages:
-          type: array
-          items:
-            $ref: '#/components/schemas/DestinationPackage'
-        source_facility:
-          type: string
-          description: Originating facility license number
-        source_facility_name:
-          type: string
-          description: Originating facility name
-        source_harvests:
-          type: string
-        notes:
-          type: string
-        brand:
-          $ref: '#/components/schemas/Brand'
-        lab_test_url:
-          type: string
-          description: URL to the latest lab test if it exists
-          example: https://www.lab.com/lab-test/123456
-        coa_url:
-          type:
-          - string
-          - 'null'
-          description: URL to the Certificate of Analysis (COA) document. Returns either a direct URL or a presigned S3 URL (valid for 24 hours) if available.
-          example: https://s3.amazonaws.com/bucket/coa/abc123.pdf?X-Amz-Signature=...
-        test_results:
-          $ref: '#/components/schemas/TestResults'
-        cogs:
-          type: object
-          example:
-            labor: 10.0
-            non_cannabis: 120.0
-            cannabis: 30.0
-            total: 160.0
-        original_cogs:
-          type: object
-          description: COGS values at the time the package was created (before any later adjustments).
-          example:
-            labor: 10.0
-            non_cannabis: 120.0
-            cannabis: 30.0
-            total: 160.0
-        manufacturing_run:
-          type:
-          - object
-          - 'null'
-          description: Only returned by the show endpoint (GET /packages/{id}). Populated when the package is an output of a manufacturing run; null otherwise.
-          properties:
-            id:
-              type: integer
-            name:
-              type: string
-            status:
-              type: string
-            start_date:
-              type:
-              - string
-              - 'null'
-              format: date
-            end_date:
-              type:
-              - string
-              - 'null'
-              format: date
-            facility_id:
-              type: integer
-        updated_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
-        tested_package_tag:
-          type: string
-          description: Tag identifying the package that has been tested
-        test_status:
-          type: string
-          description: Status of the test (e.g., passed, failed, pending)
-        test_date:
-          type: string
-          format: date
-          description: Date when the test was conducted
-        lab_test_info:
-          $ref: '#/components/schemas/LabTestInfo'
+  responses:
+    401NotAuthenticated:
+      description: Not authenticated
+    403AccessDenied:
+      description: Access denied
+    400BadRequest:
+      description: Bad request
+    500ServerError:
+      description: Server error
+    404NotFound:
+      description: The specified resource was not found
   parameters:
+    offsetParam:
+      name: offset
+      in: query
+      description: Offset for the returned records (optional)
+      schema:
+        type: integer
+        default: 0
+        example: 20
+    orderByParam:
+      name: order_by
+      in: query
+      description: Order-by clause, in SQL format (optional)
+      schema:
+        type: string
+        example: id desc
     whereParam:
       name: where
       in: query
@@ -1379,32 +1405,6 @@ components:
         type: integer
         default: 2000
         example: 100
-    orderByParam:
-      name: order_by
-      in: query
-      description: Order-by clause, in SQL format (optional)
-      schema:
-        type: string
-        example: id desc
-    offsetParam:
-      name: offset
-      in: query
-      description: Offset for the returned records (optional)
-      schema:
-        type: integer
-        default: 0
-        example: 20
-  responses:
-    403AccessDenied:
-      description: Access denied
-    500ServerError:
-      description: Server error
-    401NotAuthenticated:
-      description: Not authenticated
-    400BadRequest:
-      description: Bad request
-    404NotFound:
-      description: The specified resource was not found
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

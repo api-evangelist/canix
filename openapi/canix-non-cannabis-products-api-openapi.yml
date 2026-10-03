@@ -195,55 +195,18 @@ paths:
         '500':
           $ref: '#/components/responses/500ServerError'
 components:
+  responses:
+    401NotAuthenticated:
+      description: Not authenticated
+    403AccessDenied:
+      description: Access denied
+    400BadRequest:
+      description: Bad request
+    500ServerError:
+      description: Server error
+    404NotFound:
+      description: The specified resource was not found
   schemas:
-    Address:
-      title: Address
-      type: object
-      properties:
-        street:
-          type: string
-          example: 123 Cumberland St
-        street2:
-          type: string
-          example: West
-        city:
-          type: string
-          example: Somerset
-        county:
-          type: string
-          example: KY
-        state:
-          type: string
-          example: CO
-        country:
-          type: string
-          example: USA
-        postal_code:
-          type: string
-          example: 42504
-    NonCannabisProductStandardCosting:
-      title: NonCannabisProductStandardCosting
-      required:
-      - id
-      - standard_cost_amount
-      - standard_cost_currency
-      - start_date
-      properties:
-        id:
-          type: integer
-          example: 123
-        standard_cost_amount:
-          type: number
-          example: 12.1111
-        standard_cost_currency:
-          type: string
-          example: USD
-        start_date:
-          type: string
-          example: '2023-04-19'
-        end_date:
-          type: string
-          example: '2023-05-19'
     BillOfMaterialsSourceNonCannabisProduct:
       title: Source Non Cannabis Product Info
       type: object
@@ -270,53 +233,8 @@ components:
         quantity: 1
         weight_unit: Each
         application_setting: proportional
-    BillOfMaterialsOutputItem:
-      title: Output Item Info
-      type: object
-      required:
-      - name
-      - item_id
-      - quantity
-      - weight_unit
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-          description: Name of the output item. Null when the output targets an item category or sub-category instead of a concrete item; item_category / item_sub_category identify the output in that case.
-        item_id:
-          type: integer
-        quantity:
-          type: number
-        weight_unit:
-          type: string
-        item_category:
-          type:
-          - object
-          - 'null'
-          properties:
-            id:
-              type: integer
-            name:
-              type: string
-        item_sub_category:
-          type:
-          - object
-          - 'null'
-          properties:
-            id:
-              type: integer
-            name:
-              type: string
-      example:
-        name: Jarred Flower
-        item_id: 370
-        quantity: 50
-        weight_unit: Grams
-        item_category: null
-        item_sub_category: null
-    Location:
-      title: Location
+    NonCannabisProductCategory:
+      title: Non Cannabis Product Category
       required:
       - id
       - name
@@ -326,245 +244,10 @@ components:
           example: 123
         name:
           type: string
-          example: Pro System
-        sqft:
-          type: number
-          example: 14.4
-        num_lights:
-          type: integer
-          example: 42
-        parent_location:
-          $ref: '#/components/schemas/ParentLocation'
+          example: Preroll Materials
         updated_at:
           type: string
           example: 2018-11-06 08:00:00+00:00
-        is_active:
-          type: boolean
-          example: true
-    BillOfMaterialsSourceCannabisItem:
-      title: Source Cannabis Item Info
-      type: object
-      required:
-      - quantity
-      - weight_unit
-      properties:
-        quantity:
-          type: number
-        weight_unit:
-          type: string
-        item:
-          type:
-          - object
-          - 'null'
-          properties:
-            id:
-              type: integer
-            name:
-              type: string
-        item_category:
-          type:
-          - object
-          - 'null'
-          properties:
-            id:
-              type: integer
-            name:
-              type: string
-        item_sub_category:
-          type:
-          - object
-          - 'null'
-          properties:
-            id:
-              type: integer
-            name:
-              type: string
-      example:
-        quantity: 100
-        weight_unit: Grams
-        item:
-          id: 242
-          name: Hammer Bud
-        item_category: null
-        item_sub_category: null
-    ParentLocation:
-      title: Parent Location
-      required:
-      - id
-      - name
-      properties:
-        id:
-          type: integer
-          example: 123
-        name:
-          type: string
-          example: Pro System
-        sqft:
-          type: number
-          example: 14.4
-        num_lights:
-          type: integer
-          example: 42
-        updated_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
-        is_active:
-          type: boolean
-          example: true
-    NonCannabisProduct:
-      title: Non Cannabis Product
-      required:
-      - id
-      - name
-      properties:
-        id:
-          type: integer
-          example: 123
-        name:
-          type: string
-          example: Pro System
-        is_active:
-          type: boolean
-        facilities:
-          $ref: '#/components/schemas/Facility'
-          description: All facilities that the product is available in
-        category:
-          $ref: '#/components/schemas/NonCannabisProductCategory'
-        location:
-          $ref: '#/components/schemas/Location'
-        sku:
-          type: string
-          example: 0.5EC
-        notes:
-          type: string
-          description: Optional notes for the product
-          example: This product requires special handling
-        available_quantity:
-          type: number
-          example: 196
-        weight_unit:
-          type: string
-          example: Each
-        par:
-          type: number
-          example: 100
-        updated_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
-        current_standard_costing:
-          $ref: '#/components/schemas/NonCannabisProductStandardCosting'
-        submits_to_metrc:
-          type: boolean
-          description: This field is only applicable to products that are submitted to METRC
-        additive_type:
-          type: string
-          example: fertilizer
-          description: This field is only applicable to products that are submitted to METRC
-        product_trade_name:
-          type: string
-          description: This field is only applicable to products that are submitted to METRC
-        epa_registration_name:
-          type: string
-          description: This field is only applicable to products that are submitted to METRC
-        product_supplier:
-          type: string
-          description: This field is only applicable to products that are submitted to METRC
-        application_device:
-          type: string
-          description: This field is only applicable to products that are submitted to METRC
-        active_ingredients:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-              percentage:
-                type: number
-    BillOfMaterials:
-      title: Bill of Materials Info
-      type: object
-      required:
-      - id
-      - name
-      - proportion_type
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        active_date:
-          type: string
-          format: date
-        expiration_date:
-          type: string
-          format: date
-        proportion_type:
-          type: string
-          description: single_instance means materials are applied to each output independently; all_instances means materials are applied across all output item quantities
-        last_updated_at:
-          type: string
-          format: date-time
-          description: Last updated timestamp
-        source_non_cannabis_products:
-          type: array
-          items:
-            $ref: '#/components/schemas/BillOfMaterialsSourceNonCannabisProduct'
-        source_cannabis_items:
-          type: array
-          items:
-            $ref: '#/components/schemas/BillOfMaterialsSourceCannabisItem'
-        output_items:
-          type: array
-          items:
-            $ref: '#/components/schemas/BillOfMaterialsOutputItem'
-      example:
-        id: 12
-        name: Bulk - Dark Chocolate Peaks - 10mg
-        active_date: '2023-01-01'
-        expiration_date: '2023-12-31'
-        proportion_type: single_instance
-        source_non_cannabis_products:
-        - name: 1/8th Jar
-          non_cannabis_product_id: 24
-          quantity: 1
-          weight_unit: Each
-          application_setting: proportional
-        - name: Gloves - Large
-          non_cannabis_product_id: 56
-          quantity: 2
-          weight_unit: Each
-          application_setting: fixed
-        source_cannabis_items:
-        - quantity: 20
-          weight_unit: Grams
-          item:
-            id: 242
-            name: Hammer Bud
-          item_category: null
-          item_sub_category: null
-        - quantity: 25
-          weight_unit: Grams
-          item: null
-          item_category:
-            id: 98
-            name: B Buds
-          item_sub_category: null
-        output_items:
-        - name: Jarred Flower
-          item_id: 370
-          quantity: 50
-          weight_unit: Grams
-          item_category: null
-          item_sub_category: null
-        - name: null
-          item_id: 371
-          quantity: 25
-          weight_unit: Grams
-          item_category:
-            id: 98
-            name: B Buds
-          item_sub_category: null
     CreateNonCannabisProductRequestBody:
       title: Create Non Cannabis Product Request Body
       type: object
@@ -684,8 +367,8 @@ components:
           percentage: 10.0
         - name: Phosphorus
           percentage: 5.0
-    NonCannabisProductCategory:
-      title: Non Cannabis Product Category
+    NonCannabisProduct:
+      title: Non Cannabis Product
       required:
       - id
       - name
@@ -695,10 +378,65 @@ components:
           example: 123
         name:
           type: string
-          example: Preroll Materials
+          example: Pro System
+        is_active:
+          type: boolean
+        facilities:
+          $ref: '#/components/schemas/Facility'
+          description: All facilities that the product is available in
+        category:
+          $ref: '#/components/schemas/NonCannabisProductCategory'
+        location:
+          $ref: '#/components/schemas/Location'
+        sku:
+          type: string
+          example: 0.5EC
+        notes:
+          type: string
+          description: Optional notes for the product
+          example: This product requires special handling
+        available_quantity:
+          type: number
+          example: 196
+        weight_unit:
+          type: string
+          example: Each
+        par:
+          type: number
+          example: 100
         updated_at:
           type: string
           example: 2018-11-06 08:00:00+00:00
+        current_standard_costing:
+          $ref: '#/components/schemas/NonCannabisProductStandardCosting'
+        submits_to_metrc:
+          type: boolean
+          description: This field is only applicable to products that are submitted to METRC
+        additive_type:
+          type: string
+          example: fertilizer
+          description: This field is only applicable to products that are submitted to METRC
+        product_trade_name:
+          type: string
+          description: This field is only applicable to products that are submitted to METRC
+        epa_registration_name:
+          type: string
+          description: This field is only applicable to products that are submitted to METRC
+        product_supplier:
+          type: string
+          description: This field is only applicable to products that are submitted to METRC
+        application_device:
+          type: string
+          description: This field is only applicable to products that are submitted to METRC
+        active_ingredients:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              percentage:
+                type: number
     Facility:
       title: Facility
       required:
@@ -718,7 +456,295 @@ components:
           example: true
         address:
           $ref: '#/components/schemas/Address'
+    BillOfMaterialsSourceCannabisItem:
+      title: Source Cannabis Item Info
+      type: object
+      required:
+      - quantity
+      - weight_unit
+      properties:
+        quantity:
+          type: number
+        weight_unit:
+          type: string
+        item:
+          type:
+          - object
+          - 'null'
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+        item_category:
+          type:
+          - object
+          - 'null'
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+        item_sub_category:
+          type:
+          - object
+          - 'null'
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+      example:
+        quantity: 100
+        weight_unit: Grams
+        item:
+          id: 242
+          name: Hammer Bud
+        item_category: null
+        item_sub_category: null
+    ParentLocation:
+      title: Parent Location
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: integer
+          example: 123
+        name:
+          type: string
+          example: Pro System
+        sqft:
+          type: number
+          example: 14.4
+        num_lights:
+          type: integer
+          example: 42
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+        is_active:
+          type: boolean
+          example: true
+    Location:
+      title: Location
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: integer
+          example: 123
+        name:
+          type: string
+          example: Pro System
+        sqft:
+          type: number
+          example: 14.4
+        num_lights:
+          type: integer
+          example: 42
+        parent_location:
+          $ref: '#/components/schemas/ParentLocation'
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+        is_active:
+          type: boolean
+          example: true
+    NonCannabisProductStandardCosting:
+      title: NonCannabisProductStandardCosting
+      required:
+      - id
+      - standard_cost_amount
+      - standard_cost_currency
+      - start_date
+      properties:
+        id:
+          type: integer
+          example: 123
+        standard_cost_amount:
+          type: number
+          example: 12.1111
+        standard_cost_currency:
+          type: string
+          example: USD
+        start_date:
+          type: string
+          example: '2023-04-19'
+        end_date:
+          type: string
+          example: '2023-05-19'
+    BillOfMaterials:
+      title: Bill of Materials Info
+      type: object
+      required:
+      - id
+      - name
+      - proportion_type
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        active_date:
+          type: string
+          format: date
+        expiration_date:
+          type: string
+          format: date
+        proportion_type:
+          type: string
+          description: single_instance means materials are applied to each output independently; all_instances means materials are applied across all output item quantities
+        last_updated_at:
+          type: string
+          format: date-time
+          description: Last updated timestamp
+        source_non_cannabis_products:
+          type: array
+          items:
+            $ref: '#/components/schemas/BillOfMaterialsSourceNonCannabisProduct'
+        source_cannabis_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/BillOfMaterialsSourceCannabisItem'
+        output_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/BillOfMaterialsOutputItem'
+      example:
+        id: 12
+        name: Bulk - Dark Chocolate Peaks - 10mg
+        active_date: '2023-01-01'
+        expiration_date: '2023-12-31'
+        proportion_type: single_instance
+        source_non_cannabis_products:
+        - name: 1/8th Jar
+          non_cannabis_product_id: 24
+          quantity: 1
+          weight_unit: Each
+          application_setting: proportional
+        - name: Gloves - Large
+          non_cannabis_product_id: 56
+          quantity: 2
+          weight_unit: Each
+          application_setting: fixed
+        source_cannabis_items:
+        - quantity: 20
+          weight_unit: Grams
+          item:
+            id: 242
+            name: Hammer Bud
+          item_category: null
+          item_sub_category: null
+        - quantity: 25
+          weight_unit: Grams
+          item: null
+          item_category:
+            id: 98
+            name: B Buds
+          item_sub_category: null
+        output_items:
+        - name: Jarred Flower
+          item_id: 370
+          quantity: 50
+          weight_unit: Grams
+          item_category: null
+          item_sub_category: null
+        - name: null
+          item_id: 371
+          quantity: 25
+          weight_unit: Grams
+          item_category:
+            id: 98
+            name: B Buds
+          item_sub_category: null
+    BillOfMaterialsOutputItem:
+      title: Output Item Info
+      type: object
+      required:
+      - name
+      - item_id
+      - quantity
+      - weight_unit
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: Name of the output item. Null when the output targets an item category or sub-category instead of a concrete item; item_category / item_sub_category identify the output in that case.
+        item_id:
+          type: integer
+        quantity:
+          type: number
+        weight_unit:
+          type: string
+        item_category:
+          type:
+          - object
+          - 'null'
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+        item_sub_category:
+          type:
+          - object
+          - 'null'
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+      example:
+        name: Jarred Flower
+        item_id: 370
+        quantity: 50
+        weight_unit: Grams
+        item_category: null
+        item_sub_category: null
+    Address:
+      title: Address
+      type: object
+      properties:
+        street:
+          type: string
+          example: 123 Cumberland St
+        street2:
+          type: string
+          example: West
+        city:
+          type: string
+          example: Somerset
+        county:
+          type: string
+          example: KY
+        state:
+          type: string
+          example: CO
+        country:
+          type: string
+          example: USA
+        postal_code:
+          type: string
+          example: 42504
   parameters:
+    offsetParam:
+      name: offset
+      in: query
+      description: Offset for the returned records (optional)
+      schema:
+        type: integer
+        default: 0
+        example: 20
+    orderByParam:
+      name: order_by
+      in: query
+      description: Order-by clause, in SQL format (optional)
+      schema:
+        type: string
+        example: id desc
     whereParam:
       name: where
       in: query
@@ -756,32 +782,6 @@ components:
         type: integer
         default: 2000
         example: 100
-    orderByParam:
-      name: order_by
-      in: query
-      description: Order-by clause, in SQL format (optional)
-      schema:
-        type: string
-        example: id desc
-    offsetParam:
-      name: offset
-      in: query
-      description: Offset for the returned records (optional)
-      schema:
-        type: integer
-        default: 0
-        example: 20
-  responses:
-    403AccessDenied:
-      description: Access denied
-    500ServerError:
-      description: Server error
-    401NotAuthenticated:
-      description: Not authenticated
-    400BadRequest:
-      description: Bad request
-    404NotFound:
-      description: The specified resource was not found
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

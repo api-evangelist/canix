@@ -91,112 +91,7 @@ paths:
         '500':
           $ref: '#/components/responses/500ServerError'
 components:
-  responses:
-    500ServerError:
-      description: Server error
-    404NotFound:
-      description: The specified resource was not found
-    400BadRequest:
-      description: Bad request
-    403AccessDenied:
-      description: Access denied
-    401NotAuthenticated:
-      description: Not authenticated
-  parameters:
-    whereParam:
-      name: where
-      in: query
-      description: 'Filter results using SQL-like WHERE clause syntax (optional).
-
-
-        **Supported operators**: =, >, <, >=, <=, BETWEEN, IN, LIKE, AND, OR
-
-
-        **Supported patterns**:
-
-        - Equality: `status=''Active''`
-
-        - Comparison: `updated_at >= ''2024-01-01''`
-
-        - Range: `id BETWEEN 1 AND 10000`
-
-        - List: `status IN (''Active'', ''Pending'')`
-
-        - Pattern: `sku LIKE ''ABC%''`
-
-        - Compound: `facility_id=123 AND is_active=true`
-
-        '
-      schema:
-        type: string
-        example: status='Active' AND updated_at >= '2024-01-01'
-    orderByParam:
-      name: order_by
-      in: query
-      description: Order-by clause, in SQL format (optional)
-      schema:
-        type: string
-        example: id desc
-    offsetParam:
-      name: offset
-      in: query
-      description: Offset for the returned records (optional)
-      schema:
-        type: integer
-        default: 0
-        example: 20
-    limitParam:
-      name: limit
-      in: query
-      description: Max number of records to return (optional). Cannot exceed 2000
-      required: false
-      style: form
-      schema:
-        type: integer
-        default: 2000
-        example: 100
   schemas:
-    ItemType:
-      title: ItemType
-      required:
-      - id
-      - name
-      - facility_id
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        quantity_type:
-          type: string
-        requires_strain:
-          type: boolean
-        requires_unit_volume:
-          type: boolean
-        requires_unit_weight:
-          type: boolean
-        requires_unit_thc_weight:
-          type: boolean
-        requires_unit_cbd_weight:
-          type: boolean
-        requires_unit_cbd_percent:
-          type: boolean
-        requires_unit_thc_percent:
-          type: boolean
-        requires_public_ingredients:
-          type: boolean
-        requires_administration_method:
-          type: boolean
-        requires_serving_size:
-          type: boolean
-        requires_supply_duration_days:
-          type: boolean
-        requires_number_of_doses:
-          type: boolean
-        updated_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
     CrossStrain:
       title: Cross Strain
       required:
@@ -274,26 +169,6 @@ components:
           type: number
         name:
           type: string
-    ItemSubType:
-      title: ItemSubType
-      required:
-      - id
-      - name
-      - weight_unit
-      - item_category
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        weight_unit:
-          type: string
-        category:
-          $ref: '#/components/schemas/ItemType'
-        updated_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
     Product:
       title: Product
       required:
@@ -360,6 +235,131 @@ components:
         backordered: 10
         unordered: 75
         updated_at: '2021-03-16T23:49:03.175Z'
+    ItemType:
+      title: ItemType
+      required:
+      - id
+      - name
+      - facility_id
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        quantity_type:
+          type: string
+        requires_strain:
+          type: boolean
+        requires_unit_volume:
+          type: boolean
+        requires_unit_weight:
+          type: boolean
+        requires_unit_thc_weight:
+          type: boolean
+        requires_unit_cbd_weight:
+          type: boolean
+        requires_unit_cbd_percent:
+          type: boolean
+        requires_unit_thc_percent:
+          type: boolean
+        requires_public_ingredients:
+          type: boolean
+        requires_administration_method:
+          type: boolean
+        requires_serving_size:
+          type: boolean
+        requires_supply_duration_days:
+          type: boolean
+        requires_number_of_doses:
+          type: boolean
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+    ItemSubType:
+      title: ItemSubType
+      required:
+      - id
+      - name
+      - weight_unit
+      - item_category
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        weight_unit:
+          type: string
+        category:
+          $ref: '#/components/schemas/ItemType'
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+  parameters:
+    limitParam:
+      name: limit
+      in: query
+      description: Max number of records to return (optional). Cannot exceed 2000
+      required: false
+      style: form
+      schema:
+        type: integer
+        default: 2000
+        example: 100
+    whereParam:
+      name: where
+      in: query
+      description: 'Filter results using SQL-like WHERE clause syntax (optional).
+
+
+        **Supported operators**: =, >, <, >=, <=, BETWEEN, IN, LIKE, AND, OR
+
+
+        **Supported patterns**:
+
+        - Equality: `status=''Active''`
+
+        - Comparison: `updated_at >= ''2024-01-01''`
+
+        - Range: `id BETWEEN 1 AND 10000`
+
+        - List: `status IN (''Active'', ''Pending'')`
+
+        - Pattern: `sku LIKE ''ABC%''`
+
+        - Compound: `facility_id=123 AND is_active=true`
+
+        '
+      schema:
+        type: string
+        example: status='Active' AND updated_at >= '2024-01-01'
+    offsetParam:
+      name: offset
+      in: query
+      description: Offset for the returned records (optional)
+      schema:
+        type: integer
+        default: 0
+        example: 20
+    orderByParam:
+      name: order_by
+      in: query
+      description: Order-by clause, in SQL format (optional)
+      schema:
+        type: string
+        example: id desc
+  responses:
+    401NotAuthenticated:
+      description: Not authenticated
+    403AccessDenied:
+      description: Access denied
+    404NotFound:
+      description: The specified resource was not found
+    400BadRequest:
+      description: Bad request
+    500ServerError:
+      description: Server error
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

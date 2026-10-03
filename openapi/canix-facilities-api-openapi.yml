@@ -91,63 +91,28 @@ paths:
         '500':
           $ref: '#/components/responses/500ServerError'
 components:
-  schemas:
-    Address:
-      title: Address
-      type: object
-      properties:
-        street:
-          type: string
-          example: 123 Cumberland St
-        street2:
-          type: string
-          example: West
-        city:
-          type: string
-          example: Somerset
-        county:
-          type: string
-          example: KY
-        state:
-          type: string
-          example: CO
-        country:
-          type: string
-          example: USA
-        postal_code:
-          type: string
-          example: 42504
-    Facility:
-      title: Facility
-      required:
-      - id
-      properties:
-        id:
-          type: integer
-          example: 123
-        name:
-          type: string
-          example: Test Facility
-        license_number:
-          type: string
-          example: 4a-x123
-        is_active:
-          type: boolean
-          example: true
-        address:
-          $ref: '#/components/schemas/Address'
   responses:
-    500ServerError:
-      description: Server error
-    404NotFound:
-      description: The specified resource was not found
-    400BadRequest:
-      description: Bad request
     403AccessDenied:
       description: Access denied
     401NotAuthenticated:
       description: Not authenticated
+    404NotFound:
+      description: The specified resource was not found
+    400BadRequest:
+      description: Bad request
+    500ServerError:
+      description: Server error
   parameters:
+    limitParam:
+      name: limit
+      in: query
+      description: Max number of records to return (optional). Cannot exceed 2000
+      required: false
+      style: form
+      schema:
+        type: integer
+        default: 2000
+        example: 100
     whereParam:
       name: where
       in: query
@@ -175,13 +140,6 @@ components:
       schema:
         type: string
         example: status='Active' AND updated_at >= '2024-01-01'
-    orderByParam:
-      name: order_by
-      in: query
-      description: Order-by clause, in SQL format (optional)
-      schema:
-        type: string
-        example: id desc
     offsetParam:
       name: offset
       in: query
@@ -190,16 +148,58 @@ components:
         type: integer
         default: 0
         example: 20
-    limitParam:
-      name: limit
+    orderByParam:
+      name: order_by
       in: query
-      description: Max number of records to return (optional). Cannot exceed 2000
-      required: false
-      style: form
+      description: Order-by clause, in SQL format (optional)
       schema:
-        type: integer
-        default: 2000
-        example: 100
+        type: string
+        example: id desc
+  schemas:
+    Facility:
+      title: Facility
+      required:
+      - id
+      properties:
+        id:
+          type: integer
+          example: 123
+        name:
+          type: string
+          example: Test Facility
+        license_number:
+          type: string
+          example: 4a-x123
+        is_active:
+          type: boolean
+          example: true
+        address:
+          $ref: '#/components/schemas/Address'
+    Address:
+      title: Address
+      type: object
+      properties:
+        street:
+          type: string
+          example: 123 Cumberland St
+        street2:
+          type: string
+          example: West
+        city:
+          type: string
+          example: Somerset
+        county:
+          type: string
+          example: KY
+        state:
+          type: string
+          example: CO
+        country:
+          type: string
+          example: USA
+        postal_code:
+          type: string
+          example: 42504
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

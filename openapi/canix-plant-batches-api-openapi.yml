@@ -85,6 +85,75 @@ paths:
           $ref: '#/components/responses/500ServerError'
 components:
   schemas:
+    CrossStrain:
+      title: Cross Strain
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          example: Lemon Skunk
+          description: Strain name
+        notes:
+          type: string
+          example: Terpenes .63%
+          description: Notes
+        sku:
+          type: string
+          example: BIOJJ
+          description: SKU
+        testing_status:
+          type: string
+          example: InHouse
+          description: 'Testing status: InHouse, ThirdParty, None, NA'
+        indica_percent:
+          type: number
+          example: 45.0
+          description: Indica Percentage
+        sativa_percent:
+          type: number
+          example: 55.0
+          description: Sativa Percentage
+    Strain:
+      title: Strain
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          example: Lemon Skunk
+          description: Strain name
+        notes:
+          type: string
+          example: Terpenes .63%
+          description: Notes
+        sku:
+          type: string
+          example: BIOJJ
+          description: SKU
+        testing_status:
+          type: string
+          example: InHouse
+          description: 'Testing status: InHouse, ThirdParty, None, NA'
+        indica_percent:
+          type: number
+          example: 45.0
+          description: Indica Percentage
+        sativa_percent:
+          type: number
+          example: 55.0
+          description: Sativa Percentage
+        cross_strains:
+          type: array
+          description: Cross strains
+          items:
+            $ref: '#/components/schemas/CrossStrain'
     Location:
       title: Location
       required:
@@ -180,87 +249,17 @@ components:
         updated_at:
           type: string
           example: 2018-11-06 08:00:00+00:00
-    CrossStrain:
-      title: Cross Strain
-      required:
-      - id
-      - name
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-          example: Lemon Skunk
-          description: Strain name
-        notes:
-          type: string
-          example: Terpenes .63%
-          description: Notes
-        sku:
-          type: string
-          example: BIOJJ
-          description: SKU
-        testing_status:
-          type: string
-          example: InHouse
-          description: 'Testing status: InHouse, ThirdParty, None, NA'
-        indica_percent:
-          type: number
-          example: 45.0
-          description: Indica Percentage
-        sativa_percent:
-          type: number
-          example: 55.0
-          description: Sativa Percentage
-    Strain:
-      title: Strain
-      required:
-      - id
-      - name
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-          example: Lemon Skunk
-          description: Strain name
-        notes:
-          type: string
-          example: Terpenes .63%
-          description: Notes
-        sku:
-          type: string
-          example: BIOJJ
-          description: SKU
-        testing_status:
-          type: string
-          example: InHouse
-          description: 'Testing status: InHouse, ThirdParty, None, NA'
-        indica_percent:
-          type: number
-          example: 45.0
-          description: Indica Percentage
-        sativa_percent:
-          type: number
-          example: 55.0
-          description: Sativa Percentage
-        cross_strains:
-          type: array
-          description: Cross strains
-          items:
-            $ref: '#/components/schemas/CrossStrain'
-  responses:
-    500ServerError:
-      description: Server error
-    404NotFound:
-      description: The specified resource was not found
-    400BadRequest:
-      description: Bad request
-    401NotAuthenticated:
-      description: Not authenticated
-    403AccessDenied:
-      description: Access denied
   parameters:
+    limitParam:
+      name: limit
+      in: query
+      description: Max number of records to return (optional). Cannot exceed 2000
+      required: false
+      style: form
+      schema:
+        type: integer
+        default: 2000
+        example: 100
     whereParam:
       name: where
       in: query
@@ -288,13 +287,6 @@ components:
       schema:
         type: string
         example: status='Active' AND updated_at >= '2024-01-01'
-    orderByParam:
-      name: order_by
-      in: query
-      description: Order-by clause, in SQL format (optional)
-      schema:
-        type: string
-        example: id desc
     offsetParam:
       name: offset
       in: query
@@ -303,16 +295,24 @@ components:
         type: integer
         default: 0
         example: 20
-    limitParam:
-      name: limit
+    orderByParam:
+      name: order_by
       in: query
-      description: Max number of records to return (optional). Cannot exceed 2000
-      required: false
-      style: form
+      description: Order-by clause, in SQL format (optional)
       schema:
-        type: integer
-        default: 2000
-        example: 100
+        type: string
+        example: id desc
+  responses:
+    401NotAuthenticated:
+      description: Not authenticated
+    403AccessDenied:
+      description: Access denied
+    404NotFound:
+      description: The specified resource was not found
+    400BadRequest:
+      description: Bad request
+    500ServerError:
+      description: Server error
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

@@ -281,7 +281,33 @@ paths:
         '500':
           $ref: '#/components/responses/500ServerError'
 components:
+  responses:
+    401NotAuthenticated:
+      description: Not authenticated
+    403AccessDenied:
+      description: Access denied
+    400BadRequest:
+      description: Bad request
+    500ServerError:
+      description: Server error
+    404NotFound:
+      description: The specified resource was not found
   parameters:
+    offsetParam:
+      name: offset
+      in: query
+      description: Offset for the returned records (optional)
+      schema:
+        type: integer
+        default: 0
+        example: 20
+    orderByParam:
+      name: order_by
+      in: query
+      description: Order-by clause, in SQL format (optional)
+      schema:
+        type: string
+        example: id desc
     whereParam:
       name: where
       in: query
@@ -319,101 +345,29 @@ components:
         type: integer
         default: 2000
         example: 100
-    orderByParam:
-      name: order_by
-      in: query
-      description: Order-by clause, in SQL format (optional)
-      schema:
-        type: string
-        example: id desc
-    offsetParam:
-      name: offset
-      in: query
-      description: Offset for the returned records (optional)
-      schema:
-        type: integer
-        default: 0
-        example: 20
   schemas:
-    CreateMETRCItemPhotosRequestBody:
-      title: CreateMETRCItemPhotosRequestBody
+    ItemStandardCostRequestBody:
+      title: Item Standard Cost Request Body
+      type: object
       required:
-      - facility_id
-      - photos
+      - cost
+      - start_date
       properties:
-        facility_id:
-          type: integer
-        photos:
-          type: array
-          items:
-            type: object
-            properties:
-              attachment_type:
-                enum:
-                - product
-                - label
-                - packaging
-                description: 'The type of attachment intended for the item. Must be one of the following: product, label, packaging'
-              filename:
-                type: string
-              encoded_image_base64:
-                type: string
-                description: A Base64 string containing the encoded image
-    CreateMETRCItemFilesRequestBody:
-      title: CreateMETRCItemFileRequestBody
-      required:
-      - facility_id
-      - files
-      properties:
-        facility_id:
-          type: integer
-        files:
-          type: array
-          items:
-            type: object
-            properties:
-              filename:
-                type: string
-              encoded_file_base64:
-                type: string
-                description: A Base64 string containing the encoded file
-    Strain:
-      title: Strain
-      required:
-      - id
-      - name
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-          example: Lemon Skunk
-          description: Strain name
-        notes:
-          type: string
-          example: Terpenes .63%
-          description: Notes
-        sku:
-          type: string
-          example: BIOJJ
-          description: SKU
-        testing_status:
-          type: string
-          example: InHouse
-          description: 'Testing status: InHouse, ThirdParty, None, NA'
-        indica_percent:
+        cost:
           type: number
-          example: 45.0
-          description: Indica Percentage
-        sativa_percent:
-          type: number
-          example: 55.0
-          description: Sativa Percentage
-        cross_strains:
-          type: array
-          description: Cross strains
-          items:
-            $ref: '#/components/schemas/CrossStrain'
+          format: float
+          description: The standard cost value to be set
+          example: 10.5
+        start_date:
+          type: string
+          format: date-time
+          description: When this standard cost becomes effective
+          example: '2024-02-03T00:00:00Z'
+        end_date:
+          type: string
+          format: date-time
+          description: Optional. When this standard cost expires
+          example: '2024-12-31T23:59:59Z'
     CrossStrain:
       title: Cross Strain
       required:
@@ -446,6 +400,56 @@ components:
           type: number
           example: 55.0
           description: Sativa Percentage
+    IdName:
+      title: IdName
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+    CreateMETRCItemFilesRequestBody:
+      title: CreateMETRCItemFileRequestBody
+      required:
+      - facility_id
+      - files
+      properties:
+        facility_id:
+          type: integer
+        files:
+          type: array
+          items:
+            type: object
+            properties:
+              filename:
+                type: string
+              encoded_file_base64:
+                type: string
+                description: A Base64 string containing the encoded file
+    CreateMETRCItemPhotosRequestBody:
+      title: CreateMETRCItemPhotosRequestBody
+      required:
+      - facility_id
+      - photos
+      properties:
+        facility_id:
+          type: integer
+        photos:
+          type: array
+          items:
+            type: object
+            properties:
+              attachment_type:
+                enum:
+                - product
+                - label
+                - packaging
+                description: 'The type of attachment intended for the item. Must be one of the following: product, label, packaging'
+              filename:
+                type: string
+              encoded_image_base64:
+                type: string
+                description: A Base64 string containing the encoded image
     CreateItemRequestBody:
       title: Item Request Body
       type: object
@@ -563,6 +567,47 @@ components:
           type: string
           example: 'Brand #1'
           description: Item Brand for METRC
+    ItemType:
+      title: ItemType
+      required:
+      - id
+      - name
+      - facility_id
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        quantity_type:
+          type: string
+        requires_strain:
+          type: boolean
+        requires_unit_volume:
+          type: boolean
+        requires_unit_weight:
+          type: boolean
+        requires_unit_thc_weight:
+          type: boolean
+        requires_unit_cbd_weight:
+          type: boolean
+        requires_unit_cbd_percent:
+          type: boolean
+        requires_unit_thc_percent:
+          type: boolean
+        requires_public_ingredients:
+          type: boolean
+        requires_administration_method:
+          type: boolean
+        requires_serving_size:
+          type: boolean
+        requires_supply_duration_days:
+          type: boolean
+        requires_number_of_doses:
+          type: boolean
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
     Item:
       title: Item
       required:
@@ -753,100 +798,26 @@ components:
         backordered: 10
         unordered: 75
         updated_at: '2021-03-16T23:49:03.175Z'
-    ItemType:
-      title: ItemType
+    ItemSubType:
+      title: ItemSubType
       required:
       - id
       - name
-      - facility_id
+      - weight_unit
+      - item_category
       type: object
       properties:
         id:
           type: integer
         name:
           type: string
-        quantity_type:
+        weight_unit:
           type: string
-        requires_strain:
-          type: boolean
-        requires_unit_volume:
-          type: boolean
-        requires_unit_weight:
-          type: boolean
-        requires_unit_thc_weight:
-          type: boolean
-        requires_unit_cbd_weight:
-          type: boolean
-        requires_unit_cbd_percent:
-          type: boolean
-        requires_unit_thc_percent:
-          type: boolean
-        requires_public_ingredients:
-          type: boolean
-        requires_administration_method:
-          type: boolean
-        requires_serving_size:
-          type: boolean
-        requires_supply_duration_days:
-          type: boolean
-        requires_number_of_doses:
-          type: boolean
+        category:
+          $ref: '#/components/schemas/ItemType'
         updated_at:
           type: string
           example: 2018-11-06 08:00:00+00:00
-    ItemStandardCostRequestBody:
-      title: Item Standard Cost Request Body
-      type: object
-      required:
-      - cost
-      - start_date
-      properties:
-        cost:
-          type: number
-          format: float
-          description: The standard cost value to be set
-          example: 10.5
-        start_date:
-          type: string
-          format: date-time
-          description: When this standard cost becomes effective
-          example: '2024-02-03T00:00:00Z'
-        end_date:
-          type: string
-          format: date-time
-          description: Optional. When this standard cost expires
-          example: '2024-12-31T23:59:59Z'
-    ItemStandardCost:
-      title: ItemStandardCost
-      required:
-      - id
-      - standard_cost_amount
-      - standard_cost_currency
-      - start_date
-      properties:
-        id:
-          type: integer
-          example: 123
-        standard_cost_amount:
-          type: number
-          example: 12.1111
-        standard_cost_currency:
-          type: string
-          example: USD
-        start_date:
-          type: string
-          example: '2023-04-19'
-        end_date:
-          type: string
-          example: '2023-05-19'
-    IdName:
-      title: IdName
-      type: object
-      properties:
-        id:
-          type: number
-        name:
-          type: string
     UpdateItemRequestBody:
       title: Item Update Request Body
       type: object
@@ -933,37 +904,66 @@ components:
           type: string
           example: 'Brand #1'
           description: Item Brand for METRC
-    ItemSubType:
-      title: ItemSubType
+    ItemStandardCost:
+      title: ItemStandardCost
+      required:
+      - id
+      - standard_cost_amount
+      - standard_cost_currency
+      - start_date
+      properties:
+        id:
+          type: integer
+          example: 123
+        standard_cost_amount:
+          type: number
+          example: 12.1111
+        standard_cost_currency:
+          type: string
+          example: USD
+        start_date:
+          type: string
+          example: '2023-04-19'
+        end_date:
+          type: string
+          example: '2023-05-19'
+    Strain:
+      title: Strain
       required:
       - id
       - name
-      - weight_unit
-      - item_category
-      type: object
       properties:
         id:
           type: integer
         name:
           type: string
-        weight_unit:
+          example: Lemon Skunk
+          description: Strain name
+        notes:
           type: string
-        category:
-          $ref: '#/components/schemas/ItemType'
-        updated_at:
+          example: Terpenes .63%
+          description: Notes
+        sku:
           type: string
-          example: 2018-11-06 08:00:00+00:00
-  responses:
-    403AccessDenied:
-      description: Access denied
-    500ServerError:
-      description: Server error
-    401NotAuthenticated:
-      description: Not authenticated
-    400BadRequest:
-      description: Bad request
-    404NotFound:
-      description: The specified resource was not found
+          example: BIOJJ
+          description: SKU
+        testing_status:
+          type: string
+          example: InHouse
+          description: 'Testing status: InHouse, ThirdParty, None, NA'
+        indica_percent:
+          type: number
+          example: 45.0
+          description: Indica Percentage
+        sativa_percent:
+          type: number
+          example: 55.0
+          description: Sativa Percentage
+        cross_strains:
+          type: array
+          description: Cross strains
+          items:
+            $ref: '#/components/schemas/CrossStrain'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

@@ -113,6 +113,131 @@ paths:
           $ref: '#/components/responses/500ServerError'
 components:
   schemas:
+    CrossStrain:
+      title: Cross Strain
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          example: Lemon Skunk
+          description: Strain name
+        notes:
+          type: string
+          example: Terpenes .63%
+          description: Notes
+        sku:
+          type: string
+          example: BIOJJ
+          description: SKU
+        testing_status:
+          type: string
+          example: InHouse
+          description: 'Testing status: InHouse, ThirdParty, None, NA'
+        indica_percent:
+          type: number
+          example: 45.0
+          description: Indica Percentage
+        sativa_percent:
+          type: number
+          example: 55.0
+          description: Sativa Percentage
+    Strain:
+      title: Strain
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          example: Lemon Skunk
+          description: Strain name
+        notes:
+          type: string
+          example: Terpenes .63%
+          description: Notes
+        sku:
+          type: string
+          example: BIOJJ
+          description: SKU
+        testing_status:
+          type: string
+          example: InHouse
+          description: 'Testing status: InHouse, ThirdParty, None, NA'
+        indica_percent:
+          type: number
+          example: 45.0
+          description: Indica Percentage
+        sativa_percent:
+          type: number
+          example: 55.0
+          description: Sativa Percentage
+        cross_strains:
+          type: array
+          description: Cross strains
+          items:
+            $ref: '#/components/schemas/CrossStrain'
+    Harvest:
+      title: Harvest
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: integer
+          example: 123
+        name:
+          type: string
+          example: Offline Manicure
+        strain:
+          $ref: '#/components/schemas/Strain'
+        drying_location:
+          $ref: '#/components/schemas/Location'
+        harvest_date:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+        plant_count:
+          type: number
+          example: 3
+        average_plant_weight:
+          type: number
+          example: 107.7
+        notes:
+          type: string
+          example: nice harvest!
+        waste_weight:
+          type: number
+          example: 100
+        total_wet_weight:
+          type: number
+          example: 100
+        total_packaged_weight:
+          type: number
+          example: 100
+        finished_date:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+        package_count:
+          type: integer
+          example: 100
+        lot_id:
+          type: string
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+    RecordCount:
+      title: Record Count
+      required:
+      - Count
+      properties:
+        count:
+          type: integer
+          example: 123
     Location:
       title: Location
       required:
@@ -266,143 +391,28 @@ components:
         updated_at:
           type: string
           example: 2018-11-06 08:00:00+00:00
-    Harvest:
-      title: Harvest
-      required:
-      - id
-      - name
-      properties:
-        id:
-          type: integer
-          example: 123
-        name:
-          type: string
-          example: Offline Manicure
-        strain:
-          $ref: '#/components/schemas/Strain'
-        drying_location:
-          $ref: '#/components/schemas/Location'
-        harvest_date:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
-        plant_count:
-          type: number
-          example: 3
-        average_plant_weight:
-          type: number
-          example: 107.7
-        notes:
-          type: string
-          example: nice harvest!
-        waste_weight:
-          type: number
-          example: 100
-        total_wet_weight:
-          type: number
-          example: 100
-        total_packaged_weight:
-          type: number
-          example: 100
-        finished_date:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
-        package_count:
-          type: integer
-          example: 100
-        lot_id:
-          type: string
-        updated_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
-    CrossStrain:
-      title: Cross Strain
-      required:
-      - id
-      - name
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-          example: Lemon Skunk
-          description: Strain name
-        notes:
-          type: string
-          example: Terpenes .63%
-          description: Notes
-        sku:
-          type: string
-          example: BIOJJ
-          description: SKU
-        testing_status:
-          type: string
-          example: InHouse
-          description: 'Testing status: InHouse, ThirdParty, None, NA'
-        indica_percent:
-          type: number
-          example: 45.0
-          description: Indica Percentage
-        sativa_percent:
-          type: number
-          example: 55.0
-          description: Sativa Percentage
-    RecordCount:
-      title: Record Count
-      required:
-      - Count
-      properties:
-        count:
-          type: integer
-          example: 123
-    Strain:
-      title: Strain
-      required:
-      - id
-      - name
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-          example: Lemon Skunk
-          description: Strain name
-        notes:
-          type: string
-          example: Terpenes .63%
-          description: Notes
-        sku:
-          type: string
-          example: BIOJJ
-          description: SKU
-        testing_status:
-          type: string
-          example: InHouse
-          description: 'Testing status: InHouse, ThirdParty, None, NA'
-        indica_percent:
-          type: number
-          example: 45.0
-          description: Indica Percentage
-        sativa_percent:
-          type: number
-          example: 55.0
-          description: Sativa Percentage
-        cross_strains:
-          type: array
-          description: Cross strains
-          items:
-            $ref: '#/components/schemas/CrossStrain'
   responses:
-    500ServerError:
-      description: Server error
+    401NotAuthenticated:
+      description: Not authenticated
+    403AccessDenied:
+      description: Access denied
     404NotFound:
       description: The specified resource was not found
     400BadRequest:
       description: Bad request
-    403AccessDenied:
-      description: Access denied
-    401NotAuthenticated:
-      description: Not authenticated
+    500ServerError:
+      description: Server error
   parameters:
+    limitParam:
+      name: limit
+      in: query
+      description: Max number of records to return (optional). Cannot exceed 2000
+      required: false
+      style: form
+      schema:
+        type: integer
+        default: 2000
+        example: 100
     whereParam:
       name: where
       in: query
@@ -430,13 +440,6 @@ components:
       schema:
         type: string
         example: status='Active' AND updated_at >= '2024-01-01'
-    orderByParam:
-      name: order_by
-      in: query
-      description: Order-by clause, in SQL format (optional)
-      schema:
-        type: string
-        example: id desc
     offsetParam:
       name: offset
       in: query
@@ -445,16 +448,13 @@ components:
         type: integer
         default: 0
         example: 20
-    limitParam:
-      name: limit
+    orderByParam:
+      name: order_by
       in: query
-      description: Max number of records to return (optional). Cannot exceed 2000
-      required: false
-      style: form
+      description: Order-by clause, in SQL format (optional)
       schema:
-        type: integer
-        default: 2000
-        example: 100
+        type: string
+        example: id desc
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
