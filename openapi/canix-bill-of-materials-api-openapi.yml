@@ -127,43 +127,17 @@ paths:
       x-operation-id-original: GetBillOfMaterialsById
 components:
   responses:
-    403AccessDenied:
-      description: Access denied
-    401NotAuthenticated:
-      description: Not authenticated
-    500ServerError:
-      description: Server error
     404NotFound:
       description: The specified resource was not found
+    401NotAuthenticated:
+      description: Not authenticated
     400BadRequest:
       description: Bad request
+    403AccessDenied:
+      description: Access denied
+    500ServerError:
+      description: Server error
   schemas:
-    BillOfMaterialsSourceNonCannabisProduct:
-      title: Source Non Cannabis Product Info
-      type: object
-      required:
-      - non_cannabis_product_id
-      - name
-      - quantity
-      - weight_unit
-      - application_setting
-      properties:
-        non_cannabis_product_id:
-          type: integer
-        name:
-          type: string
-        quantity:
-          type: number
-        weight_unit:
-          type: string
-        application_setting:
-          type: string
-      example:
-        name: 1/8th Jar
-        non_cannabis_product_id: 24
-        quantity: 1
-        weight_unit: Each
-        application_setting: proportional
     BillOfMaterialsSourceCannabisItem:
       title: Source Cannabis Item Info
       type: object
@@ -255,6 +229,32 @@ components:
         weight_unit: Grams
         item_category: null
         item_sub_category: null
+    BillOfMaterialsSourceNonCannabisProduct:
+      title: Source Non Cannabis Product Info
+      type: object
+      required:
+      - non_cannabis_product_id
+      - name
+      - quantity
+      - weight_unit
+      - application_setting
+      properties:
+        non_cannabis_product_id:
+          type: integer
+        name:
+          type: string
+        quantity:
+          type: number
+        weight_unit:
+          type: string
+        application_setting:
+          type: string
+      example:
+        name: 1/8th Jar
+        non_cannabis_product_id: 24
+        quantity: 1
+        weight_unit: Each
+        application_setting: proportional
     BillOfMaterials:
       title: Bill of Materials Info
       type: object

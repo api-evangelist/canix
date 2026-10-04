@@ -159,6 +159,24 @@ paths:
           $ref: '#/components/responses/500ServerError'
 components:
   schemas:
+    StrainRequestBody:
+      title: Strain Request Body
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          example: Blue Dream
+        description:
+          type: string
+          example: A sativa-dominant hybrid
+        genetics:
+          type: string
+          example: Blueberry x Haze
+        active:
+          type: boolean
+          example: true
     CrossStrain:
       title: Cross Strain
       required:
@@ -228,24 +246,6 @@ components:
           description: Cross strains
           items:
             $ref: '#/components/schemas/CrossStrain'
-    StrainRequestBody:
-      title: Strain Request Body
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          example: Blue Dream
-        description:
-          type: string
-          example: A sativa-dominant hybrid
-        genetics:
-          type: string
-          example: Blueberry x Haze
-        active:
-          type: boolean
-          example: true
     CreateStrainRequestBody:
       title: Strain Request Body
       type: object
@@ -307,16 +307,21 @@ components:
           description: Current testing status of the strain
           example: Tested
   parameters:
-    limitParam:
-      name: limit
+    orderByParam:
+      name: order_by
       in: query
-      description: Max number of records to return (optional). Cannot exceed 2000
-      required: false
-      style: form
+      description: Order-by clause, in SQL format (optional)
+      schema:
+        type: string
+        example: id desc
+    offsetParam:
+      name: offset
+      in: query
+      description: Offset for the returned records (optional)
       schema:
         type: integer
-        default: 2000
-        example: 100
+        default: 0
+        example: 20
     whereParam:
       name: where
       in: query
@@ -344,30 +349,25 @@ components:
       schema:
         type: string
         example: status='Active' AND updated_at >= '2024-01-01'
-    offsetParam:
-      name: offset
+    limitParam:
+      name: limit
       in: query
-      description: Offset for the returned records (optional)
+      description: Max number of records to return (optional). Cannot exceed 2000
+      required: false
+      style: form
       schema:
         type: integer
-        default: 0
-        example: 20
-    orderByParam:
-      name: order_by
-      in: query
-      description: Order-by clause, in SQL format (optional)
-      schema:
-        type: string
-        example: id desc
+        default: 2000
+        example: 100
   responses:
-    401NotAuthenticated:
-      description: Not authenticated
-    403AccessDenied:
-      description: Access denied
     404NotFound:
       description: The specified resource was not found
+    401NotAuthenticated:
+      description: Not authenticated
     400BadRequest:
       description: Bad request
+    403AccessDenied:
+      description: Access denied
     500ServerError:
       description: Server error
   securitySchemes:

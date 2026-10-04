@@ -140,49 +140,38 @@ paths:
         '500':
           $ref: '#/components/responses/500ServerError'
 components:
-  responses:
-    403AccessDenied:
-      description: Access denied
-    401NotAuthenticated:
-      description: Not authenticated
-    404NotFound:
-      description: The specified resource was not found
-    400BadRequest:
-      description: Bad request
-    500ServerError:
-      description: Server error
   schemas:
-    Waste:
-      title: Waste Info
+    ManuBatchRunNonCannabisInput:
+      title: Non Cannabis Input
       type: object
       required:
-      - package_id
-      - package_tag
+      - non_cannabis_product_name
+      - non_cannabis_product_id
       - quantity
       - weight_unit
       properties:
-        package_id:
-          type: integer
-        package_tag:
+        non_cannabis_product_name:
           type: string
+        non_cannabis_product_id:
+          type: integer
+        lot:
+          type: string
+        lot_id:
+          type: integer
         quantity:
           type: number
         weight_unit:
           type: string
-        reason:
-          type: string
-        date:
-          type: string
-        notes:
-          type: string
+        cost:
+          type: number
       example:
-        package_id: 4601
-        package_tag: 1A4FF0000000022000004423
-        quantity: 50
+        non_cannabis_product_name: Fertilizer
+        non_cannabis_product_id: 145
+        lot: DL21309
+        lot_id: 253
+        quantity: 100.5
         weight_unit: Grams
-        reason: Waste Destruction
-        date: '2022-05-24'
-        notes: waste from production
+        cost: 2.5
     Machine:
       title: Machine Info
       type: object
@@ -211,8 +200,8 @@ components:
         solvent_weight_unit: Grams
         time_in_solvent_ms: 2400
         time_in_solvent_display_units: Second
-    ManuBatchRunCannabisInput:
-      title: Cannabis Input
+    ManuBatchRunCannabisOutput:
+      title: Cannabis Output
       type: object
       required:
       - quantity
@@ -226,17 +215,27 @@ components:
           type: number
         weight_unit:
           type: string
-        psi:
+      example:
+        package_id: 5200
+        package_tag: 1A4FF0000000022000001419
+        quantity: 500
+        weight_unit: Grams
+    Labor:
+      title: Labor Info
+      type: object
+      required:
+      - hours_worked
+      properties:
+        employee_name:
+          type: string
+        hours_worked:
           type: number
         cost:
           type: number
       example:
-        package_id: 3501
-        package_tag: 1A4FF0000000022000000719
-        quantity: 2.54
-        weight_unit: Grams
-        psi: 600.0
-        cost: 14.3
+        employee_name: Jane Doe
+        hours_worked: 0.5
+        cost: 10
     ManuBatchRun:
       title: Manufacturing Run
       required:
@@ -367,39 +366,39 @@ components:
           reason: Waste Destruction
           date: '2022-05-24'
           notes: waste from production
-    ManuBatchRunNonCannabisInput:
-      title: Non Cannabis Input
+    Waste:
+      title: Waste Info
       type: object
       required:
-      - non_cannabis_product_name
-      - non_cannabis_product_id
+      - package_id
+      - package_tag
       - quantity
       - weight_unit
       properties:
-        non_cannabis_product_name:
-          type: string
-        non_cannabis_product_id:
+        package_id:
           type: integer
-        lot:
+        package_tag:
           type: string
-        lot_id:
-          type: integer
         quantity:
           type: number
         weight_unit:
           type: string
-        cost:
-          type: number
+        reason:
+          type: string
+        date:
+          type: string
+        notes:
+          type: string
       example:
-        non_cannabis_product_name: Fertilizer
-        non_cannabis_product_id: 145
-        lot: DL21309
-        lot_id: 253
-        quantity: 100.5
+        package_id: 4601
+        package_tag: 1A4FF0000000022000004423
+        quantity: 50
         weight_unit: Grams
-        cost: 2.5
-    ManuBatchRunCannabisOutput:
-      title: Cannabis Output
+        reason: Waste Destruction
+        date: '2022-05-24'
+        notes: waste from production
+    ManuBatchRunCannabisInput:
+      title: Cannabis Input
       type: object
       required:
       - quantity
@@ -413,27 +412,28 @@ components:
           type: number
         weight_unit:
           type: string
-      example:
-        package_id: 5200
-        package_tag: 1A4FF0000000022000001419
-        quantity: 500
-        weight_unit: Grams
-    Labor:
-      title: Labor Info
-      type: object
-      required:
-      - hours_worked
-      properties:
-        employee_name:
-          type: string
-        hours_worked:
+        psi:
           type: number
         cost:
           type: number
       example:
-        employee_name: Jane Doe
-        hours_worked: 0.5
-        cost: 10
+        package_id: 3501
+        package_tag: 1A4FF0000000022000000719
+        quantity: 2.54
+        weight_unit: Grams
+        psi: 600.0
+        cost: 14.3
+  responses:
+    404NotFound:
+      description: The specified resource was not found
+    401NotAuthenticated:
+      description: Not authenticated
+    400BadRequest:
+      description: Bad request
+    403AccessDenied:
+      description: Access denied
+    500ServerError:
+      description: Server error
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

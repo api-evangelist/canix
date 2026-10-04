@@ -136,17 +136,6 @@ paths:
         '500':
           $ref: '#/components/responses/500ServerError'
 components:
-  responses:
-    403AccessDenied:
-      description: Access denied
-    401NotAuthenticated:
-      description: Not authenticated
-    404NotFound:
-      description: The specified resource was not found
-    400BadRequest:
-      description: Bad request
-    500ServerError:
-      description: Server error
   schemas:
     Customer:
       title: Customer
@@ -192,14 +181,6 @@ components:
         updated_at:
           type: string
           example: 2018-11-06 08:00:00+00:00
-    CustomerExtended:
-      title: Customer Extended
-      allOf:
-      - $ref: '#/components/schemas/Customer'
-      - type: object
-        properties:
-          outstanding_balance:
-            type: number
     Address:
       title: Address
       type: object
@@ -225,17 +206,30 @@ components:
         postal_code:
           type: string
           example: 42504
+    CustomerExtended:
+      title: Customer Extended
+      allOf:
+      - $ref: '#/components/schemas/Customer'
+      - type: object
+        properties:
+          outstanding_balance:
+            type: number
   parameters:
-    limitParam:
-      name: limit
+    orderByParam:
+      name: order_by
       in: query
-      description: Max number of records to return (optional). Cannot exceed 2000
-      required: false
-      style: form
+      description: Order-by clause, in SQL format (optional)
+      schema:
+        type: string
+        example: id desc
+    offsetParam:
+      name: offset
+      in: query
+      description: Offset for the returned records (optional)
       schema:
         type: integer
-        default: 2000
-        example: 100
+        default: 0
+        example: 20
     whereParam:
       name: where
       in: query
@@ -263,21 +257,27 @@ components:
       schema:
         type: string
         example: status='Active' AND updated_at >= '2024-01-01'
-    offsetParam:
-      name: offset
+    limitParam:
+      name: limit
       in: query
-      description: Offset for the returned records (optional)
+      description: Max number of records to return (optional). Cannot exceed 2000
+      required: false
+      style: form
       schema:
         type: integer
-        default: 0
-        example: 20
-    orderByParam:
-      name: order_by
-      in: query
-      description: Order-by clause, in SQL format (optional)
-      schema:
-        type: string
-        example: id desc
+        default: 2000
+        example: 100
+  responses:
+    404NotFound:
+      description: The specified resource was not found
+    401NotAuthenticated:
+      description: Not authenticated
+    400BadRequest:
+      description: Bad request
+    403AccessDenied:
+      description: Access denied
+    500ServerError:
+      description: Server error
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

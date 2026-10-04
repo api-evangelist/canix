@@ -106,18 +106,42 @@ paths:
         '500':
           $ref: '#/components/responses/500ServerError'
 components:
-  responses:
-    403AccessDenied:
-      description: Access denied
-    401NotAuthenticated:
-      description: Not authenticated
-    404NotFound:
-      description: The specified resource was not found
-    400BadRequest:
-      description: Bad request
-    500ServerError:
-      description: Server error
   schemas:
+    SubmissionStatus:
+      title: Submission Status
+      type: string
+      description: 'The current status of the submission:
+
+        - **CREATED**: Transaction queued for processing
+
+        - **PENDING_APPROVAL**: Transaction awaiting admin approval
+
+        - **PENDING**: Transaction pending response from compliance system
+
+        - **RETRYING**: Transaction failed but will be automatically retried
+
+        - **FAILED**: Transaction failed permanently
+
+        - **SUCCESS**: Transaction completed successfully
+
+        - **DENIED**: Transaction was reviewed by an admin and denied
+
+        - **ABORTED**: Transaction has been aborted
+
+        - **PARTIAL_FAILURE**: Some steps succeeded but others failed
+
+        '
+      enum:
+      - CREATED
+      - PENDING_APPROVAL
+      - PENDING
+      - RETRYING
+      - FAILED
+      - SUCCESS
+      - DENIED
+      - ABORTED
+      - PARTIAL_FAILURE
+      example: SUCCESS
     Submission:
       title: Submission
       description: 'A submission represents an asynchronous action (such as creating a package, adjusting inventory,
@@ -187,41 +211,17 @@ components:
           tag: 1A40000000000000001
         created_at: '2024-01-15T10:30:00.000Z'
         last_run_at: '2024-01-15T10:30:05.000Z'
-    SubmissionStatus:
-      title: Submission Status
-      type: string
-      description: 'The current status of the submission:
-
-        - **CREATED**: Transaction queued for processing
-
-        - **PENDING_APPROVAL**: Transaction awaiting admin approval
-
-        - **PENDING**: Transaction pending response from compliance system
-
-        - **RETRYING**: Transaction failed but will be automatically retried
-
-        - **FAILED**: Transaction failed permanently
-
-        - **SUCCESS**: Transaction completed successfully
-
-        - **DENIED**: Transaction was reviewed by an admin and denied
-
-        - **ABORTED**: Transaction has been aborted
-
-        - **PARTIAL_FAILURE**: Some steps succeeded but others failed
-
-        '
-      enum:
-      - CREATED
-      - PENDING_APPROVAL
-      - PENDING
-      - RETRYING
-      - FAILED
-      - SUCCESS
-      - DENIED
-      - ABORTED
-      - PARTIAL_FAILURE
-      example: SUCCESS
+  responses:
+    404NotFound:
+      description: The specified resource was not found
+    401NotAuthenticated:
+      description: Not authenticated
+    400BadRequest:
+      description: Bad request
+    403AccessDenied:
+      description: Access denied
+    500ServerError:
+      description: Server error
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

@@ -195,44 +195,26 @@ paths:
         '500':
           $ref: '#/components/responses/500ServerError'
 components:
-  responses:
-    401NotAuthenticated:
-      description: Not authenticated
-    403AccessDenied:
-      description: Access denied
-    400BadRequest:
-      description: Bad request
-    500ServerError:
-      description: Server error
-    404NotFound:
-      description: The specified resource was not found
   schemas:
-    BillOfMaterialsSourceNonCannabisProduct:
-      title: Source Non Cannabis Product Info
-      type: object
+    Facility:
+      title: Facility
       required:
-      - non_cannabis_product_id
-      - name
-      - quantity
-      - weight_unit
-      - application_setting
+      - id
       properties:
-        non_cannabis_product_id:
+        id:
           type: integer
+          example: 123
         name:
           type: string
-        quantity:
-          type: number
-        weight_unit:
+          example: Test Facility
+        license_number:
           type: string
-        application_setting:
-          type: string
-      example:
-        name: 1/8th Jar
-        non_cannabis_product_id: 24
-        quantity: 1
-        weight_unit: Each
-        application_setting: proportional
+          example: 4a-x123
+        is_active:
+          type: boolean
+          example: true
+        address:
+          $ref: '#/components/schemas/Address'
     NonCannabisProductCategory:
       title: Non Cannabis Product Category
       required:
@@ -248,6 +230,139 @@ components:
         updated_at:
           type: string
           example: 2018-11-06 08:00:00+00:00
+    NonCannabisProductStandardCosting:
+      title: NonCannabisProductStandardCosting
+      required:
+      - id
+      - standard_cost_amount
+      - standard_cost_currency
+      - start_date
+      properties:
+        id:
+          type: integer
+          example: 123
+        standard_cost_amount:
+          type: number
+          example: 12.1111
+        standard_cost_currency:
+          type: string
+          example: USD
+        start_date:
+          type: string
+          example: '2023-04-19'
+        end_date:
+          type: string
+          example: '2023-05-19'
+    Location:
+      title: Location
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: integer
+          example: 123
+        name:
+          type: string
+          example: Pro System
+        sqft:
+          type: number
+          example: 14.4
+        num_lights:
+          type: integer
+          example: 42
+        parent_location:
+          $ref: '#/components/schemas/ParentLocation'
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+        is_active:
+          type: boolean
+          example: true
+    BillOfMaterials:
+      title: Bill of Materials Info
+      type: object
+      required:
+      - id
+      - name
+      - proportion_type
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        active_date:
+          type: string
+          format: date
+        expiration_date:
+          type: string
+          format: date
+        proportion_type:
+          type: string
+          description: single_instance means materials are applied to each output independently; all_instances means materials are applied across all output item quantities
+        last_updated_at:
+          type: string
+          format: date-time
+          description: Last updated timestamp
+        source_non_cannabis_products:
+          type: array
+          items:
+            $ref: '#/components/schemas/BillOfMaterialsSourceNonCannabisProduct'
+        source_cannabis_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/BillOfMaterialsSourceCannabisItem'
+        output_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/BillOfMaterialsOutputItem'
+      example:
+        id: 12
+        name: Bulk - Dark Chocolate Peaks - 10mg
+        active_date: '2023-01-01'
+        expiration_date: '2023-12-31'
+        proportion_type: single_instance
+        source_non_cannabis_products:
+        - name: 1/8th Jar
+          non_cannabis_product_id: 24
+          quantity: 1
+          weight_unit: Each
+          application_setting: proportional
+        - name: Gloves - Large
+          non_cannabis_product_id: 56
+          quantity: 2
+          weight_unit: Each
+          application_setting: fixed
+        source_cannabis_items:
+        - quantity: 20
+          weight_unit: Grams
+          item:
+            id: 242
+            name: Hammer Bud
+          item_category: null
+          item_sub_category: null
+        - quantity: 25
+          weight_unit: Grams
+          item: null
+          item_category:
+            id: 98
+            name: B Buds
+          item_sub_category: null
+        output_items:
+        - name: Jarred Flower
+          item_id: 370
+          quantity: 50
+          weight_unit: Grams
+          item_category: null
+          item_sub_category: null
+        - name: null
+          item_id: 371
+          quantity: 25
+          weight_unit: Grams
+          item_category:
+            id: 98
+            name: B Buds
+          item_sub_category: null
     CreateNonCannabisProductRequestBody:
       title: Create Non Cannabis Product Request Body
       type: object
@@ -437,25 +552,55 @@ components:
                 type: string
               percentage:
                 type: number
-    Facility:
-      title: Facility
+    Address:
+      title: Address
+      type: object
+      properties:
+        street:
+          type: string
+          example: 123 Cumberland St
+        street2:
+          type: string
+          example: West
+        city:
+          type: string
+          example: Somerset
+        county:
+          type: string
+          example: KY
+        state:
+          type: string
+          example: CO
+        country:
+          type: string
+          example: USA
+        postal_code:
+          type: string
+          example: 42504
+    ParentLocation:
+      title: Parent Location
       required:
       - id
+      - name
       properties:
         id:
           type: integer
           example: 123
         name:
           type: string
-          example: Test Facility
-        license_number:
+          example: Pro System
+        sqft:
+          type: number
+          example: 14.4
+        num_lights:
+          type: integer
+          example: 42
+        updated_at:
           type: string
-          example: 4a-x123
+          example: 2018-11-06 08:00:00+00:00
         is_active:
           type: boolean
           example: true
-        address:
-          $ref: '#/components/schemas/Address'
     BillOfMaterialsSourceCannabisItem:
       title: Source Cannabis Item Info
       type: object
@@ -502,163 +647,6 @@ components:
           name: Hammer Bud
         item_category: null
         item_sub_category: null
-    ParentLocation:
-      title: Parent Location
-      required:
-      - id
-      - name
-      properties:
-        id:
-          type: integer
-          example: 123
-        name:
-          type: string
-          example: Pro System
-        sqft:
-          type: number
-          example: 14.4
-        num_lights:
-          type: integer
-          example: 42
-        updated_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
-        is_active:
-          type: boolean
-          example: true
-    Location:
-      title: Location
-      required:
-      - id
-      - name
-      properties:
-        id:
-          type: integer
-          example: 123
-        name:
-          type: string
-          example: Pro System
-        sqft:
-          type: number
-          example: 14.4
-        num_lights:
-          type: integer
-          example: 42
-        parent_location:
-          $ref: '#/components/schemas/ParentLocation'
-        updated_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
-        is_active:
-          type: boolean
-          example: true
-    NonCannabisProductStandardCosting:
-      title: NonCannabisProductStandardCosting
-      required:
-      - id
-      - standard_cost_amount
-      - standard_cost_currency
-      - start_date
-      properties:
-        id:
-          type: integer
-          example: 123
-        standard_cost_amount:
-          type: number
-          example: 12.1111
-        standard_cost_currency:
-          type: string
-          example: USD
-        start_date:
-          type: string
-          example: '2023-04-19'
-        end_date:
-          type: string
-          example: '2023-05-19'
-    BillOfMaterials:
-      title: Bill of Materials Info
-      type: object
-      required:
-      - id
-      - name
-      - proportion_type
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        active_date:
-          type: string
-          format: date
-        expiration_date:
-          type: string
-          format: date
-        proportion_type:
-          type: string
-          description: single_instance means materials are applied to each output independently; all_instances means materials are applied across all output item quantities
-        last_updated_at:
-          type: string
-          format: date-time
-          description: Last updated timestamp
-        source_non_cannabis_products:
-          type: array
-          items:
-            $ref: '#/components/schemas/BillOfMaterialsSourceNonCannabisProduct'
-        source_cannabis_items:
-          type: array
-          items:
-            $ref: '#/components/schemas/BillOfMaterialsSourceCannabisItem'
-        output_items:
-          type: array
-          items:
-            $ref: '#/components/schemas/BillOfMaterialsOutputItem'
-      example:
-        id: 12
-        name: Bulk - Dark Chocolate Peaks - 10mg
-        active_date: '2023-01-01'
-        expiration_date: '2023-12-31'
-        proportion_type: single_instance
-        source_non_cannabis_products:
-        - name: 1/8th Jar
-          non_cannabis_product_id: 24
-          quantity: 1
-          weight_unit: Each
-          application_setting: proportional
-        - name: Gloves - Large
-          non_cannabis_product_id: 56
-          quantity: 2
-          weight_unit: Each
-          application_setting: fixed
-        source_cannabis_items:
-        - quantity: 20
-          weight_unit: Grams
-          item:
-            id: 242
-            name: Hammer Bud
-          item_category: null
-          item_sub_category: null
-        - quantity: 25
-          weight_unit: Grams
-          item: null
-          item_category:
-            id: 98
-            name: B Buds
-          item_sub_category: null
-        output_items:
-        - name: Jarred Flower
-          item_id: 370
-          quantity: 50
-          weight_unit: Grams
-          item_category: null
-          item_sub_category: null
-        - name: null
-          item_id: 371
-          quantity: 25
-          weight_unit: Grams
-          item_category:
-            id: 98
-            name: B Buds
-          item_sub_category: null
     BillOfMaterialsOutputItem:
       title: Output Item Info
       type: object
@@ -704,40 +692,33 @@ components:
         weight_unit: Grams
         item_category: null
         item_sub_category: null
-    Address:
-      title: Address
+    BillOfMaterialsSourceNonCannabisProduct:
+      title: Source Non Cannabis Product Info
       type: object
+      required:
+      - non_cannabis_product_id
+      - name
+      - quantity
+      - weight_unit
+      - application_setting
       properties:
-        street:
+        non_cannabis_product_id:
+          type: integer
+        name:
           type: string
-          example: 123 Cumberland St
-        street2:
+        quantity:
+          type: number
+        weight_unit:
           type: string
-          example: West
-        city:
+        application_setting:
           type: string
-          example: Somerset
-        county:
-          type: string
-          example: KY
-        state:
-          type: string
-          example: CO
-        country:
-          type: string
-          example: USA
-        postal_code:
-          type: string
-          example: 42504
+      example:
+        name: 1/8th Jar
+        non_cannabis_product_id: 24
+        quantity: 1
+        weight_unit: Each
+        application_setting: proportional
   parameters:
-    offsetParam:
-      name: offset
-      in: query
-      description: Offset for the returned records (optional)
-      schema:
-        type: integer
-        default: 0
-        example: 20
     orderByParam:
       name: order_by
       in: query
@@ -745,6 +726,16 @@ components:
       schema:
         type: string
         example: id desc
+    limitParam:
+      name: limit
+      in: query
+      description: Max number of records to return (optional). Cannot exceed 2000
+      required: false
+      style: form
+      schema:
+        type: integer
+        default: 2000
+        example: 100
     whereParam:
       name: where
       in: query
@@ -772,16 +763,25 @@ components:
       schema:
         type: string
         example: status='Active' AND updated_at >= '2024-01-01'
-    limitParam:
-      name: limit
+    offsetParam:
+      name: offset
       in: query
-      description: Max number of records to return (optional). Cannot exceed 2000
-      required: false
-      style: form
+      description: Offset for the returned records (optional)
       schema:
         type: integer
-        default: 2000
-        example: 100
+        default: 0
+        example: 20
+  responses:
+    401NotAuthenticated:
+      description: Not authenticated
+    400BadRequest:
+      description: Bad request
+    404NotFound:
+      description: The specified resource was not found
+    403AccessDenied:
+      description: Access denied
+    500ServerError:
+      description: Server error
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

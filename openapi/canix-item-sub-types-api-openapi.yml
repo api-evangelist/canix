@@ -60,28 +60,14 @@ paths:
         '500':
           $ref: '#/components/responses/500ServerError'
 components:
-  responses:
-    403AccessDenied:
-      description: Access denied
-    401NotAuthenticated:
-      description: Not authenticated
-    404NotFound:
-      description: The specified resource was not found
-    400BadRequest:
-      description: Bad request
-    500ServerError:
-      description: Server error
   parameters:
-    limitParam:
-      name: limit
+    orderByParam:
+      name: order_by
       in: query
-      description: Max number of records to return (optional). Cannot exceed 2000
-      required: false
-      style: form
+      description: Order-by clause, in SQL format (optional)
       schema:
-        type: integer
-        default: 2000
-        example: 100
+        type: string
+        example: id desc
     offsetParam:
       name: offset
       in: query
@@ -117,14 +103,48 @@ components:
       schema:
         type: string
         example: status='Active' AND updated_at >= '2024-01-01'
-    orderByParam:
-      name: order_by
+    limitParam:
+      name: limit
       in: query
-      description: Order-by clause, in SQL format (optional)
+      description: Max number of records to return (optional). Cannot exceed 2000
+      required: false
+      style: form
       schema:
-        type: string
-        example: id desc
+        type: integer
+        default: 2000
+        example: 100
+  responses:
+    404NotFound:
+      description: The specified resource was not found
+    401NotAuthenticated:
+      description: Not authenticated
+    400BadRequest:
+      description: Bad request
+    403AccessDenied:
+      description: Access denied
+    500ServerError:
+      description: Server error
   schemas:
+    ItemSubType:
+      title: ItemSubType
+      required:
+      - id
+      - name
+      - weight_unit
+      - item_category
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        weight_unit:
+          type: string
+        category:
+          $ref: '#/components/schemas/ItemType'
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
     ItemType:
       title: ItemType
       required:
@@ -163,26 +183,6 @@ components:
           type: boolean
         requires_number_of_doses:
           type: boolean
-        updated_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
-    ItemSubType:
-      title: ItemSubType
-      required:
-      - id
-      - name
-      - weight_unit
-      - item_category
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        weight_unit:
-          type: string
-        category:
-          $ref: '#/components/schemas/ItemType'
         updated_at:
           type: string
           example: 2018-11-06 08:00:00+00:00
