@@ -1,0 +1,16 @@
+generated: '2026-10-12'
+method: none
+source:
+- https://zapier.com/apps/canix/integrations
+- https://n8n.io/integrations/canix/
+- https://composio.dev/toolkits/canix
+- https://monid.ai/tools/canix
+checked:
+- https://composio.dev/toolkits/canix
+- https://monid.ai/tools/canix
+- https://n8n.io/integrations/canix/
+- https://zapier.com/apps/canix/integrations
+summary: null
+marketplace_apps: []
+edges: []
+templates: []
