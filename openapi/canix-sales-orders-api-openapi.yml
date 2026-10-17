@@ -360,56 +360,6 @@ paths:
           $ref: '#/components/responses/500ServerError'
 components:
   schemas:
-    User:
-      title: User
-      type: object
-      properties:
-        id:
-          type: integer
-          example: 123
-        name:
-          type: string
-          example: John Doe
-        email:
-          type: string
-          example: j@d.com
-    SalesOrderPayment:
-      title: Sales Order Payment
-      required:
-      - amount
-      - date
-      type: object
-      properties:
-        id:
-          type: integer
-        sales_order_id:
-          type: integer
-          description: ID of the sales order this payment was applied to
-        amount:
-          type: number
-        date:
-          type: integer
-        reference_number:
-          type:
-          - string
-          - 'null'
-          description: Payment reference number
-        external_transaction_name:
-          type:
-          - string
-          - 'null'
-          description: Readable name of the linked external (e.g. accounting) transaction
-        updated_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
-      example:
-        id: 9001
-        sales_order_id: 584857
-        amount: 10000
-        date: '2021-05-24T19:58:00.000Z'
-        reference_number: CHK-1042
-        external_transaction_name: 'QBO Payment #55'
-        updated_at: '2021-05-24T19:58:00.000Z'
     SalesOrderRequestBody:
       title: Sales Order Request Body
       type: object
@@ -553,50 +503,102 @@ components:
           type: string
           example: john.doe@example.com
           description: Email of the sales representative
-    Customer:
-      title: Customer
+    SalesOrderItem:
+      title: Sales Order Item
+      required:
+      - id
+      - sales_order_id
       type: object
       properties:
         id:
           type: integer
-        contact_name:
-          type: string
-        company_name:
-          type: string
-        facility_license_number:
-          type: string
-        license_type:
-          type: string
-        customer_number:
-          type: string
-        license_expiration_date:
-          type: string
-        phone:
-          type: string
-        email:
-          type: string
-        territory:
-          type: string
-        address:
-          $ref: '#/components/schemas/Address'
-        notes:
-          type: string
-        outstanding_balance:
+        weight:
           type: number
-        credit:
+        weight_unit:
+          oneOf:
+          - type: string
+            description: Unit name or abbreviation
+          - type: integer
+            description: Unit id
+        unit_price:
           type: number
-          description: Current credit balance available to this customer
-        dba:
-          type: string
-          example: Doing Business As
-        is_active:
+        total_price:
+          type: number
+          description: Total price (unit * weight)
+        item:
+          $ref: '#/components/schemas/Sales_order_item'
+        brand:
+          allOf:
+          - $ref: '#/components/schemas/IdName'
+          description: Brand of the sold item, product, or non-cannabis product (null if none)
+        product_id:
+          type:
+          - integer
+          - 'null'
+          description: ID of the linked cannabis Product, if any
+        product_brand:
+          allOf:
+          - $ref: '#/components/schemas/IdName'
+          description: Brand of the linked cannabis Product, if any
+        is_sample:
           type: boolean
-        created_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
+          description: Whether the line item is a trade sample
+        package_ids:
+          type: array
+          items:
+            type: integer
         updated_at:
           type: string
           example: 2018-11-06 08:00:00+00:00
+        order:
+          type: integer
+          description: Position of the item in the order
+        discount:
+          $ref: '#/components/schemas/Discount'
+      example:
+        id: 100
+        weight: 20
+        weight_unit: Each
+        unit_price: 20
+        total_price: 400
+        item:
+          id: 7036
+          name: Blue Dream - Trim
+          sku: '22657'
+        brand:
+          id: 12
+          name: Sunshine Co
+        product_id: 4500
+        product_brand:
+          id: 12
+          name: Sunshine Co
+        is_sample: false
+        package_ids:
+        - 123
+        - 456
+        discount:
+          type: percentage
+          amount: 25.0
+          reason: 25% off
+        updated_at: '2021-05-24T19:58:00.000Z'
+        order: 1
+    Discount:
+      title: Discount
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - fixed
+          - percentage
+        amount:
+          type: number
+        reason:
+          type: string
+      example:
+        type: fixed
+        amount: 10.0
+        reason: Black Friday Sale
     SalesOrder:
       title: Sales Order
       required:
@@ -770,37 +772,6 @@ components:
         display_status: Pending Review
         invoice_url: https://www.app.canix.com/sales/invoice/view/123456
         updated_at: '2021-05-24T19:58:00.000Z'
-    Discount:
-      title: Discount
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - fixed
-          - percentage
-        amount:
-          type: number
-        reason:
-          type: string
-      example:
-        type: fixed
-        amount: 10.0
-        reason: Black Friday Sale
-    Sales_order_item:
-      title: Item
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        sku:
-          type: string
-      example:
-        id: 7036
-        name: Blue Dream - Trim
-        sku: '22657'
     Address:
       title: Address
       type: object
@@ -826,85 +797,57 @@ components:
         postal_code:
           type: string
           example: 42504
-    SalesOrderItem:
-      title: Sales Order Item
+    SalesOrderPayment:
+      title: Sales Order Payment
       required:
-      - id
-      - sales_order_id
+      - amount
+      - date
       type: object
       properties:
         id:
           type: integer
-        weight:
+        sales_order_id:
+          type: integer
+          description: ID of the sales order this payment was applied to
+        amount:
           type: number
-        weight_unit:
-          oneOf:
-          - type: string
-            description: Unit name or abbreviation
-          - type: integer
-            description: Unit id
-        unit_price:
-          type: number
-        total_price:
-          type: number
-          description: Total price (unit * weight)
-        item:
-          $ref: '#/components/schemas/Sales_order_item'
-        brand:
-          allOf:
-          - $ref: '#/components/schemas/IdName'
-          description: Brand of the sold item, product, or non-cannabis product (null if none)
-        product_id:
+        date:
+          type: integer
+        reference_number:
           type:
-          - integer
+          - string
           - 'null'
-          description: ID of the linked cannabis Product, if any
-        product_brand:
-          allOf:
-          - $ref: '#/components/schemas/IdName'
-          description: Brand of the linked cannabis Product, if any
-        is_sample:
-          type: boolean
-          description: Whether the line item is a trade sample
-        package_ids:
-          type: array
-          items:
-            type: integer
+          description: Payment reference number
+        external_transaction_name:
+          type:
+          - string
+          - 'null'
+          description: Readable name of the linked external (e.g. accounting) transaction
         updated_at:
           type: string
           example: 2018-11-06 08:00:00+00:00
-        order:
-          type: integer
-          description: Position of the item in the order
-        discount:
-          $ref: '#/components/schemas/Discount'
       example:
-        id: 100
-        weight: 20
-        weight_unit: Each
-        unit_price: 20
-        total_price: 400
-        item:
-          id: 7036
-          name: Blue Dream - Trim
-          sku: '22657'
-        brand:
-          id: 12
-          name: Sunshine Co
-        product_id: 4500
-        product_brand:
-          id: 12
-          name: Sunshine Co
-        is_sample: false
-        package_ids:
-        - 123
-        - 456
-        discount:
-          type: percentage
-          amount: 25.0
-          reason: 25% off
+        id: 9001
+        sales_order_id: 584857
+        amount: 10000
+        date: '2021-05-24T19:58:00.000Z'
+        reference_number: CHK-1042
+        external_transaction_name: 'QBO Payment #55'
         updated_at: '2021-05-24T19:58:00.000Z'
-        order: 1
+    Sales_order_item:
+      title: Item
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        sku:
+          type: string
+      example:
+        id: 7036
+        name: Blue Dream - Trim
+        sku: '22657'
     IdName:
       title: IdName
       type: object
@@ -913,14 +856,75 @@ components:
           type: number
         name:
           type: string
+    User:
+      title: User
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 123
+        name:
+          type: string
+          example: John Doe
+        email:
+          type: string
+          example: j@d.com
+    Customer:
+      title: Customer
+      type: object
+      properties:
+        id:
+          type: integer
+        contact_name:
+          type: string
+        company_name:
+          type: string
+        facility_license_number:
+          type: string
+        license_type:
+          type: string
+        customer_number:
+          type: string
+        license_expiration_date:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+        territory:
+          type: string
+        address:
+          $ref: '#/components/schemas/Address'
+        notes:
+          type: string
+        outstanding_balance:
+          type: number
+        credit:
+          type: number
+          description: Current credit balance available to this customer
+        dba:
+          type: string
+          example: Doing Business As
+        is_active:
+          type: boolean
+        created_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+  responses:
+    403AccessDenied:
+      description: Access denied
+    404NotFound:
+      description: The specified resource was not found
+    401NotAuthenticated:
+      description: Not authenticated
+    400BadRequest:
+      description: Bad request
+    500ServerError:
+      description: Server error
   parameters:
-    orderByParam:
-      name: order_by
-      in: query
-      description: Order-by clause, in SQL format (optional)
-      schema:
-        type: string
-        example: id desc
     limitParam:
       name: limit
       in: query
@@ -931,6 +935,13 @@ components:
         type: integer
         default: 2000
         example: 100
+    orderByParam:
+      name: order_by
+      in: query
+      description: Order-by clause, in SQL format (optional)
+      schema:
+        type: string
+        example: id desc
     whereParam:
       name: where
       in: query
@@ -966,17 +977,6 @@ components:
         type: integer
         default: 0
         example: 20
-  responses:
-    401NotAuthenticated:
-      description: Not authenticated
-    400BadRequest:
-      description: Bad request
-    404NotFound:
-      description: The specified resource was not found
-    403AccessDenied:
-      description: Access denied
-    500ServerError:
-      description: Server error
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

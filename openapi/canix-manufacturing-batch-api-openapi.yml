@@ -92,6 +92,17 @@ paths:
         '500':
           $ref: '#/components/responses/500ServerError'
 components:
+  responses:
+    400BadRequest:
+      description: Bad request
+    403AccessDenied:
+      description: Access denied
+    404NotFound:
+      description: The specified resource was not found
+    500ServerError:
+      description: Server error
+    401NotAuthenticated:
+      description: Not authenticated
   schemas:
     ManuBatch:
       title: Manufacturing Batch Info
@@ -144,17 +155,6 @@ components:
         - 8
         - 9
         - 10
-  responses:
-    401NotAuthenticated:
-      description: Not authenticated
-    404NotFound:
-      description: The specified resource was not found
-    400BadRequest:
-      description: Bad request
-    403AccessDenied:
-      description: Access denied
-    500ServerError:
-      description: Server error
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

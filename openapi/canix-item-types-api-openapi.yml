@@ -60,22 +60,18 @@ paths:
         '500':
           $ref: '#/components/responses/500ServerError'
 components:
+  responses:
+    400BadRequest:
+      description: Bad request
+    403AccessDenied:
+      description: Access denied
+    404NotFound:
+      description: The specified resource was not found
+    500ServerError:
+      description: Server error
+    401NotAuthenticated:
+      description: Not authenticated
   parameters:
-    orderByParam:
-      name: order_by
-      in: query
-      description: Order-by clause, in SQL format (optional)
-      schema:
-        type: string
-        example: id desc
-    offsetParam:
-      name: offset
-      in: query
-      description: Offset for the returned records (optional)
-      schema:
-        type: integer
-        default: 0
-        example: 20
     whereParam:
       name: where
       in: query
@@ -113,17 +109,21 @@ components:
         type: integer
         default: 2000
         example: 100
-  responses:
-    404NotFound:
-      description: The specified resource was not found
-    401NotAuthenticated:
-      description: Not authenticated
-    400BadRequest:
-      description: Bad request
-    403AccessDenied:
-      description: Access denied
-    500ServerError:
-      description: Server error
+    orderByParam:
+      name: order_by
+      in: query
+      description: Order-by clause, in SQL format (optional)
+      schema:
+        type: string
+        example: id desc
+    offsetParam:
+      name: offset
+      in: query
+      description: Offset for the returned records (optional)
+      schema:
+        type: integer
+        default: 0
+        example: 20
   schemas:
     ItemType:
       title: ItemType

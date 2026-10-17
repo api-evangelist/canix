@@ -53,22 +53,49 @@ paths:
         '500':
           $ref: '#/components/responses/500ServerError'
 components:
+  responses:
+    400BadRequest:
+      description: Bad request
+    403AccessDenied:
+      description: Access denied
+    404NotFound:
+      description: The specified resource was not found
+    500ServerError:
+      description: Server error
+    401NotAuthenticated:
+      description: Not authenticated
+  schemas:
+    AuditedAction:
+      title: Audited Action
+      type: object
+      properties:
+        facility_id:
+          type: integer
+        object_id:
+          type: integer
+        object_type:
+          type: string
+        object_tag:
+          type: string
+        context:
+          type: array
+          items:
+            type: string
+        description:
+          type: string
+        submitted_date:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+        approval_date:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+        created_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
   parameters:
-    orderByParam:
-      name: order_by
-      in: query
-      description: Order-by clause, in SQL format (optional)
-      schema:
-        type: string
-        example: id desc
-    offsetParam:
-      name: offset
-      in: query
-      description: Offset for the returned records (optional)
-      schema:
-        type: integer
-        default: 0
-        example: 20
     whereParam:
       name: where
       in: query
@@ -106,48 +133,21 @@ components:
         type: integer
         default: 2000
         example: 100
-  responses:
-    404NotFound:
-      description: The specified resource was not found
-    401NotAuthenticated:
-      description: Not authenticated
-    400BadRequest:
-      description: Bad request
-    403AccessDenied:
-      description: Access denied
-    500ServerError:
-      description: Server error
-  schemas:
-    AuditedAction:
-      title: Audited Action
-      type: object
-      properties:
-        facility_id:
-          type: integer
-        object_id:
-          type: integer
-        object_type:
-          type: string
-        object_tag:
-          type: string
-        context:
-          type: array
-          items:
-            type: string
-        description:
-          type: string
-        submitted_date:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
-        approval_date:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
-        created_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
-        updated_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
+    orderByParam:
+      name: order_by
+      in: query
+      description: Order-by clause, in SQL format (optional)
+      schema:
+        type: string
+        example: id desc
+    offsetParam:
+      name: offset
+      in: query
+      description: Offset for the returned records (optional)
+      schema:
+        type: integer
+        default: 0
+        example: 20
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

@@ -84,33 +84,18 @@ paths:
         '500':
           $ref: '#/components/responses/500ServerError'
 components:
+  responses:
+    400BadRequest:
+      description: Bad request
+    403AccessDenied:
+      description: Access denied
+    404NotFound:
+      description: The specified resource was not found
+    500ServerError:
+      description: Server error
+    401NotAuthenticated:
+      description: Not authenticated
   schemas:
-    Location:
-      title: Location
-      required:
-      - id
-      - name
-      properties:
-        id:
-          type: integer
-          example: 123
-        name:
-          type: string
-          example: Pro System
-        sqft:
-          type: number
-          example: 14.4
-        num_lights:
-          type: integer
-          example: 42
-        parent_location:
-          $ref: '#/components/schemas/ParentLocation'
-        updated_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
-        is_active:
-          type: boolean
-          example: true
     Harvest:
       title: Harvest
       required:
@@ -159,6 +144,32 @@ components:
         updated_at:
           type: string
           example: 2018-11-06 08:00:00+00:00
+    Location:
+      title: Location
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: integer
+          example: 123
+        name:
+          type: string
+          example: Pro System
+        sqft:
+          type: number
+          example: 14.4
+        num_lights:
+          type: integer
+          example: 42
+        parent_location:
+          $ref: '#/components/schemas/ParentLocation'
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+        is_active:
+          type: boolean
+          example: true
     ParentLocation:
       title: Parent Location
       required:
@@ -183,38 +194,6 @@ components:
         is_active:
           type: boolean
           example: true
-    CrossStrain:
-      title: Cross Strain
-      required:
-      - id
-      - name
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-          example: Lemon Skunk
-          description: Strain name
-        notes:
-          type: string
-          example: Terpenes .63%
-          description: Notes
-        sku:
-          type: string
-          example: BIOJJ
-          description: SKU
-        testing_status:
-          type: string
-          example: InHouse
-          description: 'Testing status: InHouse, ThirdParty, None, NA'
-        indica_percent:
-          type: number
-          example: 45.0
-          description: Indica Percentage
-        sativa_percent:
-          type: number
-          example: 55.0
-          description: Sativa Percentage
     Strain:
       title: Strain
       required:
@@ -252,22 +231,39 @@ components:
           description: Cross strains
           items:
             $ref: '#/components/schemas/CrossStrain'
+    CrossStrain:
+      title: Cross Strain
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          example: Lemon Skunk
+          description: Strain name
+        notes:
+          type: string
+          example: Terpenes .63%
+          description: Notes
+        sku:
+          type: string
+          example: BIOJJ
+          description: SKU
+        testing_status:
+          type: string
+          example: InHouse
+          description: 'Testing status: InHouse, ThirdParty, None, NA'
+        indica_percent:
+          type: number
+          example: 45.0
+          description: Indica Percentage
+        sativa_percent:
+          type: number
+          example: 55.0
+          description: Sativa Percentage
   parameters:
-    orderByParam:
-      name: order_by
-      in: query
-      description: Order-by clause, in SQL format (optional)
-      schema:
-        type: string
-        example: id desc
-    offsetParam:
-      name: offset
-      in: query
-      description: Offset for the returned records (optional)
-      schema:
-        type: integer
-        default: 0
-        example: 20
     whereParam:
       name: where
       in: query
@@ -305,17 +301,21 @@ components:
         type: integer
         default: 2000
         example: 100
-  responses:
-    404NotFound:
-      description: The specified resource was not found
-    401NotAuthenticated:
-      description: Not authenticated
-    400BadRequest:
-      description: Bad request
-    403AccessDenied:
-      description: Access denied
-    500ServerError:
-      description: Server error
+    orderByParam:
+      name: order_by
+      in: query
+      description: Order-by clause, in SQL format (optional)
+      schema:
+        type: string
+        example: id desc
+    offsetParam:
+      name: offset
+      in: query
+      description: Offset for the returned records (optional)
+      schema:
+        type: integer
+        default: 0
+        example: 20
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

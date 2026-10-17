@@ -181,25 +181,6 @@ paths:
           $ref: '#/components/responses/500ServerError'
 components:
   schemas:
-    Facility:
-      title: Facility
-      required:
-      - id
-      properties:
-        id:
-          type: integer
-          example: 123
-        name:
-          type: string
-          example: Test Facility
-        license_number:
-          type: string
-          example: 4a-x123
-        is_active:
-          type: boolean
-          example: true
-        address:
-          $ref: '#/components/schemas/Address'
     NonCannabisProductCategory:
       title: Non Cannabis Product Category
       required:
@@ -215,337 +196,6 @@ components:
         updated_at:
           type: string
           example: 2018-11-06 08:00:00+00:00
-    Vendor:
-      title: Vendor
-      required:
-      - id
-      - name
-      properties:
-        id:
-          type: integer
-          example: 123
-        name:
-          type: string
-          example: Canna Cones
-        is_active:
-          type: boolean
-        contact_name:
-          type: string
-          example: John Smith
-        email:
-          type: string
-          example: john@cannacones.com
-        phone:
-          type: string
-          example: 16501109234
-        license_number:
-          type: string
-          example: X-000012
-        license_expiration_date:
-          type: string
-          example: 2022-03-16 07:00:00+00:00
-        address:
-          type: string
-          example: 63 Bluxome St.
-        address2:
-          type: string
-          example: Suite A
-        city:
-          type: string
-          example: San Francisco
-        postal_code:
-          type: string
-          example: 94107
-        state:
-          type: string
-          example: CA
-        country:
-          type: string
-          example: US
-        website_url:
-          type: string
-          example: cannacones.com
-        notes:
-          type: string
-          example: Best vendor
-        min_lead_time:
-          type: object
-          example:
-            value: 2
-            unit: week
-        updated_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
-    Strain:
-      title: Strain
-      required:
-      - id
-      - name
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-          example: Lemon Skunk
-          description: Strain name
-        notes:
-          type: string
-          example: Terpenes .63%
-          description: Notes
-        sku:
-          type: string
-          example: BIOJJ
-          description: SKU
-        testing_status:
-          type: string
-          example: InHouse
-          description: 'Testing status: InHouse, ThirdParty, None, NA'
-        indica_percent:
-          type: number
-          example: 45.0
-          description: Indica Percentage
-        sativa_percent:
-          type: number
-          example: 55.0
-          description: Sativa Percentage
-        cross_strains:
-          type: array
-          description: Cross strains
-          items:
-            $ref: '#/components/schemas/CrossStrain'
-    ItemSubType:
-      title: ItemSubType
-      required:
-      - id
-      - name
-      - weight_unit
-      - item_category
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        weight_unit:
-          type: string
-        category:
-          $ref: '#/components/schemas/ItemType'
-        updated_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
-    ItemStandardCost:
-      title: ItemStandardCost
-      required:
-      - id
-      - standard_cost_amount
-      - standard_cost_currency
-      - start_date
-      properties:
-        id:
-          type: integer
-          example: 123
-        standard_cost_amount:
-          type: number
-          example: 12.1111
-        standard_cost_currency:
-          type: string
-          example: USD
-        start_date:
-          type: string
-          example: '2023-04-19'
-        end_date:
-          type: string
-          example: '2023-05-19'
-    CreatePurchaseOrderRequestBody:
-      title: Purchase Order Request Body
-      required:
-      - facility_id
-      - vendor_id
-      - status
-      - requested_delivery_date
-      - payment_terms
-      type: object
-      properties:
-        facility_id:
-          type: integer
-          example: 1
-          description: Facility ID (fk)
-        name:
-          type: string
-          example: PO 00001
-          description: Optional name for the purchase order
-        status:
-          type: string
-          enum:
-          - CREATED
-          - RELEASED
-          - REQUESTED
-          - PARTIALLY_RECEIVED
-          - RECEIVED
-          - PAID
-          - ARCHIVED
-          description: Status of the purchase order
-        vendor_id:
-          type: integer
-          example: 123
-          description: Vendor ID (fk)
-        requested_delivery_date:
-          type: string
-          format: date
-          example: '2021-06-07'
-          description: Expected delivery date for the purchase order
-        internal_notes:
-          type: string
-          example: Follow up
-          description: Optional internal notes for the purchase order
-        payment_terms:
-          type: string
-          pattern: ^(NET|COD|CONSIGNMENT|PREPAYMENT)
-          example: NET15
-          description: Payment terms - must start with one of 'NET', 'COD', 'CONSIGNMENT', 'PREPAYMENT'
-        payment_date:
-          type: string
-          format: date
-          example: '2021-06-22'
-          description: Date when the Purchase Order was paid. Required if payment_terms is PREPAYMENT
-        delivery_fee:
-          type: number
-          format: float
-          minimum: 0
-          example: 1.5
-          description: Optional delivery fee amount
-        local_tax_rate:
-          type: number
-          format: float
-          minimum: 0
-          maximum: 1
-          example: 0.01
-          description: Input 0.01 to represent 1% tax rate. Will enable excise_tax if greater than 0
-        state_tax_rate:
-          type: number
-          format: float
-          minimum: 0
-          maximum: 1
-          example: 0.01
-          description: Input 0.01 to represent 1% tax rate. Will enable excise_tax if greater than 0
-        other_tax_rate:
-          type: number
-          format: float
-          minimum: 0
-          maximum: 1
-          example: 0.01
-          description: Input 0.01 to represent 1% tax rate
-        purchase_order_items_attributes:
-          description: Contents of the order (i.e. line items)
-          type: array
-          items:
-            $ref: '#/components/schemas/PurchaseOrderItemRequestBody'
-    NonCannabisProductStandardCosting:
-      title: NonCannabisProductStandardCosting
-      required:
-      - id
-      - standard_cost_amount
-      - standard_cost_currency
-      - start_date
-      properties:
-        id:
-          type: integer
-          example: 123
-        standard_cost_amount:
-          type: number
-          example: 12.1111
-        standard_cost_currency:
-          type: string
-          example: USD
-        start_date:
-          type: string
-          example: '2023-04-19'
-        end_date:
-          type: string
-          example: '2023-05-19'
-    Location:
-      title: Location
-      required:
-      - id
-      - name
-      properties:
-        id:
-          type: integer
-          example: 123
-        name:
-          type: string
-          example: Pro System
-        sqft:
-          type: number
-          example: 14.4
-        num_lights:
-          type: integer
-          example: 42
-        parent_location:
-          $ref: '#/components/schemas/ParentLocation'
-        updated_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
-        is_active:
-          type: boolean
-          example: true
-    PurchaseOrderItemRequestBody:
-      title: Purchase Order Item Request Body
-      required:
-      - weight
-      - weight_unit_id
-      - price
-      type: object
-      properties:
-        item_id:
-          type: integer
-          example: 7036
-          description: Item ID (fk). Mutually exclusive with non_cannabis_product_id - exactly one of the two is required per line item.
-        non_cannabis_product_id:
-          type: integer
-          example: 145
-          description: Non-Cannabis Product ID (fk). Mutually exclusive with item_id - exactly one of the two is required per line item.
-        weight:
-          type: number
-          example: 200
-        weight_unit_id:
-          type: integer
-          example: 15
-          description: Weight Unit ID (fk)
-        price:
-          type: number
-          example: 10.25
-          description: Total price for that item weight
-        notes:
-          type: string
-          example: my notes for this order item
-          description: Note to describe the order item
-    PurchaseOrderItem:
-      title: Purchase Order Item
-      required:
-      - id
-      - purchase_order_id
-      type: object
-      properties:
-        id:
-          type: integer
-          example: 13
-        weight:
-          type: number
-          example: 200
-        weight_unit:
-          type: string
-          example: Grams
-        total_price:
-          type: number
-          example: 10.25
-          description: Total price for that item weight
-        item:
-          $ref: '#/components/schemas/Item'
-          description: Purchased cannabis item (if `non_cannabis_product` is unset)
-        non_cannabis_product:
-          $ref: '#/components/schemas/NonCannabisProduct'
-          description: Purchased non-cannabis item (if `item` is unset)
     Item:
       title: Item
       required:
@@ -736,47 +386,109 @@ components:
         backordered: 10
         unordered: 75
         updated_at: '2021-03-16T23:49:03.175Z'
-    ItemType:
-      title: ItemType
+    CreatePurchaseOrderRequestBody:
+      title: Purchase Order Request Body
+      required:
+      - facility_id
+      - vendor_id
+      - status
+      - requested_delivery_date
+      - payment_terms
+      type: object
+      properties:
+        facility_id:
+          type: integer
+          example: 1
+          description: Facility ID (fk)
+        name:
+          type: string
+          example: PO 00001
+          description: Optional name for the purchase order
+        status:
+          type: string
+          enum:
+          - CREATED
+          - RELEASED
+          - REQUESTED
+          - PARTIALLY_RECEIVED
+          - RECEIVED
+          - PAID
+          - ARCHIVED
+          description: Status of the purchase order
+        vendor_id:
+          type: integer
+          example: 123
+          description: Vendor ID (fk)
+        requested_delivery_date:
+          type: string
+          format: date
+          example: '2021-06-07'
+          description: Expected delivery date for the purchase order
+        internal_notes:
+          type: string
+          example: Follow up
+          description: Optional internal notes for the purchase order
+        payment_terms:
+          type: string
+          pattern: ^(NET|COD|CONSIGNMENT|PREPAYMENT)
+          example: NET15
+          description: Payment terms - must start with one of 'NET', 'COD', 'CONSIGNMENT', 'PREPAYMENT'
+        payment_date:
+          type: string
+          format: date
+          example: '2021-06-22'
+          description: Date when the Purchase Order was paid. Required if payment_terms is PREPAYMENT
+        delivery_fee:
+          type: number
+          format: float
+          minimum: 0
+          example: 1.5
+          description: Optional delivery fee amount
+        local_tax_rate:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 1
+          example: 0.01
+          description: Input 0.01 to represent 1% tax rate. Will enable excise_tax if greater than 0
+        state_tax_rate:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 1
+          example: 0.01
+          description: Input 0.01 to represent 1% tax rate. Will enable excise_tax if greater than 0
+        other_tax_rate:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 1
+          example: 0.01
+          description: Input 0.01 to represent 1% tax rate
+        purchase_order_items_attributes:
+          description: Contents of the order (i.e. line items)
+          type: array
+          items:
+            $ref: '#/components/schemas/PurchaseOrderItemRequestBody'
+    Facility:
+      title: Facility
       required:
       - id
-      - name
-      - facility_id
-      type: object
       properties:
         id:
           type: integer
+          example: 123
         name:
           type: string
-        quantity_type:
+          example: Test Facility
+        license_number:
           type: string
-        requires_strain:
+          example: 4a-x123
+        is_active:
           type: boolean
-        requires_unit_volume:
-          type: boolean
-        requires_unit_weight:
-          type: boolean
-        requires_unit_thc_weight:
-          type: boolean
-        requires_unit_cbd_weight:
-          type: boolean
-        requires_unit_cbd_percent:
-          type: boolean
-        requires_unit_thc_percent:
-          type: boolean
-        requires_public_ingredients:
-          type: boolean
-        requires_administration_method:
-          type: boolean
-        requires_serving_size:
-          type: boolean
-        requires_supply_duration_days:
-          type: boolean
-        requires_number_of_doses:
-          type: boolean
-        updated_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
+          example: true
+        address:
+          $ref: '#/components/schemas/Address'
     NonCannabisProduct:
       title: Non Cannabis Product
       required:
@@ -847,6 +559,150 @@ components:
                 type: string
               percentage:
                 type: number
+    Vendor:
+      title: Vendor
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: integer
+          example: 123
+        name:
+          type: string
+          example: Canna Cones
+        is_active:
+          type: boolean
+        contact_name:
+          type: string
+          example: John Smith
+        email:
+          type: string
+          example: john@cannacones.com
+        phone:
+          type: string
+          example: 16501109234
+        license_number:
+          type: string
+          example: X-000012
+        license_expiration_date:
+          type: string
+          example: 2022-03-16 07:00:00+00:00
+        address:
+          type: string
+          example: 63 Bluxome St.
+        address2:
+          type: string
+          example: Suite A
+        city:
+          type: string
+          example: San Francisco
+        postal_code:
+          type: string
+          example: 94107
+        state:
+          type: string
+          example: CA
+        country:
+          type: string
+          example: US
+        website_url:
+          type: string
+          example: cannacones.com
+        notes:
+          type: string
+          example: Best vendor
+        min_lead_time:
+          type: object
+          example:
+            value: 2
+            unit: week
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+    ItemStandardCost:
+      title: ItemStandardCost
+      required:
+      - id
+      - standard_cost_amount
+      - standard_cost_currency
+      - start_date
+      properties:
+        id:
+          type: integer
+          example: 123
+        standard_cost_amount:
+          type: number
+          example: 12.1111
+        standard_cost_currency:
+          type: string
+          example: USD
+        start_date:
+          type: string
+          example: '2023-04-19'
+        end_date:
+          type: string
+          example: '2023-05-19'
+    Strain:
+      title: Strain
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          example: Lemon Skunk
+          description: Strain name
+        notes:
+          type: string
+          example: Terpenes .63%
+          description: Notes
+        sku:
+          type: string
+          example: BIOJJ
+          description: SKU
+        testing_status:
+          type: string
+          example: InHouse
+          description: 'Testing status: InHouse, ThirdParty, None, NA'
+        indica_percent:
+          type: number
+          example: 45.0
+          description: Indica Percentage
+        sativa_percent:
+          type: number
+          example: 55.0
+          description: Sativa Percentage
+        cross_strains:
+          type: array
+          description: Cross strains
+          items:
+            $ref: '#/components/schemas/CrossStrain'
+    NonCannabisProductStandardCosting:
+      title: NonCannabisProductStandardCosting
+      required:
+      - id
+      - standard_cost_amount
+      - standard_cost_currency
+      - start_date
+      properties:
+        id:
+          type: integer
+          example: 123
+        standard_cost_amount:
+          type: number
+          example: 12.1111
+        standard_cost_currency:
+          type: string
+          example: USD
+        start_date:
+          type: string
+          example: '2023-04-19'
+        end_date:
+          type: string
+          example: '2023-05-19'
     Address:
       title: Address
       type: object
@@ -887,70 +743,6 @@ components:
           type: string
           format: date
           example: '2025-02-04'
-    ParentLocation:
-      title: Parent Location
-      required:
-      - id
-      - name
-      properties:
-        id:
-          type: integer
-          example: 123
-        name:
-          type: string
-          example: Pro System
-        sqft:
-          type: number
-          example: 14.4
-        num_lights:
-          type: integer
-          example: 42
-        updated_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
-        is_active:
-          type: boolean
-          example: true
-    CrossStrain:
-      title: Cross Strain
-      required:
-      - id
-      - name
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-          example: Lemon Skunk
-          description: Strain name
-        notes:
-          type: string
-          example: Terpenes .63%
-          description: Notes
-        sku:
-          type: string
-          example: BIOJJ
-          description: SKU
-        testing_status:
-          type: string
-          example: InHouse
-          description: 'Testing status: InHouse, ThirdParty, None, NA'
-        indica_percent:
-          type: number
-          example: 45.0
-          description: Indica Percentage
-        sativa_percent:
-          type: number
-          example: 55.0
-          description: Sativa Percentage
-    IdName:
-      title: IdName
-      type: object
-      properties:
-        id:
-          type: number
-        name:
-          type: string
     PurchaseOrder:
       title: Purchase Order
       required:
@@ -1032,14 +824,226 @@ components:
         updated_at:
           type: string
           example: 2018-11-06 08:00:00+00:00
+    PurchaseOrderItem:
+      title: Purchase Order Item
+      required:
+      - id
+      - purchase_order_id
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 13
+        weight:
+          type: number
+          example: 200
+        weight_unit:
+          type: string
+          example: Grams
+        total_price:
+          type: number
+          example: 10.25
+          description: Total price for that item weight
+        item:
+          $ref: '#/components/schemas/Item'
+          description: Purchased cannabis item (if `non_cannabis_product` is unset)
+        non_cannabis_product:
+          $ref: '#/components/schemas/NonCannabisProduct'
+          description: Purchased non-cannabis item (if `item` is unset)
+    Location:
+      title: Location
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: integer
+          example: 123
+        name:
+          type: string
+          example: Pro System
+        sqft:
+          type: number
+          example: 14.4
+        num_lights:
+          type: integer
+          example: 42
+        parent_location:
+          $ref: '#/components/schemas/ParentLocation'
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+        is_active:
+          type: boolean
+          example: true
+    PurchaseOrderItemRequestBody:
+      title: Purchase Order Item Request Body
+      required:
+      - weight
+      - weight_unit_id
+      - price
+      type: object
+      properties:
+        item_id:
+          type: integer
+          example: 7036
+          description: Item ID (fk). Mutually exclusive with non_cannabis_product_id - exactly one of the two is required per line item.
+        non_cannabis_product_id:
+          type: integer
+          example: 145
+          description: Non-Cannabis Product ID (fk). Mutually exclusive with item_id - exactly one of the two is required per line item.
+        weight:
+          type: number
+          example: 200
+        weight_unit_id:
+          type: integer
+          example: 15
+          description: Weight Unit ID (fk)
+        price:
+          type: number
+          example: 10.25
+          description: Total price for that item weight
+        notes:
+          type: string
+          example: my notes for this order item
+          description: Note to describe the order item
+    ParentLocation:
+      title: Parent Location
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: integer
+          example: 123
+        name:
+          type: string
+          example: Pro System
+        sqft:
+          type: number
+          example: 14.4
+        num_lights:
+          type: integer
+          example: 42
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+        is_active:
+          type: boolean
+          example: true
+    IdName:
+      title: IdName
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+    ItemSubType:
+      title: ItemSubType
+      required:
+      - id
+      - name
+      - weight_unit
+      - item_category
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        weight_unit:
+          type: string
+        category:
+          $ref: '#/components/schemas/ItemType'
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+    CrossStrain:
+      title: Cross Strain
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          example: Lemon Skunk
+          description: Strain name
+        notes:
+          type: string
+          example: Terpenes .63%
+          description: Notes
+        sku:
+          type: string
+          example: BIOJJ
+          description: SKU
+        testing_status:
+          type: string
+          example: InHouse
+          description: 'Testing status: InHouse, ThirdParty, None, NA'
+        indica_percent:
+          type: number
+          example: 45.0
+          description: Indica Percentage
+        sativa_percent:
+          type: number
+          example: 55.0
+          description: Sativa Percentage
+    ItemType:
+      title: ItemType
+      required:
+      - id
+      - name
+      - facility_id
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        quantity_type:
+          type: string
+        requires_strain:
+          type: boolean
+        requires_unit_volume:
+          type: boolean
+        requires_unit_weight:
+          type: boolean
+        requires_unit_thc_weight:
+          type: boolean
+        requires_unit_cbd_weight:
+          type: boolean
+        requires_unit_cbd_percent:
+          type: boolean
+        requires_unit_thc_percent:
+          type: boolean
+        requires_public_ingredients:
+          type: boolean
+        requires_administration_method:
+          type: boolean
+        requires_serving_size:
+          type: boolean
+        requires_supply_duration_days:
+          type: boolean
+        requires_number_of_doses:
+          type: boolean
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+  responses:
+    403AccessDenied:
+      description: Access denied
+    404NotFound:
+      description: The specified resource was not found
+    401NotAuthenticated:
+      description: Not authenticated
+    400BadRequest:
+      description: Bad request
+    500ServerError:
+      description: Server error
   parameters:
-    orderByParam:
-      name: order_by
-      in: query
-      description: Order-by clause, in SQL format (optional)
-      schema:
-        type: string
-        example: id desc
     limitParam:
       name: limit
       in: query
@@ -1077,6 +1081,13 @@ components:
       schema:
         type: string
         example: status='Active' AND updated_at >= '2024-01-01'
+    orderByParam:
+      name: order_by
+      in: query
+      description: Order-by clause, in SQL format (optional)
+      schema:
+        type: string
+        example: id desc
     offsetParam:
       name: offset
       in: query
@@ -1085,17 +1096,6 @@ components:
         type: integer
         default: 0
         example: 20
-  responses:
-    401NotAuthenticated:
-      description: Not authenticated
-    400BadRequest:
-      description: Bad request
-    404NotFound:
-      description: The specified resource was not found
-    403AccessDenied:
-      description: Access denied
-    500ServerError:
-      description: Server error
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

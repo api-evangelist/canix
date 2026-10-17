@@ -106,6 +106,17 @@ paths:
         '500':
           $ref: '#/components/responses/500ServerError'
 components:
+  responses:
+    400BadRequest:
+      description: Bad request
+    403AccessDenied:
+      description: Access denied
+    404NotFound:
+      description: The specified resource was not found
+    500ServerError:
+      description: Server error
+    401NotAuthenticated:
+      description: Not authenticated
   schemas:
     SubmissionStatus:
       title: Submission Status
@@ -211,17 +222,6 @@ components:
           tag: 1A40000000000000001
         created_at: '2024-01-15T10:30:00.000Z'
         last_run_at: '2024-01-15T10:30:05.000Z'
-  responses:
-    404NotFound:
-      description: The specified resource was not found
-    401NotAuthenticated:
-      description: Not authenticated
-    400BadRequest:
-      description: Bad request
-    403AccessDenied:
-      description: Access denied
-    500ServerError:
-      description: Server error
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
