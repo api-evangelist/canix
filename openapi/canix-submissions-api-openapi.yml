@@ -7,12 +7,18 @@ info:
     altText: Canix logo
   description: '# Introduction
 
-    This API documentation describes the endpoints used by third-party developers to get Canix data for their account.'
+    This API documentation describes the endpoints used by third-party developers to get Canix data for their account.
+
+    # Authentication
+
+    Canix API uses API Keys for authentication. You can generate an API key on our API page, and on your API requests use the `X-API-KEY` header with the API key value you generated.
+
+    We strongly recommend using a secrets manager. Plain text files like dotenv lead to accidental costly leaks. Use Doppler or similar options for a developer friendly experience. AWS and Google Cloud have native solutions as well.'
   contact:
     name: Canix Support
     url: https://help.canix.com/
     email: help@canix.com
-  version: 1.3.10
+  version: 1.3.11
 servers:
 - url: https://api.canix.com/api/v1
   variables: {}
@@ -21,6 +27,56 @@ security:
 tags:
 - name: Submissions
 paths:
+  /submissions:
+    get:
+      tags:
+      - Submissions
+      summary: GetSubmissions
+      description: 'Return submissions across the company''s facilities, newest first. A submission represents an asynchronous
+
+        action (such as creating a package, adjusting inventory, submitting a transfer, etc.) that may be pending,
+
+        successful, failed, or require approval.
+
+
+        This list omits the `description` and `result` fields, which are only available from
+
+        `GET /submissions/{submission_id}`. Use the `uuid` of a listed submission to fetch those details.
+
+
+        Filter with the `where` parameter, e.g. `where=status=''FAILED'' AND created_at >= ''2026-01-01''`.'
+      operationId: GetSubmissions
+      parameters:
+      - name: facility_id
+        in: query
+        description: Facility ID (optional)
+        example: 123
+        required: false
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/limitParam'
+      - $ref: '#/components/parameters/offsetParam'
+      - $ref: '#/components/parameters/orderByParam'
+      - $ref: '#/components/parameters/whereParam'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SubmissionSummary'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          $ref: '#/components/responses/401NotAuthenticated'
+        '403':
+          $ref: '#/components/responses/403AccessDenied'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '500':
+          $ref: '#/components/responses/500ServerError'
   /submissions/{submission_id}:
     get:
       tags:
@@ -106,17 +162,59 @@ paths:
         '500':
           $ref: '#/components/responses/500ServerError'
 components:
-  responses:
-    400BadRequest:
-      description: Bad request
-    403AccessDenied:
-      description: Access denied
-    404NotFound:
-      description: The specified resource was not found
-    500ServerError:
-      description: Server error
-    401NotAuthenticated:
-      description: Not authenticated
+  parameters:
+    whereParam:
+      name: where
+      in: query
+      description: 'Filter results using SQL-like WHERE clause syntax (optional).
+
+
+        **Supported operators**: =, >, <, >=, <=, BETWEEN, IN, LIKE, AND, OR
+
+
+        **Supported patterns**:
+
+        - Equality: `status=''Active''`
+
+        - Comparison: `updated_at >= ''2024-01-01''`
+
+        - Range: `id BETWEEN 1 AND 10000`
+
+        - List: `status IN (''Active'', ''Pending'')`
+
+        - Pattern: `sku LIKE ''ABC%''`
+
+        - Compound: `facility_id=123 AND is_active=true`
+
+        '
+      schema:
+        type: string
+        example: status='Active' AND updated_at >= '2024-01-01'
+    orderByParam:
+      name: order_by
+      in: query
+      description: Order-by clause, in SQL format (optional)
+      schema:
+        type: string
+        example: id desc
+    limitParam:
+      name: limit
+      in: query
+      description: Max number of records to return (optional). Cannot exceed 2000
+      required: false
+      style: form
+      schema:
+        type: integer
+        default: 2000
+        example: 100
+    offsetParam:
+      name: offset
+      in: query
+      description: Offset for the returned records (optional)
+      schema:
+        type: integer
+        default: 0
+        example: 20
   schemas:
     SubmissionStatus:
       title: Submission Status
@@ -153,6 +251,99 @@ components:
       - ABORTED
       - PARTIAL_FAILURE
       example: SUCCESS
+    SubmissionIntegration:
+      title: Submission Integration
+      type: string
+      description: 'The system the submission is sent to:
+
+        - **METRC**: Submitted to Metrc
+
+        - **BIO_TRACK**: Submitted to BioTrack
+
+        - **STANDALONE**: Handled entirely within Canix, with no compliance system involved
+
+        '
+      enum:
+      - METRC
+      - BIO_TRACK
+      - STANDALONE
+      example: METRC
+    SubmissionSummary:
+      title: Submission Summary
+      description: 'A submission as returned by the list endpoint. Carries the same identifier as `Submission` but omits
+
+        `description` and `result`, which are only available from `GET /submissions/{submission_id}`.
+
+        '
+      type: object
+      required:
+      - uuid
+      - status
+      - created_at
+      properties:
+        uuid:
+          type: string
+          description: The unique identifier for the submission, accepted by `GET /submissions/{submission_id}`
+          example: U3VibWlzc2lvbjo0NTY3ODk=
+        status:
+          $ref: '#/components/schemas/SubmissionStatus'
+        readable_name:
+          type:
+          - string
+          - 'null'
+          description: Human-readable name describing the submission action
+          example: Create Package
+        integration:
+          $ref: '#/components/schemas/SubmissionIntegration'
+        transaction_type:
+          type:
+          - string
+          - 'null'
+          description: The compliance action the submission performs. Null for standalone submissions, which are not sent to a compliance system.
+          example: create_package_from_harvests
+        error_message:
+          type:
+          - string
+          - 'null'
+          description: Error message if the submission failed, empty string otherwise
+          example: ''
+        facility_id:
+          type: integer
+          description: The facility the submission belongs to
+          example: 123
+        is_archived:
+          type: boolean
+          description: Whether the submission has been archived
+          example: false
+        created_at:
+          type: string
+          format: date-time
+          description: When the submission was created
+          example: '2024-01-15T10:30:00.000Z'
+        updated_at:
+          type: string
+          format: date-time
+          description: When the submission was last modified
+          example: '2024-01-15T10:30:05.000Z'
+        last_run_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: When the submission was last executed (null if not yet run)
+          example: '2024-01-15T10:30:05.000Z'
+      example:
+        uuid: U3VibWlzc2lvbjo0NTY3ODk=
+        status: SUCCESS
+        readable_name: Create Package
+        integration: METRC
+        transaction_type: create_package_from_harvests
+        error_message: ''
+        facility_id: 123
+        is_archived: false
+        created_at: '2024-01-15T10:30:00.000Z'
+        updated_at: '2024-01-15T10:30:05.000Z'
+        last_run_at: '2024-01-15T10:30:05.000Z'
     Submission:
       title: Submission
       description: 'A submission represents an asynchronous action (such as creating a package, adjusting inventory,
@@ -222,6 +413,17 @@ components:
           tag: 1A40000000000000001
         created_at: '2024-01-15T10:30:00.000Z'
         last_run_at: '2024-01-15T10:30:05.000Z'
+  responses:
+    500ServerError:
+      description: Server error
+    403AccessDenied:
+      description: Access denied
+    400BadRequest:
+      description: Bad request
+    401NotAuthenticated:
+      description: Not authenticated
+    404NotFound:
+      description: The specified resource was not found
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

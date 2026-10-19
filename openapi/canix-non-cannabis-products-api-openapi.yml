@@ -7,12 +7,18 @@ info:
     altText: Canix logo
   description: '# Introduction
 
-    This API documentation describes the endpoints used by third-party developers to get Canix data for their account.'
+    This API documentation describes the endpoints used by third-party developers to get Canix data for their account.
+
+    # Authentication
+
+    Canix API uses API Keys for authentication. You can generate an API key on our API page, and on your API requests use the `X-API-KEY` header with the API key value you generated.
+
+    We strongly recommend using a secrets manager. Plain text files like dotenv lead to accidental costly leaks. Use Doppler or similar options for a developer friendly experience. AWS and Google Cloud have native solutions as well.'
   contact:
     name: Canix Support
     url: https://help.canix.com/
     email: help@canix.com
-  version: 1.3.10
+  version: 1.3.11
 servers:
 - url: https://api.canix.com/api/v1
   variables: {}
@@ -196,21 +202,6 @@ paths:
           $ref: '#/components/responses/500ServerError'
 components:
   schemas:
-    NonCannabisProductCategory:
-      title: Non Cannabis Product Category
-      required:
-      - id
-      - name
-      properties:
-        id:
-          type: integer
-          example: 123
-        name:
-          type: string
-          example: Preroll Materials
-        updated_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
     Facility:
       title: Facility
       required:
@@ -230,6 +221,77 @@ components:
           example: true
         address:
           $ref: '#/components/schemas/Address'
+    BillOfMaterialsOutputItem:
+      title: Output Item Info
+      type: object
+      required:
+      - name
+      - item_id
+      - quantity
+      - weight_unit
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: Name of the output item. Null when the output targets an item category or sub-category instead of a concrete item; item_category / item_sub_category identify the output in that case.
+        item_id:
+          type: integer
+        quantity:
+          type: number
+        weight_unit:
+          type: string
+        item_category:
+          type:
+          - object
+          - 'null'
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+        item_sub_category:
+          type:
+          - object
+          - 'null'
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+      example:
+        name: Jarred Flower
+        item_id: 370
+        quantity: 50
+        weight_unit: Grams
+        item_category: null
+        item_sub_category: null
+    Location:
+      title: Location
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: integer
+          example: 123
+        name:
+          type: string
+          example: Pro System
+        sqft:
+          type: number
+          example: 14.4
+        num_lights:
+          type: integer
+          example: 42
+        parent_location:
+          $ref: '#/components/schemas/ParentLocation'
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+        is_active:
+          type: boolean
+          example: true
     NonCannabisProduct:
       title: Non Cannabis Product
       required:
@@ -300,6 +362,46 @@ components:
                 type: string
               percentage:
                 type: number
+    Address:
+      title: Address
+      type: object
+      properties:
+        street:
+          type: string
+          example: 123 Cumberland St
+        street2:
+          type: string
+          example: West
+        city:
+          type: string
+          example: Somerset
+        county:
+          type: string
+          example: KY
+        state:
+          type: string
+          example: CO
+        country:
+          type: string
+          example: USA
+        postal_code:
+          type: string
+          example: 42504
+    NonCannabisProductCategory:
+      title: Non Cannabis Product Category
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: integer
+          example: 123
+        name:
+          type: string
+          example: Preroll Materials
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
     BillOfMaterials:
       title: Bill of Materials Info
       type: object
@@ -479,31 +581,30 @@ components:
         end_date:
           type: string
           example: '2023-05-19'
-    Address:
-      title: Address
-      type: object
+    ParentLocation:
+      title: Parent Location
+      required:
+      - id
+      - name
       properties:
-        street:
+        id:
+          type: integer
+          example: 123
+        name:
           type: string
-          example: 123 Cumberland St
-        street2:
+          example: Pro System
+        sqft:
+          type: number
+          example: 14.4
+        num_lights:
+          type: integer
+          example: 42
+        updated_at:
           type: string
-          example: West
-        city:
-          type: string
-          example: Somerset
-        county:
-          type: string
-          example: KY
-        state:
-          type: string
-          example: CO
-        country:
-          type: string
-          example: USA
-        postal_code:
-          type: string
-          example: 42504
+          example: 2018-11-06 08:00:00+00:00
+        is_active:
+          type: boolean
+          example: true
     CreateNonCannabisProductRequestBody:
       title: Create Non Cannabis Product Request Body
       type: object
@@ -623,120 +724,25 @@ components:
           percentage: 10.0
         - name: Phosphorus
           percentage: 5.0
-    Location:
-      title: Location
-      required:
-      - id
-      - name
-      properties:
-        id:
-          type: integer
-          example: 123
-        name:
-          type: string
-          example: Pro System
-        sqft:
-          type: number
-          example: 14.4
-        num_lights:
-          type: integer
-          example: 42
-        parent_location:
-          $ref: '#/components/schemas/ParentLocation'
-        updated_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
-        is_active:
-          type: boolean
-          example: true
-    ParentLocation:
-      title: Parent Location
-      required:
-      - id
-      - name
-      properties:
-        id:
-          type: integer
-          example: 123
-        name:
-          type: string
-          example: Pro System
-        sqft:
-          type: number
-          example: 14.4
-        num_lights:
-          type: integer
-          example: 42
-        updated_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
-        is_active:
-          type: boolean
-          example: true
-    BillOfMaterialsOutputItem:
-      title: Output Item Info
-      type: object
-      required:
-      - name
-      - item_id
-      - quantity
-      - weight_unit
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-          description: Name of the output item. Null when the output targets an item category or sub-category instead of a concrete item; item_category / item_sub_category identify the output in that case.
-        item_id:
-          type: integer
-        quantity:
-          type: number
-        weight_unit:
-          type: string
-        item_category:
-          type:
-          - object
-          - 'null'
-          properties:
-            id:
-              type: integer
-            name:
-              type: string
-        item_sub_category:
-          type:
-          - object
-          - 'null'
-          properties:
-            id:
-              type: integer
-            name:
-              type: string
-      example:
-        name: Jarred Flower
-        item_id: 370
-        quantity: 50
-        weight_unit: Grams
-        item_category: null
-        item_sub_category: null
+  responses:
+    403AccessDenied:
+      description: Access denied
+    401NotAuthenticated:
+      description: Not authenticated
+    404NotFound:
+      description: The specified resource was not found
+    500ServerError:
+      description: Server error
+    400BadRequest:
+      description: Bad request
   parameters:
-    offsetParam:
-      name: offset
+    orderByParam:
+      name: order_by
       in: query
-      description: Offset for the returned records (optional)
+      description: Order-by clause, in SQL format (optional)
       schema:
-        type: integer
-        default: 0
-        example: 20
-    limitParam:
-      name: limit
-      in: query
-      description: Max number of records to return (optional). Cannot exceed 2000
-      required: false
-      style: form
-      schema:
-        type: integer
-        default: 2000
-        example: 100
+        type: string
+        example: id desc
     whereParam:
       name: where
       in: query
@@ -764,24 +770,24 @@ components:
       schema:
         type: string
         example: status='Active' AND updated_at >= '2024-01-01'
-    orderByParam:
-      name: order_by
+    limitParam:
+      name: limit
       in: query
-      description: Order-by clause, in SQL format (optional)
+      description: Max number of records to return (optional). Cannot exceed 2000
+      required: false
+      style: form
       schema:
-        type: string
-        example: id desc
-  responses:
-    403AccessDenied:
-      description: Access denied
-    404NotFound:
-      description: The specified resource was not found
-    401NotAuthenticated:
-      description: Not authenticated
-    400BadRequest:
-      description: Bad request
-    500ServerError:
-      description: Server error
+        type: integer
+        default: 2000
+        example: 100
+    offsetParam:
+      name: offset
+      in: query
+      description: Offset for the returned records (optional)
+      schema:
+        type: integer
+        default: 0
+        example: 20
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

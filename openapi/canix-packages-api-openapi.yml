@@ -7,12 +7,18 @@ info:
     altText: Canix logo
   description: '# Introduction
 
-    This API documentation describes the endpoints used by third-party developers to get Canix data for their account.'
+    This API documentation describes the endpoints used by third-party developers to get Canix data for their account.
+
+    # Authentication
+
+    Canix API uses API Keys for authentication. You can generate an API key on our API page, and on your API requests use the `X-API-KEY` header with the API key value you generated.
+
+    We strongly recommend using a secrets manager. Plain text files like dotenv lead to accidental costly leaks. Use Doppler or similar options for a developer friendly experience. AWS and Google Cloud have native solutions as well.'
   contact:
     name: Canix Support
     url: https://help.canix.com/
     email: help@canix.com
-  version: 1.3.10
+  version: 1.3.11
 servers:
 - url: https://api.canix.com/api/v1
   variables: {}
@@ -83,19 +89,257 @@ paths:
           $ref: '#/components/responses/404NotFound'
         '500':
           $ref: '#/components/responses/500ServerError'
+  /packages/{package_id}/adjustments:
+    get:
+      tags:
+      - Packages
+      summary: GetPackageAdjustments
+      description: 'Return the package''s adjustments that have been submitted to the compliance system, oldest adjustment date
+
+        first. Adjustments still awaiting submission are not included.'
+      operationId: GetPackageAdjustments
+      parameters:
+      - name: package_id
+        in: path
+        description: Package ID
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PackageAdjustment'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          $ref: '#/components/responses/401NotAuthenticated'
+        '403':
+          $ref: '#/components/responses/403AccessDenied'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '500':
+          $ref: '#/components/responses/500ServerError'
+  /package_adjustments/{package_adjustment_id}:
+    get:
+      tags:
+      - Packages
+      summary: GetPackageAdjustment
+      description: Get Package Adjustment by ID
+      operationId: GetPackageAdjustmentById
+      parameters:
+      - name: package_adjustment_id
+        in: path
+        description: Package Adjustment ID
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PackageAdjustment'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          $ref: '#/components/responses/401NotAuthenticated'
+        '403':
+          $ref: '#/components/responses/403AccessDenied'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '500':
+          $ref: '#/components/responses/500ServerError'
+  /package_adjustment_reasons:
+    get:
+      tags:
+      - Packages
+      summary: GetPackageAdjustReasons
+      description: Return the adjustment reasons configured for a facility. The reason list is maintained per facility.
+      operationId: GetPackageAdjustReasons
+      parameters:
+      - name: facility_id
+        in: query
+        description: Facility ID
+        example: 123
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PackageAdjustReason'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          $ref: '#/components/responses/401NotAuthenticated'
+        '403':
+          $ref: '#/components/responses/403AccessDenied'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '500':
+          $ref: '#/components/responses/500ServerError'
 components:
-  responses:
-    403AccessDenied:
-      description: Access denied
-    404NotFound:
-      description: The specified resource was not found
-    401NotAuthenticated:
-      description: Not authenticated
-    400BadRequest:
-      description: Bad request
-    500ServerError:
-      description: Server error
   schemas:
+    TestResultValue:
+      title: TestResultValue
+      type: object
+      properties:
+        value:
+          type:
+          - number
+          - 'null'
+          format: double
+          example: 0.17501406232422
+        measure:
+          type: string
+          enum:
+          - mg
+          - mg/g
+          - mg/dose
+          - mg/serving
+          - percent
+          example: mg/g
+    SourcePackage:
+      title: Source Package
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: integer
+        tag:
+          type: string
+        weight:
+          type: number
+        weight_unit:
+          type: string
+        item:
+          $ref: '#/components/schemas/IdName'
+    PackageAdjustReason:
+      title: Package Adjust Reason
+      type: object
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: integer
+          description: The unique identifier of the reason
+          example: 42
+        name:
+          type: string
+          description: The name of the reason
+          example: Spoilage
+        updated_at:
+          type: string
+          format: date-time
+          description: When the reason was last modified
+          example: '2024-01-15T10:30:00.000Z'
+        facility_id:
+          type: integer
+          description: The facility the reason is configured for
+          example: 123
+        requires_note:
+          type: boolean
+          description: Whether an adjustment using this reason must carry a note
+          example: true
+    Location:
+      title: Location
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: integer
+          example: 123
+        name:
+          type: string
+          example: Pro System
+        sqft:
+          type: number
+          example: 14.4
+        num_lights:
+          type: integer
+          example: 42
+        parent_location:
+          $ref: '#/components/schemas/ParentLocation'
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+        is_active:
+          type: boolean
+          example: true
+    LabTestInfo:
+      type: object
+      properties:
+        testing_facility_name:
+          type: string
+          description: Name of the facility where the testing was conducted.F
+        testing_facility_license:
+          type: string
+          description: License number of the testing facility.
+      required:
+      - testing_facility_name
+      - testing_facility_license
+    PackageAdjustment:
+      title: Package Adjustment
+      type: object
+      required:
+      - id
+      - reason
+      - previous_weight
+      - adjusted_weight
+      - weight_unit
+      - adjusted_at
+      properties:
+        id:
+          type: integer
+          description: The unique identifier of the adjustment
+        reason:
+          $ref: '#/components/schemas/PackageAdjustReasonSummary'
+        previous_weight:
+          type: number
+          description: The weight before adjustment
+        adjusted_weight:
+          type: number
+          description: The weight after adjustment
+        weight_unit:
+          type: string
+          description: The unit of measurement for the weights
+        adjusted_at:
+          type: string
+          format: date-time
+          description: When the adjustment was made
+        note:
+          type: string
+          description: Optional note about the adjustment
+        package:
+          $ref: '#/components/schemas/Package'
+    Brand:
+      title: Brand
+      required:
+      - id
+      - name
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
     Item:
       title: Item
       required:
@@ -286,29 +530,157 @@ components:
         backordered: 10
         unordered: 75
         updated_at: '2021-03-16T23:49:03.175Z'
+    PackageAdjustReasonSummary:
+      title: Package Adjust Reason Summary
+      description: A package adjust reason as embedded in an adjustment, without the facility configuration fields.
+      type: object
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: integer
+          description: The unique identifier of the reason
+          example: 42
+        name:
+          type: string
+          description: The name of the reason
+          example: Spoilage
+        updated_at:
+          type: string
+          format: date-time
+          description: When the reason was last modified
+          example: '2024-01-15T10:30:00.000Z'
     ItemStandardCost:
       title: ItemStandardCost
       required:
       - id
-      - standard_cost_amount
-      - standard_cost_currency
+      - cost
       - start_date
       properties:
         id:
           type: integer
           example: 123
-        standard_cost_amount:
+        cost:
           type: number
+          description: The standard cost, in the company's currency
           example: 12.1111
-        standard_cost_currency:
-          type: string
-          example: USD
         start_date:
           type: string
           example: '2023-04-19'
         end_date:
-          type: string
+          type:
+          - string
+          - 'null'
           example: '2023-05-19'
+        item:
+          type: object
+          description: The item the cost belongs to. Omitted where a standard cost is embedded in an item.
+          properties:
+            id:
+              type: integer
+              example: 123
+            name:
+              type: string
+              example: Blue Dream 1g Preroll
+            sku:
+              type:
+              - string
+              - 'null'
+              example: BD-PR-1G
+    ItemType:
+      title: ItemType
+      required:
+      - id
+      - name
+      - facility_id
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        quantity_type:
+          type: string
+        requires_strain:
+          type: boolean
+        requires_unit_volume:
+          type: boolean
+        requires_unit_weight:
+          type: boolean
+        requires_unit_thc_weight:
+          type: boolean
+        requires_unit_cbd_weight:
+          type: boolean
+        requires_unit_cbd_percent:
+          type: boolean
+        requires_unit_thc_percent:
+          type: boolean
+        requires_public_ingredients:
+          type: boolean
+        requires_administration_method:
+          type: boolean
+        requires_serving_size:
+          type: boolean
+        requires_supply_duration_days:
+          type: boolean
+        requires_number_of_doses:
+          type: boolean
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+    ItemSubType:
+      title: ItemSubType
+      required:
+      - id
+      - name
+      - weight_unit
+      - item_category
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        weight_unit:
+          type: string
+        category:
+          $ref: '#/components/schemas/ItemType'
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+    ParentLocation:
+      title: Parent Location
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: integer
+          example: 123
+        name:
+          type: string
+          example: Pro System
+        sqft:
+          type: number
+          example: 14.4
+        num_lights:
+          type: integer
+          example: 42
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+        is_active:
+          type: boolean
+          example: true
+    IdName:
+      title: IdName
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
     Strain:
       title: Strain
       required:
@@ -321,6 +693,10 @@ components:
           type: string
           example: Lemon Skunk
           description: Strain name
+        facility_id:
+          type: integer
+          example: 123
+          description: ID of the facility the strain belongs to
         notes:
           type: string
           example: Terpenes .63%
@@ -334,50 +710,38 @@ components:
           example: InHouse
           description: 'Testing status: InHouse, ThirdParty, None, NA'
         indica_percent:
-          type: number
+          type:
+          - number
+          - 'null'
           example: 45.0
           description: Indica Percentage
         sativa_percent:
-          type: number
+          type:
+          - number
+          - 'null'
           example: 55.0
           description: Sativa Percentage
+        indica_percentage:
+          type:
+          - number
+          - 'null'
+          example: 45.0
+          description: Indica Percentage (same value as indica_percent)
+        sativa_percentage:
+          type:
+          - number
+          - 'null'
+          example: 55.0
+          description: Sativa Percentage (same value as sativa_percent)
         cross_strains:
           type: array
           description: Cross strains
           items:
             $ref: '#/components/schemas/CrossStrain'
-    SourcePackage:
-      title: Source Package
-      required:
-      - id
-      type: object
-      properties:
-        id:
-          type: integer
-        tag:
+        updated_at:
           type: string
-        weight:
-          type: number
-        weight_unit:
-          type: string
-        item:
-          $ref: '#/components/schemas/IdName'
-    TestResultValue:
-      title: TestResultValue
-      type: object
-      properties:
-        value:
-          type: number
-          format: double
-          example: 0.17501406232422
-        measure:
-          type: string
-          enum:
-          - mg
-          - mg/g
-          - mg/serving
-          - percent
-          example: mg/g
+          format: date-time
+          description: Timestamp of the last update
     DestinationPackage:
       title: Destination Package
       required:
@@ -394,20 +758,188 @@ components:
           type: string
         item:
           $ref: '#/components/schemas/IdName'
-    Brand:
-      title: Brand
+    TestResults:
+      title: TestResults
+      type: object
+      properties:
+        thc:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestResultValue'
+          example:
+          - value: 12.345
+            measure: percent
+          - value: 0.12345
+            measure: mg/g
+          - value: 5.6789
+            measure: mg
+        cbd:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestResultValue'
+          example:
+          - value: 34.567
+            measure: percent
+          - value: 2.3456
+            measure: mg/g
+          - value: 9.1234
+            measure: mg
+        cbn:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestResultValue'
+        cbg:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestResultValue'
+        cbga:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestResultValue'
+        cbc:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestResultValue'
+        cbca:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestResultValue'
+        cbdv:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestResultValue'
+        cbdva:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestResultValue'
+        cbda:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestResultValue'
+        thca:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestResultValue'
+        delta_8_thc:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestResultValue'
+        delta_9_thc:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestResultValue'
+        delta_9_thca:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestResultValue'
+        delta_8_thca:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestResultValue'
+        thcv:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestResultValue'
+        thcva:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestResultValue'
+        total_cbd:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestResultValue'
+        total_cbg:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestResultValue'
+        total_delta_9_thc:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestResultValue'
+        total_thc:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestResultValue'
+        total_cannabinoid:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestResultValue'
+        test_status:
+          type: string
+          description: Status of the test (e.g., passed, failed, pending)
+        tested_package_tag:
+          type: string
+          description: Tag identifying the package that has been tested
+        test_date:
+          type: string
+          format: date
+          description: Date when the test was conducted
+        terpenes:
+          type: object
+          properties:
+            measure:
+              type: string
+              example: percent
+            top_three:
+              type: string
+              example:
+                beta_myrcene: '0.05104502943'
+                delta_limonene: '0.04842733428'
+                linalool: '0.01920111092'
+            values:
+              type: string
+              example:
+                nerol: '0.0'
+                cedrol: '0.0'
+                guaiol: '0.0'
+                borneol: '0.00097078668'
+                camphor: '0.0'
+                menthol: '0.0060455321'
+                3_carene: '0.0'
+                camphene: '0.0014924041'
+                geraniol: '0.00146493673'
+                linalool: '0.01920111092'
+                pulegone: '0.0'
+                sabinene: '0.0'
+                farnesene: '0.0'
+                valencene: '0.0'
+                eucalyptol: '0.0'
+                isoborneol: '0.0'
+                isopulegol: '0.0'
+                l_fenchone: '0.00107440035'
+                beta_pinene: '0.00758444019'
+                cis_ocimene: '0.0'
+                terpinolene: '0.0008523121'
+                alpha_pinene: '0.00507601301'
+                beta_myrcene: '0.05104502943'
+                alpha_cedrene: '0.0'
+                cis_nerolidol: '0.0'
+                trans_ocimene: '0.0'
+                alpha_humulene: '0.00563652811'
+                delta_limonene: '0.04842733428'
+                alpha_bisabolol: '0.00210912557'
+                alpha_terpineol: '0.0'
+                gamma_terpinene: '0.0'
+                gamma_terpineol: '0.0'
+                geranyl_acetate: '0.0'
+                trans_nerolidol: '0.0'
+                sabinene_hydrate: '0.0'
+                alpha_phellandrene: '0.0'
+                beta_caryophyllene: '0.01474344681'
+                caryophyllene_oxide: '0.00080207704'
+                endo_fenchyl_alcohol: '0.00415234658'
+    CrossStrain:
+      title: Cross Strain
       required:
       - id
       - name
-      type: object
       properties:
         id:
           type: integer
         name:
           type: string
-        updated_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
+          example: Lemon Skunk
+          description: Strain name
     Package:
       title: Package
       required:
@@ -423,6 +955,9 @@ components:
         is_testing_package:
           type: boolean
           description: Whether the package is flagged as a testing (lab sample) package.
+        is_trade_sample:
+          type: boolean
+          description: Whether the package is flagged as a trade sample (inventory that is given away rather than sold).
         status:
           type: string
         item:
@@ -545,342 +1080,18 @@ components:
           description: Date when the test was conducted
         lab_test_info:
           $ref: '#/components/schemas/LabTestInfo'
-    Location:
-      title: Location
-      required:
-      - id
-      - name
-      properties:
-        id:
-          type: integer
-          example: 123
-        name:
-          type: string
-          example: Pro System
-        sqft:
-          type: number
-          example: 14.4
-        num_lights:
-          type: integer
-          example: 42
-        parent_location:
-          $ref: '#/components/schemas/ParentLocation'
-        updated_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
-        is_active:
-          type: boolean
-          example: true
-    ParentLocation:
-      title: Parent Location
-      required:
-      - id
-      - name
-      properties:
-        id:
-          type: integer
-          example: 123
-        name:
-          type: string
-          example: Pro System
-        sqft:
-          type: number
-          example: 14.4
-        num_lights:
-          type: integer
-          example: 42
-        updated_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
-        is_active:
-          type: boolean
-          example: true
-    IdName:
-      title: IdName
-      type: object
-      properties:
-        id:
-          type: number
-        name:
-          type: string
-    ItemSubType:
-      title: ItemSubType
-      required:
-      - id
-      - name
-      - weight_unit
-      - item_category
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        weight_unit:
-          type: string
-        category:
-          $ref: '#/components/schemas/ItemType'
-        updated_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
-    CrossStrain:
-      title: Cross Strain
-      required:
-      - id
-      - name
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-          example: Lemon Skunk
-          description: Strain name
-        notes:
-          type: string
-          example: Terpenes .63%
-          description: Notes
-        sku:
-          type: string
-          example: BIOJJ
-          description: SKU
-        testing_status:
-          type: string
-          example: InHouse
-          description: 'Testing status: InHouse, ThirdParty, None, NA'
-        indica_percent:
-          type: number
-          example: 45.0
-          description: Indica Percentage
-        sativa_percent:
-          type: number
-          example: 55.0
-          description: Sativa Percentage
-    TestResults:
-      title: TestResults
-      type: object
-      properties:
-        thc:
-          type: array
-          items:
-            $ref: '#/components/schemas/TestResultValue'
-          example:
-          - value: 12.345
-            measure: percent
-          - value: 0.12345
-            measure: mg/g
-          - value: 5.6789
-            measure: mg
-        cbd:
-          type: array
-          items:
-            $ref: '#/components/schemas/TestResultValue'
-          example:
-          - value: 34.567
-            measure: percent
-          - value: 2.3456
-            measure: mg/g
-          - value: 9.1234
-            measure: mg
-        cbn:
-          type: array
-          items:
-            $ref: '#/components/schemas/TestResultValue'
-        cbg:
-          type: array
-          items:
-            $ref: '#/components/schemas/TestResultValue'
-        cbga:
-          type: array
-          items:
-            $ref: '#/components/schemas/TestResultValue'
-        cbc:
-          type: array
-          items:
-            $ref: '#/components/schemas/TestResultValue'
-        cbca:
-          type: array
-          items:
-            $ref: '#/components/schemas/TestResultValue'
-        cbda:
-          type: array
-          items:
-            $ref: '#/components/schemas/TestResultValue'
-        thca:
-          type: array
-          items:
-            $ref: '#/components/schemas/TestResultValue'
-        delta_8_thc:
-          type: array
-          items:
-            $ref: '#/components/schemas/TestResultValue'
-        delta_9_thc:
-          type: array
-          items:
-            $ref: '#/components/schemas/TestResultValue'
-        delta_9_thca:
-          type: array
-          items:
-            $ref: '#/components/schemas/TestResultValue'
-        delta_8_thca:
-          type: array
-          items:
-            $ref: '#/components/schemas/TestResultValue'
-        thcv:
-          type: array
-          items:
-            $ref: '#/components/schemas/TestResultValue'
-        thcva:
-          type: array
-          items:
-            $ref: '#/components/schemas/TestResultValue'
-        total_cbd:
-          type: array
-          items:
-            $ref: '#/components/schemas/TestResultValue'
-        total_cbg:
-          type: array
-          items:
-            $ref: '#/components/schemas/TestResultValue'
-        total_delta_9_thc:
-          type: array
-          items:
-            $ref: '#/components/schemas/TestResultValue'
-        total_thc:
-          type: array
-          items:
-            $ref: '#/components/schemas/TestResultValue'
-        total_cannabinoid:
-          type: array
-          items:
-            $ref: '#/components/schemas/TestResultValue'
-        test_status:
-          type: string
-          description: Status of the test (e.g., passed, failed, pending)
-        tested_package_tag:
-          type: string
-          description: Tag identifying the package that has been tested
-        test_date:
-          type: string
-          format: date
-          description: Date when the test was conducted
-        terpenes:
-          type: object
-          properties:
-            measure:
-              type: string
-              example: percent
-            top_three:
-              type: string
-              example:
-                beta_myrcene: '0.05104502943'
-                delta_limonene: '0.04842733428'
-                linalool: '0.01920111092'
-            values:
-              type: string
-              example:
-                nerol: '0.0'
-                cedrol: '0.0'
-                guaiol: '0.0'
-                borneol: '0.00097078668'
-                camphor: '0.0'
-                menthol: '0.0060455321'
-                3_carene: '0.0'
-                camphene: '0.0014924041'
-                geraniol: '0.00146493673'
-                linalool: '0.01920111092'
-                pulegone: '0.0'
-                sabinene: '0.0'
-                farnesene: '0.0'
-                valencene: '0.0'
-                eucalyptol: '0.0'
-                isoborneol: '0.0'
-                isopulegol: '0.0'
-                l_fenchone: '0.00107440035'
-                beta_pinene: '0.00758444019'
-                cis_ocimene: '0.0'
-                terpinolene: '0.0008523121'
-                alpha_pinene: '0.00507601301'
-                beta_myrcene: '0.05104502943'
-                alpha_cedrene: '0.0'
-                cis_nerolidol: '0.0'
-                trans_ocimene: '0.0'
-                alpha_humulene: '0.00563652811'
-                delta_limonene: '0.04842733428'
-                alpha_bisabolol: '0.00210912557'
-                alpha_terpineol: '0.0'
-                gamma_terpinene: '0.0'
-                gamma_terpineol: '0.0'
-                geranyl_acetate: '0.0'
-                trans_nerolidol: '0.0'
-                sabinene_hydrate: '0.0'
-                alpha_phellandrene: '0.0'
-                beta_caryophyllene: '0.01474344681'
-                caryophyllene_oxide: '0.00080207704'
-                endo_fenchyl_alcohol: '0.00415234658'
-    ItemType:
-      title: ItemType
-      required:
-      - id
-      - name
-      - facility_id
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        quantity_type:
-          type: string
-        requires_strain:
-          type: boolean
-        requires_unit_volume:
-          type: boolean
-        requires_unit_weight:
-          type: boolean
-        requires_unit_thc_weight:
-          type: boolean
-        requires_unit_cbd_weight:
-          type: boolean
-        requires_unit_cbd_percent:
-          type: boolean
-        requires_unit_thc_percent:
-          type: boolean
-        requires_public_ingredients:
-          type: boolean
-        requires_administration_method:
-          type: boolean
-        requires_serving_size:
-          type: boolean
-        requires_supply_duration_days:
-          type: boolean
-        requires_number_of_doses:
-          type: boolean
-        updated_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
-    LabTestInfo:
-      type: object
-      properties:
-        testing_facility_name:
-          type: string
-          description: Name of the facility where the testing was conducted.F
-        testing_facility_license:
-          type: string
-          description: License number of the testing facility.
-      required:
-      - testing_facility_name
-      - testing_facility_license
+  responses:
+    403AccessDenied:
+      description: Access denied
+    401NotAuthenticated:
+      description: Not authenticated
+    404NotFound:
+      description: The specified resource was not found
+    500ServerError:
+      description: Server error
+    400BadRequest:
+      description: Bad request
   parameters:
-    limitParam:
-      name: limit
-      in: query
-      description: Max number of records to return (optional). Cannot exceed 2000
-      required: false
-      style: form
-      schema:
-        type: integer
-        default: 2000
-        example: 100
     orderByParam:
       name: order_by
       in: query
@@ -915,6 +1126,16 @@ components:
       schema:
         type: string
         example: status='Active' AND updated_at >= '2024-01-01'
+    limitParam:
+      name: limit
+      in: query
+      description: Max number of records to return (optional). Cannot exceed 2000
+      required: false
+      style: form
+      schema:
+        type: integer
+        default: 2000
+        example: 100
     offsetParam:
       name: offset
       in: query

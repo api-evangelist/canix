@@ -593,6 +593,16 @@ apis:
     url: data-model/canix-data-model.yml
   - type: ErrorCatalog
     url: errors/canix-problem-types.yml
+- aid: canix:canix-incoming-transfers-api
+  name: Canix Incoming Transfers API
+  description: The Incoming Transfers API from Canix — 2 operation(s) for incoming transfers.
+  humanURL: https://www.canix.com/blog-posts/ask-your-data-anything-canix-launches-mcp-server
+  baseURL: https://api.canix.com/mcp
+  tags:
+  - Incoming Transfers
+  properties:
+  - type: OpenAPI
+    url: openapi/canix-incoming-transfers-api-openapi.yml
 common:
 - type: CapabilityMap
   url: capabilities/canix-capability-edges.yml

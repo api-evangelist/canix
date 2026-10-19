@@ -7,12 +7,18 @@ info:
     altText: Canix logo
   description: '# Introduction
 
-    This API documentation describes the endpoints used by third-party developers to get Canix data for their account.'
+    This API documentation describes the endpoints used by third-party developers to get Canix data for their account.
+
+    # Authentication
+
+    Canix API uses API Keys for authentication. You can generate an API key on our API page, and on your API requests use the `X-API-KEY` header with the API key value you generated.
+
+    We strongly recommend using a secrets manager. Plain text files like dotenv lead to accidental costly leaks. Use Doppler or similar options for a developer friendly experience. AWS and Google Cloud have native solutions as well.'
   contact:
     name: Canix Support
     url: https://help.canix.com/
     email: help@canix.com
-  version: 1.3.10
+  version: 1.3.11
 servers:
 - url: https://api.canix.com/api/v1
   variables: {}
@@ -161,7 +167,14 @@ paths:
       tags:
       - Items
       summary: Delete Item
-      description: __CALLING THIS ENDPOINT WILL MODIFY YOUR DATA IRREVERSIBLY. ONLY CALL THIS ON SANDBOX DATA DURING DEVELOPMENT/CODING/TESTING.__
+      description: '__CALLING THIS ENDPOINT WILL MODIFY YOUR DATA IRREVERSIBLY. ONLY CALL THIS ON SANDBOX DATA DURING DEVELOPMENT/CODING/TESTING.__
+
+
+        Deletion is routed through a submission, so the response tells you how far it got. A `200` means the
+
+        submission finished and the item is included in its deleted state; a `202` means the submission is still
+
+        being processed and only the submission is returned — poll it with `GET /submissions/{submission_id}`.'
       operationId: DeleteItem
       parameters:
       - name: item_id
@@ -170,10 +183,26 @@ paths:
         schema:
           type: integer
       responses:
-        '204':
-          description: No Content
+        '200':
+          description: The submission succeeded and the item was deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemDeletionResult'
+        '202':
+          description: The submission was queued and has not finished yet
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemDeletionResult'
         '404':
           $ref: '#/components/responses/404NotFound'
+        '422':
+          description: The submission failed; `submission.error_message` carries the reason
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemDeletionResult'
         '500':
           $ref: '#/components/responses/500ServerError'
   /items/{item_id}/standard_cost:
@@ -204,6 +233,39 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ItemStandardCost'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          $ref: '#/components/responses/401NotAuthenticated'
+        '403':
+          $ref: '#/components/responses/403AccessDenied'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '500':
+          $ref: '#/components/responses/500ServerError'
+  /items/{item_id}/standard_costs:
+    get:
+      tags:
+      - Items
+      summary: GetItemStandardCosts
+      description: Return every standard cost recorded for the item, newest start date first
+      operationId: GetItemStandardCosts
+      parameters:
+      - name: item_id
+        in: path
+        description: Item ID
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ItemStandardCost'
         '400':
           $ref: '#/components/responses/400BadRequest'
         '401':
@@ -284,15 +346,176 @@ components:
   responses:
     403AccessDenied:
       description: Access denied
-    404NotFound:
-      description: The specified resource was not found
     401NotAuthenticated:
       description: Not authenticated
-    400BadRequest:
-      description: Bad request
+    404NotFound:
+      description: The specified resource was not found
     500ServerError:
       description: Server error
+    400BadRequest:
+      description: Bad request
   schemas:
+    Submission:
+      title: Submission
+      description: 'A submission represents an asynchronous action (such as creating a package, adjusting inventory,
+
+        submitting a transfer, etc.) that may be pending, successful, failed, or require approval.
+
+        '
+      type: object
+      required:
+      - uuid
+      - status
+      - created_at
+      properties:
+        uuid:
+          type: string
+          description: The unique identifier for the submission
+          example: U3VibWlzc2lvbjo0NTY3ODk=
+        status:
+          $ref: '#/components/schemas/SubmissionStatus'
+        readable_name:
+          type:
+          - string
+          - 'null'
+          description: Human-readable name describing the submission action
+          example: Create Package
+        description:
+          type: string
+          description: Detailed description of the submission, may include multiple lines
+          example: 'Package created from harvest
+
+            Tag: 1A40000000000000001'
+        error_message:
+          type: string
+          description: Error message if the submission failed, empty string otherwise
+          example: ''
+        result:
+          type:
+          - object
+          - 'null'
+          description: Result data from a successful submission (e.g., created record IDs)
+          additionalProperties: true
+          example:
+            package_id: 12345
+            tag: 1A40000000000000001
+        created_at:
+          type: string
+          format: date-time
+          description: When the submission was created
+          example: '2024-01-15T10:30:00.000Z'
+        last_run_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: When the submission was last executed (null if not yet run)
+          example: '2024-01-15T10:30:05.000Z'
+      example:
+        uuid: U3VibWlzc2lvbjo0NTY3ODk=
+        status: SUCCESS
+        readable_name: Create Package
+        description: 'Package created from harvest
+
+          Tag: 1A40000000000000001'
+        error_message: ''
+        result:
+          package_id: 12345
+          tag: 1A40000000000000001
+        created_at: '2024-01-15T10:30:00.000Z'
+        last_run_at: '2024-01-15T10:30:05.000Z'
+    SubmissionStatus:
+      title: Submission Status
+      type: string
+      description: 'The current status of the submission:
+
+        - **CREATED**: Transaction queued for processing
+
+        - **PENDING_APPROVAL**: Transaction awaiting admin approval
+
+        - **PENDING**: Transaction pending response from compliance system
+
+        - **RETRYING**: Transaction failed but will be automatically retried
+
+        - **FAILED**: Transaction failed permanently
+
+        - **SUCCESS**: Transaction completed successfully
+
+        - **DENIED**: Transaction was reviewed by an admin and denied
+
+        - **ABORTED**: Transaction has been aborted
+
+        - **PARTIAL_FAILURE**: Some steps succeeded but others failed
+
+        '
+      enum:
+      - CREATED
+      - PENDING_APPROVAL
+      - PENDING
+      - RETRYING
+      - FAILED
+      - SUCCESS
+      - DENIED
+      - ABORTED
+      - PARTIAL_FAILURE
+      example: SUCCESS
+    ItemDeletionResult:
+      title: Item Deletion Result
+      description: 'The outcome of an item deletion. `item` is only present once the submission has succeeded, so a `202`
+
+        response carries the submission alone.
+
+        '
+      type: object
+      required:
+      - submission
+      properties:
+        submission:
+          $ref: '#/components/schemas/Submission'
+        item:
+          $ref: '#/components/schemas/Item'
+    CreateMETRCItemPhotosRequestBody:
+      title: CreateMETRCItemPhotosRequestBody
+      required:
+      - facility_id
+      - photos
+      properties:
+        facility_id:
+          type: integer
+        photos:
+          type: array
+          items:
+            type: object
+            properties:
+              attachment_type:
+                enum:
+                - product
+                - label
+                - packaging
+                description: 'The type of attachment intended for the item. Must be one of the following: product, label, packaging'
+              filename:
+                type: string
+              encoded_image_base64:
+                type: string
+                description: A Base64 string containing the encoded image
+    CreateMETRCItemFilesRequestBody:
+      title: CreateMETRCItemFileRequestBody
+      required:
+      - facility_id
+      - files
+      properties:
+        facility_id:
+          type: integer
+        files:
+          type: array
+          items:
+            type: object
+            properties:
+              filename:
+                type: string
+              encoded_file_base64:
+                type: string
+                description: A Base64 string containing the encoded file
     Item:
       title: Item
       required:
@@ -483,116 +706,6 @@ components:
         backordered: 10
         unordered: 75
         updated_at: '2021-03-16T23:49:03.175Z'
-    ItemStandardCost:
-      title: ItemStandardCost
-      required:
-      - id
-      - standard_cost_amount
-      - standard_cost_currency
-      - start_date
-      properties:
-        id:
-          type: integer
-          example: 123
-        standard_cost_amount:
-          type: number
-          example: 12.1111
-        standard_cost_currency:
-          type: string
-          example: USD
-        start_date:
-          type: string
-          example: '2023-04-19'
-        end_date:
-          type: string
-          example: '2023-05-19'
-    Strain:
-      title: Strain
-      required:
-      - id
-      - name
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-          example: Lemon Skunk
-          description: Strain name
-        notes:
-          type: string
-          example: Terpenes .63%
-          description: Notes
-        sku:
-          type: string
-          example: BIOJJ
-          description: SKU
-        testing_status:
-          type: string
-          example: InHouse
-          description: 'Testing status: InHouse, ThirdParty, None, NA'
-        indica_percent:
-          type: number
-          example: 45.0
-          description: Indica Percentage
-        sativa_percent:
-          type: number
-          example: 55.0
-          description: Sativa Percentage
-        cross_strains:
-          type: array
-          description: Cross strains
-          items:
-            $ref: '#/components/schemas/CrossStrain'
-    CreateMETRCItemFilesRequestBody:
-      title: CreateMETRCItemFileRequestBody
-      required:
-      - facility_id
-      - files
-      properties:
-        facility_id:
-          type: integer
-        files:
-          type: array
-          items:
-            type: object
-            properties:
-              filename:
-                type: string
-              encoded_file_base64:
-                type: string
-                description: A Base64 string containing the encoded file
-    CreateMETRCItemPhotosRequestBody:
-      title: CreateMETRCItemPhotosRequestBody
-      required:
-      - facility_id
-      - photos
-      properties:
-        facility_id:
-          type: integer
-        photos:
-          type: array
-          items:
-            type: object
-            properties:
-              attachment_type:
-                enum:
-                - product
-                - label
-                - packaging
-                description: 'The type of attachment intended for the item. Must be one of the following: product, label, packaging'
-              filename:
-                type: string
-              encoded_image_base64:
-                type: string
-                description: A Base64 string containing the encoded image
-    IdName:
-      title: IdName
-      type: object
-      properties:
-        id:
-          type: number
-        name:
-          type: string
     UpdateItemRequestBody:
       title: Item Update Request Body
       type: object
@@ -679,6 +792,84 @@ components:
           type: string
           example: 'Brand #1'
           description: Item Brand for METRC
+    ItemType:
+      title: ItemType
+      required:
+      - id
+      - name
+      - facility_id
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        quantity_type:
+          type: string
+        requires_strain:
+          type: boolean
+        requires_unit_volume:
+          type: boolean
+        requires_unit_weight:
+          type: boolean
+        requires_unit_thc_weight:
+          type: boolean
+        requires_unit_cbd_weight:
+          type: boolean
+        requires_unit_cbd_percent:
+          type: boolean
+        requires_unit_thc_percent:
+          type: boolean
+        requires_public_ingredients:
+          type: boolean
+        requires_administration_method:
+          type: boolean
+        requires_serving_size:
+          type: boolean
+        requires_supply_duration_days:
+          type: boolean
+        requires_number_of_doses:
+          type: boolean
+        updated_at:
+          type: string
+          example: 2018-11-06 08:00:00+00:00
+    ItemStandardCost:
+      title: ItemStandardCost
+      required:
+      - id
+      - cost
+      - start_date
+      properties:
+        id:
+          type: integer
+          example: 123
+        cost:
+          type: number
+          description: The standard cost, in the company's currency
+          example: 12.1111
+        start_date:
+          type: string
+          example: '2023-04-19'
+        end_date:
+          type:
+          - string
+          - 'null'
+          example: '2023-05-19'
+        item:
+          type: object
+          description: The item the cost belongs to. Omitted where a standard cost is embedded in an item.
+          properties:
+            id:
+              type: integer
+              example: 123
+            name:
+              type: string
+              example: Blue Dream 1g Preroll
+            sku:
+              type:
+              - string
+              - 'null'
+              example: BD-PR-1G
     ItemSubType:
       title: ItemSubType
       required:
@@ -699,8 +890,16 @@ components:
         updated_at:
           type: string
           example: 2018-11-06 08:00:00+00:00
-    CrossStrain:
-      title: Cross Strain
+    IdName:
+      title: IdName
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+    Strain:
+      title: Strain
       required:
       - id
       - name
@@ -711,6 +910,10 @@ components:
           type: string
           example: Lemon Skunk
           description: Strain name
+        facility_id:
+          type: integer
+          example: 123
+          description: ID of the facility the strain belongs to
         notes:
           type: string
           example: Terpenes .63%
@@ -724,13 +927,72 @@ components:
           example: InHouse
           description: 'Testing status: InHouse, ThirdParty, None, NA'
         indica_percent:
-          type: number
+          type:
+          - number
+          - 'null'
           example: 45.0
           description: Indica Percentage
         sativa_percent:
-          type: number
+          type:
+          - number
+          - 'null'
           example: 55.0
           description: Sativa Percentage
+        indica_percentage:
+          type:
+          - number
+          - 'null'
+          example: 45.0
+          description: Indica Percentage (same value as indica_percent)
+        sativa_percentage:
+          type:
+          - number
+          - 'null'
+          example: 55.0
+          description: Sativa Percentage (same value as sativa_percent)
+        cross_strains:
+          type: array
+          description: Cross strains
+          items:
+            $ref: '#/components/schemas/CrossStrain'
+        updated_at:
+          type: string
+          format: date-time
+          description: Timestamp of the last update
+    ItemStandardCostRequestBody:
+      title: Item Standard Cost Request Body
+      type: object
+      required:
+      - cost
+      - start_date
+      properties:
+        cost:
+          type: number
+          format: float
+          description: The standard cost value to be set
+          example: 10.5
+        start_date:
+          type: string
+          format: date-time
+          description: When this standard cost becomes effective
+          example: '2024-02-03T00:00:00Z'
+        end_date:
+          type: string
+          format: date-time
+          description: Optional. When this standard cost expires
+          example: '2024-12-31T23:59:59Z'
+    CrossStrain:
+      title: Cross Strain
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          example: Lemon Skunk
+          description: Strain name
     CreateItemRequestBody:
       title: Item Request Body
       type: object
@@ -848,80 +1110,7 @@ components:
           type: string
           example: 'Brand #1'
           description: Item Brand for METRC
-    ItemType:
-      title: ItemType
-      required:
-      - id
-      - name
-      - facility_id
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        quantity_type:
-          type: string
-        requires_strain:
-          type: boolean
-        requires_unit_volume:
-          type: boolean
-        requires_unit_weight:
-          type: boolean
-        requires_unit_thc_weight:
-          type: boolean
-        requires_unit_cbd_weight:
-          type: boolean
-        requires_unit_cbd_percent:
-          type: boolean
-        requires_unit_thc_percent:
-          type: boolean
-        requires_public_ingredients:
-          type: boolean
-        requires_administration_method:
-          type: boolean
-        requires_serving_size:
-          type: boolean
-        requires_supply_duration_days:
-          type: boolean
-        requires_number_of_doses:
-          type: boolean
-        updated_at:
-          type: string
-          example: 2018-11-06 08:00:00+00:00
-    ItemStandardCostRequestBody:
-      title: Item Standard Cost Request Body
-      type: object
-      required:
-      - cost
-      - start_date
-      properties:
-        cost:
-          type: number
-          format: float
-          description: The standard cost value to be set
-          example: 10.5
-        start_date:
-          type: string
-          format: date-time
-          description: When this standard cost becomes effective
-          example: '2024-02-03T00:00:00Z'
-        end_date:
-          type: string
-          format: date-time
-          description: Optional. When this standard cost expires
-          example: '2024-12-31T23:59:59Z'
   parameters:
-    limitParam:
-      name: limit
-      in: query
-      description: Max number of records to return (optional). Cannot exceed 2000
-      required: false
-      style: form
-      schema:
-        type: integer
-        default: 2000
-        example: 100
     orderByParam:
       name: order_by
       in: query
@@ -956,6 +1145,16 @@ components:
       schema:
         type: string
         example: status='Active' AND updated_at >= '2024-01-01'
+    limitParam:
+      name: limit
+      in: query
+      description: Max number of records to return (optional). Cannot exceed 2000
+      required: false
+      style: form
+      schema:
+        type: integer
+        default: 2000
+        example: 100
     offsetParam:
       name: offset
       in: query
