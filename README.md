@@ -64,29 +64,176 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Canix is a cannabis enterprise resource planning (ERP) and seed-to-sale platform for licensed
-cultivators, manufacturers and distributors. It covers cultivation, inventory, manufacturing,
-purchasing, sales and compliance, with Metrc, BioTrack and CCRS track-and-trace synchronization.
+Canix is a cannabis enterprise resource planning (ERP) and seed-to-sale platform used by licensed cultivators, manufacturers and distributors to run cultivation, processing, inventory, sales and compliance operations. The product covers plant and plant-batch tracking, harvests, packages, bills of materials, manufacturing batches and runs, purchase orders, sales orders, customers, vendors, standard costing and business intelligence reporting, with deep Metrc and BioTrack track-and-trace synchronization plus RFID and scale hardware support. Canix publishes a public OpenAPI 3.0.3 contract for its REST API at api.canix.com, and in July 2026 launched a hosted Model Context Protocol (MCP) server that lets AI assistants query Canix sales and inventory data in natural language.
 
-- Website: https://www.canix.com/
-- API product page: https://www.canix.com/product/api
-- API reference (Swagger UI): https://api.canix.com/api-docs-swagger/index.html
-- OpenAPI 3.0.3 (live): https://api.canix.com/api.yaml
-- MCP server: https://api.canix.com/mcp
-- Status: https://status.canix.com/
+**Areas:** Cannabis · ERP · Seed-to-Sale · Compliance · Inventory · Supply Chain · Track and Trace · Manufacturing · Agriculture · Metrc · Cultivation · Distribution
 
-## What this profile holds
+## Canix on APIs.io
 
-| Surface | State |
+Everything profiled for Canix is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/canix/](https://apis.io/providers/canix/)** — or go straight to one of the APIs or properties below.
+
+### APIs (28)
+
+- [Canix MCP Server](https://apis.io/apis/canix/canix-mcp/) — Canix's hosted Model Context Protocol server, announced 2026-07-09, connects Canix account data to AI assistants such as Claude and ChatGPT. It is published…
+- [Canix Audited Actions API](https://apis.io/apis/canix/canix-audited-actions-api/) — The Audited Actions API from Canix — 1 operation(s) for audited actions.
+- [Canix Bill of Materials API](https://apis.io/apis/canix/canix-bill-of-materials-api/) — The Bill of Materials API from Canix — 2 operation(s) for bill of materials.
+- [Canix Brands API](https://apis.io/apis/canix/canix-brands-api/) — The Brands API from Canix — 1 operation(s) for brands.
+- [Canix Company API](https://apis.io/apis/canix/canix-company-api/) — The Company API from Canix — 1 operation(s) for company.
+- [Canix Customers API](https://apis.io/apis/canix/canix-customers-api/) — The Customers API from Canix — 3 operation(s) for customers.
+- [Canix Facilities API](https://apis.io/apis/canix/canix-facilities-api/) — The Facilities API from Canix — 2 operation(s) for facilities.
+- [Canix Harvests API](https://apis.io/apis/canix/canix-harvests-api/) — The Harvests API from Canix — 2 operation(s) for harvests.
+- [Canix Item Sub-Types API](https://apis.io/apis/canix/canix-item-sub-types-api/) — The Item Sub-Types API from Canix — 1 operation(s) for item sub-types.
+- [Canix Item Types API](https://apis.io/apis/canix/canix-item-types-api/) — The Item Types API from Canix — 1 operation(s) for item types.
+- [Canix Items API](https://apis.io/apis/canix/canix-items-api/) — The Items API from Canix — 5 operation(s) for items.
+- [Canix Locations API](https://apis.io/apis/canix/canix-locations-api/) — The Locations API from Canix — 3 operation(s) for locations.
+- [Canix Manufacturing Batch API](https://apis.io/apis/canix/canix-manufacturing-batch-api/) — The Manufacturing Batch API from Canix — 2 operation(s) for manufacturing batch.
+- [Canix Manufacturing Run API](https://apis.io/apis/canix/canix-manufacturing-run-api/) — The Manufacturing Run API from Canix — 2 operation(s) for manufacturing run.
+- [Canix Non-Cannabis Products API](https://apis.io/apis/canix/canix-non-cannabis-products-api/) — The Non-Cannabis Products API from Canix — 3 operation(s) for non-cannabis products.
+- [Canix Packages API](https://apis.io/apis/canix/canix-packages-api/) — The Packages API from Canix — 2 operation(s) for packages.
+- [Canix Plant Batches API](https://apis.io/apis/canix/canix-plant-batches-api/) — The Plant Batches API from Canix — 2 operation(s) for plant batches.
+- [Canix Plants API](https://apis.io/apis/canix/canix-plants-api/) — The Plants API from Canix — 3 operation(s) for plants.
+- [Canix Products API](https://apis.io/apis/canix/canix-products-api/) — The Products API from Canix — 2 operation(s) for products.
+- [Canix Purchase Orders API](https://apis.io/apis/canix/canix-purchase-orders-api/) — The Purchase Orders API from Canix — 4 operation(s) for purchase orders.
+- [Canix Sales Orders API](https://apis.io/apis/canix/canix-sales-orders-api/) — The Sales Orders API from Canix — 7 operation(s) for sales orders.
+- [Canix Standard Costs API](https://apis.io/apis/canix/canix-standard-costs-api/) — The Standard Costs API from Canix — 1 operation(s) for standard costs.
+- [Canix Strains API](https://apis.io/apis/canix/canix-strains-api/) — The Strains API from Canix — 2 operation(s) for strains.
+- [Canix Submissions API](https://apis.io/apis/canix/canix-submissions-api/) — The Submissions API from Canix — 1 operation(s) for submissions.
+- [Canix Transfer Destinations API](https://apis.io/apis/canix/canix-transfer-destinations-api/) — The Transfer Destinations API from Canix — 2 operation(s) for transfer destinations.
+- [Canix Transfers API](https://apis.io/apis/canix/canix-transfers-api/) — The Transfers API from Canix — 2 operation(s) for transfers.
+- [Canix Vendors API](https://apis.io/apis/canix/canix-vendors-api/) — The Vendors API from Canix — 2 operation(s) for vendors.
+- [Canix Weight Units API](https://apis.io/apis/canix/canix-weightunits-api/) — The WeightUnits API from Canix — 1 operation(s) for weightunits.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [canix](https://apis.io/servers/canix/canix/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Canix Agentic Access](https://apis.io/agentic-access/canix/canix-agentic-access/)
+
+#### Collections (27)
+
+Postman and Open Collection request collections.
+
+- [Canix Audited Actions API](https://apis.io/collections/canix/open-canix-audited-actions-api/)
+- [Canix Bill of Materials API](https://apis.io/collections/canix/open-canix-bill-of-materials-api/)
+- [Canix Brands API](https://apis.io/collections/canix/open-canix-brands-api/)
+- [Canix Company API](https://apis.io/collections/canix/open-canix-company-api/)
+- [Canix Customers API](https://apis.io/collections/canix/open-canix-customers-api/)
+- [Canix Facilities API](https://apis.io/collections/canix/open-canix-facilities-api/)
+- [Canix Harvests API](https://apis.io/collections/canix/open-canix-harvests-api/)
+- [Canix Item Sub-Types API](https://apis.io/collections/canix/open-canix-item-sub-types-api/)
+- [Canix Item Types API](https://apis.io/collections/canix/open-canix-item-types-api/)
+- [Canix Items API](https://apis.io/collections/canix/open-canix-items-api/)
+- [Canix Locations API](https://apis.io/collections/canix/open-canix-locations-api/)
+- [Canix Manufacturing Batch API](https://apis.io/collections/canix/open-canix-manufacturing-batch-api/)
+- [Canix Manufacturing Run API](https://apis.io/collections/canix/open-canix-manufacturing-run-api/)
+- [Canix Non-Cannabis Products API](https://apis.io/collections/canix/open-canix-non-cannabis-products-api/)
+- [Canix Packages API](https://apis.io/collections/canix/open-canix-packages-api/)
+- [Canix Plant Batches API](https://apis.io/collections/canix/open-canix-plant-batches-api/)
+- [Canix Plants API](https://apis.io/collections/canix/open-canix-plants-api/)
+- [Canix Products API](https://apis.io/collections/canix/open-canix-products-api/)
+- [Canix Purchase Orders API](https://apis.io/collections/canix/open-canix-purchase-orders-api/)
+- [Canix Sales Orders API](https://apis.io/collections/canix/open-canix-sales-orders-api/)
+- [Canix Standard Costs API](https://apis.io/collections/canix/open-canix-standard-costs-api/)
+- [Canix Strains API](https://apis.io/collections/canix/open-canix-strains-api/)
+- [Canix Submissions API](https://apis.io/collections/canix/open-canix-submissions-api/)
+- [Canix Transfer Destinations API](https://apis.io/collections/canix/open-canix-transfer-destinations-api/)
+- [Canix Transfers API](https://apis.io/collections/canix/open-canix-transfers-api/)
+- …and 2 more published on APIs.io
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Canix Openapi Overlay](https://apis.io/overlays/canix/canix-openapi-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Canix Authentication](https://apis.io/security/canix/canix-authentication/)
+- [Canix Domain Security](https://apis.io/security/canix/canix-domain-security/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Canix Scopes](https://apis.io/scopes/canix/canix-scopes/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.canix.com/)
+- [Documentation](https://api.canix.com/api-docs-swagger/index.html)
+- [API reference](https://api.canix.com/api-docs-swagger/index.html)
+- [Sign up](https://www.canix.com/campaign/schedule-a-demo)
+- [Support](https://help.canix.com/hc/en-us)
+- [Blog](https://www.canix.com/blog)
+- [Terms of service](https://www.canix.com/terms-conditions)
+- [Privacy policy](https://www.canix.com/privacy-policy)
+- [Status](https://status.canix.com/)
+
+## API Evangelist rating
+
+**Kin Score 41.4** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
 |---|---|
-| REST API | OpenAPI 3.0.3, 74 operations, 60 paths, 76 schemas — harvested verbatim |
-| Auth (REST) | API key in `X-API-KEY`, company-scoped |
-| MCP server | Published 2026-07-09; OAuth 2.1 + DCR + PKCE; `tools/list` is auth-gated |
-| Auth (MCP) | OAuth 2.1, single `mcp` scope, RFC 8414 + RFC 9728 metadata |
-| Events / webhooks | None — async is client polling of `/submissions/{id}` |
-| A2A agent card | None on any Canix host |
-| SDKs / CLI | None published on npm, PyPI, RubyGems or a GitHub org |
-| Security program | None published — no security.txt, no trust center, no certifications |
+| Discoverability | 68.3 |
+| Contract quality | 54.2 |
+| Contract governance | 4.5 |
+| Operational transparency | 15.8 |
+| Developer ergonomics | 47.0 |
+| Access clarity | 34.2 |
 
-The spec was not at any conventional location. It is loaded by the Swagger UI from
-`https://api.canix.com/api.yaml` and was recovered by reading the Swagger UI bootstrap.
+**Agent readiness 47.4** — agent-ready (gated down from agent-native)
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | verified |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+| Pagination Ratio | partial |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 34.3** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/canix/](https://apis.io/providers/canix/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Canix: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/canix/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
